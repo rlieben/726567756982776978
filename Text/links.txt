@@ -7,3 +7,6 @@ de opdracht
 
 type probleem volgens ander groepje
 - https://en.wikipedia.org/wiki/Packing_problems
+
+tip van Joel
+- bradford search planning applications
