@@ -10,3 +10,6 @@ type probleem volgens ander groepje
 
 tip van Joel
 - bradford search planning applications
+
+bin packing problem
+- http://codeincomplete.com/posts/bin-packing/
