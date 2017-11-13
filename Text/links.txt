@@ -11,3 +11,9 @@ type probleem volgens ander groepje
 
 tip van Joel
 - bradford search planning applications
+
+bin packing problem
+- http://codeincomplete.com/posts/bin-packing/
+
+grid drawing with zvals
+- https://stackoverflow.com/questions/7229971/2d-grid-data-visualization-in-python

@@ -9,7 +9,7 @@ import numpy as np
 zvals = np.random.rand(100,100)*10-5
 
 # make a color map of fixed colors
-cmap = mpl.colors.ListedColormap(['red','black','white','green','blue'])
+cmap = mpl.colors.ListedColormap(['red','black','white'])
 bounds=[-6,-2,2,6]
 norm = mpl.colors.BoundaryNorm(bounds, cmap.N)
 
