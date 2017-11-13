@@ -15,7 +15,7 @@ class Cell(object):
         self.location = [x, y] # miss niet nodig
         self.actual_value = 0
         self.possible_value = 0
-        self.type = ''
+        self.type = 'Nothing'
 
     def calc_actual_value(self):
         '''Based on the locations of houses around, value is changed.'''
@@ -35,9 +35,9 @@ class Map(object):
         '''Grid is a list in a list (thus a matrix) filled with cells.'''
         self.grid = [[Cell for x in range(height)] for y in range(width)]
 
-    def add_house(self, location):
-        '''Fills the structure list with cells.'''
-        self.structure.append(location)
+    # def add_house(self, location):
+    #     '''Fills the structure list with cells.'''
+    #     self.structure.append(location)
 
 class House(object):
     '''Basis for the three different house classes.'''
