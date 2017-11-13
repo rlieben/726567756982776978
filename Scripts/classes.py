@@ -136,7 +136,7 @@ class Mansion(House):
         '''Inherits from class House.'''
         super.__init__(self, self_id)
 
-    def calc_value(self):
+    def calc_value(freespace):
         '''Calculates the value of this mansion.'''
 
         # checks whether minimumspace is sufficient for extra value
