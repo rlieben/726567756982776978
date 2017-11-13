@@ -50,7 +50,7 @@ class Cell(object):
 class Map(object):
     '''Grid that keeps track of all the cells.'''
 
-    def __init___(self, width, height):
+    def __init__(self, width, height):
         '''Grid is a list in a list (thus a matrix) filled with cells.
            Houses is a list containing all houses.
            Water is a list containint all water elements.'''
@@ -70,10 +70,6 @@ class House(object):
         self.structure = []
         self.space = []
         self.value = 0
-
-    def add_house(self, x, y):
-        '''Fills the structure list with cells.'''
-        self.structure.append([x, y])
 
 
 class One_Family(House):
