@@ -11,6 +11,18 @@ WATER_PREVALENCE = 0.20
 NR_HOUSES = [20, 40, 60]
 DISTR_HOUSES = [0.60, 0.25, 0.15] # [one_family, bungalow, mansion]
 
+# variables of houses
+VALUE_1F = 285000
+PERC_1F = 3
+MIN_FREESPACE_1F = 2
+VALUE_BU = 399000
+PERC_BU = 4
+MIN_FREESPACE_BU = 3
+VALUE_MA = 610000
+PERC_MA = 6
+MIN_FREESPACE_MA = 6
+
+
 
 class Cell(object):
     '''One element in the grid.'''
@@ -74,23 +86,18 @@ class One_Family(House):
     def calc_value(freespace):
         '''Calculates the value of this one family home.'''
 
-        # value of one family house
-        value_1f = 285000
-
-        if (freespace - 2) > 0:
+        # checks whether minimumspace is sufficient for extra value
+        if (freespace - MIN_FREESPACE_1F) > 0:
 
             # factor of freespace between houses
-            factor_freespace = ((freespace - 2) * 3) / 100
+            factor_freespace = ((freespace - MIN_FREESPACE_1F) * PERC_1F) / 100
 
             # end total value of one family house
-            tot_value_1f = value_1f + (value_1f * factor_freespace)
+            return VALUE_1F + (VALUE_1F * factor_freespace)
 
         else:
 
-            tot_value_1f = value_1f
-
-        # return end total value
-        return tot_value_1f
+            return VALUE_1F
 
         # super.value = function()
 
@@ -105,23 +112,19 @@ class Bungalow(House):
     def calc_value(freespace):
         '''Calculates the value of this bungalow.'''
 
-        # value of bungalow house
-        value_bu = 399000
-
-        if (freespace - 3) > 0:
+        # checks whether minimumspace is sufficient for extra value
+        if (freespace - MIN_FREESPACE_BU) > 0:
 
             # factor of freespace between houses
-            factor_freespace = ((freespace - 3) * 4) / 100
+            factor_freespace = ((freespace - MIN_FREESPACE_BU) * PERC_BU) / 100
 
             # end total value of one family house
-            tot_value_bu = value_bu + (value_bu * factor_freespace)
+            return VALUE_BU + (VALUE_BU * factor_freespace)
 
         else:
 
-            tot_value_bu = value_bu
+            return VALUE_BU
 
-        # return end total value
-        return tot_value_bu
 
     # super.value = function
 
@@ -135,24 +138,19 @@ class Mansion(House):
 
     def calc_value(self):
         '''Calculates the value of this mansion.'''
-        # value of bungalow house
-        value_ma = 610000
 
-        # checks whether minimumspace is sufficient
-        if (freespace - 6) > 0:
+        # checks whether minimumspace is sufficient for extra value
+        if (freespace - MIN_FREESPACE_MA) > 0:
 
             # factor of freespace between houses
-            factor_freespace = ((freespace - 6) * 6) / 100
+            factor_freespace = ((freespace - MIN_FREESPACE_MA) * PERC_MA) / 100
 
             # end total value of one family house
-            tot_value_ma = value_ma + (value_ma * (factor_freespace)
+            return VALUE_MA + (VALUE_MA * (factor_freespace)
 
         else:
 
-            tot_value_ma = value_ma
-
-        # return end total value
-        return tot_value_ma
+            return VALUE_MA
 
     # super.value = function
 
