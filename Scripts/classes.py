@@ -5,8 +5,8 @@
 Code containing all classes used.
 '''
 
-WIDTH_MAP = 160
-HEIGHT_MAP = 180
+WIDTH_MAP = 180
+HEIGHT_MAP = 160
 WATER_PREVALENCE = 0.20
 NR_HOUSES = [20, 40, 60]
 DISTR_HOUSES = [0.60, 0.25, 0.15] # [one_family, bungalow, mansion]
@@ -21,7 +21,6 @@ MIN_FREESPACE_BU = 3
 VALUE_MA = 610000
 PERC_MA = 6
 MIN_FREESPACE_MA = 6
-
 
 
 class Cell(object):
@@ -71,13 +70,16 @@ class House(object):
         self.space = []
         self.value = 0
 
+    def add_structure(self, x, y):
+        self.structure.append([x, y])
+
 
 class One_Family(House):
     '''First of three types of houses.'''
 
     def __init__(self, self_id):
         '''Inherits from class House.'''
-        super.__init__(self, self_id)
+        super().__init__(self_id)
 
     def calc_value(freespace):
         '''Calculates the value of this one family home.'''
@@ -103,7 +105,7 @@ class Bungalow(House):
 
     def __init__(self, self_id):
         '''Inherits from class House.'''
-        super.__init__(self, self_id)
+        super().__init__(self_id)
 
     def calc_value(freespace):
         '''Calculates the value of this bungalow.'''
@@ -130,7 +132,7 @@ class Mansion(House):
 
     def __init__(self, self_id):
         '''Inherits from class House.'''
-        super.__init__(self, self_id)
+        super().__init__(self_id)
 
     def calc_value(freespace):
         '''Calculates the value of this mansion.'''
