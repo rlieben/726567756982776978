@@ -34,7 +34,7 @@ class Cell(object):
         self.location = [x, y] # miss niet nodig
         self.actual_value = 0
         self.possible_value = 0
-        self.type = 'Nothing'
+        self.type = 'empty'
 
     def calc_actual_value(self):
         '''Based on the locations of houses around, value is changed.'''
