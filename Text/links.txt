@@ -14,3 +14,6 @@ tip van Joel
 
 bin packing problem
 - http://codeincomplete.com/posts/bin-packing/
+
+grid drawing with zvals
+- https://stackoverflow.com/questions/7229971/2d-grid-data-visualization-in-python
