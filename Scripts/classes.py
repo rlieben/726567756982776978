@@ -138,7 +138,6 @@ class Mansion(House):
 
     def calc_value(freespace):
         '''Calculates the value of this mansion.'''
-
         # checks whether minimumspace is sufficient for extra value
         if (freespace - MIN_FREESPACE_MA) > 0:
 
@@ -146,7 +145,7 @@ class Mansion(House):
             factor_freespace = ((freespace - MIN_FREESPACE_MA) * PERC_MA) / 100
 
             # end total value of one family house
-            return VALUE_MA + (VALUE_MA * (factor_freespace)
+            return VALUE_MA + (VALUE_MA * factor_freespace)
 
         else:
 

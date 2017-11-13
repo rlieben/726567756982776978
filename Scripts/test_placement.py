@@ -5,7 +5,7 @@
 First algorithm that places houses, used to test the classes of classes.py.
 '''
 
-import classes.py
+from classes.py import *
 
 grid = Map(WIDTH_MAP, HEIGHT_MAP)
 
