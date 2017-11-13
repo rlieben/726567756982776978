@@ -1,33 +1,24 @@
-# import matplotlib.pyplot as plt
-# from matplotlib import colors
-# import numpy as np
-#
-# data = np.random.rand(10, 10) * 20
-#
-# # create discrete colormap
-# cmap = colors.ListedColormap(['red', 'blue'])
-# bounds = [0,160,160]
-# norm = colors.BoundaryNorm(bounds, cmap.N)
-#
-# fig, ax = plt.subplots()
-# ax.imshow(data, cmap=cmap, norm=norm)
-#
-# # draw gridlines
-# ax.grid(which='major', axis='both', linestyle='-', color='k', linewidth=2)
-# ax.set_xticks(np.arange(-.5, 10, 1));
-# ax.set_yticks(np.arange(-.5, 10, 1));
-#
-# plt.show()
+#!/usr/bin/python
 
+import matplotlib as mpl
+import matplotlib.pyplot as plot
+import numpy as np
 
-def makeGrid(g):
-    n = []
-    for i in range(g):
-        temp = []
-        for j in range(g):
-            temp.append(g[j][i])
-        n.append(temp)
-    return n
+# make values from -5 to 5, for this
+ '''Uiteindelijk moet bij zvals de list worden ingeladen met de waardes die zijn uitgerekend'''
+zvals = np.random.rand(100,100)*10-5
 
-grid = makeGrid(8)
-print(grid)
+# make a color map of fixed colors
+cmap = mpl.colors.ListedColormap(['red','black','white','green','blue'])
+bounds=[-6,-2,2,6]
+norm = mpl.colors.BoundaryNorm(bounds, cmap.N)
+
+# tell imshow about color map so that only set colors are used
+img = plot.imshow(zvals,interpolation='nearest',
+                    cmap = cmap, origin = 'lower')
+
+# make a color bar
+plot.colorbar(img,cmap=cmap,
+                norm=norm,boundaries=bounds,ticks=[-5,0,5])
+
+plot.show()
