@@ -156,7 +156,7 @@ class Mansion(House):
 
 
 class Water_Element(object):
-    '''One of a maximum of four areas desitnated for water.'''
+    '''One of a maximum of four areas destinated for water.'''
 
     def __init__(self):
         '''Water is a list of cells on which water is placed.'''
