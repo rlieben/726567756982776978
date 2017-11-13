@@ -2,7 +2,7 @@
 # Assignment:   Amstelhaege
 
 '''
-Code containing all classes used at application.py
+Code containing all classes used.
 '''
 
 class Cell(object):
@@ -15,7 +15,7 @@ class Cell(object):
         self.location = [x, y] # miss niet nodig
         self.actual_value = 0
         self.possible_value = 0
-        self.type = ''
+        self.type = 'Nothing'
 
     def calc_actual_value(self):
         '''Based on the locations of houses around, value is changed.'''
@@ -32,12 +32,16 @@ class Map(object):
     '''Grid that keeps track of all the cells.'''
 
     def __init___(self, height, width):
-        '''Grid is a list in a list (thus a matrix) filled with cells.'''
+        '''Grid is a list in a list (thus a matrix) filled with cells.
+           Houses is a list containing all houses.
+           Water is a list containint all water elements.'''
         self.grid = [[Cell for x in range(height)] for y in range(width)]
+        self.houses = []
+        self.water = []
 
-    def add_house(self, location):
-        '''Fills the structure list with cells.'''
-        self.structure.append(location)
+    # def add_house(self, location):
+    #     '''Fills the structure list with cells.'''
+    #     self.structure.append(location)
 
 class House(object):
     '''Basis for the three different house classes.'''
