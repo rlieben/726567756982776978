@@ -68,11 +68,30 @@ class One_Family(House):
         '''Calculates the value of this one family home.'''
         print('TODO: class House, calc_value')
 
-        def function(freespace)
-        super.value = function()
+        def function(freespace):
+
+            # value of one family house
+            value_1f = 285000
+
+            if (freespace - 2) > 0:
+
+                # factor of freespace between houses
+                factor_freespace = ((freespace - 2) * 3) / 100
+
+                # end total value of one family house
+                tot_value_1f = value_1f + (value_1f * factor_freespace)
+
+            else:
+
+                tot_value_1f = value_1f
+
+            # return end total value
+            return tot_value_1f
+
+        # super.value = function()
 
 
-class Bugalow(House):
+class Bungalow(House):
     '''Second of three types of houses.'''
 
     def __init__(self, self_id):
@@ -82,6 +101,27 @@ class Bugalow(House):
     def calc_value(self):
         '''Calculates the value of this bungalow.'''
         print('TODO: class House, calc_value')
+
+        def function(freespace):
+
+            # value of bungalow house
+            value_bu = 399000
+
+            if (freespace - 3) > 0:
+
+                # factor of freespace between houses
+                factor_freespace = ((freespace - 3) * 4) / 100
+
+                # end total value of one family house
+                tot_value_bu = value_bu + (value_bu * factor_freespace)
+
+            else:
+
+                tot_value_bu = value_bu
+
+            # return end total value
+            return tot_value_bu
+
         # super.value = function
 
 
@@ -95,6 +135,28 @@ class Mansion(House):
     def calc_value(self):
         '''Calculates the value of this mansion.'''
         print('TODO: class House, calc_value')
+
+        def function(freespace):
+
+            # value of bungalow house
+            value_ma = 610000
+
+            # checks whether minimumspace is sufficient
+            if (freespace - 6) > 0:
+
+                # factor of freespace between houses
+                factor_freespace = ((freespace - 6) * 6) / 100
+
+                # end total value of one family house
+                tot_value_ma = value_ma + (value_ma * (factor_freespace)
+
+            else:
+
+                tot_value_ma = value_ma
+
+            # return end total value
+            return tot_value_ma
+            
         # super.value = function
 
 
