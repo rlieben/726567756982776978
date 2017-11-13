@@ -62,7 +62,9 @@ class One_Family(House):
     def calc_value(self):
         '''Calculates the value of this one family home.'''
         print('TODO: class House, calc_value')
-        # super.value = function
+
+        def function(freespace)
+        super.value = function()
 
 
 class Bugalow(House):
@@ -73,7 +75,7 @@ class Bugalow(House):
         super.__init__(self, self_id)
 
     def calc_value(self):
-        '''Calculates the value of this bugalow.'''
+        '''Calculates the value of this bungalow.'''
         print('TODO: class House, calc_value')
         # super.value = function
 
