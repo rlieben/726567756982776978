@@ -1,5 +1,6 @@
-Bruikbare algorithmes zoeken          Raoul            
+Bruikbare algorithmes zoeken          Raoul
 Classes maken                         Luc
 GitHub maken                          Raoul check
 Bitmap programma maken (incl resize)  Toon
 Programma architectuur maken
+ git
