@@ -7,6 +7,16 @@ First algorithm that places houses, used to test the classes of classes.py.
 
 from classes import *
 
+<<<<<<< HEAD
+=======
+ah_map = Map(WIDTH_MAP, HEIGHT_MAP)
+
+x_loc = 5
+y_loc = 5
+
+# tries to place one house
+ah_map.houses.append(One_Family(0))
+>>>>>>> 770874c7cdcd77677359ab3162d4738e4ce29941
 
 def create_test():
     ah_map = Map(WIDTH_MAP, HEIGHT_MAP)
