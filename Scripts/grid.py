@@ -51,6 +51,9 @@ def grid_houses():
     plot.colorbar(img,cmap=cmap,
                     norm=norm,boundaries=bounds,ticks=[0,1,2,3,4,5])
 
+    # score = calc_score(z_vals)
+    # print(score)
+
     return plot.show()
 
 grid_houses()

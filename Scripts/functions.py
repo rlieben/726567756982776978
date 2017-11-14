@@ -5,6 +5,7 @@
 # Members:      Toon van Holte, Raoul Lieben, Luc Stefelmanns
 
 from classes import *
+import numpy
 
 '''
 All basic functions to operate on the map.
@@ -43,24 +44,26 @@ def place_house(ah_map, loc, house_id, type_charac):
 
 
 
-def calc_freespace(ah_map, loc):
-        '''Calculates freespace of house, with top-left coordinates of
-           structure.'''
-
-        # # initialize freespace coordinates
-        # freespace_x = 0
-        # freespace_y = 0
-
-
-        # for i in range(length house):
-
-
-        #         # iterates over xaxis
-        #         for x in range(ah_map.measures['width']):
-
-        #             # iterates over yaxis
-        #             for y in range(ah_map.measures['height']):
-
-
-        #                 # runs untill cell is other type than empty
-        #                 if ah_map.grid[x][y].type != 'empty':
+# def calc_score(ah_map):
+#         '''Calculates the score of the map.'''
+#
+#         for house in ah_map.houses:
+#
+#             freespace = 0
+#             for cor in house.structure:
+#                 for other in ah_map.houses:
+#                     for other_cor in other.structure:
+#                         if cor != other_cor:
+#                             tmp = numpy.sqrt(numpy.power(cor['x']
+#                                   - other_cor['x'], 2) + numpy.power(cor['y']
+#                                   - other_cor['y'], 2))
+#                             if tmp < freespace:
+#                                 freespace = tmp
+#
+#             house.calc_value(freespace)
+#
+#         score = 0
+#         for house in ah_map.houses:
+#             score += house.value
+#
+#         return score

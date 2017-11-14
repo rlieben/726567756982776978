@@ -72,7 +72,7 @@ class House(object):
         self.structure.append(loc)
 
 
-    def calc_value(freespace):
+    def calc_value(self, freespace):
         '''Calculates the value of this house.'''
 
         self.value = self.charac['start_value'] + (self.charac['start_value']
