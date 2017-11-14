@@ -23,6 +23,6 @@ for cell in ah_map.houses[0].structure:
     ah_map.grid[cell[0]][cell[1]].type = 'house'
     # print(cell[0], cell[1])
 
-for line in ah_map.grid:
-    for cell in line:
-        print(cell.type)
+# for line in ah_map.grid:
+#     for cell in line:
+#         print(cell.type)
