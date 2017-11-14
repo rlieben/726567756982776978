@@ -16,6 +16,7 @@ z_vals = ah_map
 
 cell_int = 0
 
+# change values into integers
 for line in z_vals.grid:
     for cell in line:
         if cell.type == "house":
