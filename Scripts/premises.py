@@ -4,6 +4,7 @@
 # Group:        726567756982776978
 # Members:      Toon van Holte, Raoul Lieben, Luc Stefelmanns
 
+
 '''
 Standard map and houses of the assignment. All measurements are in half meters.
 '''

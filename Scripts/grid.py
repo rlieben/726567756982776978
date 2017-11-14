@@ -1,13 +1,16 @@
-# Group:        726567756982776978
+# Study:      Minor Programming, University of Amsterdam
+# Course:       Heuristics
 # Assignment:   Amstelhaege
+# Group:        726567756982776978
+# Members:      Toon van Holte, Raoul Lieben, Luc Stefelmanns
 
-'''Creates grid for houses and heatmap from the values calculated in ###'''
 
 import matplotlib as mpl
 import matplotlib.pyplot as plot
 import numpy as np
 
 from random_generator import *
+
 
 '''
 Creates visual and heatmap for the map.

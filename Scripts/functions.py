@@ -1,5 +1,8 @@
-# Group:        726567756982776978
+# Study:      Minor Programming, University of Amsterdam
+# Course:       Heuristics
 # Assignment:   Amstelhaege
+# Group:        726567756982776978
+# Members:      Toon van Holte, Raoul Lieben, Luc Stefelmanns
 
 from classes import *
 
@@ -101,15 +104,15 @@ def place_mansion(ah_map, loc, house_id):
 def calc_freespace(ah_map, loc):
         '''Calculates freespace of house, with top-left coordinates of structure'''
 
-        # # initialize freespace coordinates 
+        # # initialize freespace coordinates
         # freespace_x = 0
         # freespace_y = 0
 
 
         # for i in range(length house):
 
-            
-        #         # iterates over xaxis 
+
+        #         # iterates over xaxis
         #         for x in range(ah_map.measures['width']):
 
         #             # iterates over yaxis
@@ -118,10 +121,3 @@ def calc_freespace(ah_map, loc):
 
         #                 # runs untill cell is other type than empty
         #                 if ah_map.grid[x][y].type != 'empty':
-
-                
-
-
-
-
-

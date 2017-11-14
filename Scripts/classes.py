@@ -1,9 +1,14 @@
-# Group:        726567756982776978
+# Study:      Minor Programming, University of Amsterdam
+# Course:       Heuristics
 # Assignment:   Amstelhaege
+# Group:        726567756982776978
+# Members:      Toon van Holte, Raoul Lieben, Luc Stefelmanns
+
 
 '''
 Code containing all classes used.
 '''
+
 
 class Cell(object):
     '''One element in the grid.'''
