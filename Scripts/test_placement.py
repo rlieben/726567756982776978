@@ -2,7 +2,7 @@
 # Assignment:   Amstelhaege
 
 '''
-First algorithm that places houses, used to test the classes of classes.py.
+First algorithm that places one house, used to test the classes of classes.py.
 '''
 
 from classes import *
