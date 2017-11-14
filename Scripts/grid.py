@@ -4,7 +4,8 @@ import matplotlib as mpl
 import matplotlib.pyplot as plot
 import numpy as np
 
-from test_placement import *
+# from test_placement import *
+from random_generator import *
 
 '''Creates grid for houses and heatmap from the values calculated in ###'''
 
