@@ -13,13 +13,6 @@ x_loc = 5
 y_loc = 5
 
 # tries to place one house
-<<<<<<< HEAD
-grid.houses.append(One_Family(0))
-grid.houses[0].add_structure(x_loc, y_loc)
-grid.grid[x_loc][y_loc].type = 'House'
-# for line in grid.grid:
-#     print(line)
-=======
 ah_map.houses.append(One_Family(0))
 
 for i in range(x_loc, x_loc + SIZE_1F[0]):
@@ -33,4 +26,3 @@ for cell in ah_map.houses[0].structure:
 for line in ah_map.grid:
     for cell in line:
         print(cell.type)
->>>>>>> 11ccf2239d8aca5d9a92b0ba538ac3251401781d
