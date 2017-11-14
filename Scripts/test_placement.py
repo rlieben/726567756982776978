@@ -8,6 +8,7 @@ First algorithm that places houses, used to test the classes of classes.py.
 from classes import *
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ah_map = Map(WIDTH_MAP, HEIGHT_MAP)
 
 x_loc = 5
@@ -28,6 +29,8 @@ for cell in ah_map.houses[0].structure:
 #     for cell in line:
 #         print(cell.type)
 =======
+=======
+>>>>>>> a43514dd504315637423a6a1a796a5378419cfad
 def create_test():
     ah_map = Map(WIDTH_MAP, HEIGHT_MAP)
 
@@ -43,11 +46,9 @@ def create_test():
 
     for cell in ah_map.houses[0].structure:
         ah_map.grid[cell[0]][cell[1]].type = 'house'
-        # print(cell[0], cell[1])
-
-    # for line in ah_map.grid:
-    #     for cell in line:
-    #         print(cell.type)
 
     return ah_map
+<<<<<<< HEAD
 >>>>>>> c4871f995538e5fc02d3d20aa09812371594398c
+=======
+>>>>>>> a43514dd504315637423a6a1a796a5378419cfad
