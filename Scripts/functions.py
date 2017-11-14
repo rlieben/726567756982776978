@@ -22,6 +22,9 @@ def place_one_family(ah_map, loc, house_id):
     # changes the type in the grid of the map
     for cell in ah_map.houses[len(ah_map.houses) - 1].structure:
 
+        if ah_map.grid[cell['x']][cell['y']].type != 'empty':
+            return False
+
         ah_map.grid[cell['x']][cell['y']].type = 'one_family'
 
     return ah_map
@@ -44,6 +47,9 @@ def place_bungalow(ah_map, loc, house_id):
 
     # changes the type in the grid of the map
     for cell in ah_map.houses[len(ah_map.houses) - 1].structure:
+
+        if ah_map.grid[cell['x']][cell['y']].type != 'empty':
+            return False
 
         ah_map.grid[cell['x']][cell['y']].type = 'bungalow'
 
@@ -68,6 +74,9 @@ def place_mansion(ah_map, loc, house_id):
     # changes the type in the grid of the map
     for cell in ah_map.houses[len(ah_map.houses) - 1].structure:
 
+        if ah_map.grid[cell['x']][cell['y']].type != 'empty':
+            return False
+        
         ah_map.grid[cell['x']][cell['y']].type = 'mansion'
 
     return ah_map

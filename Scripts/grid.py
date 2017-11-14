@@ -1,11 +1,13 @@
+# Group:        726567756982776978
+# Assignment:   Amstelhaege
+
+'''Creates grid for houses and heatmap from the values calculated in ###'''
+
 import matplotlib as mpl
 import matplotlib.pyplot as plot
 import numpy as np
 
-# from test_placement import *
 from random_generator import *
-
-'''Creates grid for houses and heatmap from the values calculated in ###'''
 
 def grid_houses():
     # values indicating what ind of house is implemented
