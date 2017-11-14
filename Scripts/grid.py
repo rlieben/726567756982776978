@@ -17,12 +17,11 @@ z_vals = create_test()
 int_grid = [[0 for x in range(HEIGHT_MAP)] for y in range(WIDTH_MAP)]
 
 # change values into integers
-for line in z_vals.grid:
-    for cell in line:
-        if cell.type == "house":
-            int_grid[line][cell] = int(1)
-        else:
-            cell.type = int(0)
+for i in range(WIDTH_MAP):
+    for j in range(HEIGHT_MAP):
+        if z_vals.grid[i][j].type == "house":
+            int_grid[i][j] = int(1)
+
 
 
 # make a color map of fixed colors
@@ -31,7 +30,7 @@ bounds=[-6,-2,2,6]
 norm = mpl.colors.BoundaryNorm(bounds, cmap.N)
 
 # tell imshow about color map so that only set colors are used
-img = plot.imshow(z_vals.grid,interpolation='nearest',
+img = plot.imshow(int_grid,interpolation='nearest',
                     cmap = cmap, norm=norm)
 
 # make a color bar
