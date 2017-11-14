@@ -39,11 +39,11 @@ MIN_FREESPACE_MA = 6
 class Cell(object):
     '''One element in the grid.'''
 
-    def __init__(self, x, y):
+    def __init__(self, loc):
         '''Actual value is based on the houses on/around the cell.
            Possible value considers possible removal/placing of house.
            Type is the type of building/element placed on this cell.'''
-        self.location = [x, y] # miss niet nodig
+        self.location = {'x' : loc['x'], 'y' : loc['y']} # miss niet nodig
         self.actual_value = 0
         self.possible_value = 0
         self.type = 'empty'
@@ -66,7 +66,7 @@ class Map(object):
         '''Grid is a list in a list (thus a matrix) filled with cells.
            Houses is a list containing all houses.
            Water is a list containint all water elements.'''
-        self.grid = [[Cell(x, y) for x in range(height)] for y in range(width)]
+        self.grid = [[Cell({'x' : x, 'y' : y}) for x in range(height)] for y in range(width)]
         self.houses = []
         self.water = []
 
