@@ -13,8 +13,8 @@ from random import *
 def create_test():
     ah_map = Map(WIDTH_MAP, HEIGHT_MAP)
 
-    OF = 13
-    BU = 4
+    OF = 12
+    BU = 5
     MA = 3
 
     for i in range(OF):
@@ -30,7 +30,6 @@ def create_test():
     for i in range(BU):
         rand_y_loc = randint(0,HEIGHT_MAP - SIZE_BU[0])
         rand_x_loc = randint(0,WIDTH_MAP - SIZE_BU[1])
-        print(rand_x_loc)
 
         loc = {'x':rand_x_loc,'y':rand_y_loc}
 
