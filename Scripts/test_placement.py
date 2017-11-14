@@ -16,5 +16,5 @@ y_loc = 0
 grid.houses.append(One_Family(0))
 grid.houses[0].add_structure(x_loc, y_loc)
 grid.grid[x_loc][y_loc].type = 'House'
-for line in grid.grid:
-    print(line)
+# for line in grid.grid:
+#     print(line)
