@@ -11,7 +11,7 @@ def place_one_family(ah_map, loc, house_id):
         for j in range(loc['y'], loc['y'] + SIZE_1F[1]):
             ah_map.houses[len(ah_map.houses)].add_structure(i, j)
 
-    for cell in ah_map.houses[len(ah_map.houses].structure:
+    for cell in ah_map.houses[len(ah_map.houses)].structure:
         ah_map.grid[cell['x']][cell['y']].type = 'one_family'
 
     return ah_map
@@ -24,7 +24,7 @@ def place_bungalow(ah_map, loc, house_id):
         for j in range(loc['y'], loc['y'] + SIZE_BU[1]):
             ah_map.houses[len(ah_map.houses)].add_structure(i, j)
 
-    for cell in ah_map.houses[len(ah_map.houses].structure:
+    for cell in ah_map.houses[len(ah_map.houses)].structure:
         ah_map.grid[cell['x']][cell['y']].type = 'bungalow'
 
     return ah_map
@@ -37,7 +37,7 @@ def place_mansion(ah_map, loc, house_id):
         for j in range(loc['y'], loc['y'] + SIZE_MA[1]):
             ah_map.houses[len(ah_map.houses)].add_structure(i, j)
 
-    for cell in ah_map.houses[len(ah_map.houses].structure:
+    for cell in ah_map.houses[len(ah_map.houses)].structure:
         ah_map.grid[cell['x']][cell['y']].type = 'mansion'
 
     return ah_map
