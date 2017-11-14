@@ -1,11 +1,18 @@
+# Group:        726567756982776978
+# Assignment:   Amstelhaege
+
+'''Creates grid for houses and heatmap from the values calculated in ###'''
+
 import matplotlib as mpl
 import matplotlib.pyplot as plot
 import numpy as np
 
-# from test_placement import *
 from random_generator import *
 
-'''Creates grid for houses and heatmap from the values calculated in ###'''
+'''
+Creates visual and heatmap for houses.
+'''
+
 
 def grid_houses():
     # values indicating what ind of house is implemented
@@ -17,16 +24,14 @@ def grid_houses():
     # change values into integers
     for i in range(WIDTH_MAP):
         for j in range(HEIGHT_MAP):
-            if z_vals.grid[i][j].type == "house":
-                int_grid[i][j] = int(1)
             if z_vals.grid[i][j].type == 'one_family':
-                int_grid[i][j] = int(2)
+                int_grid[i][j] = int(1)
             if z_vals.grid[i][j].type == 'bungalow':
-                int_grid[i][j] = int(3)
+                int_grid[i][j] = int(2)
             if z_vals.grid[i][j].type == 'mansion':
-                int_grid[i][j] = int(4)
+                int_grid[i][j] = int(3)
             if z_vals.grid[i][j].type == 'water':
-                int_grid[i][j] = int(5)
+                int_grid[i][j] = int(4)
             if z_vals.grid[i][j].type == 'empty':
                 int_grid[i][j] = int(0)
 

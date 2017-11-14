@@ -3,6 +3,9 @@
 
 from classes import *
 
+'''
+All basic functions to operate on the map.
+'''
 
 def place_one_family(ah_map, loc, house_id):
     '''Places a one family house on location on the map, with a given id.'''
@@ -16,7 +19,16 @@ def place_one_family(ah_map, loc, house_id):
 
         for j in range(loc['y'], loc['y'] + SIZE_1F[1]):
 
-            ah_map.houses[len(ah_map.houses) - 1].add_structure(loc)
+            ah_map.houses[len(ah_map.houses) - 1].add_structure({'x' : i,
+                                                                 'y' : j})
+
+
+    # checks if house can be placed
+    for cell in ah_map.houses[len(ah_map.houses) - 1].structure:
+
+        if ah_map.grid[cell['x']][cell['y']].type != 'empty':
+            return False
+
 
     # changes the type in the grid of the map
     for cell in ah_map.houses[len(ah_map.houses) - 1].structure:
@@ -38,7 +50,15 @@ def place_bungalow(ah_map, loc, house_id):
 
         for j in range(loc['y'], loc['y'] + SIZE_BU[1]):
 
-            ah_map.houses[len(ah_map.houses) - 1].add_structure(loc)
+            ah_map.houses[len(ah_map.houses) - 1].add_structure({'x' : i,
+                                                                 'y' : j})
+
+    # checks if house can be placed
+    for cell in ah_map.houses[len(ah_map.houses) - 1].structure:
+
+        if ah_map.grid[cell['x']][cell['y']].type != 'empty':
+            return False
+
 
     # changes the type in the grid of the map
     for cell in ah_map.houses[len(ah_map.houses) - 1].structure:
@@ -60,7 +80,15 @@ def place_mansion(ah_map, loc, house_id):
 
         for j in range(loc['y'], loc['y'] + SIZE_MA[1]):
 
-            ah_map.houses[len(ah_map.houses) - 1].add_structure(loc)
+            ah_map.houses[len(ah_map.houses) - 1].add_structure({'x' : i,
+                                                                 'y' : j})
+
+    # checks if house can be placed
+    for cell in ah_map.houses[len(ah_map.houses) - 1].structure:
+
+        if ah_map.grid[cell['x']][cell['y']].type != 'empty':
+            return False
+
 
     # changes the type in the grid of the map
     for cell in ah_map.houses[len(ah_map.houses) - 1].structure:
