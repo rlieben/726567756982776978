@@ -8,8 +8,8 @@ Code containing all classes used.
 # MAP = {'width' : 180, 'height': 160, 'water_prevalance' : 0.20,
 #        'nr_houses' : [20, 40, 60], 'distr_houses' : [0.60, 0.25, 0.15]}
 
-WIDTH_MAP = 180
-HEIGHT_MAP = 160
+WIDTH_MAP = 360
+HEIGHT_MAP = 320
 WATER_PREVALENCE = 0.20
 NR_HOUSES = [20, 40, 60]
 DISTR_HOUSES = [0.60, 0.25, 0.15] # [one_family, bungalow, mansion]
@@ -23,18 +23,18 @@ DISTR_HOUSES = [0.60, 0.25, 0.15] # [one_family, bungalow, mansion]
 #            'min_free' : 6}
 
 
-SIZE_1F = [8, 8]
+SIZE_1F = [16, 16]
 VALUE_1F = 285000
-PERC_1F = 3
-MIN_FREESPACE_1F = 2
-SIZE_BU = [10, 8]
+PERC_1F = 1.5
+MIN_FREESPACE_1F = 4
+SIZE_BU = [20, 15]
 VALUE_BU = 399000
-PERC_BU = 4
-MIN_FREESPACE_BU = 3
-SIZE_MA = [11, 11]
+PERC_BU = 2
+MIN_FREESPACE_BU = 6
+SIZE_MA = [22, 21]
 VALUE_MA = 610000
-PERC_MA = 6
-MIN_FREESPACE_MA = 6
+PERC_MA = 3
+MIN_FREESPACE_MA = 12
 
 
 class Cell(object):
