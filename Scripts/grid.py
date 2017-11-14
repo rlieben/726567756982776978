@@ -5,7 +5,9 @@ import numpy as np
 # from test_placement import *
 from random_generator import *
 
-'''Creates grid for houses and heatmap from the values calculated in ###'''
+'''
+Creates visual and heatmap for houses.
+'''
 
 def grid_houses():
     # values indicating what ind of house is implemented
