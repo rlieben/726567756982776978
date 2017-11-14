@@ -10,8 +10,9 @@ from classes import *
 def create_test():
     ah_map = Map(WIDTH_MAP, HEIGHT_MAP)
 
-    x_loc = 5
-    y_loc = 5
+    for y in range(HEIGHT_MAP):
+        for x in range(WIDTH_MAP):
+
 
     # tries to place one house
     ah_map.houses.append(One_Family(0))
