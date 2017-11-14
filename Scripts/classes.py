@@ -83,8 +83,8 @@ class House(object):
         self.space = []
         self.value = 0
 
-    def add_structure(self, x, y):
-        self.structure.append([x, y])
+    def add_structure(self, loc):
+        self.structure.append(loc)
 
 
 class One_Family(House):
