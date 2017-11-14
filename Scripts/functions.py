@@ -4,7 +4,7 @@
 from classes import *
 
 '''
-All basic used functions.
+All basic functions to operate on the map.
 '''
 
 def place_one_family(ah_map, loc, house_id):
