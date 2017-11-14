@@ -12,6 +12,7 @@ NR_HOUSES = [20, 40, 60]
 DISTR_HOUSES = [0.60, 0.25, 0.15] # [one_family, bungalow, mansion]
 
 # variables of houses
+SIZE_1F = [8, 8]
 VALUE_1F = 285000
 PERC_1F = 3
 MIN_FREESPACE_1F = 2
@@ -33,7 +34,7 @@ class Cell(object):
         self.location = [x, y] # miss niet nodig
         self.actual_value = 0
         self.possible_value = 0
-        self.type = 'Nothing'
+        self.type = 'empty'
 
     def calc_actual_value(self):
         '''Based on the locations of houses around, value is changed.'''
