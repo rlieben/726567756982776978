@@ -96,3 +96,32 @@ def place_mansion(ah_map, loc, house_id):
         ah_map.grid[cell['x']][cell['y']].type = 'mansion'
 
     return ah_map
+
+
+def calc_freespace(ah_map, loc):
+        '''Calculates freespace of house, with top-left coordinates of structure'''
+
+        # # initialize freespace coordinates 
+        # freespace_x = 0
+        # freespace_y = 0
+
+
+        # for i in range(length house):
+
+            
+        #         # iterates over xaxis 
+        #         for x in range(ah_map.measures['width']):
+
+        #             # iterates over yaxis
+        #             for y in range(ah_map.measures['height']):
+
+
+        #                 # runs untill cell is other type than empty
+        #                 if ah_map.grid[x][y].type != 'empty':
+
+                
+
+
+
+
+

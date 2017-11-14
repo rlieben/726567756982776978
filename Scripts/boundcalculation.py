@@ -49,6 +49,8 @@ lowerbound_60onefamily = nronefamily_60 * VALUE_1F
 lowerbound_60bungalow = nrbungalow_60 * VALUE_BU
 lowerbound_60maison = nrmaison_60 * VALUE_MA
 
+
+# print lowerbound values
 print("lowerbound 20: ", lowerbound_20onefamily + lowerbound_20bungalow +
                         lowerbound_20bungalow)
 print("lowerbound 40: ", lowerbound_40onefamily + lowerbound_40bungalow +
@@ -66,7 +68,7 @@ rem_surface_40 = surface_area - (surface_water + total_surface_1f_40 +
 rem_surface_60 = surface_area - (surface_water + total_surface_1f_60 +
                                  total_surface_bu_60 + total_surface_ma_60)
 
-
+# print upperbound values
 print("upperbound 20: ", rem_surface_20 * 4 * (0.6 * 610000))
 print("upperbound 40: ", rem_surface_40 * 4 * (0.6 * 610000))
 print("upperbound 60: ", rem_surface_60 * 4 * (0.6 * 610000))
