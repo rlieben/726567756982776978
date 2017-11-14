@@ -93,7 +93,7 @@ class One_Family(House):
     def __init__(self, self_id):
         '''Inherits from class House.'''
         super().__init__(self_id)
-
+y
     def calc_value(freespace):
         '''Calculates the value of this one family home.'''
 
