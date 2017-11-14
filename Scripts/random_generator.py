@@ -13,8 +13,8 @@ def create_test():
     ah_map = Map(WIDTH_MAP, HEIGHT_MAP)
 
     for i in range(10):
-        rand_y_loc = randint(0,HEIGHT_MAP)
-        rand_x_loc = randint(0,WIDTH_MAP)
+        rand_y_loc = randint(0,HEIGHT_MAP - SIZE_1F[0])
+        rand_x_loc = randint(0,WIDTH_MAP - SIZE_1F[1])
 
         loc = {'x':rand_x_loc,'y':rand_y_loc}
 
