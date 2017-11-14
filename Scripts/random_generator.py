@@ -23,3 +23,5 @@ def create_test():
         place_one_family(ah_map, loc, house_id)
 
     return ah_map
+
+create_test()
