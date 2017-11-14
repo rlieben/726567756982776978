@@ -12,6 +12,16 @@ NR_HOUSES = [20, 40, 60]
 DISTR_HOUSES = [0.60, 0.25, 0.15] # [one_family, bungalow, mansion]
 
 # variables of houses
+
+ONE_FAMILY = {'size' : [8, 8], 'start_value' : 285000, 'perc' : 0.03,
+              'min_free' : 2}
+BUNGALOW = {'size' : [10, 7.5], 'start_value' : 399000, 'perc' : 0.04,
+            'min_free' : 3}
+MANSION = {'size' : [11, 10.5], 'start_value' : 610000, 'perc' : 0.06,
+           'min_free' : 6}
+
+print(MANSION['size'])
+
 SIZE_1F = [8, 8]
 VALUE_1F = 285000
 PERC_1F = 3
