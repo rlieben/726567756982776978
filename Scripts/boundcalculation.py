@@ -49,16 +49,22 @@ lowerbound_60onefamily = nronefamily_60 * VALUE_1F
 lowerbound_60bungalow = nrbungalow_60 * VALUE_BU
 lowerbound_60maison = nrmaison_60 * VALUE_MA
 
-print("lowerbound 20: ", lowerbound_20onefamily + lowerbound_20bungalow + lowerbound_20bungalow)
-print("lowerbound 40: ", lowerbound_40onefamily + lowerbound_40bungalow + lowerbound_40bungalow)
-print("lowerbound 60: ", lowerbound_60onefamily + lowerbound_60bungalow + lowerbound_60bungalow)
+print("lowerbound 20: ", lowerbound_20onefamily + lowerbound_20bungalow +
+                        lowerbound_20bungalow)
+print("lowerbound 40: ", lowerbound_40onefamily + lowerbound_40bungalow +
+                        lowerbound_40bungalow)
+print("lowerbound 60: ", lowerbound_60onefamily + lowerbound_60bungalow +
+                        lowerbound_60bungalow)
 
 # upperbound
 
 # calc remaining surface 20-houses
-rem_surface_20 = surface_area - (surface_water + total_surface_1f_20 + total_surface_bu_20 + total_surface_ma_20)
-rem_surface_40 = surface_area - (surface_water + total_surface_1f_40 + total_surface_bu_40 + total_surface_ma_40)
-rem_surface_60 = surface_area - (surface_water + total_surface_1f_60 + total_surface_bu_60 + total_surface_ma_60)
+rem_surface_20 = surface_area - (surface_water + total_surface_1f_20 +
+                                 total_surface_bu_20 + total_surface_ma_20)
+rem_surface_40 = surface_area - (surface_water + total_surface_1f_40 +
+                                 total_surface_bu_40 + total_surface_ma_40)
+rem_surface_60 = surface_area - (surface_water + total_surface_1f_60 +
+                                 total_surface_bu_60 + total_surface_ma_60)
 
 
 print("upperbound 20: ", rem_surface_20 * 4 * (0.6 * 610000))
