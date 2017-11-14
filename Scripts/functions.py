@@ -1,7 +1,7 @@
 # Group:        726567756982776978
 # Assignment:   Amstelhaege
 
-from classes.py import *
+from classes import *
 
 
 def place_one_family(ah_map, loc, house_id):
