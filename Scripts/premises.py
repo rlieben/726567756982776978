@@ -14,16 +14,17 @@ Standard map and houses of the assignment. All measurements are in half meters.
    Size is the height and width of the house.
    Start value is value of house without extra from free space.
    Perc is the percentage extra value created by every half meter of free space.
-   Min free is the minimal length (in half meters) of free space needed.'''
+   Min free is the minimal length (in half meters) of free space needed.
+   Type is a string containing the type of the house.'''
 
 ONE_FAMILY = {'size' : [16, 16], 'start_value' : 285000, 'perc' : 0.015,
-              'min_free' : 4}
+              'min_free' : 4, 'type' : 'one_family'}
 
 BUNGALOW = {'size' : [20, 15], 'start_value' : 399000, 'perc' : 0.02,
-            'min_free' : 6}
+            'min_free' : 6, 'type' : 'bungalow'}
 
 MANSION = {'size' : [22, 21], 'start_value' : 610000, 'perc' : 0.03,
-           'min_free' : 12}
+           'min_free' : 12, 'type' : 'mansion'}
 
 
 '''The characteristics of the map.
