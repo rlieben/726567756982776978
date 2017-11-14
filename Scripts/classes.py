@@ -69,6 +69,7 @@ class Map(object):
         self.grid = [[Cell() for x in range(height)] for y in range(width)]
         self.houses = []
         self.water = []
+        self.measures = {'width' : width, 'height' : height}
 
 
 class House(object):
