@@ -22,11 +22,11 @@ def grid_houses():
     z_vals = create_test()
 
     # create new grid where values are stored
-    int_grid = [[0 for x in range(HEIGHT_MAP)] for y in range(WIDTH_MAP)]
+    int_grid = [[0 for x in range(MAP['height'])] for y in range(MAP['width'])]
 
     # change values into integers
-    for i in range(WIDTH_MAP):
-        for j in range(HEIGHT_MAP):
+    for i in range(MAP['width']):
+        for j in range(MAP['height']):
             if z_vals.grid[i][j].type == 'one_family':
                 int_grid[i][j] = int(1)
             if z_vals.grid[i][j].type == 'bungalow':

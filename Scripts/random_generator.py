@@ -8,43 +8,45 @@ First algorithm that places houses, used to test the classes of classes.py.
 from classes import *
 from functions import *
 from random import *
+from premises import *
 
 
 def create_test():
-    ah_map = Map(WIDTH_MAP, HEIGHT_MAP)
+    ah_map = Map(MAP['width'], MAP['height'])
 
-    OF = 12
-    BU = 5
-    MA = 3
+
+    OF = int(MAP['nr_houses'][0] * MAP['distr_houses'][0])
+    BU = int(MAP['nr_houses'][0] * MAP['distr_houses'][1])
+    MA = int(MAP['nr_houses'][0] * MAP['distr_houses'][2])
 
     for i in range(OF):
-        rand_y_loc = randint(0,HEIGHT_MAP - SIZE_1F[0])
-        rand_x_loc = randint(0,WIDTH_MAP - SIZE_1F[1])
+        rand_y_loc = randint(0,MAP['height'] - ONE_FAMILY['height'])
+        rand_x_loc = randint(0,MAP['width'] - ONE_FAMILY['width'])
 
         loc = {'x':rand_x_loc,'y':rand_y_loc}
 
         house_id = i
 
-        place_one_family(ah_map, loc, house_id)
+        place_house(ah_map, loc, house_id, ONE_FAMILY)
 
     for i in range(BU):
-        rand_y_loc = randint(0,HEIGHT_MAP - SIZE_BU[0])
-        rand_x_loc = randint(0,WIDTH_MAP - SIZE_BU[1])
+        rand_y_loc = randint(0,MAP['height'] - BUNGALOW['height'])
+        rand_x_loc = randint(0,MAP['height'] - BUNGALOW['height'])
 
         loc = {'x':rand_x_loc,'y':rand_y_loc}
 
         house_id = i
 
-        place_bungalow(ah_map, loc, house_id)
+        place_house(ah_map, loc, house_id, BUNGALOW)
 
     for i in range(MA):
-        rand_y_loc = randint(0,HEIGHT_MAP - SIZE_MA[0])
-        rand_x_loc = randint(0,WIDTH_MAP - SIZE_MA[1])
+        rand_y_loc = randint(0,MAP['height'] - MANSION['height'])
+        rand_x_loc = randint(0,MAP['height'] - MANSION['height'])
 
         loc = {'x':rand_x_loc,'y':rand_y_loc}
 
         house_id = i
 
-        place_mansion(ah_map, loc, house_id)
+        place_house(ah_map, loc, house_id, MANSION)
 
     return ah_map

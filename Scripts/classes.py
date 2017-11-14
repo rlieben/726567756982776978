@@ -55,13 +55,15 @@ class House(object):
     def __init__(self, self_id, type_charac):
         '''Structure is list of cells on which house is placed.
            Space is list of cells that fall within the range of closest
-           neighbouring house.'''
+           neighbouring house.
+           Charac is a dict filled with the characteristics of this type of
+           house.'''
 
         self.self_id = self_id
         self.structure = []
         self.space = []
         self.value = 0
-        self.type_charac = type_charac
+        self.charac = type_charac
 
 
     def add_structure(self, loc):
@@ -73,8 +75,9 @@ class House(object):
     def calc_value(freespace):
         '''Calculates the value of this house.'''
 
-        self.value = ONE_FAMILY['start_value'] + (ONE_FAMILY['start_value'] *
-                     (freespace - ONE_FAMILY['min_free']) * ONE_FAMILY['perc'])
+        self.value = self.charac['start_value'] + (self.charac['start_value']
+                     * (freespace - self.charac['min_free'])
+                     * self.charac['perc'])
 
 
 
