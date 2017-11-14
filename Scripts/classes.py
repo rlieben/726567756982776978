@@ -5,38 +5,6 @@
 Code containing all classes used.
 '''
 
-# MAP = {'width' : 180, 'height': 160, 'water_prevalance' : 0.20,
-#        'nr_houses' : [20, 40, 60], 'distr_houses' : [0.60, 0.25, 0.15]}
-
-WIDTH_MAP = 360
-HEIGHT_MAP = 320
-WATER_PREVALENCE = 0.20
-NR_HOUSES = [20, 40, 60]
-DISTR_HOUSES = [0.60, 0.25, 0.15] # [one_family, bungalow, mansion]
-
-# variables of houses
-# ONE_FAMILY = {'size' : [8, 8], 'start_value' : 285000, 'perc' : 0.03,
-#               'min_free' : 2}
-# BUNGALOW = {'size' : [10, 7.5], 'start_value' : 399000, 'perc' : 0.04,
-#             'min_free' : 3}
-# MANSION = {'size' : [11, 10.5], 'start_value' : 610000, 'perc' : 0.06,
-#            'min_free' : 6}
-
-
-SIZE_1F = [16, 16]
-VALUE_1F = 285000
-PERC_1F = 1.5
-MIN_FREESPACE_1F = 4
-SIZE_BU = [20, 15]
-VALUE_BU = 399000
-PERC_BU = 2
-MIN_FREESPACE_BU = 6
-SIZE_MA = [22, 21]
-VALUE_MA = 610000
-PERC_MA = 3
-MIN_FREESPACE_MA = 12
-
-
 class Cell(object):
     '''One element in the grid.'''
 
@@ -75,14 +43,16 @@ class Map(object):
 class House(object):
     '''Basis for the three different house classes.'''
 
-    def __init__(self, self_id):
+    def __init__(self, self_id, type_charac):
         '''Structure is list of cells on which house is placed.
            Space is list of cells that fall within the range of closest
            neighbouring house.'''
         self.self_id = self_id
+        # ipv hele list een locatie gebruiken
         self.structure = []
         self.space = []
         self.value = 0
+        self.type_charac = type_charac
 
     def add_structure(self, loc):
         self.structure.append(loc)

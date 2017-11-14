@@ -10,7 +10,7 @@ import numpy as np
 from random_generator import *
 
 '''
-Creates visual and heatmap for houses.
+Creates visual and heatmap for the map.
 '''
 
 

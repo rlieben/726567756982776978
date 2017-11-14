@@ -7,7 +7,7 @@ from classes import *
 All basic functions to operate on the map.
 '''
 
-def place_one_family(ah_map, loc, house_id):
+def place_one_family(ah_map, loc, house_id, type_charac):
     '''Places a one family house on location on the map, with a given id.'''
 
     # adds class to list of houses in the map
