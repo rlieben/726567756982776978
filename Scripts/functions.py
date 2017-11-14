@@ -3,6 +3,9 @@
 
 from classes import *
 
+'''
+All basic used functions.
+'''
 
 def place_one_family(ah_map, loc, house_id):
     '''Places a one family house on location on the map, with a given id.'''

@@ -9,6 +9,13 @@ import numpy as np
 
 from random_generator import *
 
+<<<<<<< HEAD
+=======
+'''
+Creates visual and heatmap for houses.
+'''
+
+>>>>>>> f6ca99ffc06f4ea061bc6164c308a53267bab35e
 def grid_houses():
     # values indicating what ind of house is implemented
     z_vals = create_test()
