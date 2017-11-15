@@ -20,14 +20,14 @@ def create_test():
     MA = int(MAP['nr_houses'][0] * MAP['distr_houses'][2])
 
     for i in range(OF):
-        rand_y_loc = randint(0,MAP['height'] - ONE_FAMILY['height'])
-        rand_x_loc = randint(0,MAP['width'] - ONE_FAMILY['width'])
+        rand_y_loc = randint(0,MAP['height'] - ONE_FAM['height'])
+        rand_x_loc = randint(0,MAP['width'] - ONE_FAM['width'])
 
         loc = {'x':rand_x_loc,'y':rand_y_loc}
 
         house_id = i
 
-        place_house(ah_map, loc, house_id, ONE_FAMILY)
+        place_house(ah_map, loc, house_id, ONE_FAM)
 
     for i in range(BU):
         rand_y_loc = randint(0,MAP['height'] - BUNGALOW['height'])
