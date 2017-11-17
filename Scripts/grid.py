@@ -1,7 +1,9 @@
-# Group:        726567756982776978
+# Study:        Minor Programming, University of Amsterdam
+# Course:       Heuristics
 # Assignment:   Amstelhaege
+# Group:        726567756982776978
+# Members:      Toon van Holte, Raoul Lieben, Luc Stefelmanns
 
-'''Creates grid for houses and heatmap from the values calculated in ###'''
 
 import matplotlib as mpl
 import matplotlib.pyplot as plot
@@ -9,8 +11,9 @@ import numpy as np
 
 from random_generator import *
 
+
 '''
-Creates visual and heatmap for houses.
+Creates visual and heatmap for the map.
 '''
 
 def grid_houses():
@@ -18,11 +21,11 @@ def grid_houses():
     z_vals = create_test()
 
     # create new grid where values are stored
-    int_grid = [[0 for x in range(HEIGHT_MAP)] for y in range(WIDTH_MAP)]
+    int_grid = [[0 for x in range(MAP['height'])] for y in range(MAP['width'])]
 
     # change values into integers
-    for i in range(WIDTH_MAP):
-        for j in range(HEIGHT_MAP):
+    for i in range(MAP['width']):
+        for j in range(MAP['height']):
             if z_vals.grid[i][j].type == 'one_family':
                 int_grid[i][j] = int(1)
             if z_vals.grid[i][j].type == 'bungalow':
@@ -46,6 +49,9 @@ def grid_houses():
     # make a color bar
     plot.colorbar(img,cmap=cmap,
                     norm=norm,boundaries=bounds,ticks=[0,1,2,3,4,5])
+
+    # score = calc_score(z_vals)
+    # print(score)
 
     return plot.show()
 
