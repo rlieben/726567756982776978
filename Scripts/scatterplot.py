@@ -4,17 +4,20 @@ from random_generator import *
 
 # Create data
 
-coordinates = create_test()
+sample = create_test()
 
 for i in range(MAP['nr_houses'][0]):
-    x = coordinates.houses[i].location['x']
+    x = sample.houses[i].location['x']
     print('x',x)
-    y = coordinates.houses[i].location['y']
+    y = sample.houses[i].location['y']
+    c = 
     print('y',y)
     colors = (0,0,0)
     area = np.pi*3
+    # ax.annotate(data.houses[i].house_id, (x,y))
     plt.scatter(x, y, s=area, c=colors, alpha=0.5)
 
+plt.title('scatterplot for houses')
 plt.xlabel('x')
 plt.ylabel('y')
 plt.show()
