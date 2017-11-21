@@ -1,0 +1,17 @@
+Infrastructuur:
+    L Aparte plekken voor algorithmen, classes, visualisatie en plek waar het
+      samenkomt.
+    - Goede README.
+
+
+Datastructuur:
+    R Score functie af.
+    - Functie veranderen naar coordinaten.
+    T Omzetten naar coordinaten ipv cellen.
+
+Experimentatie:
+    -
+
+Algorithmen:
+    - Vaak random genereren en beste functies eruit halen.
+    - Hillclimber.
