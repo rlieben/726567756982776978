@@ -14,14 +14,30 @@ from functions import *
 from visuals import *
 from algorithms import *
 
-ah_map = random_generator()
 
 # print(ah_map.houses[0].corners)
 
-ah_map.calc_freespaceforreal(houses[4])
+maximum = 0
+best_map = random_generator()
 
-ah_map.houses[4].calc_value
+for i in range(200):
+    ah_map = random_generator()
+    summy = 0
+    for house in ah_map.houses:
+        ah_map.calc_freespaceforreal(house)
+        house.calc_value()
+        print(house.charac['type'])
+        print(house.value)
+        summy += house.value
 
-print(ah_map.houses[4].value)
+    print("DOIEF")
+    print(summy)
 
-# scatterplot(ah_map)
+    if summy > maximum:
+        maximum = summy
+        best_map = ah_map
+
+print("MAX")
+print(maximum)
+
+scatterplot(best_map)

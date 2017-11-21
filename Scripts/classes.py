@@ -4,6 +4,7 @@
 # Group:        726567756982776978
 # Members:      Toon van Holte, Raoul Lieben, Luc Stefelmanns
 
+import numpy
 
 '''
 Code containing all classes used.
