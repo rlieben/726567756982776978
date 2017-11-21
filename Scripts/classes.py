@@ -18,7 +18,6 @@ class Map(object):
            Houses is a list containing all houses.
            Water is a list containint all water elements.'''
 
-        self.grid = [[Cell() for x in range(height)] for y in range(width)]
         self.houses = []
         self.water = []
         self.measures = {'width' : width, 'height' : height}
@@ -36,7 +35,7 @@ class House(object):
 
         self.self_id = self_id
         self.location = loc # loc is a dict {'x' : ..., 'y' : ...}
-        self.corners = []
+        self.corners = self.find_corners()
         self.freespace = 0
         self.value = 0
         self.charac = type_charac
@@ -54,7 +53,7 @@ class House(object):
         rb = {'x':(self.location['x'] + 0.5 * self.charac['width']),'y':(self.location['y'] + 0.5 * self.charac['height'])}
         lo = {'x':(self.location['x'] - 0.5 * self.charac['width']),'y':(self.location['y'] - 0.5 * self.charac['height'])}
         ro = {'x':(self.location['x'] + 0.5 * self.charac['width']),'y':(self.location['y'] - 0.5 * self.charac['height'])}
-        self.corners = [lb, rb, lo, ro]
+        return [lb, rb, lo, ro]
 
 
 
