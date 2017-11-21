@@ -78,10 +78,10 @@ class Map(object):
                             diff_corners[1] = newhouse.corners[i]['y'] - house.corners[j]['y']
 
                             # calculates distance between curr two corners
-                            distancecurrcorncurr = numpy.sqrt(numpy.power(diff_corners[0], 2) + numpy.power(diff_corners[1], 2))
+                            distancecorn = numpy.sqrt(numpy.power(diff_corners[0], 2) + numpy.power(diff_corners[1], 2))
 
                             # append 
-                            distancelist.append(distancecurrcorncurr)
+                            distancelist.append(distancecorn)
 
                         tmpfreespace.append(numpy.amin(distancelist))
 
