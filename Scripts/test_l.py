@@ -9,15 +9,10 @@
 Test script for Luc.
 '''
 
-
-
-'''
-First algorithm that places one house, used to test the classes of classes.py.
-'''
-
 from classes import *
 from functions import *
 from visuals import *
+from algorithms import *
 
 ah_map = random_generator()
 

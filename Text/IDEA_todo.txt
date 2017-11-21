@@ -3,13 +3,14 @@ Infrastructuur:
     * Aparte plekken voor algorithmen, classes, visualisatie en plek waar het
       samenkomt.
     L Onnodige imports weghalen.
-    - Goede README.
+    - README.
 
 
 Datastructuur:
     R Score functie af.
     * Functie veranderen naar coordinaten.
     * Omzetten naar coordinaten ipv cellen.
+    T Hoeken berekenen.
 
 Experimentatie:
     -
@@ -20,10 +21,9 @@ Algorithmen:
 
 
 WAAR WERK JE IN:
-
     visuals
-    classes
+    classes     T
     algorithms
-    functions   
+    functions   R
     case
     run_me
