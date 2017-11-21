@@ -17,3 +17,13 @@ Experimentatie:
 Algorithmen:
     - Vaak random genereren en beste functies eruit halen.
     - Hillclimber.
+
+
+WAAR WERK JE IN:
+
+    visuals
+    classes
+    algorithms  
+    functions
+    case
+    run_me
