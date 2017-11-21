@@ -16,9 +16,9 @@ from random_generator import *
 Creates visual and heatmap for the map.
 '''
 
-def grid_houses():
+def grid_houses(z_vals):
     # values indicating what ind of house is implemented
-    z_vals = create_test()
+    # z_vals = create_test()
 
     # create new grid where values are stored
     int_grid = [[0 for x in range(MAP['height'])] for y in range(MAP['width'])]
@@ -55,12 +55,11 @@ def grid_houses():
 
     return plot.show()
 
-grid_houses()
 
-def scatterplot():
+def scatterplot(sample):
 
     # get data
-    sample = create_test()
+    # sample = create_test()
 
     for i in range(MAP['nr_houses'][0]):
 
