@@ -35,10 +35,11 @@ class House(object):
 
         self.self_id = self_id
         self.location = loc # loc is a dict {'x' : ..., 'y' : ...}
-        self.corners = self.find_corners()
         self.freespace = 0
         self.value = 0
         self.charac = type_charac
+        self.corners = self.find_corners()
+
 
 
     def calc_value(self, freespace):
@@ -49,10 +50,19 @@ class House(object):
                      * self.charac['perc'])
 
     def find_corners(self):
-        lb = {'x':(self.location['x'] - 0.5 * self.charac['width']),'y':(self.location['y'] + 0.5 * self.charac['height'])}
-        rb = {'x':(self.location['x'] + 0.5 * self.charac['width']),'y':(self.location['y'] + 0.5 * self.charac['height'])}
-        lo = {'x':(self.location['x'] - 0.5 * self.charac['width']),'y':(self.location['y'] - 0.5 * self.charac['height'])}
-        ro = {'x':(self.location['x'] + 0.5 * self.charac['width']),'y':(self.location['y'] - 0.5 * self.charac['height'])}
+
+        lb = {'x' : (self.location['x'] - 0.5 * self.charac['width']),
+              'y' : (self.location['y'] + 0.5 * self.charac['height'])}
+
+        rb = {'x' : (self.location['x'] + 0.5 * self.charac['width']),
+              'y' : (self.location['y'] + 0.5 * self.charac['height'])}
+
+        lo = {'x' : (self.location['x'] - 0.5 * self.charac['width']),
+              'y' : (self.location['y'] - 0.5 * self.charac['height'])}
+
+        ro = {'x' : (self.location['x'] + 0.5 * self.charac['width']),
+              'y' : (self.location['y'] - 0.5 * self.charac['height'])}
+
         return [lb, rb, lo, ro]
 
 
