@@ -14,8 +14,7 @@ class Map(object):
     '''Grid that keeps track of all the cells.'''
 
     def __init__(self, width, height):
-        '''Grid is a list in a list (thus a matrix) filled with cells.
-           Houses is a list containing all houses.
+        '''Houses is a list containing all houses.
            Water is a list containint all water elements.'''
 
         self.houses = []
@@ -27,9 +26,9 @@ class House(object):
     '''Basis for the three different house classes.'''
 
     def __init__(self, self_id, type_charac, loc):
-        '''Structure is list of cells on which house is placed.
-           Space is list of cells that fall within the range of closest
-           neighbouring house.
+        '''Location is the coordinate of the centre of the house.
+           Freespace is the distance to the closest neighbour.
+           Value is the value of the house.
            Charac is a dict filled with the characteristics of this type of
            house.'''
 
@@ -39,8 +38,6 @@ class House(object):
         self.value = 0
         self.charac = type_charac
         self.corners = self.find_corners()
-
-
 
     def calc_value(self, freespace):
         '''Calculates the value of this house.'''
@@ -71,8 +68,9 @@ class House(object):
 class Water_Element(object):
     '''One of a maximum of four areas destinated for water.'''
 
-    def __init__(self, loc):
-        '''Water is a list of cells on which water is placed.'''
+    def __init__(self, width, length, loc):
+        '''Location is coordinate of middle.
+            Size is a dict with the width and length.'''
 
         self.location = loc
-        self.size = ''
+        self.size = {'width' : width, 'length' : length}
