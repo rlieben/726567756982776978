@@ -11,7 +11,10 @@ def calc_freespace(newhouse, ah_map):
 	y_newhouse = newhouse.loc['y']
 
 	# set freespace variable
-	freespace = 0
+	# calculate x and y difference new and curr
+	diff_housescurr[0] = ah_map.houses[house].loc['x'] - x_newhouse
+	diff_housescurr[1] = ah_map.houses[house].loc['y'] - y_newhouse
+	freespace = sqrt((diff_housescurr[0] ^ 2) + (diff_housescurr[1] ^ 2))
 
 	# iterate over all houses in map
 	for house in ah_map.houses:
@@ -29,11 +32,7 @@ def calc_freespace(newhouse, ah_map):
 		distancenext = sqrt((diff_housesnext[0] ^ 2) + (diff_housesnext[1] ^ 2))
 
 		# update if distance from current is greater than next
-		if distancecurr < distancenext:
-
-			freespace = distancecurr
-
-		else:
+		if freespace > distancenext:
 
 			freespace = distancenext
 
