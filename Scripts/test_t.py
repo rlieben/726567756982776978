@@ -9,13 +9,13 @@
 Test script for Toon.
 '''
 
-
 '''
 First algorithm that places one house, used to test the classes of classes.py.
 '''
 
 from classes import *
 from functions import *
+from visuals import *
 
 ah_map = Map(WIDTH_MAP, HEIGHT_MAP)
 
@@ -31,6 +31,8 @@ def create_test():
     loc = {'x' : 5, 'y' : 5}
 
     place_one_family(ah_map, loc, 0)
+
+    scatterplot(ah_map)
 
     # # tries to place one house
     # ah_map.houses.append(One_Family(0))

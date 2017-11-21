@@ -4,14 +4,15 @@
 # Group:        726567756982776978
 # Members:      Toon van Holte, Raoul Lieben, Luc Stefelmanns
 
-'''
-First algorithm that places houses, used to test the classes of classes.py.
-'''
 
 from classes import *
 from functions import *
 from premises import *
 import random
+
+'''
+First algorithm that places houses, used to test the classes of classes.py.
+'''
 
 def create_test():
     ah_map = Map(MAP['width'], MAP['height'])
