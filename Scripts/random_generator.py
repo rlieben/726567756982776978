@@ -7,9 +7,7 @@ First algorithm that places houses, used to test the classes of classes.py.
 
 from classes import *
 from functions import *
-from random import *
 from premises import *
-
 
 def create_test():
     ah_map = Map(MAP['width'], MAP['height'])
@@ -20,8 +18,6 @@ def create_test():
     MA = int(MAP['nr_houses'][0] * MAP['distr_houses'][2])
 
     for i in range(OF):
-        rand_y_loc = randint(0,MAP['height'] - ONE_FAM['height'])
-        rand_x_loc = randint(0,MAP['width'] - ONE_FAM['width'])
 
         loc = {'x':rand_x_loc,'y':rand_y_loc}
 
@@ -30,8 +26,8 @@ def create_test():
         place_house(ah_map, loc, house_id, ONE_FAM)
 
     for i in range(BU):
-        rand_y_loc = randint(0,MAP['height'] - BUNGALOW['height'])
-        rand_x_loc = randint(0,MAP['height'] - BUNGALOW['height'])
+        rand_y_loc = random.uniform(0,MAP['height'] - (BUNGALOW['height']/2))
+        rand_x_loc = random.uniform(0,MAP['width'] - (BUNGALOW['width']/2))
 
         loc = {'x':rand_x_loc,'y':rand_y_loc}
 
@@ -40,8 +36,6 @@ def create_test():
         place_house(ah_map, loc, house_id, BUNGALOW)
 
     for i in range(MA):
-        rand_y_loc = randint(0,MAP['height'] - MANSION['height'])
-        rand_x_loc = randint(0,MAP['height'] - MANSION['height'])
 
         loc = {'x':rand_x_loc,'y':rand_y_loc}
 

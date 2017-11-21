@@ -4,12 +4,9 @@ from random_generator import *
 
 # Create data
 
-coordinates = create_test()
 
 for i in range(MAP['nr_houses'][0]):
-    x = coordinates.houses[i].location['x']
     print('x',x)
-    y = coordinates.houses[i].location['y']
     print('y',y)
     colors = (0,0,0)
     area = np.pi*3
