@@ -23,7 +23,7 @@ def place_house(ah_map, loc, house_id, type_charac):
     else:
         ah_map.calc_freespace(new_house)
 
-        if new_house.freespace < new_house.charac['min_free']:
+        if new_house.freespace < MANSION['min_free']:
             return False
         else:
             ah_map.houses.append(new_house)
