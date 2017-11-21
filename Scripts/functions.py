@@ -4,8 +4,11 @@
 # Group:        726567756982776978
 # Members:      Toon van Holte, Raoul Lieben, Luc Stefelmanns
 
+import os
 from classes import *
-import numpy
+from premises import *
+import math
+from random_generator import *
 
 '''
 All basic functions to operate on the map.
@@ -21,3 +24,33 @@ def place_house(ah_map, loc, house_id, type_charac):
     ah_map.houses.append(House(house_id, type_charac, loc))
 
     return ah_map
+
+
+def calc_freespace(newhouse, ah_map):
+
+	# coordinates new house
+	x_newhouse = newhouse.loc['x']
+	y_newhouse = newhouse.loc['y']
+
+	# calculate x and y difference new and curr and calc freespace variable
+	diff_housescurr[0] = ah_map.houses[house].loc['x'] - x_newhouse
+	diff_housescurr[1] = ah_map.houses[house].loc['y'] - y_newhouse
+	freespace = sqrt((diff_housescurr[0] ^ 2) + (diff_housescurr[1] ^ 2))
+
+	# iterate over all houses in map
+	for house in ah_map.houses:
+
+		# calculate x and y difference new and curr
+		diff_housescurr[0] = ah_map.houses[house].loc['x'] - x_newhouse
+		diff_housescurr[1] = ah_map.houses[house].loc['y'] - y_newhouse
+
+		# calculates distance between new and current
+		distancecurr = sqrt((diff_housescurr[0] ^ 2) + (diff_housescurr[1] ^ 2))
+
+		# update if distance from current is greater than next
+		if freespace >= distancenext:
+
+			freespace = distancenext
+
+	print (freespace)
+	return freespace
