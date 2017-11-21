@@ -1,14 +1,14 @@
 Infrastructuur:
-    L Opzoeken hoe je naar een andere folder verwijst.
-    - Aparte plekken voor algorithmen, classes, visualisatie en plek waar het
+    * Opzoeken hoe je naar een andere folder verwijst.
+    * Aparte plekken voor algorithmen, classes, visualisatie en plek waar het
       samenkomt.
     - Goede README.
 
 
 Datastructuur:
     R Score functie af.
-    - Functie veranderen naar coordinaten.
-    T Omzetten naar coordinaten ipv cellen.
+    * Functie veranderen naar coordinaten.
+    * Omzetten naar coordinaten ipv cellen.
 
 Experimentatie:
     -
@@ -16,9 +16,3 @@ Experimentatie:
 Algorithmen:
     - Vaak random genereren en beste functies eruit halen.
     - Hillclimber.
-
-
-    import sys
-    sys.path.insert(0, 'path/to/your/py_file')
-
-    import py_file
