@@ -50,6 +50,10 @@ class House(object):
                      * self.charac['perc'])
 
     def find_corners(self):
+        self.corners = [x, y, z, w]
+        self.corners.append()
+        self.corners.append()
+        self.corners.append()
         self.corners.append()
 
 
