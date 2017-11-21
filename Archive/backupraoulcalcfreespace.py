@@ -57,7 +57,7 @@ class Map(object):
                 # check if coordinate falls within house - x range
                 if house.location['x'] > corn_coornew['lb']['x'] and house.location['x'] < corn_coornew['rb']['x']:
 
-                	freespace = diff_housescurr[0] - (newhouse.charac['width'] / 2) - (house.charac['width'] / 2)
+                	freespace = diff_housescurr[0] - (newhouse.charac['width'] / 2)
 
                 # check if coordinate falls within house - y range
                 elif house.location['y'] > corn_coornew['lo']['y']and house.location['y'] < corn_coornew['lb']['y']:
@@ -79,16 +79,44 @@ class Map(object):
                             diff_housecorn[0] = corn_coornew[i]['x'] - house.corners[j]['x']
                             diff_housecorn[1] = corn_coornew[i]['y'] - house.corners[j]['y']
 
+                            # # calculate x and y difference between nextcorners
+                            # diff_housescorn[3] = corn_coornew[i]['x'] - house.corners[j + 1]['x']
+                            # diff_housescorn[4] = corn_coornew[i]['y'] - house.corners[j + 1]['y']
+
                             # calculates distance between curr two corners
                             distancecurrcorncurr = numpy.sqrt(numpy.power(diff_housecorn[0], 2) + numpy.power(diff_housecorn[1], 2))
 
-                            # append 
                             distancelist.append(distancecurrcorncurr)
+
+                            # # calculates distance between next two corners
+                            # distancecurrcornnext = numpy.sqrt(numpy.power(diff_housescorn[3], 2) + numpy.power(diff_housescorn[4], 2))
+
+                            # if distancecurrcorcurr > distancecurrcornnext:
+
+                            # 	freespace = distancecurrcornnext
+
+
+
+                            # diff corners
+                            # distancecurr = numpy.sqrt(numpy.power(diff_housescurr[0], 2) + numpy.power(diff_housescurr[1], 2))
+
+                            # # calculates distance between new and current
+                            #    			distancecurr = numpy.sqrt(numpy.power(diff_housescurr[0], 2) + numpy.power(diff_housescurr[1], 2))
+
 
                         freespace = numpy.amin(distancelist)
 
-        # set freespace of class
+
+                # # calculates distance between new and current
+                # distancecurr = numpy.sqrt(numpy.power(diff_housescurr[0], 2) + numpy.power(diff_housescurr[1], 2))
+
+                # # update if freespace is greater than curr distance
+                # if freespace >= distancecurr:
+
+                # 	freespace = distancecurr
+
         newhouse.freespace = freespace
+        # return freespace
 
 
 class House(object):
