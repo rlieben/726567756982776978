@@ -7,18 +7,10 @@
 
 from classes import *
 from functions import *
-from premises import *
+from case import *
 import random
 
-<<<<<<< HEAD
-def random():
-=======
-'''
-First algorithm that places houses, used to test the classes of classes.py.
-'''
-
-def create_test():
->>>>>>> af4b6a19e3ba2dece4cdbf2c9e4a257eaaec22a2
+def random_generator():
     ah_map = Map(MAP['width'], MAP['height'])
 
 

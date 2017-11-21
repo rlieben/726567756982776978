@@ -9,7 +9,7 @@ import matplotlib as mpl
 import matplotlib.pyplot as plot
 import numpy as np
 
-from random_generator import *
+from algorithms import *
 
 
 '''
@@ -56,17 +56,10 @@ def grid_houses(z_vals):
     return plot.show()
 
 
-<<<<<<< HEAD
 def scatterplot(data):
 
     # get data
     sample = random()
-=======
-def scatterplot(sample):
-
-    # get data
-    # sample = create_test()
->>>>>>> af4b6a19e3ba2dece4cdbf2c9e4a257eaaec22a2
 
     for i in range(MAP['nr_houses'][0]):
 

@@ -6,9 +6,9 @@
 
 import os
 from classes import *
-from premises import *
+from case import *
 import math
-from random_generator import *
+from algorithms import *
 
 '''
 All basic functions to operate on the map.
