@@ -1,5 +1,6 @@
 Infrastructuur:
-    L Aparte plekken voor algorithmen, classes, visualisatie en plek waar het
+    L Opzoeken hoe je naar een andere folder verwijst.
+    - Aparte plekken voor algorithmen, classes, visualisatie en plek waar het
       samenkomt.
     - Goede README.
 

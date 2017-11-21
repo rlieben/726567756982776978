@@ -52,7 +52,7 @@ class Map(object):
 class House(object):
     '''Basis for the three different house classes.'''
 
-    def __init__(self, self_id, type_charac):
+    def __init__(self, self_id, type_charac, loc):
         '''Structure is list of cells on which house is placed.
            Space is list of cells that fall within the range of closest
            neighbouring house.
@@ -60,7 +60,7 @@ class House(object):
            house.'''
 
         self.self_id = self_id
-        self.structure = []
+        self.location = loc # loc is a dict {'x' : ..., 'y' : ...}
         self.space = []
         self.value = 0
         self.charac = type_charac
