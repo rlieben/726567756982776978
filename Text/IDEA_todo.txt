@@ -2,6 +2,7 @@ Infrastructuur:
     * Opzoeken hoe je naar een andere folder verwijst.
     * Aparte plekken voor algorithmen, classes, visualisatie en plek waar het
       samenkomt.
+    L Onnodige imports weghalen.
     - Goede README.
 
 
