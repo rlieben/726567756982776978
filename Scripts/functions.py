@@ -7,7 +7,7 @@
 import os
 from classes import *
 from case import *
-import math
+import numpy
 # from algorithms import *
 
 '''
@@ -24,29 +24,35 @@ def place_house(ah_map, loc, house_id, type_charac):
 
 def calc_freespace(newhouse, ah_map):
 
-	# coordinates new house
-	x_newhouse = newhouse.loc['x']
-	y_newhouse = newhouse.loc['y']
+    # coordinates new house
+    x_newhouse = newhouse.location['x']
+    y_newhouse = newhouse.location['y']
 
-	# calculate x and y difference new and curr and calc freespace variable
-	diff_housescurr[0] = ah_map.houses[house].loc['x'] - x_newhouse
-	diff_housescurr[1] = ah_map.houses[house].loc['y'] - y_newhouse
-	freespace = sqrt((diff_housescurr[0] ^ 2) + (diff_housescurr[1] ^ 2))
+    diff_housescurr = [0, 0]
 
-	# iterate over all houses in map
-	for house in ah_map.houses:
+    # calculate x and y difference new and first and calc freespace variable
+    diff_housescurr[0] = ah_map.houses[0].location['x'] - x_newhouse
+    diff_housescurr[1] = ah_map.houses[0].location['y'] - y_newhouse
+    freespace = numpy.sqrt(numpy.power(diff_housescurr[0], 2) + numpy.power(diff_housescurr[1], 2))
 
-		# calculate x and y difference new and curr
-		diff_housescurr[0] = ah_map.houses[house].loc['x'] - x_newhouse
-		diff_housescurr[1] = ah_map.houses[house].loc['y'] - y_newhouse
+    # iterate over all houses in map
+    for house in ah_map.houses:
 
-		# calculates distance between new and current
-		distancecurr = sqrt((diff_housescurr[0] ^ 2) + (diff_housescurr[1] ^ 2))
+        if house.self_id != newhouse.self_id:
+            # calculate x and y difference new and curr
+            diff_housescurr[0] = house.location['x'] - x_newhouse
+            diff_housescurr[1] = house.location['y'] - y_newhouse
 
-		# update if freespace is greater than curr distance
-		if freespace >= distancecurr:
+            # print("housediff")
+            # print(diff_housescurr)
 
-			freespace = distancecurr
+            # calculates distance between new and current
+            distancecurr = numpy.sqrt(numpy.power(diff_housescurr[0], 2) + numpy.power(diff_housescurr[1], 2))
 
-	print (freespace)
-	return freespace
+            # update if freespace is greater than curr distance
+            if freespace >= distancecurr:
+
+            	freespace = distancecurr
+
+    print (freespace)
+    return freespace

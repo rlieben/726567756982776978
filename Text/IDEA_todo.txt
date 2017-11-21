@@ -23,7 +23,7 @@ WAAR WERK JE IN:
 
     visuals
     classes
-    algorithms  
-    functions
+    algorithms
+    functions   
     case
     run_me
