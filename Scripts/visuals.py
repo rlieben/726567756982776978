@@ -55,12 +55,11 @@ def grid_houses():
 
     return plot.show()
 
-grid_houses()
 
-def scatterplot():
+def scatterplot(data):
 
     # get data
-    sample = create_test()
+    sample = random()
 
     for i in range(MAP['nr_houses'][0]):
 
@@ -77,5 +76,3 @@ def scatterplot():
     plt.ylabel('y')
 
     return plt.show()
-
-scatterplot()

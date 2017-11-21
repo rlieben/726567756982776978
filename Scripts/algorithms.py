@@ -13,7 +13,7 @@ from functions import *
 from premises import *
 import random
 
-def create_test():
+def random():
     ah_map = Map(MAP['width'], MAP['height'])
 
 
