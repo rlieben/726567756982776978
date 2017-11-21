@@ -1,3 +1,6 @@
+# Group:        726567756982776978
+# Assignment:   Amstelhaege
+
 import numpy as np
 import matplotlib.pyplot as plt
 from random_generator import *
@@ -10,7 +13,6 @@ for i in range(MAP['nr_houses'][0]):
     x = sample.houses[i].location['x']
     print('x',x)
     y = sample.houses[i].location['y']
-    c = 
     print('y',y)
     colors = (0,0,0)
     area = np.pi*3
