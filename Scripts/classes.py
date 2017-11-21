@@ -29,63 +29,63 @@ class Map(object):
         x_newhouse = newhouse.location['x']
         y_newhouse = newhouse.location['y']
 
-        # corners coordinates new house
-        corn_coornew = newhouse.corners
-
         # initiate variable list
-        diff_housescurr = [0, 0]
+        diff_houses = [0, 0]
 
         # difference between center and wall of house
         x_diffhouse = newhouse.charac['width'] / 2
         y_diffhouse = newhouse.charac['height'] / 2
 
         # calculate x and y difference new and first and calc freespace variable
-        diff_housescurr[0] = self.houses[0].location['x'] - x_newhouse
-        diff_housescurr[1] = self.houses[0].location['y'] - y_newhouse
-        freespace = numpy.sqrt(numpy.power(diff_housescurr[0], 2) + numpy.power(diff_housescurr[1], 2))
+        diff_houses[0] = self.houses[0].location['x'] - x_newhouse
+        diff_houses[1] = self.houses[0].location['y'] - y_newhouse
+        freespace = numpy.sqrt(numpy.power(diff_houses[0], 2) + numpy.power(diff_houses[1], 2))
 
         # iterate over all houses in map
         for house in self.houses:
 
             if house.self_id != newhouse.self_id:
 
-                distancecurr = 0
+                tmpfreespace = []
                 # calculate x and y difference new and curr
-                diff_housescurr[0] = house.location['x'] - x_newhouse
-                diff_housescurr[1] = house.location['y'] - y_newhouse
+                diff_houses[0] = house.location['x'] - x_newhouse
+                diff_houses[1] = house.location['y'] - y_newhouse
 
                 # check if coordinate falls within house - x range
-                if house.location['x'] > corn_coornew['lb']['x'] and house.location['x'] < corn_coornew['rb']['x']:
+                if house.location['x'] > newhouse.corners['lb']['x'] and house.location['x'] < newhouse.corners['rb']['x']:
 
-                	freespace = diff_housescurr[0] - (newhouse.charac['width'] / 2) - (house.charac['width'] / 2)
+                	tmpfreespace.append(diff_houses[0] - (newhouse.charac['width'] / 2) - (house.charac['width'] / 2))
 
                 # check if coordinate falls within house - y range
-                elif house.location['y'] > corn_coornew['lo']['y']and house.location['y'] < corn_coornew['lb']['y']:
+                elif house.location['y'] > newhouse.corners['lo']['y']and house.location['y'] < newhouse.corners['lb']['y']:
 
-                	freespace = diff_housescurr[1] - (newhouse.charac['height'] / 2)
+                	tmpfreespace.append(diff_houses[1] - (newhouse.charac['height'] / 2))
 
                 # check cornerdistance
                 else:
 
-                    diff_housecorn = [0,0]
+                    diff_corners = [0,0]
 
                     distancelist = []
 
                     # iterate over corners
-                    for i in corn_coornew:
+                    for i in newhouse.corners:
                         for j in house.corners:
 
                             # calculate x and y difference between corners
-                            diff_housecorn[0] = corn_coornew[i]['x'] - house.corners[j]['x']
-                            diff_housecorn[1] = corn_coornew[i]['y'] - house.corners[j]['y']
+                            diff_corners[0] = newhouse.corners[i]['x'] - house.corners[j]['x']
+                            print (diff_corners[0])
+                            diff_corners[1] = newhouse.corners[i]['y'] - house.corners[j]['y']
 
                             # calculates distance between curr two corners
-                            distancecurrcorncurr = numpy.sqrt(numpy.power(diff_housecorn[0], 2) + numpy.power(diff_housecorn[1], 2))
+                            distancecurrcorncurr = numpy.sqrt(numpy.power(diff_corners[0], 2) + numpy.power(diff_corners[1], 2))
 
                             # append 
                             distancelist.append(distancecurrcorncurr)
 
-                        freespace = numpy.amin(distancelist)
+                        tmpfreespace.append(numpy.amin(distancelist))
+
+                freespace = numpy.amin(tmpfreespace)
 
         # set freespace of class
         newhouse.freespace = freespace
