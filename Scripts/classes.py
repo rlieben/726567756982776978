@@ -50,11 +50,12 @@ class House(object):
                      * self.charac['perc'])
 
     def find_corners(self):
-        self.corners = [x, y, z, w]
-        self.corners.append()
-        self.corners.append()
-        self.corners.append()
-        self.corners.append()
+        lb = {'x':(self.location['x'] - 0.5 * self.charac['width']),'y':(self.location['y'] + 0.5 * self.charac['height'])}
+        rb = {'x':(self.location['x'] + 0.5 * self.charac['width']),'y':(self.location['y'] + 0.5 * self.charac['height'])}
+        lo = {'x':(self.location['x'] - 0.5 * self.charac['width']),'y':(self.location['y'] - 0.5 * self.charac['height'])}
+        ro = {'x':(self.location['x'] + 0.5 * self.charac['width']),'y':(self.location['y'] - 0.5 * self.charac['height'])}
+        self.corners = [lb, rb, lo, ro]
+
 
 
 
