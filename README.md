@@ -22,3 +22,11 @@ Scripts/
         Individual scripts to test.
     visuals.py
         Functions to show results.
+
+Texts/
+    constraints.txt
+        The constraints of the current case.
+    IDEA_todo.txt
+        Progress list, with initials if working on particular area and asterix of todo is finished.
+    links.txt
+        Possible useful links for the project.
