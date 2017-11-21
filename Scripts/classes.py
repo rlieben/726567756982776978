@@ -10,31 +10,6 @@ Code containing all classes used.
 '''
 
 
-class Cell(object):
-    '''One element in the grid.'''
-
-    def __init__(self):
-        '''Actual value is based on the houses on/around the cell.
-           Possible value considers possible removal/placing of house.
-           Type is the type of building/element placed on this cell.'''
-
-        self.actual_value = 0
-        self.possible_value = 0
-        self.type = 'empty'
-
-    def calc_actual_value(self):
-        '''Based on the locations of houses around, value is changed.'''
-        print('TODO: class Cell, calc_actual_value')
-
-        # self.actual_value = function
-
-    def calc_possible_value(self):
-        '''Takes in account the possible removal/placing of new house.'''
-        print('TODO: class Cell, calc_possible_value')
-
-        # self.possible_value = function
-
-
 class Map(object):
     '''Grid that keeps track of all the cells.'''
 
