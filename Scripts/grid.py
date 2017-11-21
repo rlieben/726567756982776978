@@ -16,7 +16,6 @@ from random_generator import *
 Creates visual and heatmap for the map.
 '''
 
-
 def grid_houses():
     # values indicating what ind of house is implemented
     z_vals = create_test()
