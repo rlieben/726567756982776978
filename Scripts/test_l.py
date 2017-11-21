@@ -20,7 +20,7 @@ from algorithms import *
 maximum = 0
 best_map = random_generator()
 
-for i in range(200):
+for i in range(100):
     ah_map = random_generator()
     summy = 0
     for house in ah_map.houses:
@@ -30,7 +30,7 @@ for i in range(200):
         print(house.value)
         summy += house.value
 
-    print("DOIEF")
+    print("SUM")
     print(summy)
 
     if summy > maximum:
