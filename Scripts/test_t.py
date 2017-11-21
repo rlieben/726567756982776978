@@ -15,4 +15,4 @@ from algorithms import *
 from visuals import *
 
 
-scatterplot(random())
+scatterplot(random_generator())

@@ -56,23 +56,20 @@ def grid_houses(z_vals):
     return plot.show()
 
 
-def scatterplot(data):
-
-    # get data
-    sample = random()
+def scatterplot(ah_map):
 
     for i in range(MAP['nr_houses'][0]):
 
-        x = sample.houses[i].location['x']
-        y = sample.houses[i].location['y']
+        x = ah_map.houses[i].location['x']
+        y = ah_map.houses[i].location['y']
 
         colors = (0,0,0)
         area = np.pi*3
         # ax.annotate(data.houses[i].house_id, (x,y))
-        plt.scatter(x, y, s=area, c=colors, alpha=0.5)
+        plot.scatter(x, y, s=area, c=colors, alpha=0.5)
 
-    plt.title('scatterplot for houses')
-    plt.xlabel('x')
-    plt.ylabel('y')
+    plot.title('scatterplot for houses')
+    plot.xlabel('x')
+    plot.ylabel('y')
 
-    return plt.show()
+    return plot.show()

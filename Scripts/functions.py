@@ -8,7 +8,7 @@ import os
 from classes import *
 from case import *
 import math
-from algorithms import *
+# from algorithms import *
 
 '''
 All basic functions to operate on the map.
