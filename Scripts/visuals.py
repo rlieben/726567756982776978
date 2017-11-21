@@ -76,5 +76,3 @@ def scatterplot(sample):
     plt.ylabel('y')
 
     return plt.show()
-
-scatterplot()

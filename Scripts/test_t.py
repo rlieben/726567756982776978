@@ -9,9 +9,6 @@
 Test script for Toon.
 '''
 
-
-
-
 '''
 First algorithm that places one house, used to test the classes of classes.py.
 '''
