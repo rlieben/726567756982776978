@@ -5,9 +5,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 from random_generator import *
 
-# Create data
-
-
 
 def scatterplot():
 
