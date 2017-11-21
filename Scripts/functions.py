@@ -66,8 +66,8 @@ def calc_freespaceforreal(newhouse, ah_map):
     diff_housescurr = [0, 0]
 
     # difference between center and wall of house
-	x_diffhouse = newhouse.charac['width'] / 2
-	y_diffhouse = newhouse.charac['height'] / 2
+    x_diffhouse = newhouse.charac['width'] / 2
+    y_diffhouse = newhouse.charac['height'] / 2
 
     # calculate x and y difference new and first and calc freespace variable
     diff_housescurr[0] = ah_map.houses[0].location['x'] - x_newhouse
@@ -79,64 +79,64 @@ def calc_freespaceforreal(newhouse, ah_map):
 
         if house.self_id != newhouse.self_id:
 
-        	distancecurr = 0
-        	# calculate x and y difference new and curr
+            distancecurr = 0
+            # calculate x and y difference new and curr
             diff_housescurr[0] = house.location['x'] - x_newhouse
             diff_housescurr[1] = house.location['y'] - y_newhouse
 
             # check if coordinate falls within house - x range
-        	if house.location['x'] > corn_coornew['x1'] and house.location['x'] < corn_coornew['x2']:
+            if house.location['x'] > corn_coornew['x1'] and house.location['x'] < corn_coornew['x2']:
 
-        		freespace = diff_housescurr[0] - (newhouse.charac['width'] / 2) 
-        		
-        	# check if coordinate falls within house - y range
-    		elif house.location['y'] > corn_coornew['y1'] and house.location['y'] < corn_coornew['y2']:
+            	freespace = diff_housescurr[0] - (newhouse.charac['width'] / 2)
 
-    			freespace = diff_housescurr[1] - (newhouse.charac['height'] / 2)
+            # check if coordinate falls within house - y range
+            elif house.location['y'] > corn_coornew['y1'] and house.location['y'] < corn_coornew['y2']:
 
-    		# check cornerdistance
-    		else:
+            	freespace = diff_housescurr[1] - (newhouse.charac['height'] / 2)
 
-    			diff_housecorn = [0,0]
+            # check cornerdistance
+            else:
 
-    			distancelist = []
+                diff_housecorn = [0,0]
 
-    			# iterate over corners
-    			for i in corn_coornew:
-    				for j in house.corners:
+                distancelist = []
 
-    					# calculate x and y difference between corners
-    					diff_housescorn[0] = corn_coornew[i]['x'] - house.corners[j]['x']
-    					diff_housescorn[1] = corn_coornew[i]['y'] - house.corners[j]['y']
+                # iterate over corners
+                for i in corn_coornew:
+                    for j in house.corners:
 
-    					# # calculate x and y difference between nextcorners
-    					# diff_housescorn[3] = corn_coornew[i]['x'] - house.corners[j + 1]['x']
-    					# diff_housescorn[4] = corn_coornew[i]['y'] - house.corners[j + 1]['y']
+                        # calculate x and y difference between corners
+                        diff_housescorn[0] = corn_coornew[i]['x'] - house.corners[j]['x']
+                        diff_housescorn[1] = corn_coornew[i]['y'] - house.corners[j]['y']
 
-    					# calculates distance between curr two corners
-            			distancecurrcorncurr = numpy.sqrt(numpy.power(diff_housescorn[0], 2) + numpy.power(diff_housescorn[1], 2))
-            			
-            			distancelist.append(distancecurrcorncurr)
+                        # # calculate x and y difference between nextcorners
+                        # diff_housescorn[3] = corn_coornew[i]['x'] - house.corners[j + 1]['x']
+                        # diff_housescorn[4] = corn_coornew[i]['y'] - house.corners[j + 1]['y']
 
-            			# # calculates distance between next two corners
-            			# distancecurrcornnext = numpy.sqrt(numpy.power(diff_housescorn[3], 2) + numpy.power(diff_housescorn[4], 2))
+                        # calculates distance between curr two corners
+                        distancecurrcorncurr = numpy.sqrt(numpy.power(diff_housescorn[0], 2) + numpy.power(diff_housescorn[1], 2))
 
-            			# if distancecurrcorcurr > distancecurrcornnext:
+                        distancelist.append(distancecurrcorncurr)
 
-            			# 	freespace = distancecurrcornnext
+                        # # calculates distance between next two corners
+                        # distancecurrcornnext = numpy.sqrt(numpy.power(diff_housescorn[3], 2) + numpy.power(diff_housescorn[4], 2))
 
+                        # if distancecurrcorcurr > distancecurrcornnext:
 
-
-    					# diff corners
-    					# distancecurr = numpy.sqrt(numpy.power(diff_housescurr[0], 2) + numpy.power(diff_housescurr[1], 2))
-
-    					# # calculates distance between new and current
-         #    			distancecurr = numpy.sqrt(numpy.power(diff_housescurr[0], 2) + numpy.power(diff_housescurr[1], 2))
+                        # 	freespace = distancecurrcornnext
 
 
-         		freespace = numpy.minimum(distancelist)
 
-            
+                        # diff corners
+                        # distancecurr = numpy.sqrt(numpy.power(diff_housescurr[0], 2) + numpy.power(diff_housescurr[1], 2))
+
+                        # # calculates distance between new and current
+                        #    			distancecurr = numpy.sqrt(numpy.power(diff_housescurr[0], 2) + numpy.power(diff_housescurr[1], 2))
+
+
+                    freespace = numpy.minimum(distancelist)
+
+
             # # calculates distance between new and current
             # distancecurr = numpy.sqrt(numpy.power(diff_housescurr[0], 2) + numpy.power(diff_housescurr[1], 2))
 
