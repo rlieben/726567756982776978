@@ -8,7 +8,6 @@ import os
 from classes import *
 from case import *
 import numpy
-# from algorithms import *
 
 '''
 All basic functions to operate on the map.

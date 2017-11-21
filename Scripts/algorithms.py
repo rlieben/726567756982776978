@@ -4,6 +4,10 @@
 # Group:        726567756982776978
 # Members:      Toon van Holte, Raoul Lieben, Luc Stefelmanns
 
+'''
+Script containing all usable algorithms to place houses.
+'''
+
 
 from classes import *
 from functions import *
