@@ -18,8 +18,10 @@ ah_map = random_generator()
 
 # print(ah_map.houses[0].corners)
 
-freespace = calc_freespaceforreal(ah_map.houses[4], ah_map)
+ah_map.calc_freespaceforreal(houses[4])
 
-print(freespace)
+ah_map.houses[4].calc_value
+
+print(ah_map.houses[4].value)
 
 # scatterplot(ah_map)
