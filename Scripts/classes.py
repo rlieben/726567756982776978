@@ -23,7 +23,7 @@ class Map(object):
         self.water = []
         self.measures = {'width' : width, 'height' : height}
 
-    def calc_freespaceforreal(self, newhouse):
+    def calc_freespace(self, newhouse):
 
         # coordinates new house
         x_newhouse = newhouse.location['x']
