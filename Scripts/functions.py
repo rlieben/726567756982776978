@@ -47,10 +47,10 @@ def calc_freespace(newhouse, ah_map):
 		# calculates distance between new and current
 		distancecurr = sqrt((diff_housescurr[0] ^ 2) + (diff_housescurr[1] ^ 2))
 
-		# update if distance from current is greater than next
-		if freespace >= distancenext:
+		# update if freespace is greater than curr distance
+		if freespace >= distancecurr:
 
-			freespace = distancenext
+			freespace = distancecurr
 
 	print (freespace)
 	return freespace
