@@ -16,8 +16,10 @@ from algorithms import *
 
 ah_map = random_generator()
 
-print(ah_map.houses[0].corners)
+# print(ah_map.houses[0].corners)
 
-# freespace = calc_freespace(ah_map.houses[4], ah_map)
+freespace = calc_freespaceforreal(ah_map.houses[4], ah_map)
+
+print(freespace)
 
 # scatterplot(ah_map)

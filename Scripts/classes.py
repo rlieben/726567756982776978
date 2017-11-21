@@ -14,7 +14,8 @@ class Map(object):
     '''Grid that keeps track of all the cells.'''
 
     def __init__(self, width, height):
-        '''Houses is a list containing all houses.
+        '''Grid is a list in a list (thus a matrix) filled with cells.
+           Houses is a list containing all houses.
            Water is a list containint all water elements.'''
 
         self.houses = []
@@ -26,18 +27,20 @@ class House(object):
     '''Basis for the three different house classes.'''
 
     def __init__(self, self_id, type_charac, loc):
-        '''Location is the coordinate of the centre of the house.
-           Freespace is the distance to the closest neighbour.
-           Value is the value of the house.
+        '''Structure is list of cells on which house is placed.
+           Space is list of cells that fall within the range of closest
+           neighbouring house.
            Charac is a dict filled with the characteristics of this type of
            house.'''
 
         self.self_id = self_id
         self.location = loc # loc is a dict {'x' : ..., 'y' : ...}
         self.freespace = 0
-        self.value = 0
         self.charac = type_charac
         self.corners = self.find_corners()
+        self.value = calc_value(freespace)
+
+
 
     def calc_value(self, freespace):
         '''Calculates the value of this house.'''
@@ -60,17 +63,14 @@ class House(object):
         ro = {'x' : (self.location['x'] + 0.5 * self.charac['width']),
               'y' : (self.location['y'] - 0.5 * self.charac['height'])}
 
-        return [lb, rb, lo, ro]
-
-
+        return {'lb' : lb, 'rb': rb, 'lo': lo, 'ro': ro}
 
 
 class Water_Element(object):
     '''One of a maximum of four areas destinated for water.'''
 
-    def __init__(self, width, length, loc):
-        '''Location is coordinate of middle.
-            Size is a dict with the width and length.'''
+    def __init__(self, loc):
+        '''Water is a list of cells on which water is placed.'''
 
         self.location = loc
-        self.size = {'width' : width, 'length' : length}
+        self.size = ''

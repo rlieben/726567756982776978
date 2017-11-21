@@ -85,12 +85,12 @@ def calc_freespaceforreal(newhouse, ah_map):
             diff_housescurr[1] = house.location['y'] - y_newhouse
 
             # check if coordinate falls within house - x range
-            if house.location['x'] > corn_coornew['x1'] and house.location['x'] < corn_coornew['x2']:
+            if house.location['x'] > corn_coornew['lb']['x'] and house.location['x'] < corn_coornew['rb']['x']:
 
             	freespace = diff_housescurr[0] - (newhouse.charac['width'] / 2)
 
             # check if coordinate falls within house - y range
-            elif house.location['y'] > corn_coornew['y1'] and house.location['y'] < corn_coornew['y2']:
+            elif house.location['y'] > corn_coornew['lo']['y']and house.location['y'] < corn_coornew['lb']['y']:
 
             	freespace = diff_housescurr[1] - (newhouse.charac['height'] / 2)
 
@@ -106,15 +106,15 @@ def calc_freespaceforreal(newhouse, ah_map):
                     for j in house.corners:
 
                         # calculate x and y difference between corners
-                        diff_housescorn[0] = corn_coornew[i]['x'] - house.corners[j]['x']
-                        diff_housescorn[1] = corn_coornew[i]['y'] - house.corners[j]['y']
+                        diff_housecorn[0] = corn_coornew[i]['x'] - house.corners[j]['x']
+                        diff_housecorn[1] = corn_coornew[i]['y'] - house.corners[j]['y']
 
                         # # calculate x and y difference between nextcorners
                         # diff_housescorn[3] = corn_coornew[i]['x'] - house.corners[j + 1]['x']
                         # diff_housescorn[4] = corn_coornew[i]['y'] - house.corners[j + 1]['y']
 
                         # calculates distance between curr two corners
-                        distancecurrcorncurr = numpy.sqrt(numpy.power(diff_housescorn[0], 2) + numpy.power(diff_housescorn[1], 2))
+                        distancecurrcorncurr = numpy.sqrt(numpy.power(diff_housecorn[0], 2) + numpy.power(diff_housecorn[1], 2))
 
                         distancelist.append(distancecurrcorncurr)
 
@@ -134,7 +134,7 @@ def calc_freespaceforreal(newhouse, ah_map):
                         #    			distancecurr = numpy.sqrt(numpy.power(diff_housescurr[0], 2) + numpy.power(diff_housescurr[1], 2))
 
 
-                    freespace = numpy.minimum(distancelist)
+                    freespace = numpy.amin(distancelist)
 
 
             # # calculates distance between new and current
