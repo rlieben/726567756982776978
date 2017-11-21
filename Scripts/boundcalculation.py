@@ -4,7 +4,7 @@
 # Group:        726567756982776978
 # Members:      Toon van Holte, Raoul Lieben, Luc Stefelmanns
 
-from classes import *
+from case import *
 
 
 '''
