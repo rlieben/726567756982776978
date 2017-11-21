@@ -17,14 +17,14 @@ Standard map and houses of the assignment. All measurements are in half meters.
    Min free is the minimal length (in half meters) of free space needed.
    Type is a string containing the type of the house.'''
 
-ONE_FAM = {'width' : 16, 'height': 16, 'start_value' : 285000, 'perc' : 0.01,
-           'min_free' : 4, 'type' : 'one_family'}
+ONE_FAM = {'width' : 8, 'height': 8, 'start_value' : 285000, 'perc' : 0.02,
+           'min_free' : 2, 'type' : 'one_family'}
 
-BUNGALOW = {'width' : 20, 'height' : 15, 'start_value' : 399000, 'perc' : 0.02,
-            'min_free' : 6, 'type' : 'bungalow'}
+BUNGALOW = {'width' : 10, 'height' : 7.5, 'start_value' : 399000, 'perc' : 0.04,
+            'min_free' : 3, 'type' : 'bungalow'}
 
-MANSION = {'width' : 22, 'height' : 21, 'start_value' : 610000, 'perc' : 0.03,
-           'min_free' : 12, 'type' : 'mansion'}
+MANSION = {'width' : 11, 'height' : 10.5, 'start_value' : 610000, 'perc' : 0.06,
+           'min_free' : 6, 'type' : 'mansion'}
 
 
 '''The characteristics of the map.
