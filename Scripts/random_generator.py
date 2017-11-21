@@ -50,3 +50,5 @@ def create_test():
         place_house(ah_map, loc, house_id, MANSION)
 
     return ah_map
+
+print(House)
