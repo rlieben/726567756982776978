@@ -25,7 +25,7 @@ class Map(object):
 
     def calc_freespace(self, newhouse):
         '''Takes a class house as input and calculates the minimum freespace of this house.'''
-        
+
         # coordinates new house
         x_newhouse = newhouse.location['x']
         y_newhouse = newhouse.location['y']
@@ -64,7 +64,6 @@ class Map(object):
                 	tmpfreespace.append(diff_houses[0] \
                                         - x_diffwall
                                         - (house.charac['width'] / 2))
-
                 # check if coordinate falls within house y - range
                 elif house.location['y'] > newhouse.corners['lo']['y'] \
                      and house.location['y'] < newhouse.corners['lb']['y']:
@@ -73,7 +72,6 @@ class Map(object):
                 	tmpfreespace.append(diff_houses[1] \
                                         - y_diffwall
                                         - (house.charac['height'] / 2))
-
                 # else compute distance of corners of the house
                 else:
 
@@ -100,16 +98,12 @@ class Map(object):
                                                       diff_corners[0], 2) \
                                                       + numpy.power( \
                                                       diff_corners[1], 2)) \
-
                             # save distance
                             distancelist.append(distancecorn)
-
                         # take the minimum distance
                         tmpfreespace.append(numpy.amin(distancelist))
-
                 # take the minimum freespace
                 freespace = numpy.amin(tmpfreespace)
-
         # set freespace of class
         newhouse.freespace = freespace
 
