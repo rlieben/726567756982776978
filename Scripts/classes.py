@@ -37,14 +37,22 @@ class Map(object):
         x_diffwall = newhouse.charac['width'] / 2
         y_diffwall = newhouse.charac['height'] / 2
 
+        # creating temporary variable for freespace
+        tmpfreespace = []
+
+
+        # calculating distance to borders and adding to tmp freespace
+        tmpfreespace.append(x_newhouse)
+        tmpfreespace.append(y_newhouse)
+        tmpfreespace.append(map.charac['width'] - x_newhouse)
+        tmpfreespace.append(map.charac['height'] - y_newhouse)
+        
         # iterate over all houses in map
         for house in self.houses:
 
             # skips itself
             if house.self_id != newhouse.self_id:
 
-                # creating temporary variable for freespace
-                tmpfreespace = []
 
                 # check if coordinate falls within house x - range
                 if house.location['x'] > newhouse.corners['lb']['x'] \
