@@ -56,16 +56,17 @@ class Map(object):
                 if house.location['x'] > newhouse.corners['lb']['x'] \
                    and house.location['x'] < newhouse.corners['rb']['x']:
 
-                	tmpfreespace.append(diff_houses[0]
-                    - (newhouse.charac['width'] / 2)
-                    - (house.charac['width'] / 2))
+                	tmpfreespace.append(diff_houses[0] \
+                                        - (newhouse.charac['width'] / 2)
+                                        - (house.charac['width'] / 2))
 
                 # check if coordinate falls within house - y range
                 elif house.location['y'] > newhouse.corners['lo']['y'] \
                      and house.location['y'] < newhouse.corners['lb']['y']:
 
-                	tmpfreespace.append(diff_houses[1]
-                    - (newhouse.charac['height'] / 2))
+                	tmpfreespace.append(diff_houses[1] \
+                                        - (newhouse.charac['height'] / 2)
+                                        - (house.charac['height'] / 2))
 
                 # check cornerdistance
                 else:

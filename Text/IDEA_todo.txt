@@ -3,14 +3,15 @@ Infrastructuur:
     * Aparte plekken voor algorithmen, classes, visualisatie en plek waar het
       samenkomt.
     L Onnodige imports weghalen.
-    - README.
+    * README.
 
 
 Datastructuur:
-    R Score functie af.
+    * Score functie af.
     * Functie veranderen naar coordinaten.
     * Omzetten naar coordinaten ipv cellen.
-    T Hoeken berekenen.
+    * Hoeken berekenen.
+    - Freespace checken
 
 Experimentatie:
     -
