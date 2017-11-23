@@ -15,4 +15,23 @@ from algorithms import *
 from visuals import *
 
 
-scatterplot(random_generator())
+'''
+Test script for Luc.
+'''
+
+from classes import *
+from functions import *
+from visuals import *
+from algorithms import *
+
+
+# print(ah_map.houses[0].corners)
+ah_map = Map(MAP['width'], MAP['height'])
+
+maximum = 0
+best_map = random_generator()
+
+for i in range(100):
+    hill_climber(ah_map)
+
+scatterplot(best_map)
