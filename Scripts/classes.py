@@ -53,8 +53,8 @@ class Map(object):
                 tmpfreespace = []
 
                 # calculate x and y difference new and current house
-                diff_houses[0] = house.location['x'] - x_newhouse
-                diff_houses[1] = house.location['y'] - y_newhouse
+                diff_houses[0] = abs(house.location['x'] - x_newhouse)
+                diff_houses[1] = abs(house.location['y'] - y_newhouse)
 
                 # check if coordinate falls within house x - range
                 if house.location['x'] > newhouse.corners['lb']['x'] \
