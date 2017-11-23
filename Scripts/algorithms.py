@@ -13,13 +13,14 @@ from classes import *
 from functions import *
 from case import *
 import random
+import numpy
 
 def random_generator():
     ah_map = Map(MAP['width'], MAP['height'])
 
-    OF = int(MAP['nr_houses'][0] * MAP['distr_houses'][0])
-    BU = int(MAP['nr_houses'][0] * MAP['distr_houses'][1])
-    MA = int(MAP['nr_houses'][0] * MAP['distr_houses'][2])
+    OF = int(MAP['nr_houses'][2] * MAP['distr_houses'][0])
+    BU = int(MAP['nr_houses'][2] * MAP['distr_houses'][1])
+    MA = int(MAP['nr_houses'][2] * MAP['distr_houses'][2])
 
     for i in range(OF):
 
@@ -68,22 +69,29 @@ def random_generator():
 # input is empty map, output is value calculated
 def hill_climber(ah_map):
 
-    MIN_WANTED = 15
-    del_houses = 0
+    CHANGE = 3
+    tmp_index = []
     tmp_houses = []
 
-    # calculate freespace for houses
-    for house in ah_map.houses:
-        ah_map.calc_freespace(house)
+    for i in range(CHANGE):
+        tmp_index.append(int(numpy.random.uniform(0, len(ah_map.houses) - 1)))
 
-        # check minimum values and delete houses with minimum values
-        if house.freespace < MIN_WANTED:
-            tmp_houses.append(house)
-            del house
-            del_houses += 1
+    for i in range(CHANGE):
+        tmp_houses.append(ah_map.houses[tmp_index[i]])
+        del ah_map.houses[tmp_index[i]]
+    #
+    # # calculate freespace for houses
+    # for house in tmp_houses:
+    #     ah_map.calc_freespace(house)
+    #
+    #     # check minimum values and delete houses with minimum values
+    #     if house.freespace < MIN_WANTED:
+    #         tmp_houses.append(house)
+    #         del house
+    #         del_houses += 1
 
     # add same amount of houses which were deleted
-    for i in range(del_houses):
+    for i in range(CHANGE):
 
         allowed = False
 
