@@ -58,7 +58,7 @@ def grid_houses(z_vals):
 
 def scatterplot(ah_map):
 
-    for i in range(MAP['nr_houses'][0]):
+    for i in range(MAP['nr_houses'][2]):
 
         x = ah_map.houses[i].location['x']
         y = ah_map.houses[i].location['y']

@@ -79,16 +79,6 @@ def hill_climber(ah_map):
     for i in range(CHANGE):
         tmp_houses.append(ah_map.houses[tmp_index[i]])
         del ah_map.houses[tmp_index[i]]
-    #
-    # # calculate freespace for houses
-    # for house in tmp_houses:
-    #     ah_map.calc_freespace(house)
-    #
-    #     # check minimum values and delete houses with minimum values
-    #     if house.freespace < MIN_WANTED:
-    #         tmp_houses.append(house)
-    #         del house
-    #         del_houses += 1
 
     # add same amount of houses which were deleted
     for i in range(CHANGE):
