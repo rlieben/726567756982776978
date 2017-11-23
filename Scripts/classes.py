@@ -46,26 +46,24 @@ class Map(object):
                 # creating temporary variable for freespace
                 tmpfreespace = []
 
-                # calculate x and y difference new and current house
-                diff_houses[0] = abs(house.location['x'] - x_newhouse)
-                diff_houses[1] = abs(house.location['y'] - y_newhouse)
-
                 # check if coordinate falls within house x - range
                 if house.location['x'] > newhouse.corners['lb']['x'] \
                    and house.location['x'] < newhouse.corners['rb']['x']:
 
                     # save freespace between walls of houses
-                	tmpfreespace.append(diff_houses[0] \
+                	tmpfreespace.append(abs(diff_houses[0] \
                                         - x_diffwall
-                                        - (house.charac['width'] / 2))
+                                        - (house.charac['width'] / 2)))
+                                        
                 # check if coordinate falls within house y - range
                 elif house.location['y'] > newhouse.corners['lo']['y'] \
                      and house.location['y'] < newhouse.corners['lb']['y']:
 
                     # save freespace between walls of houses
-                	tmpfreespace.append(diff_houses[1] \
+                	tmpfreespace.append(abs(diff_houses[1] \
                                         - y_diffwall
-                                        - (house.charac['height'] / 2))
+                                        - (house.charac['height'] / 2)))
+                                        
                 # else compute distance of corners of the house
                 else:
 
