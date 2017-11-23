@@ -21,7 +21,7 @@ class Map(object):
 
         self.houses = []
         self.water = []
-        self.measures = {'width' : width, 'height' : height}
+        self.charac = {'width' : width, 'height' : height}
 
     def calc_freespace(self, newhouse):
         '''Takes a class house as input and calculates the minimum freespace of this house.'''
@@ -44,9 +44,9 @@ class Map(object):
         # calculating distance to borders and adding to tmp freespace
         tmpfreespace.append(x_newhouse)
         tmpfreespace.append(y_newhouse)
-        tmpfreespace.append(map.charac['width'] - x_newhouse)
-        tmpfreespace.append(map.charac['height'] - y_newhouse)
-        
+        tmpfreespace.append(self.charac['width'] - x_newhouse)
+        tmpfreespace.append(self.charac['height'] - y_newhouse)
+
         # iterate over all houses in map
         for house in self.houses:
 
@@ -62,7 +62,7 @@ class Map(object):
                 	tmpfreespace.append(abs(diff_houses[0] \
                                         - x_diffwall
                                         - (house.charac['width'] / 2)))
-                                        
+
                 # check if coordinate falls within house y - range
                 elif house.location['y'] > newhouse.corners['lo']['y'] \
                      and house.location['y'] < newhouse.corners['lb']['y']:
@@ -71,7 +71,7 @@ class Map(object):
                 	tmpfreespace.append(abs(diff_houses[1] \
                                         - y_diffwall
                                         - (house.charac['height'] / 2)))
-                                        
+
                 # else compute distance of corners of the house
                 else:
 
@@ -89,7 +89,7 @@ class Map(object):
                             # calculate x and y difference between corners
                             diff_corners[0] = newhouse.corners[i]['x'] \
                                               - house.corners[j]['x']
-                            
+
                             diff_corners[1] = newhouse.corners[i]['y'] \
                                               - house.corners[j]['y']
 
