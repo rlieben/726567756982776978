@@ -24,7 +24,8 @@ class Map(object):
         self.measures = {'width' : width, 'height' : height}
 
     def calc_freespace(self, newhouse):
-
+        '''Takes a class house as input and calculates the minimum freespace of this house.'''
+        
         # coordinates new house
         x_newhouse = newhouse.location['x']
         y_newhouse = newhouse.location['y']
@@ -32,11 +33,11 @@ class Map(object):
         # initiate variable list
         diff_houses = [0, 0]
 
-        # difference between center and wall of house
-        x_diffhouse = newhouse.charac['width'] / 2
-        y_diffhouse = newhouse.charac['height'] / 2
+        # difference between center and wall of new house
+        x_diffwall = newhouse.charac['width'] / 2
+        y_diffwall = newhouse.charac['height'] / 2
 
-        # calculate x and y difference new and first and calc freespace variable
+        # calculate x and y difference new and first and calc first freespace variable
         diff_houses[0] = self.houses[0].location['x'] - x_newhouse
         diff_houses[1] = self.houses[0].location['y'] - y_newhouse
         freespace = numpy.sqrt(numpy.power(diff_houses[0], 2)
@@ -45,44 +46,52 @@ class Map(object):
         # iterate over all houses in map
         for house in self.houses:
 
+            # skips itself
             if house.self_id != newhouse.self_id:
 
+                # creating temporary variable for freespace
                 tmpfreespace = []
-                # calculate x and y difference new and curr
+
+                # calculate x and y difference new and current house
                 diff_houses[0] = house.location['x'] - x_newhouse
                 diff_houses[1] = house.location['y'] - y_newhouse
 
-                # check if coordinate falls within house - x range
+                # check if coordinate falls within house x - range
                 if house.location['x'] > newhouse.corners['lb']['x'] \
                    and house.location['x'] < newhouse.corners['rb']['x']:
 
+                    # save freespace between walls of houses
                 	tmpfreespace.append(diff_houses[0] \
-                                        - (newhouse.charac['width'] / 2)
+                                        - x_diffwall
                                         - (house.charac['width'] / 2))
 
-                # check if coordinate falls within house - y range
+                # check if coordinate falls within house y - range
                 elif house.location['y'] > newhouse.corners['lo']['y'] \
                      and house.location['y'] < newhouse.corners['lb']['y']:
 
+                    # save freespace between walls of houses
                 	tmpfreespace.append(diff_houses[1] \
-                                        - (newhouse.charac['height'] / 2)
+                                        - y_diffwall
                                         - (house.charac['height'] / 2))
 
-                # check cornerdistance
+                # else compute distance of corners of the house
                 else:
 
+                    # create corner variable
                     diff_corners = [0,0]
 
+                    # create distance variable list
                     distancelist = []
 
-                    # iterate over corners
+                    # iterate over corners of both houses
                     for i in newhouse.corners:
+
                         for j in house.corners:
 
                             # calculate x and y difference between corners
                             diff_corners[0] = newhouse.corners[i]['x'] \
                                               - house.corners[j]['x']
-                            # print (diff_corners[0])
+                            
                             diff_corners[1] = newhouse.corners[i]['y'] \
                                               - house.corners[j]['y']
 
@@ -92,11 +101,13 @@ class Map(object):
                                                       + numpy.power( \
                                                       diff_corners[1], 2)) \
 
-                            # append
+                            # save distance
                             distancelist.append(distancecorn)
 
+                        # take the minimum distance
                         tmpfreespace.append(numpy.amin(distancelist))
 
+                # take the minimum freespace
                 freespace = numpy.amin(tmpfreespace)
 
         # set freespace of class
