@@ -37,12 +37,6 @@ class Map(object):
         x_diffwall = newhouse.charac['width'] / 2
         y_diffwall = newhouse.charac['height'] / 2
 
-        # calculate x and y difference new and first and calc first freespace variable
-        diff_houses[0] = self.houses[0].location['x'] - x_newhouse
-        diff_houses[1] = self.houses[0].location['y'] - y_newhouse
-        freespace = numpy.sqrt(numpy.power(diff_houses[0], 2)
-                    + numpy.power(diff_houses[1], 2))
-
         # iterate over all houses in map
         for house in self.houses:
 
