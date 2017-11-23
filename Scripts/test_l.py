@@ -34,7 +34,7 @@ scatterplot(best_map)
 
 print(maximum)
 
-for i in range(10):
+for i in range(50):
     ah_map = hill_climber(best_map)
     summy = 0
     for house in ah_map.houses:
