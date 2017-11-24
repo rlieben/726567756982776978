@@ -18,9 +18,9 @@ import numpy
 def random_generator():
     ah_map = Map(MAP['width'], MAP['height'])
 
-    OF = int(MAP['nr_houses'][2] * MAP['distr_houses'][0])
-    BU = int(MAP['nr_houses'][2] * MAP['distr_houses'][1])
-    MA = int(MAP['nr_houses'][2] * MAP['distr_houses'][2])
+    OF = int(MAP['nr_houses'][0] * MAP['distr_houses'][0])
+    BU = int(MAP['nr_houses'][0] * MAP['distr_houses'][1])
+    MA = int(MAP['nr_houses'][0] * MAP['distr_houses'][2])
 
     for i in range(OF):
 
@@ -69,7 +69,7 @@ def random_generator():
 # input is empty map, output is value calculated
 def hill_climber(ah_map):
 
-    CHANGE = 3
+    CHANGE = 1
     tmp_index = []
     tmp_houses = []
 
@@ -87,11 +87,14 @@ def hill_climber(ah_map):
         allowed = False
 
         while allowed == False:
-            rand_y_loc = random.uniform(0,MAP['height'] - (tmp_houses[i].charac['height']/2))
-            rand_x_loc = random.uniform(0,MAP['width'] - (tmp_houses[i].charac['width']/2))
+            rand_y_loc = random.uniform(0, MAP['height']
+                                        - (tmp_houses[i].charac['height']/2))
+            rand_x_loc = random.uniform(0, MAP['width']
+                                        - (tmp_houses[i].charac['width']/2))
 
             loc = {'x':rand_x_loc,'y':rand_y_loc}
 
-            allowed = place_house(ah_map, loc , tmp_houses[i].self_id, tmp_houses[i].charac)
+            allowed = place_house(ah_map, loc , tmp_houses[i].self_id,
+                                  tmp_houses[i].charac)
 
     return ah_map
