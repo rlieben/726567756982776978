@@ -14,6 +14,13 @@ from functions import *
 from algorithms import *
 from visuals import *
 
+def calc_av_freespace(ah_map):
+    summy = 0
+    for houses in ah_map.houses:
+        summy += house.freespace - house.charac['min_free']
+
+    return summy / len(ah_map.houses)
+
 
 maximum = 0
 best_map = random_generator()
@@ -25,6 +32,11 @@ for i in range(20):
         ah_map.calc_freespace(house)
         house.calc_value()
         summy += house.value
+    if calc_av_freespace(ah_map) > 1:
+        summy = summy / calc_av_freespace(ah_map)
+
+    print(calc_av_freespace(ah_map))
+    print(summy)
 
     if summy > maximum:
         maximum = summy
@@ -34,16 +46,15 @@ scatterplot(best_map)
 
 print(maximum)
 
-for i in range(50):
+for i in range(100):
     ah_map = hill_climber(best_map)
     summy = 0
     for house in ah_map.houses:
         ah_map.calc_freespace(house)
         house.calc_value()
         summy += house.value
-    print(i)
 
-    if summy > maximum:
+    if summy > (maximum * 0.99):
         maximum = summy
         best_map = ah_map
 
