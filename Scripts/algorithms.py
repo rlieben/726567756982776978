@@ -98,3 +98,30 @@ def hill_climber(ah_map):
                                   tmp_houses[i].charac)
 
     return ah_map
+
+def tactical_hill_climber(ah_map):
+
+    CHANGE = 1
+    tmp_index = []
+    tmp_houses = []
+
+    for i in range(CHANGE):
+        tmp_index.append(int(numpy.random.uniform(0, len(ah_map.houses) - 1)))
+    # print(tmp_index)
+
+    for i in range(CHANGE):
+        tmp_houses.append(ah_map.houses[tmp_index[i]])
+        del ah_map.houses[tmp_index[i]]
+
+    # add same amount of houses which were deleted
+    for i in range(CHANGE):
+
+        allowed = False
+
+        while allowed == False:
+            loc = calc_freespace_on_map(ah_map, new_house)
+
+            allowed = place_house(ah_map, loc , tmp_houses[i].self_id,
+                                  tmp_houses[i].charac)
+
+    return ah_map

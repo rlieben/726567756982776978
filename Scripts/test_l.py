@@ -35,8 +35,8 @@ for i in range(20):
     if calc_av_freespace(ah_map) > 1:
         summy = summy / calc_av_freespace(ah_map)
 
-    print(calc_av_freespace(ah_map))
-    print(summy)
+    # print(calc_av_freespace(ah_map))
+    # print(summy)
 
     if summy > maximum:
         maximum = summy
@@ -47,7 +47,7 @@ scatterplot(best_map)
 print(maximum)
 
 for i in range(100):
-    ah_map = hill_climber(best_map)
+    ah_map = tactical_hill_climber(best_map)
     summy = 0
     for house in ah_map.houses:
         ah_map.calc_freespace(house)
