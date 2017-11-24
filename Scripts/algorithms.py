@@ -75,7 +75,7 @@ def hill_climber(ah_map):
 
     for i in range(CHANGE):
         tmp_index.append(int(numpy.random.uniform(0, len(ah_map.houses) - 1)))
-    print(tmp_index)
+    # print(tmp_index)
 
     for i in range(CHANGE):
         tmp_houses.append(ah_map.houses[tmp_index[i]])
