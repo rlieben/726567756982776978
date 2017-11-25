@@ -1,0 +1,18 @@
+self.freespace != 0
+self.value != 0
+
+calc_freespace in class House
+place_house in class map
+(alle info uit dict halen en in class)
+
+case verwarrende naam
+
+README van Wouter bekijken en overnemen
+
+map voor experimentatie
+
+styleguide Google docstrings
+
+module copy om pointers te omzeilen
+
+CHANGE meegeven ipv lokaal

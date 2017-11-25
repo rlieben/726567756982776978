@@ -119,7 +119,7 @@ def tactical_hill_climber(ah_map):
         allowed = False
 
         while allowed == False:
-            loc = calc_freespace_on_map(ah_map, new_house)
+            loc = calc_freespace_on_map(ah_map, tmp_houses[i])
 
             allowed = place_house(ah_map, loc , tmp_houses[i].self_id,
                                   tmp_houses[i].charac)

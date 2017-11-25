@@ -37,20 +37,21 @@ def calc_freespace_on_map(ah_map, new_house):
 
     # initiate x and y variable for optimization
     best_x = new_house.location['x']
-    best_y =  new_house.location['y']
+    best_y = new_house.location['y']
 
     # iterate over map width
-    for i in range(len(0, ah_map.charac['width'], 5)):
+    for i in range(0, ah_map.charac['width'], 5):
 
         # iterate over map height
-        for j in range(len(0, ah_map.charac['height'], 5)):
+        for j in range(0, ah_map.charac['height'], 5):
 
             # set x and y location of new house
             new_house.location['x'] = i
             new_house.location['y'] = j
 
             # store the possible freespace of new location
-            tmp = ah_map.calc_freespace(new_house)
+            ah_map.calc_freespace(new_house)
+            tmp = new_house.freespace
 
             # if new freespace is greater then update
             if (tmp > poss_freespace):

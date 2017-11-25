@@ -1,5 +1,4 @@
 
-/cache van python
-*.pyc
-*.pyc
+# cache van python
+__pychache__/
 *.pyc

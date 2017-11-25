@@ -46,13 +46,15 @@ scatterplot(best_map)
 
 print(maximum)
 
-for i in range(100):
-    ah_map = tactical_hill_climber(best_map)
+
+for i in range(20):
+    ah_map = hill_climber(best_map)
     summy = 0
     for house in ah_map.houses:
         ah_map.calc_freespace(house)
         house.calc_value()
         summy += house.value
+    print(summy)
 
     if summy > (maximum * 0.99):
         maximum = summy
