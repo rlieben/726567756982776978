@@ -9,6 +9,6 @@ for i in range(len(list_dir) - 1):
 
 sys.path.insert(0, string)
 
-from export import *
+from Archive.Cell_Grid.export import *
 
 function()
