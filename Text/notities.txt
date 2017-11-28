@@ -1,13 +1,13 @@
 self.freespace != 0
 self.value != 0
 
-calc_freespace in class House
-place_house in class map
-(alle info uit dict halen en in class)
+DONE	calc_freespace in class House
+	place_house in class map
+	(alle info uit dict halen en in class)
 
-case verwarrende naam
+DONE	case verwarrende naam
 
-README van Wouter bekijken en overnemen
+DONE 	README van Wouter bekijken en overnemen
 
 map voor experimentatie
 

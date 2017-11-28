@@ -27,6 +27,8 @@ import random
 import numpy
 
 def random_generator():
+    '''Generates a random map.'''
+
 	ah_map = Map(MAP)
 
 	OF = int(MAP['nr_houses'][0] * MAP['distr_houses'][0])
@@ -79,6 +81,11 @@ def random_generator():
 
 # input is empty map, output is value calculated
 def hill_climber(ah_map):
+    '''Moves, every iteration, three houses for optimalization.
+
+    Inout arguments:
+    ah_map -- input map
+    '''
 
 	CHANGE = 1
 	tmp_index = []
@@ -119,6 +126,11 @@ def hill_climber(ah_map):
 	place_house(self, loc, house_id, type_charac)
 
 def tactical_hill_climber(ah_map):
+    '''Moves house on map based on highest freespace.
+
+    Input arguments:
+    ah_map -- input map
+    '''
 
 	CHANGE = 1
 	tmp_index = []
