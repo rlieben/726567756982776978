@@ -20,8 +20,11 @@ import numpy
 def hillclimber(map_charac, tries_random, tries_hill, nr_houses):
 	'''Moves, every iteration, three houses for optimalization.
 
-	Inout arguments:
-	ah_map -- input map
+	Input arguments:
+	map_charac -- map characteristics
+	tries_random -- number of random maps created
+	tries_hill -- number of hillclimbing
+	nr_houses -- nr of houses that are moved with each hillclimb
 	'''
 
 	best_map = best_of_random(MAP_20, tries_random)
