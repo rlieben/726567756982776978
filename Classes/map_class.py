@@ -4,6 +4,23 @@
 # Group:        726567756982776978
 # Members:      Toon van Holthe, Raoul Lieben, Luc Stefelmanns
 
+
+import sys
+list_dir = sys.path[0].split('\\')
+string = ''
+for i in range(len(list_dir) - 1):
+    string += list_dir[i]
+    string += '\\'
+
+sys.path.insert(0, string)
+
+from Classes.house_class import *
+# from Classes.map_class import *
+from Classes.water_class import *
+from Types.Characteristics_Amstelhaege import *
+# from Algorithms.algorithms import *
+
+
 class Map(object):
     '''Grid that keeps track of all the cells.'''
 
@@ -25,7 +42,7 @@ class Map(object):
         if house_id == 0:
             self.houses.append(new_house)
         else:
-            self.calc_freespace(new_house)
+            new_house.calc_freespace(self)
 
             if new_house.freespace < MANSION['min_free']:
                 return False

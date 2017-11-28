@@ -5,8 +5,6 @@ for i in range(len(list_dir) - 1):
     string += list_dir[i]
     string += '\\'
 
-# string += 'Archive'
-
 sys.path.insert(0, string)
 
 from Archive.Cell_Grid.export import *

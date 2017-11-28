@@ -4,6 +4,9 @@
 # Group:        726567756982776978
 # Members:      Toon van Holthe, Raoul Lieben, Luc Stefelmanns
 
+
+import numpy
+
 class House(object):
 	'''Basis for the three different house classes.'''
 
@@ -12,7 +15,7 @@ class House(object):
 
 		Input arguments:
 		type_charac -- dict containing characteristics of house type_charac
-		loc -- location of house		
+		loc -- location of house
 		'''
 
 		self.self_id = self_id

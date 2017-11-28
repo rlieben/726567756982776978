@@ -9,9 +9,20 @@ Script containing all usable algorithms to place houses.
 '''
 
 
-from classes import *
-from functions import *
-from case import *
+import sys
+list_dir = sys.path[0].split('\\')
+string = ''
+for i in range(len(list_dir) - 1):
+    string += list_dir[i]
+    string += '\\'
+
+sys.path.insert(0, string)
+
+from Classes.house_class import *
+from Classes.map_class import *
+from Classes.water_class import *
+from Types.Characteristics_Amstelhaege import *
+from Algorithms.algorithms import *
 import random
 import numpy
 
@@ -34,7 +45,7 @@ def random_generator():
 
             house_id = i
 
-            allowed = place_house(ah_map, loc, house_id, ONE_FAM)
+            allowed = ah_map.place_house(loc, house_id, ONE_FAM)
 
     for i in range(BU):
 
@@ -48,7 +59,7 @@ def random_generator():
 
             house_id = i
 
-            allowed = place_house(ah_map, loc, house_id, BUNGALOW)
+            allowed = ah_map.place_house(ah_map, loc, house_id, BUNGALOW)
 
     for i in range(MA):
 
@@ -62,7 +73,7 @@ def random_generator():
 
             house_id = i
 
-            allowed = place_house(ah_map, loc, house_id, MANSION)
+            allowed = ah_map.place_house(ah_map, loc, house_id, MANSION)
 
     return ah_map
 
