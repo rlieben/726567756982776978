@@ -7,9 +7,9 @@ for i in range(len(list_dir) - 1):
 
 sys.path.insert(0, string)
 
-from Classes.house_class import *
-from Classes.map_class import *
-from Classes.water_class import *
+from Classes.house import *
+from Classes.map import *
+from Classes.water import *
 from Types.Characteristics_Amstelhaege import *
 from Algorithms.helpers import *
 from Visuals.scatterplot import *
@@ -27,16 +27,12 @@ def best_of_random(map_charac, tries):
 	best_map = random_generator(map_charac)
 
 	for i in range(tries):
-	    try_map = random_generator(map_charac)
-	    summy = 0
-	    for house in try_map.houses:
-	        house.calc_freespace(try_map)
-	        house.calc_value()
-	        summy += house.value
+		try_map = random_generator(map_charac)
 
-	    if summy > maximum:
-	        maximum = summy
-	        best_map = try_map
+		score = try_map.calc_score()
 
-	best_map.score = maximum
+		if score > maximum:
+			maximum = score
+			best_map = try_map
+
 	return best_map

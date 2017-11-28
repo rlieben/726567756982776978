@@ -8,13 +8,14 @@ for i in range(len(list_dir) - 1):
 
 sys.path.insert(0, string)
 
-from Classes.house_class import *
-from Classes.map_class import *
-from Classes.water_class import *
+from Classes.house import *
+from Classes.map import *
+from Classes.water import *
 from Types.Characteristics_Amstelhaege import *
 from Algorithms.best_of_random import *
 import random
 import numpy
+import copy
 
 # input is empty map, output is value calculated
 def hillclimber(map_charac, tries_random, tries_hill, nr_houses):
@@ -28,19 +29,16 @@ def hillclimber(map_charac, tries_random, tries_hill, nr_houses):
 	'''
 
 	best_map = best_of_random(MAP_20, tries_random)
-	maximum = best_map.score
+	maximum = best_map.calc_score()
 
 	for i in range(tries_hill):
-		ah_map = random_swap_houses(best_map, nr_houses)
-		summy = 0
-		for house in ah_map.houses:
-			house.calc_freespace(ah_map)
-			house.calc_value()
-			summy += house.value
+		try_map = copy.copy(best_map)
+		try_map.random_swap_houses(nr_houses)
 
-		if summy > maximum:
-			maximum = summy
-			best_map = ah_map
+		score = try_map.calc_score()
 
-	best_map.score = maximum
+		if score > maximum:
+			maximum = score
+			best_map = try_map
+
 	return best_map

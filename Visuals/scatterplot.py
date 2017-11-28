@@ -19,9 +19,9 @@ for i in range(len(list_dir) - 1):
 
 sys.path.insert(0, string)
 
-from Classes.house_class import *
-from Classes.map_class import *
-from Classes.water_class import *
+from Classes.house import *
+from Classes.map import *
+from Classes.water import *
 
 
 '''
@@ -41,7 +41,7 @@ def scatterplot(ah_map):
 
         colors = (0,0,0)
         area = np.pi*1
-        
+
         data.append([ah_map.houses[i].corners['lb']['x'], ah_map.houses[i].corners['lb']['y']])
         data.append([ah_map.houses[i].corners['lo']['x'], ah_map.houses[i].corners['lo']['y']])
         data.append([ah_map.houses[i].corners['lo']['x'], ah_map.houses[i].corners['lo']['y']])
@@ -51,7 +51,7 @@ def scatterplot(ah_map):
         data.append([ah_map.houses[i].corners['rb']['x'], ah_map.houses[i].corners['rb']['y']])
         data.append([ah_map.houses[i].corners['lb']['x'], ah_map.houses[i].corners['lb']['y']])
 
-    print(data)
+    # print(data)
 
     axes = plot.gca()
     axes.set_xlim([0,200])

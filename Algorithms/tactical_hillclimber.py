@@ -29,19 +29,16 @@ def tactical_hillclimber(map_charac, tries_random, tries_hill, nr_houses):
 	'''
 
 	best_map = best_of_random(MAP_20, tries_random)
-	maximum = best_map.score
+	maximum = best_map.calc_score()
 
 	for i in range(tries_hill):
-		ah_map = tactical_swap_houses(best_map, nr_houses)
-		summy = 0
-		for house in ah_map.houses:
-			house.calc_freespace(ah_map)
-			house.calc_value()
-			summy += house.value
+		try_map = copy.copy(best_map)
+		try_map.tactical_swap_houses(best_map, nr_houses)
 
-		if summy > maximum:
+		score = try_map.calc_score()
+
+		if score > maximum:
 			maximum = summy
-			best_map = ah_map
+			best_map = try_map
 
-	best_map.score = maximum
 	return best_map

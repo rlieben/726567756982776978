@@ -14,8 +14,9 @@ for i in range(len(list_dir) - 1):
 
 sys.path.insert(0, string)
 
-from Classes.house_class import *
-from Classes.water_class import *
+import random
+from Classes.house import *
+from Classes.water import *
 from Types.Characteristics_Amstelhaege import *
 
 
@@ -103,7 +104,8 @@ class Map(object):
 					best_y = j
 		return {'x' : best_x, 'y' : best_y}
 
-	def random_swap_houses(self, in_map, nr_houses):
+
+	def random_swap_houses(self, nr_houses):
 		'''Moves, every iteration, three houses for optimalization.
 
 		Input arguments:
@@ -114,11 +116,9 @@ class Map(object):
 		tmp_houses = []
 
 		for i in range(nr_houses):
-			tmp_index.append(int(numpy.random.uniform(0, len(in_map.houses) - 1)))
-
-		for i in range(nr_houses):
-			tmp_houses.append(in_map.houses[tmp_index[i]])
-			del in_map.houses[tmp_index[i]]
+			tmp_index.append(int(numpy.random.uniform(0, len(self.houses) - 1)))
+			tmp_houses.append(self.houses[tmp_index[i]])
+			del self.houses[tmp_index[i]]
 
 		# add same amount of houses which were deleted
 		for i in range(nr_houses):
@@ -127,8 +127,8 @@ class Map(object):
 
 			while allowed == False:
 
-				loc = {'x' : random.uniform(0, in_map.height),
-					   'y' : random.uniform(0, in_map.width)}
+				loc = {'x' : random.uniform(0, self.height),
+					   'y' : random.uniform(0, self.width)}
 
 				if tmp_houses[i].type == 'one_family':
 					charac = ONE_FAM
@@ -137,11 +137,10 @@ class Map(object):
 				elif tmp_houses[i].type == 'mainsion':
 					charac = MANSION
 
-				allowed = in_map.place_house(loc , tmp_houses[i].self_id, charac)
+				allowed = self.place_house(loc , tmp_houses[i].self_id, charac)
 
-		return in_map
 
-	def tactical_swap_houses(self, in_map, nr_houses):
+	def tactical_swap_houses(self, nr_houses):
 		''' Moves, every iteration, three houses for optimalization.
 
 		Input arguments:
@@ -153,10 +152,8 @@ class Map(object):
 		tmp_houses = []
 
 		for i in range(nr_houses):
-			tmp_index.append(int(numpy.random.uniform(0, len(in_map.houses) - 1)))
-
-		for i in range(nr_houses):
-			tmp_houses.append(in_map.houses[tmp_index[i]])
+			tmp_index.append(int(numpy.random.uniform(0, len(self.houses) - 1)))
+			tmp_houses.append(self.houses[tmp_index[i]])
 			del in_map.houses[tmp_index[i]]
 
 		for i in range(nr_houses):
@@ -165,7 +162,7 @@ class Map(object):
 
 			while allowed == False:
 
-				loc = in_map.calc_freespace_on_map(tmp_houses[i])
+				loc = self.calc_freespace_on_map(tmp_houses[i])
 
 				if tmp_houses[i].type == 'one_family':
 					charac = ONE_FAM
@@ -174,11 +171,10 @@ class Map(object):
 				elif tmp_houses[i].type == 'mainsion':
 					charac = MANSION
 
-				allowed = in_map.place_house(loc , tmp_houses[i].self_id, charac)
+				allowed = self.place_house(loc , tmp_houses[i].self_id, charac)
 
-		return in_map
 
-	def calc_score(self, ah_map):
+	def calc_score(self):
 		'''Calculates score of map.
 
 		Input arguments:
@@ -186,10 +182,10 @@ class Map(object):
 		'''
 
 		summy = 0
-		for house in ah_map.houses:
-			house.calc_freespace(ah_map)
+		for house in self.houses:
+			house.calc_freespace(self)
 			house.calc_value()
 			summy += house.value
 
 		self.score = summy
-
+		return summy
