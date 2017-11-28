@@ -12,6 +12,9 @@ These instructions will get you a copy of the project up and running on your loc
 Prerequisites
 =============
 
+Python:
+    https://www.python.org/downloads/
+
 Numpy:
     Numpy can be installed using pip install numpy. Numpy is used for its mathematical features
     
@@ -22,36 +25,13 @@ Matplotlib:
 Give examples
 ```
 
-Installing
-==========
-
-A step by step series of examples that tell you have to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
 Running the tests
 =================
 
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
+Go to the map 'run me' chose one of the alghoritms listed in this map and type in a terminal for example:
 
 ```
-Give an example
+python hill_climber.py
 ```
 
 Results
@@ -70,9 +50,9 @@ Add additional notes about how to deploy this on a live system
 
 Authors
 =======
-* 'Luc Stefelmanns'
-* 'Raoul Lieben'
-* 'Toon van Holthe tot Echten'
+* Luc Stefelmanns
+* Raoul Lieben
+* Toon van Holthe tot Echten
 
 
 
