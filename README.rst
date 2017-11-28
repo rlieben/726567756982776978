@@ -70,9 +70,9 @@ Add additional notes about how to deploy this on a live system
 
 Authors
 =======
-*Luc Stefelmanns
-*Raoul Lieben
-*Toon van Holthe tot Echten
+* 'Luc Stefelmanns'
+* 'Raoul Lieben'
+* 'Toon van Holthe tot Echten'
 
 
 
