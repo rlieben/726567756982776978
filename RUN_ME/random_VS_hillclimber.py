@@ -14,11 +14,11 @@ from Classes.water_class import *
 from Types.Characteristics_Amstelhaege import *
 from Algorithms.helpers import *
 from Algorithms.best_of_random import *
-from Algorithms.tactical_hill_climber import *
+from Algorithms.hill_climber import *
 from Visuals.scatterplot import *
 
 best_random = best_of_random(MAP_20, 100)
 print('best random:', best_random.score)
 
-best_hill = tactical_hill_climber(MAP_20, 10, 100, 1)
+best_hill = hill_climber(MAP_20, 10, 100, 1)
 print('hillclimber:', best_hill.score)
