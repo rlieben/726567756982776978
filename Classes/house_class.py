@@ -10,7 +10,7 @@ import numpy
 class House(object):
 	'''Basis for the three different house classes.'''
 
-	def __init__(self, self_id, type_charac, loc):
+	def __init__(self, self_id, house_charac, loc):
 		'''Creates object of class house.
 
 		Input arguments:
@@ -18,9 +18,15 @@ class House(object):
 		loc -- location of house
 		'''
 
+		self.width = house_charac['width']
+		self.height = house_charac['height']
+		self.start_value = house_charac['start_value']
+		self.perc = house_charac['perc']
+		self.min_free = house_charac['min_free']
+		self.type = house_charac['type']
+
 		self.self_id = self_id
 		self.location = loc # loc is a dict {'x' : ..., 'y' : ...}
-		self.charac = type_charac
 		self.corners = self.find_corners()
 		self.freespace = 0
 		self.value = 0
@@ -30,25 +36,25 @@ class House(object):
 	def calc_value(self):
 		'''Calculates the value of this house.'''
 
-		self.value = self.charac['start_value'] + (self.charac['start_value']
-					 * (self.freespace - self.charac['min_free'])
-					 * self.charac['perc'])
+		self.value = self.start_value + (self.start_value
+					 * (self.freespace - self.min_free)
+					 * self.perc)
 
 
 	def find_corners(self):
 		'''Calculates coordinates of corners. '''
 
-		lb = {'x' : (self.location['x'] - 0.5 * self.charac['width']),
-			  'y' : (self.location['y'] + 0.5 * self.charac['height'])}
+		lb = {'x' : (self.location['x'] - 0.5 * self.width),
+			  'y' : (self.location['y'] + 0.5 * self.height)}
 
-		rb = {'x' : (self.location['x'] + 0.5 * self.charac['width']),
-			  'y' : (self.location['y'] + 0.5 * self.charac['height'])}
+		rb = {'x' : (self.location['x'] + 0.5 * self.width),
+			  'y' : (self.location['y'] + 0.5 * self.height)}
 
-		lo = {'x' : (self.location['x'] - 0.5 * self.charac['width']),
-			  'y' : (self.location['y'] - 0.5 * self.charac['height'])}
+		lo = {'x' : (self.location['x'] - 0.5 * self.width),
+			  'y' : (self.location['y'] - 0.5 * self.height)}
 
-		ro = {'x' : (self.location['x'] + 0.5 * self.charac['width']),
-			  'y' : (self.location['y'] - 0.5 * self.charac['height'])}
+		ro = {'x' : (self.location['x'] + 0.5 * self.width),
+			  'y' : (self.location['y'] - 0.5 * self.height)}
 
 		return {'lb' : lb, 'rb': rb, 'lo': lo, 'ro': ro}
 
@@ -68,8 +74,8 @@ class House(object):
 		diff_houses = [0, 0]
 
 		# difference between center and wall of new house
-		x_diffwall = self.charac['width'] / 2
-		y_diffwall = self.charac['height'] / 2
+		x_diffwall = self.width / 2
+		y_diffwall = self.height / 2
 
 		# creating temporary variable for freespace
 		tmpfreespace = []
@@ -78,8 +84,8 @@ class House(object):
 		# calculating distance to borders and adding to tmp freespace
 		tmpfreespace.append(x_newhouse)
 		tmpfreespace.append(y_newhouse)
-		tmpfreespace.append(self.charac['width'] - x_newhouse)
-		tmpfreespace.append(self.charac['height'] - y_newhouse)
+		tmpfreespace.append(self.width - x_newhouse)
+		tmpfreespace.append(self.height - y_newhouse)
 
 		# iterate over all houses in map
 		for house in in_map.houses:
@@ -95,7 +101,7 @@ class House(object):
 					# save freespace between walls of houses
 					tmpfreespace.append(abs(diff_houses[0] \
 										- x_diffwall
-										- (house.charac['width'] / 2)))
+										- (house.width / 2)))
 
 				# check if coordinate falls within house y - range
 				elif house.location['y'] > self.corners['lo']['y'] \
@@ -104,7 +110,7 @@ class House(object):
 					# save freespace between walls of houses
 					tmpfreespace.append(abs(diff_houses[1] \
 										- y_diffwall
-										- (house.charac['height'] / 2)))
+										- (house.height / 2)))
 
 				# else compute distance of corners of the house
 				else:

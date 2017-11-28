@@ -24,7 +24,7 @@ from Types.Characteristics_Amstelhaege import *
 class Map(object):
 	'''List that keeps track of all the houses and water.'''
 
-	def __init__(self, width, height):
+	def __init__(self, map_charac):
 		'''Creates map.
 
 		Input arguments:
@@ -32,9 +32,14 @@ class Map(object):
 		height -- height of the map
 		'''
 
+		self.width = map_charac['width']
+		self.height = map_charac['height']
+		self.water_prev = map_charac['water_prev']
+		self.nr_houses = map_charac['nr_houses']
+		self.distr_houses = map_charac['distr_houses']
+
 		self.houses = []
 		self.water = []
-		self.charac = {'width' : width, 'height' : height}
 
 
 	def place_house(self, loc, house_id, type_charac):
@@ -74,10 +79,10 @@ class Map(object):
 		best_y = new_house.location['y']
 
 		# iterate over map width
-		for i in range(0, self.charac['width'], 5):
+		for i in range(0, self.width, 5):
 
 			# iterate over map height
-			for j in range(0, self.charac['height'], 5):
+			for j in range(0, self.height, 5):
 
 				# set x and y location of new house
 				new_house.location['x'] = i

@@ -99,9 +99,9 @@ def hill_climber(ah_map):
 
         while allowed == False:
             rand_y_loc = random.uniform(0, MAP['height']
-                                        - (tmp_houses[i].charac['height']/2))
+                                        - (tmp_houses[i].height/2))
             rand_x_loc = random.uniform(0, MAP['width']
-                                        - (tmp_houses[i].charac['width']/2))
+                                        - (tmp_houses[i].width/2))
 
             loc = {'x':rand_x_loc,'y':rand_y_loc}
 

@@ -40,8 +40,6 @@ for i in range(10):
     summy = 0
     for house in ah_map.houses:
         ah_map.calc_freespace(house)
-        house.calc_value()
-        # print(house.charac['type'])
         print(house.value)
         summy += house.value
 
