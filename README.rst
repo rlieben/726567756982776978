@@ -1,5 +1,3 @@
-|Luc Stefelmanns|_ |Raoul Lieben|_ |Toon van Holthe tot Echten|_ |726567756982776978|_ 
-
 ###########
 Amstelhaege
 ###########
@@ -70,11 +68,11 @@ Deployment
 
 Add additional notes about how to deploy this on a live system
 
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+Authors
+=======
+*Luc Stefelmanns
+*Raoul Lieben
+*Toon van Holthe tot Echten
 
 
 
