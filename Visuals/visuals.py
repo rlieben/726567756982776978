@@ -69,7 +69,7 @@ def scatterplot(ah_map):
         plot.scatter(x, y, s=area, c=colors, alpha=0.5)
 
         # draw lines to corners
-        plot.plot(ah_map.houses[i].corners])
+        plot.plot(ah_map.houses[i].corners)
 
     plot.title('scatterplot for houses')
     plot.xlabel('x (m)')
