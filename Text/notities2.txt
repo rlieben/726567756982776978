@@ -1,0 +1,43 @@
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+FOUTE_PLAATSING_BUG ERUIT HALEN
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+state_space, min_score, max_score voor E
+
+documenten voor experimenten (in aparte map)
+
+heuristieken als list meegeven aan functie
+zo kun je ze vergelijken
+
+freespace/value initialiseren op None
+
+score functie in map zetten
+
+!!!!!!!!! volgende week
+simulated annealing
+!!!!!!!!!
+
+plant propogation / fireworks checken
+
+!!!!!!!!! volgende week
+Depth first checken (niet echte, heel greedy)
+!!!!!!!!!
+
+command line arguments werken
+
+main bestand in mapje hoger (of verwijzen naar andere imports in een functie)
+
+UI maken met welke opties je wilt
+
+in docstring vorm van return opschrijven (int, string, etc)
+
+!!!VANAVOND!!!
+random_swap_houses in class
+tactical_swap_houses in class
+calc_score in class
+!!!VANAVOND!!!
+
+tactical hillclimber en hillclimber in 1 functie zetten (mooier)
+
+interessante experimenten verzinnen
