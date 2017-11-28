@@ -62,6 +62,7 @@ class Map(object):
 				return False
 			else:
 				self.houses.append(new_house)
+				return True
 
 
 	def calc_freespace_on_map(self, new_house):

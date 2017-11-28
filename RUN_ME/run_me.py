@@ -30,6 +30,7 @@ from Classes.map_class import *
 from Classes.water_class import *
 from Types.Characteristics_Amstelhaege import *
 from Algorithms.algorithms import *
+from Visuals.scatterplot import *
 
 
 
@@ -40,7 +41,7 @@ for i in range(1):
     ah_map = random_generator()
     summy = 0
     for house in ah_map.houses:
-        ah_map.calc_freespace(house)
+        house.calc_freespace(ah_map)
         house.calc_value()
         summy += house.value
 
@@ -56,7 +57,7 @@ for i in range(1):
     ah_map = hill_climber(best_map)
     summy = 0
     for house in ah_map.houses:
-        ah_map.calc_freespace(house)
+        house.calc_freespace(ah_map)
         house.calc_value()
         summy += house.value
     print(i)
