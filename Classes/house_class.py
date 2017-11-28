@@ -47,20 +47,21 @@ class House(object):
 
         return {'lb' : lb, 'rb': rb, 'lo': lo, 'ro': ro}
 
-    def calc_freespace(self, newhouse):
+
+    def calc_freespace(self, in_map):
         '''Takes a class house as input and calculates the minimum freespace of
            this house.'''
 
         # coordinates new house
-        x_newhouse = newhouse.location['x']
-        y_newhouse = newhouse.location['y']
+        x_newhouse = self.location['x']
+        y_newhouse = self.location['y']
 
         # initiate variable list
         diff_houses = [0, 0]
 
         # difference between center and wall of new house
-        x_diffwall = newhouse.charac['width'] / 2
-        y_diffwall = newhouse.charac['height'] / 2
+        x_diffwall = self.charac['width'] / 2
+        y_diffwall = self.charac['height'] / 2
 
         # creating temporary variable for freespace
         tmpfreespace = []
@@ -73,15 +74,15 @@ class House(object):
         tmpfreespace.append(self.charac['height'] - y_newhouse)
 
         # iterate over all houses in map
-        for house in self.houses:
+        for house in in_map.houses:
 
             # skips itself
-            if house.self_id != newhouse.self_id:
+            if house.self_id != self.self_id:
 
 
                 # check if coordinate falls within house x - range
-                if house.location['x'] > newhouse.corners['lb']['x'] \
-                   and house.location['x'] < newhouse.corners['rb']['x']:
+                if house.location['x'] > self.corners['lb']['x'] \
+                   and house.location['x'] < self.corners['rb']['x']:
 
                     # save freespace between walls of houses
                     tmpfreespace.append(abs(diff_houses[0] \
@@ -89,8 +90,8 @@ class House(object):
                                         - (house.charac['width'] / 2)))
 
                 # check if coordinate falls within house y - range
-                elif house.location['y'] > newhouse.corners['lo']['y'] \
-                     and house.location['y'] < newhouse.corners['lb']['y']:
+                elif house.location['y'] > self.corners['lo']['y'] \
+                     and house.location['y'] < self.corners['lb']['y']:
 
                     # save freespace between walls of houses
                     tmpfreespace.append(abs(diff_houses[1] \
@@ -107,15 +108,15 @@ class House(object):
                     distancelist = []
 
                     # iterate over corners of both houses
-                    for i in newhouse.corners:
+                    for i in self.corners:
 
                         for j in house.corners:
 
                             # calculate x and y difference between corners
-                            diff_corners[0] = newhouse.corners[i]['x'] \
+                            diff_corners[0] = self.corners[i]['x'] \
                                               - house.corners[j]['x']
 
-                            diff_corners[1] = newhouse.corners[i]['y'] \
+                            diff_corners[1] = self.corners[i]['y'] \
                                               - house.corners[j]['y']
 
                             # calculates distance between curr two corners
@@ -130,4 +131,4 @@ class House(object):
                 # take the minimum freespace
                 freespace = numpy.amin(tmpfreespace)
         # set freespace of class
-        newhouse.freespace = freespace
+        self.freespace = freespace
