@@ -32,25 +32,39 @@ from Types.Characteristics_Amstelhaege import *
 from Algorithms.algorithms import *
 
 
+
 maximum = 0
 best_map = random_generator()
 
-for i in range(10):
+for i in range(20):
     ah_map = random_generator()
     summy = 0
     for house in ah_map.houses:
         ah_map.calc_freespace(house)
-        print(house.value)
+        house.calc_value()
         summy += house.value
-
-    print("SUM")
-    print(summy)
 
     if summy > maximum:
         maximum = summy
         best_map = ah_map
 
-print("MAX")
+scatterplot(best_map)
+
 print(maximum)
 
+for i in range(10):
+    ah_map = hill_climber(best_map)
+    summy = 0
+    for house in ah_map.houses:
+        ah_map.calc_freespace(house)
+        house.calc_value()
+        summy += house.value
+    print(i)
+
+    if summy > maximum:
+        maximum = summy
+        best_map = ah_map
+
 scatterplot(best_map)
+
+print(maximum)
