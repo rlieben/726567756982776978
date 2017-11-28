@@ -5,12 +5,15 @@
 # Members:      Toon van Holthe, Raoul Lieben, Luc Stefelmanns
 
 class Map(object):
-    '''Grid that keeps track of all the cells.'''
+    '''List that keeps track of all the houses and water.'''
 
     def __init__(self, width, height):
-        '''Grid is a list in a list (thus a matrix) filled with cells.
-           Houses is a list containing all houses.
-           Water is a list containint all water elements.'''
+        '''Creates map.
+
+        Input arguments:
+        width -- width of the map
+        height -- height of the map
+        '''
 
         self.houses = []
         self.water = []
@@ -18,7 +21,13 @@ class Map(object):
 
 
     def place_house(self, loc, house_id, type_charac):
-        '''Places a one family house on location on the map, with a given id.'''
+        '''Places a house on the map.
+
+        Input arguments:
+        loc -- location where the house needs to be placed
+        house_id -- id corresponding to the house being placed
+        type_charac -- characteristics of the house being placed
+        '''
 
         new_house = House(house_id, type_charac, loc)
 
@@ -34,8 +43,11 @@ class Map(object):
 
 
     def calc_freespace_on_map(self, new_house):
-        '''Calculating most freespace on map and receives map and movable house
-           as input'''
+        '''Calculating location with the most freespace on map.
+
+        Input arguments:
+        new_house --  house that is being moved
+        '''
 
         # initiate possible freespace variable
         poss_freespace = 0
