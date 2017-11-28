@@ -7,7 +7,7 @@ This project is based on a case part of the course heuristics given on the Unive
 Getting Started
 ===============
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system
+In order to get the code running some addictional requirements need to be met. The installation of these elements described in 'prerequisites' are needed to properly run the code.
 
 Prerequisites
 =============
@@ -15,14 +15,19 @@ Prerequisites
 Python:
     https://www.python.org/downloads/
 
+Pip:
+    https://pip.pypa.io/en/stable/installing/
+
 Numpy:
     Numpy can be installed using pip install numpy. Numpy is used for its mathematical features
+```
+pip install numpy
+```
     
 Matplotlib:
     Matplotlib can be installed using pip install matplotlib. Matplotlib is used to visualize the map
-    
 ```
-Give examples
+pip install matplotlib
 ```
 
 Running the tests
