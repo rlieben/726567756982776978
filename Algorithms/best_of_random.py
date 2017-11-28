@@ -1,4 +1,3 @@
-
 import sys
 list_dir = sys.path[0].split('\\')
 string = ''
@@ -15,7 +14,14 @@ from Types.Characteristics_Amstelhaege import *
 from Algorithms.helpers import *
 from Visuals.scatterplot import *
 
+
 def best_of_random(map_charac, tries):
+	''' Creates random maps and returns the map with the highest score.
+
+	Input arguments:
+	map_charac -- characteristics of the map
+	tries -- number of creating random maps
+	'''
 
 	maximum = 0
 	best_map = random_generator(map_charac)
