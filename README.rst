@@ -1,8 +1,11 @@
-# Amstelhaege
+###########
+Amstelhaege
+###########
 
 This project is based on a case part of the course heuristics given on the University of Amsterdam. The objective is to find the highest value for a specific area named: 'Amstelhaege'. The Amstelhaege is filled with houses and the score is the sum of these houses. Using multiple alghoritms the score is calculated.  
 
-## Getting Started
+Getting Started
+===============
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
