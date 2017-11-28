@@ -5,78 +5,78 @@
 # Members:      Toon van Holthe, Raoul Lieben, Luc Stefelmanns
 
 class Map(object):
-    '''List that keeps track of all the houses and water.'''
+	'''List that keeps track of all the houses and water.'''
 
-    def __init__(self, width, height):
-        '''Creates map.
+	def __init__(self, width, height):
+		'''Creates map.
 
-        Input arguments:
-        width -- width of the map
-        height -- height of the map
-        '''
+		Input arguments:
+		width -- width of the map
+		height -- height of the map
+		'''
 
-        self.houses = []
-        self.water = []
-        self.charac = {'width' : width, 'height' : height}
-
-
-    def place_house(self, loc, house_id, type_charac):
-        '''Places a house on the map.
-
-        Input arguments:
-        loc -- location where the house needs to be placed
-        house_id -- id corresponding to the house being placed
-        type_charac -- characteristics of the house being placed
-        '''
-
-        new_house = House(house_id, type_charac, loc)
-
-        if house_id == 0:
-            self.houses.append(new_house)
-        else:
-            self.calc_freespace(new_house)
-
-            if new_house.freespace < MANSION['min_free']:
-                return False
-            else:
-                self.houses.append(new_house)
+		self.houses = []
+		self.water = []
+		self.charac = {'width' : width, 'height' : height}
 
 
-    def calc_freespace_on_map(self, new_house):
-        '''Calculating location with the most freespace on map.
+	def place_house(self, loc, house_id, type_charac):
+		'''Places a house on the map.
 
-        Input arguments:
-        new_house --  house that is being moved
-        '''
+		Input arguments:
+		loc -- location where the house needs to be placed
+		house_id -- id corresponding to the house being placed
+		type_charac -- characteristics of the house being placed
+		'''
 
-        # initiate possible freespace variable
-        poss_freespace = 0
+		new_house = House(house_id, type_charac, loc)
 
-        # initiate x and y variable for optimization
-        best_x = new_house.location['x']
-        best_y = new_house.location['y']
+		if house_id == 0:
+			self.houses.append(new_house)
+		else:
+			self.calc_freespace(new_house)
 
-        # iterate over map width
-        for i in range(0, self.charac['width'], 5):
+			if new_house.freespace < MANSION['min_free']:
+				return False
+			else:
+				self.houses.append(new_house)
 
-            # iterate over map height
-            for j in range(0, self.charac['height'], 5):
 
-                # set x and y location of new house
-                new_house.location['x'] = i
-                new_house.location['y'] = j
+	def calc_freespace_on_map(self, new_house):
+		'''Calculating location with the most freespace on map.
 
-                # store the possible freespace of new location
-                self.calc_freespace(new_house)
-                tmp = new_house.freespace
+		Input arguments:
+		new_house --  house that is being moved
+		'''
 
-                # if new freespace is greater then update
-                if (tmp > poss_freespace):
+		# initiate possible freespace variable
+		poss_freespace = 0
 
-                    # update new poss freespace
-                    poss_freespace = tmp
+		# initiate x and y variable for optimization
+		best_x = new_house.location['x']
+		best_y = new_house.location['y']
 
-                    # update location of poss freespace
-                    best_x = i
-                    best_y = j
-        return {'x' : best_x, 'y' : best_y}
+		# iterate over map width
+		for i in range(0, self.charac['width'], 5):
+
+			# iterate over map height
+			for j in range(0, self.charac['height'], 5):
+
+				# set x and y location of new house
+				new_house.location['x'] = i
+				new_house.location['y'] = j
+
+				# store the possible freespace of new location
+				self.calc_freespace(new_house)
+				tmp = new_house.freespace
+
+				# if new freespace is greater then update
+				if (tmp > poss_freespace):
+
+					# update new poss freespace
+					poss_freespace = tmp
+
+					# update location of poss freespace
+					best_x = i
+					best_y = j
+		return {'x' : best_x, 'y' : best_y}
