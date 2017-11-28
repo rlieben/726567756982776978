@@ -9,7 +9,18 @@ import matplotlib as mpl
 import matplotlib.pyplot as plot
 import numpy as np
 
-from algorithms import *
+import sys
+list_dir = sys.path[0].split('\\')
+string = ''
+for i in range(len(list_dir) - 1):
+    string += list_dir[i]
+    string += '\\'
+
+sys.path.insert(0, string)
+
+from Classes.house_class import *
+from Classes.map_class import *
+from Classes.water_class import *
 
 
 '''

@@ -82,10 +82,10 @@ class House(object):
 
 
 		# calculating distance to borders and adding to tmp freespace
-		tmpfreespace.append(x_newhouse)
-		tmpfreespace.append(y_newhouse)
-		tmpfreespace.append(self.width - x_newhouse)
-		tmpfreespace.append(self.height - y_newhouse)
+		tmpfreespace.append(abs(x_newhouse))
+		tmpfreespace.append(abs(y_newhouse))
+		tmpfreespace.append(abs(self.width - x_newhouse))
+		tmpfreespace.append(abs(self.height - y_newhouse))
 
 		# iterate over all houses in map
 		for house in in_map.houses:
@@ -127,17 +127,17 @@ class House(object):
 						for j in house.corners:
 
 							# calculate x and y difference between corners
-							diff_corners[0] = self.corners[i]['x'] \
-											  - house.corners[j]['x']
+							diff_corners[0] = abs(self.corners[i]['x'] \
+											  	  - house.corners[j]['x'])
 
-							diff_corners[1] = self.corners[i]['y'] \
-											  - house.corners[j]['y']
+							diff_corners[1] = abs(self.corners[i]['y'] \
+											  	  - house.corners[j]['y'])
 
 							# calculates distance between curr two corners
-							distancecorn = numpy.sqrt(numpy.power( \
+							distancecorn = abs(numpy.sqrt(numpy.power( \
 													  diff_corners[0], 2) \
 													  + numpy.power( \
-													  diff_corners[1], 2)) \
+													  diff_corners[1], 2)))
 							# save distance
 							distancelist.append(distancecorn)
 						# take the minimum distance
