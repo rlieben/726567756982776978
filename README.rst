@@ -1,8 +1,12 @@
+Amstelhaege
+
+
+
 Study:        Minor Programming, University of Amsterdam
 Course:       Heuristics
 Assignment:   Amstelhaege
 Group:        726567756982776978
-Members:      Toon van Holte, Raoul Lieben, Luc Stefelmanns
+Members:      Toon van Holthe, Raoul Lieben, Luc Stefelmanns
 
 Archive/
     Contains all old scripts that may obtain valuable lines of code. Temporary backup location.
