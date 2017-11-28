@@ -68,8 +68,11 @@ def scatterplot(ah_map):
         # ax.annotate(data.houses[i].house_id, (x,y))
         plot.scatter(x, y, s=area, c=colors, alpha=0.5)
 
+        # draw lines to corners
+        plot.plot(ah_map.houses[i].corners])
+
     plot.title('scatterplot for houses')
-    plot.xlabel('x')
-    plot.ylabel('y')
+    plot.xlabel('x (m)')
+    plot.ylabel('y (m)')
 
     return plot.show()
