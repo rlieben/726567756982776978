@@ -16,6 +16,7 @@ class Map(object):
         self.water = []
         self.charac = {'width' : width, 'height' : height}
 
+
     def place_house(self, loc, house_id, type_charac):
         '''Places a one family house on location on the map, with a given id.'''
 
