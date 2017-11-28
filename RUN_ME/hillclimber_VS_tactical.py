@@ -13,7 +13,6 @@ from Classes.map_class import *
 from Classes.water_class import *
 from Types.Characteristics_Amstelhaege import *
 from Algorithms.helpers import *
-from Algorithms.best_of_random import *
 from Algorithms.hillclimber import *
 from Algorithms.tactical_hillclimber import *
 from Visuals.scatterplot import *
