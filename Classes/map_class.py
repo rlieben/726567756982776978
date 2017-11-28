@@ -15,10 +15,8 @@ for i in range(len(list_dir) - 1):
 sys.path.insert(0, string)
 
 from Classes.house_class import *
-# from Classes.map_class import *
 from Classes.water_class import *
 from Types.Characteristics_Amstelhaege import *
-# from Algorithms.algorithms import *
 
 
 class Map(object):
@@ -38,6 +36,7 @@ class Map(object):
 		self.nr_houses = map_charac['nr_houses']
 		self.distr_houses = map_charac['distr_houses']
 
+		self.score = 0
 		self.houses = []
 		self.water = []
 
@@ -90,7 +89,7 @@ class Map(object):
 				new_house.location['y'] = j
 
 				# store the possible freespace of new location
-				self.calc_freespace(new_house)
+				new_house.calc_freespace(self)
 				tmp = new_house.freespace
 
 				# if new freespace is greater then update
