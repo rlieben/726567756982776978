@@ -5,10 +5,14 @@
 # Members:      Toon van Holthe, Raoul Lieben, Luc Stefelmanns
 
 class Water_Element(object):
-    '''One of a maximum of four areas destinated for water.'''
+	'''Class for water object.'''
 
-    def __init__(self, loc):
-        '''Water is a list of cells on which water is placed.'''
+	def __init__(self, loc):
+		'''Class is list of coordinates on where the water is placed.
 
-        self.location = loc
-        self.size = ''
+		Input arguments:
+		loc -- location where water is placed
+		'''
+
+		self.location = loc
+		self.size = ''
