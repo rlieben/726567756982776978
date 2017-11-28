@@ -27,7 +27,7 @@ import random
 import numpy
 
 def random_generator():
-    ah_map = Map(MAP['width'], MAP['height'])
+    ah_map = Map(MAP)
 
     OF = int(MAP['nr_houses'][0] * MAP['distr_houses'][0])
     BU = int(MAP['nr_houses'][0] * MAP['distr_houses'][1])

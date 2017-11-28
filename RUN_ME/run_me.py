@@ -36,7 +36,7 @@ from Algorithms.algorithms import *
 maximum = 0
 best_map = random_generator()
 
-for i in range(20):
+for i in range(1):
     ah_map = random_generator()
     summy = 0
     for house in ah_map.houses:
@@ -52,7 +52,7 @@ scatterplot(best_map)
 
 print(maximum)
 
-for i in range(10):
+for i in range(1):
     ah_map = hill_climber(best_map)
     summy = 0
     for house in ah_map.houses:
