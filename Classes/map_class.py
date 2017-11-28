@@ -51,7 +51,7 @@ class Map(object):
 		if house_id == 0:
 			self.houses.append(new_house)
 		else:
-			self.calc_freespace(new_house)
+			new_house.calc_freespace(self)
 
 			if new_house.freespace < MANSION['min_free']:
 				return False
