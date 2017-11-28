@@ -14,7 +14,7 @@ Does 100 random ways to lay 20 houses on the map and shows the best solution.
 # from visuals import *
 # from algorithms import *
 
-
+import seaborn as sns
 
 import sys
 list_dir = sys.path[0].split('\\')
