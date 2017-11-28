@@ -1,3 +1,7 @@
+
+
+
+
 Study:        Minor Programming, University of Amsterdam
 Course:       Heuristics
 Assignment:   Amstelhaege
