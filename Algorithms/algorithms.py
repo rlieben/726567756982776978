@@ -13,8 +13,8 @@ import sys
 list_dir = sys.path[0].split('\\')
 string = ''
 for i in range(len(list_dir) - 1):
-    string += list_dir[i]
-    string += '\\'
+	string += list_dir[i]
+	string += '\\'
 
 sys.path.insert(0, string)
 
@@ -27,7 +27,7 @@ import random
 import numpy
 
 def random_generator():
-    '''Generates a random map.'''
+	'''Generates a random map.'''
 
 	ah_map = Map(MAP)
 
@@ -81,11 +81,11 @@ def random_generator():
 
 # input is empty map, output is value calculated
 def hill_climber(ah_map):
-    '''Moves, every iteration, three houses for optimalization.
+	'''Moves, every iteration, three houses for optimalization.
 
-    Inout arguments:
-    ah_map -- input map
-    '''
+	Inout arguments:
+	ah_map -- input map
+	'''
 
 	CHANGE = 1
 	tmp_index = []
@@ -93,22 +93,22 @@ def hill_climber(ah_map):
 
 	for i in range(CHANGE):
 		tmp_index.append(int(numpy.random.uniform(0, len(ah_map.houses) - 1)))
-    # print(tmp_index)
+	# print(tmp_index)
 
 	for i in range(CHANGE):
 		tmp_houses.append(ah_map.houses[tmp_index[i]])
 		del ah_map.houses[tmp_index[i]]
 
-    # add same amount of houses which were deleted
+	# add same amount of houses which were deleted
 	for i in range(CHANGE):
 
 		allowed = False
 
 		while allowed == False:
 			rand_y_loc = random.uniform(0, MAP['height']
-			                            - (tmp_houses[i].height/2))
+										- (tmp_houses[i].height/2))
 			rand_x_loc = random.uniform(0, MAP['width']
-			                            - (tmp_houses[i].width/2))
+										- (tmp_houses[i].width/2))
 
 			loc = {'x':rand_x_loc,'y':rand_y_loc}
 
@@ -126,11 +126,11 @@ def hill_climber(ah_map):
 	place_house(self, loc, house_id, type_charac)
 
 def tactical_hill_climber(ah_map):
-    '''Moves house on map based on highest freespace.
+	'''Moves house on map based on highest freespace.
 
-    Input arguments:
-    ah_map -- input map
-    '''
+	Input arguments:
+	ah_map -- input map
+	'''
 
 	CHANGE = 1
 	tmp_index = []
