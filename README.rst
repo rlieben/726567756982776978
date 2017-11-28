@@ -48,16 +48,12 @@ Explain what these tests test and why
 Give an example
 ```
 
-Deployment
-==========
-
-Add additional notes about how to deploy this on a live system
-
 Authors
 =======
-* Luc Stefelmanns
-* Raoul Lieben
 * Toon van Holthe tot Echten
+* Raoul Lieben
+* Luc Stefelmanns
+
 
 
 
