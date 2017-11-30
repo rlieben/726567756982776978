@@ -16,8 +16,8 @@ from Algorithms.helpers import *
 import random
 import numpy
 
-def depthfirst(ah_map, runs):
-	''' Places house random and searches for the best child. 
+def depthfirst(runs):
+	''' Places house random and searches for the best child.
 
 	Input arguments:
 	ah_map -- empty map
@@ -47,11 +47,13 @@ def depthfirst(ah_map, runs):
 				# sets house id
 				house_id = 100 * (j + 1) + i
 
-				# gets location where the most freespace is
-				loc = ah_map.calc_freespace_on_map(House(house_id, ah_map.types[j], {'x' : None, 'y' : None))
+				allowed = False
+				while allowed == False:
+					# gets location where the most freespace is
+					loc = ah_map.calc_freespace_on_map(House(house_id, ah_map.types[j], {'x' : None, 'y' : None})
 
-				# places house on location with most freespace
-				ah_map.place_house(loc, house_id, ah_map.types[j])
+					# places house on location with most freespace
+					allowed = ah_map.place_house(loc, house_id, ah_map.types[j])
 
 		# calc score of created map
 		tmpscore = ah_map.calc_score()
@@ -64,5 +66,3 @@ def depthfirst(ah_map, runs):
 	# returns created map and score
 	return ah_map
 	return score
-
-

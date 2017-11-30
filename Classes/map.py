@@ -54,16 +54,15 @@ class Map(object):
 
 		new_house = House(house_id, type_charac, loc)
 
-		if house_id == 0:
-			self.houses.append(new_house)
-		else:
-			new_house.calc_freespace(self)
+		self.houses.append(new_house)
 
-			if new_house.freespace < self.types[2]['min_free']:
+		for house in self.houses:
+			house.calc_freespace(self)
+			if house.freespace < house.min_free:
+				del self.houses[len(self.houses) - 1]
 				return False
-			else:
-				self.houses.append(new_house)
-				return True
+
+		return True
 
 
 	def calc_freespace_on_map(self, new_house):
