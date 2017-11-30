@@ -8,14 +8,15 @@ for i in range(len(list_dir) - 1):
 
 sys.path.insert(0, string)
 
-from Classes.house_class import *
-from Classes.map_class import *
-from Classes.water_class import *
-from Types.Characteristics_Amstelhaege import *
+from Classes.house import *
+from Classes.map import *
+from Classes.water import *
+from Characteristics.Amstelhaege import *
 from Algorithms.best_of_random import *
 from Algorithms.helpers import *
 import random
 import numpy
+import copy
 
 # input is empty map, output is value calculated
 def tactical_hillclimber(map_charac, tries_random, tries_hill, nr_houses):
@@ -33,12 +34,14 @@ def tactical_hillclimber(map_charac, tries_random, tries_hill, nr_houses):
 
 	for i in range(tries_hill):
 		try_map = copy.copy(best_map)
-		try_map.tactical_swap_houses(best_map, nr_houses)
+		try_map.tactical_swap_houses(nr_houses)
+
+		print(i)
 
 		score = try_map.calc_score()
 
 		if score > maximum:
-			maximum = summy
+			maximum = score
 			best_map = try_map
 
 	return best_map

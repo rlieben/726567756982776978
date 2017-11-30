@@ -10,7 +10,7 @@ sys.path.insert(0, string)
 from Classes.house import *
 from Classes.map import *
 from Classes.water import *
-from Types.Characteristics_Amstelhaege import *
+from Characteristics.Amstelhaege import *
 from Algorithms.helpers import *
 from Visuals.scatterplot import *
 

@@ -11,7 +11,7 @@ sys.path.insert(0, string)
 from Classes.house import *
 from Classes.map import *
 from Classes.water import *
-from Types.Characteristics_Amstelhaege import *
+from Characteristics.Amstelhaege import *
 import random
 import numpy
 
@@ -35,6 +35,7 @@ def random_generator(map_charac):
 
 				house_id = i
 
-				allowed = out_map.place_house(loc, house_id, ONE_FAM)
+				allowed = out_map.place_house(loc, house_id,
+											  map_charac['types_houses'][i])
 
 	return out_map

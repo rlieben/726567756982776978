@@ -17,7 +17,7 @@ sys.path.insert(0, string)
 import random
 from Classes.house import *
 from Classes.water import *
-from Types.Characteristics_Amstelhaege import *
+from Characteristics.Amstelhaege import *
 
 
 class Map(object):
@@ -36,6 +36,7 @@ class Map(object):
 		self.water_prev = map_charac['water_prev']
 		self.nr_houses = map_charac['nr_houses']
 		self.distr_houses = map_charac['distr_houses']
+		self.types = map_charac['types_houses']
 
 		self.score = 0
 		self.houses = []
@@ -58,7 +59,7 @@ class Map(object):
 		else:
 			new_house.calc_freespace(self)
 
-			if new_house.freespace < MANSION['min_free']:
+			if new_house.freespace < self.types[2]['min_free']:
 				return False
 			else:
 				self.houses.append(new_house)
@@ -130,14 +131,8 @@ class Map(object):
 				loc = {'x' : random.uniform(0, self.height),
 					   'y' : random.uniform(0, self.width)}
 
-				if tmp_houses[i].type == 'one_family':
-					charac = ONE_FAM
-				elif tmp_houses[i].type == 'bungalow':
-					charac = BUNGALOW
-				elif tmp_houses[i].type == 'mainsion':
-					charac = MANSION
-
-				allowed = self.place_house(loc , tmp_houses[i].self_id, charac)
+				allowed = self.place_house(loc, tmp_houses[i].self_id,
+										   self.types[tmp_houses[i].index_nr])
 
 
 	def tactical_swap_houses(self, nr_houses):
@@ -154,7 +149,7 @@ class Map(object):
 		for i in range(nr_houses):
 			tmp_index.append(int(numpy.random.uniform(0, len(self.houses) - 1)))
 			tmp_houses.append(self.houses[tmp_index[i]])
-			del in_map.houses[tmp_index[i]]
+			del self.houses[tmp_index[i]]
 
 		for i in range(nr_houses):
 
@@ -164,14 +159,8 @@ class Map(object):
 
 				loc = self.calc_freespace_on_map(tmp_houses[i])
 
-				if tmp_houses[i].type == 'one_family':
-					charac = ONE_FAM
-				elif tmp_houses[i].type == 'bungalow':
-					charac = BUNGALOW
-				elif tmp_houses[i].type == 'mainsion':
-					charac = MANSION
-
-				allowed = self.place_house(loc , tmp_houses[i].self_id, charac)
+				allowed = self.place_house(loc, tmp_houses[i].self_id,
+										   self.types[tmp_houses[i].index_nr])
 
 
 	def calc_score(self):

@@ -8,11 +8,12 @@ for i in range(len(list_dir) - 1):
 
 sys.path.insert(0, string)
 
-from Classes.house_class import *
-from Classes.map_class import *
-from Classes.water_class import *
-from Types.Characteristics_Amstelhaege import *
+from Classes.house import *
+from Classes.map import *
+from Classes.water import *
+from Characteristics.Amstelhaege import *
 from Algorithms.helpers import *
+from Algorithms.best_of_random import *
 from Algorithms.hillclimber import *
 from Algorithms.tactical_hillclimber import *
 from Visuals.scatterplot import *
@@ -22,3 +23,5 @@ print('hillclimber:', best_random.score)
 
 best_hill = tactical_hillclimber(MAP_20, 10, 10, 1)
 print('tactical:', best_hill.score)
+
+# scatterplot(best_hill)
