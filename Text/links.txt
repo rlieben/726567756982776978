@@ -17,3 +17,6 @@ bin packing problem
 
 grid drawing with zvals
 - https://stackoverflow.com/questions/7229971/2d-grid-data-visualization-in-python
+
+pseudo plant prop:
+- https://www.hindawi.com/journals/mpe/2014/627416/alg2/
