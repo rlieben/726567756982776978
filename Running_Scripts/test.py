@@ -17,13 +17,15 @@ from Algorithms.best_of_random import *
 from Algorithms.hillclimber import *
 from Visuals.scatterplot import *
 
-ah_map = Map(MAP_20)
-allowed = ah_map.place_house({'x' : 50, 'y' : 50}, 1, ah_map.types[0])
-print(allowed)
-allowed = ah_map.place_house({'x' : 45, 'y' : 45}, 2, ah_map.types[0])
-print(allowed)
+# ah_map = Map(MAP_20)
+# allowed = ah_map.place_house({'x' : 50, 'y' : 50}, 1, ah_map.types[0])
+# print(allowed)
+# allowed = ah_map.place_house({'x' : 50, 'y' : 40}, 2, ah_map.types[0])
+# print(allowed)
 
-for house in ah_map.houses:
-	print(house.freespace)
+# for house in ah_map.houses:
+# 	print(house.freespace)
 
-scatterplot(ah_map)
+# ah_map = Map(MAP_20)
+
+scatterplot(random_generator(MAP_60))
