@@ -25,8 +25,8 @@ Distr houses is the distribution of the different types of houses listed
 above [ONE_FAMILY, BUNGALOW, MANSION]
 '''
 
-MAP = {'width' : 180, 'height': 160, 'water_prev' : 0.20,
-		  'nr_houses' : [20, 40, 60], 'distr_houses' : [0.60, 0.25, 0.15]}
+# MAP = {'width' : 180, 'height': 160, 'water_prev' : 0.20,
+# 		  'nr_houses' : [20, 40, 60], 'distr_houses' : [0.60, 0.25, 0.15]}
 
 MAP_20 = {'width' : 180, 'height': 160, 'water_prev' : 0.20,
 		  'nr_houses' : 20, 'distr_houses' : [0.60, 0.25, 0.15],

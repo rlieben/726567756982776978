@@ -33,7 +33,7 @@ def scatterplot(ah_map):
 
     data = []
 
-    for i in range(MAP['nr_houses'][0]):
+    for i in range(ah_map.nr_houses):
 
 
         x = ah_map.houses[i].location['x']

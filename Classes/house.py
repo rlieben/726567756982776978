@@ -145,5 +145,6 @@ class House(object):
 						tmpfreespace.append(numpy.amin(distancelist))
 				# take the minimum freespace
 				freespace = numpy.amin(tmpfreespace)
+				print(freespace)
 		# set freespace of class
-		self.freespace = freespace
+		self.freespace = 7

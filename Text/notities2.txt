@@ -14,6 +14,8 @@ freespace/value initialiseren op None
 
 score functie in map zetten
 
+WATER KOMT NIET MEER LATER
+
 !!!!!!!!! volgende week
 simulated annealing
 !!!!!!!!!
@@ -32,7 +34,7 @@ UI maken met welke opties je wilt
 
 in docstring vorm van return opschrijven (int, string, etc)
 
-!!!VANAVOND!!!
+!!!VANAVOND!!! DONE
 random_swap_houses in class
 tactical_swap_houses in class
 calc_score in class
@@ -41,3 +43,9 @@ calc_score in class
 tactical hillclimber en hillclimber in 1 functie zetten (mooier)
 
 interessante experimenten verzinnen
+
+map charac aanpassen zodat huizen er als list in zitten
+
+id assignment aanpassen
+
+particle swarm optimization algorithm
