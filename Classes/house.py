@@ -29,8 +29,8 @@ class House(object):
 		self.self_id = self_id
 		self.location = loc # loc is a dict {'x' : ..., 'y' : ...}
 		self.corners = self.find_corners()
-		self.freespace = 0
-		self.value = 0
+		self.freespace = None
+		self.value = None
 
 
 
@@ -66,7 +66,6 @@ class House(object):
 		Input arguments:
 		in_map -- map where the house is placed on
 		'''
-
 		# coordinates new house
 		x_newhouse = self.location['x']
 		y_newhouse = self.location['y']
@@ -81,12 +80,16 @@ class House(object):
 		# creating temporary variable for freespace
 		tmpfreespace = []
 
-
 		# calculating distance to borders and adding to tmp freespace
-		tmpfreespace.append(abs(x_newhouse))
-		tmpfreespace.append(abs(y_newhouse))
-		tmpfreespace.append(abs(self.width - x_newhouse))
-		tmpfreespace.append(abs(self.height - y_newhouse))
+		if (x_newhouse - x_diffwall < 0) or \
+		   (y_newhouse - y_diffwall < 0) or \
+		   (in_map.width - x_newhouse - x_diffwall < 0) or \
+		   (in_map.height - y_newhouse - y_diffwall < 0):
+		 	return False
+		tmpfreespace.append(abs(x_newhouse - x_diffwall))
+		tmpfreespace.append(abs(y_newhouse - y_diffwall))
+		tmpfreespace.append(abs(in_map.width - x_newhouse - x_diffwall))
+		tmpfreespace.append(abs(in_map.height - y_newhouse - y_diffwall))
 
 		# iterate over all houses in map
 		for house in in_map.houses:
@@ -94,24 +97,64 @@ class House(object):
 			# skips itself
 			if house.self_id != self.self_id:
 
-
 				# check if coordinate falls within house x - range
 				if house.location['x'] > self.corners['lb']['x'] \
 				   and house.location['x'] < self.corners['rb']['x']:
 
+					diff_houses[0] = abs(house.location['y'] - self.location['y'])
+
+					if diff_houses[0] - x_diffwall - (house.width / 2) < 0:
+						return False
+
 					# save freespace between walls of houses
-					tmpfreespace.append(abs(diff_houses[0] \
+					tmpfreespace.append(diff_houses[0] \
 										- x_diffwall
-										- (house.width / 2)))
+										- (house.width / 2))
+
+					# check if coordinate falls within house y - range
+					if house.location['y'] > self.corners['lo']['y'] \
+						 and house.location['y'] < self.corners['lb']['y']:
+
+						diff_houses[1] = abs(house.location['x'] - self.location['x'])
+
+						if diff_houses[1] - y_diffwall - (house.width / 1) < 0:
+							return False
+
+						# save freespace between walls of houses
+						tmpfreespace.append(abs(diff_houses[1] \
+											- y_diffwall
+											- (house.height / 2)))
 
 				# check if coordinate falls within house y - range
-				elif house.location['y'] > self.corners['lo']['y'] \
+				if house.location['y'] > self.corners['lo']['y'] \
 					 and house.location['y'] < self.corners['lb']['y']:
+
+					diff_houses[1] = abs(house.location['x'] - self.location['x'])
+
+					if diff_houses[1] - y_diffwall - (house.width / 1) < 0:
+						return False
 
 					# save freespace between walls of houses
 					tmpfreespace.append(abs(diff_houses[1] \
 										- y_diffwall
 										- (house.height / 2)))
+
+					# check if coordinate falls within house x - range
+					if house.location['x'] > self.corners['lb']['x'] \
+					   and house.location['x'] < self.corners['rb']['x']:
+
+						diff_houses[0] = abs(house.location['y'] - self.location['y'])
+
+						if diff_houses[0] - x_diffwall - (house.width / 2) < 0:
+							return False
+
+						# save freespace between walls of houses
+						tmpfreespace.append(diff_houses[0] \
+											- x_diffwall
+											- (house.width / 2))
+	
+
+
 
 				# else compute distance of corners of the house
 				else:
@@ -144,7 +187,4 @@ class House(object):
 						# take the minimum distance
 						tmpfreespace.append(numpy.amin(distancelist))
 				# take the minimum freespace
-				freespace = numpy.amin(tmpfreespace)
-				print(freespace)
-		# set freespace of class
-		self.freespace = 7
+		self.freespace = numpy.amin(tmpfreespace)

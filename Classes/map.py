@@ -57,11 +57,13 @@ class Map(object):
 		self.houses.append(new_house)
 
 		for house in self.houses:
-			house.calc_freespace(self)
+			if house.calc_freespace(self) == False:
+				del self.houses[len(self.houses) - 1]
+				return False
 			if house.freespace < house.min_free:
 				del self.houses[len(self.houses) - 1]
 				return False
-
+			
 		return True
 
 
