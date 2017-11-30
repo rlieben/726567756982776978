@@ -33,7 +33,7 @@ def random_generator(map_charac):
 				loc = {'x' : random.uniform(0, out_map.height),
 					   'y' : random.uniform(0, out_map.width)}
 
-				house_id = i
+				house_id = 100 * (j + 1) + i
 
 				allowed = out_map.place_house(loc, house_id,
 											  map_charac['types_houses'][i])
