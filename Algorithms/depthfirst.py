@@ -61,7 +61,7 @@ def depthfirst(runs):
 		# update best score if greater
 		if tmpscore > score:
 
-		score = tmpscore
+			score = tmpscore
 
 	# returns created map and score
 	return ah_map
