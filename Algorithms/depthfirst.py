@@ -1,9 +1,9 @@
 import sys
-list_dir = sys.path[0].split('\\')
+list_dir = sys.path[0].split('/')
 string = ''
 for i in range(len(list_dir) - 1):
 	string += list_dir[i]
-	string += '\\'
+	string += '/'
 
 sys.path.insert(0, string)
 
@@ -20,7 +20,6 @@ def depthfirst(runs):
 	''' Places house random and searches for the best child.
 
 	Input arguments:
-	ah_map -- empty map
 	runs -- integer, how many runs of the function
 
 	Returns:
@@ -32,14 +31,14 @@ def depthfirst(runs):
 	ah_map = Map(MAP_20)
 
 	# initialize score variables
-	tmpscore = 0
+	tempscore = 0
 	score = 0
 
 	# amount of runs for script
 	for run in range(runs):
 
 		# iterates over perc houses
-		for j in range(ah_map.distr_houses):
+		for j in ah_map.distr_houses:
 
 			# iterates over type houses
 			for i in range(ah_map.distr_houses[j] * ah_map.nr_houses):
@@ -47,16 +46,19 @@ def depthfirst(runs):
 				# sets house id
 				house_id = 100 * (j + 1) + i
 
-				allowed = False
+				# allowed = False
 				while allowed == False:
 					# gets location where the most freespace is
-					loc = ah_map.calc_freespace_on_map(House(house_id, ah_map.types[j], {'x' : None, 'y' : None})
+					loc = ah_map.calc_freespace_on_map(House(house_id, ah_map.types[j], {'x' : None, 'y' : None}))
 
 					# places house on location with most freespace
 					allowed = ah_map.place_house(loc, house_id, ah_map.types[j])
 
 		# calc score of created map
-		tmpscore = ah_map.calc_score()
+
+		tmpscore  = ah_map.calc_score()
+
+
 
 		# update best score if greater
 		if tmpscore > score:
