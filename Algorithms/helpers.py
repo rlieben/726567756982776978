@@ -20,8 +20,8 @@ def random_generator(map_charac):
 	'''Generates a random map.'''
 
 	out_map = Map(map_charac)
-
-	for i in range(len(out_map.distr_houses)):
+	i = 2
+	for k in range(len(out_map.distr_houses)):
 
 		nr_of_type = out_map.nr_houses * out_map.distr_houses[i]
 
@@ -30,12 +30,12 @@ def random_generator(map_charac):
 			allowed = False
 
 			while allowed == False:
-				loc = {'x' : random.uniform(0, out_map.height),
-					   'y' : random.uniform(0, out_map.width)}
+				loc = {'x' : random.uniform(0, out_map.width),
+					   'y' : random.uniform(0, out_map.height)}
 
-				house_id = 100 * (j + 1) + i
+				house_id = 100 * (i + 1) + j
 
 				allowed = out_map.place_house(loc, house_id,
 											  map_charac['types_houses'][i])
-
+		i -=1
 	return out_map

@@ -33,7 +33,7 @@ def scatterplot(ah_map):
 
     data = []
 
-    for i in range(ah_map.nr_houses):
+    for i in range(len(ah_map.houses)):
 
 
         x = ah_map.houses[i].location['x']
@@ -54,8 +54,8 @@ def scatterplot(ah_map):
     # print(data)
 
     axes = plot.gca()
-    axes.set_xlim([0,200])
-    axes.set_ylim([0,200])
+    axes.set_xlim([0, ah_map.width])
+    axes.set_ylim([0, ah_map.height])
 
     # for every value in data
     for i in range(0, len(data)-1, 2):

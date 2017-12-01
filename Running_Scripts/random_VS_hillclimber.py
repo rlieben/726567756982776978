@@ -17,11 +17,14 @@ from Algorithms.best_of_random import *
 from Algorithms.hillclimber import *
 from Visuals.scatterplot import *
 
-best_random = best_of_random(MAP_20, 10)
+best_random = best_of_random(MAP_20, 1)
 print('best random:', best_random.score)
 
-best_hill = hillclimber(MAP_20, 10, 10, 2)
-print('hillclimber:', best_hill.score)
+for house in best_random.houses:
+	print(house.freespace)
+
+# best_hill = hillclimber(MAP_20, 10, 10, 2)
+# print('hillclimber:', best_hill.score)
 
 scatterplot(best_random)
-scatterplot(best_hill)
+# scatterplot(best_hill)
