@@ -40,19 +40,20 @@ def depthfirst(runs):
 		# iterates over perc houses
 		for j in ah_map.distr_houses:
 
+			print(ah_map.distr_houses[int(j)])
 			# iterates over type houses
-			for i in range(ah_map.distr_houses[j] * ah_map.nr_houses):
+			for i in range(int(ah_map.distr_houses[int(j)] * ah_map.nr_houses)):
 
 				# sets house id
-				house_id = 100 * (j + 1) + i
+				house_id = 100 * (int(j) + 1) + i
 
-				# allowed = False
+				allowed = False
 				while allowed == False:
 					# gets location where the most freespace is
-					loc = ah_map.calc_freespace_on_map(House(house_id, ah_map.types[j], {'x' : None, 'y' : None}))
+					loc = ah_map.calc_freespace_on_map(House(house_id, ah_map.types[int(j)], {'x' : None, 'y' : None}))
 
 					# places house on location with most freespace
-					allowed = ah_map.place_house(loc, house_id, ah_map.types[j])
+					allowed = ah_map.place_house(loc, house_id, ah_map.types[int(j)])
 
 		# calc score of created map
 
