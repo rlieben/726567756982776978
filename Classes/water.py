@@ -18,6 +18,7 @@ class Water_Element(object):
 		self.self_id = self_id
 		self.width = size['width']
 		self.height = size['height']
+		self.corners = self.find_corners_water()
 
 
 	def find_corners_water(self):
