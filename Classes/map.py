@@ -74,16 +74,13 @@ class Map(object):
 		water_id -- id corresponding to the water body being placed
 		'''
 
-		# calculate total water body
-		total_water = map_charac['water_prev'] * (map_charac['width'] * map_charac['height'])
-
 		allowed = False
 
 		while allowed == False:
-			x = random.uniform(0, (map_charac['water_prev'] * (map_charac['width'] * map_charac['height'])))
-			y = (map_charac['width'] * map_charac['height']) - x
+			x = random.uniform(0, (self.water_prev * self.width * self.height))
+			y = (self.water_prev * self.width * self.height) / x
 
-			if (x / y) > 0.25 or (x / y) < 4:
+			if (x / y) > 0.25 & (x / y) < 4:
 				allowed = True
 
 		size = {'width': x, 'height': y}
@@ -91,7 +88,6 @@ class Map(object):
 		new_water = Water(loc, water_id, size)
 
 		self.water.append(new_water)
-
 
 
 	def calc_freespace_on_map(self, new_house):
@@ -174,13 +170,7 @@ class Map(object):
 		tmp_index = []
 		tmp_houses = []
 
-		print(nr_houses)
-
 		for i in range(nr_houses):
-
-			print("i")
-			print(i)
-
 			tmp_index.append(int(numpy.random.uniform(0, len(self.houses) - 1)))
 			tmp_houses.append(self.houses[tmp_index[i]])
 			del self.houses[tmp_index[i]]
