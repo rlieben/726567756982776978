@@ -1,6 +1,6 @@
 
 import sys
-split = sys.path[0][2]
+split = sys.path[1][2]
 list_dir = sys.path[0].split(split)
 string = ''
 for i in range(len(list_dir) - 1):

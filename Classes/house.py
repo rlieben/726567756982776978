@@ -156,12 +156,12 @@ class House(object):
 						tmpfreespace.append(diff_houses[0] \
 											- x_diffwall
 											- (house.width / 2))
-<<<<<<< HEAD
+# <<<<<<< HEAD
 
 
 
-=======
->>>>>>> 3a249982010a92e061d7325f39877293af9e29b0
+# =======
+# >>>>>>> 3a249982010a92e061d7325f39877293af9e29b0
 
 				# else compute distance of corners of the house
 				else:
