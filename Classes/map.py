@@ -57,25 +57,25 @@ class Map(object):
 		self.houses.append(new_house)
 
 		for house in self.houses:
-			if ((house.corners['lb']['x'] < self.water[0].corners['lb_w']['x'] & house.corners['lb']['x'] > self.water[0].corners['rb_w']['x']) & \
-				(house.corners['rb']['x'] < self.water[0].corners['lb_w']['x'] & house.corners['rb']['x'] > self.water[0].corners['rb_w']['x']) & \
-				(house.corners['lo']['x'] < self.water[0].corners['lb_w']['x'] & house.corners['lo']['x'] > self.water[0].corners['rb_w']['x']) & \
-				(house.corners['ro']['x'] < self.water[0].corners['lb_w']['x'] & house.corners['ro']['x'] > self.water[0].corners['rb_w']['x']) & \
-
-				(house.corners['lb']['y'] < self.water[0].corners['lb_w']['y'] & house.corners['lb']['y'] > self.water[0].corners['rb_w']['y']) & \
-				(house.corners['rb']['y'] < self.water[0].corners['lb_w']['y'] & house.corners['rb']['y'] > self.water[0].corners['rb_w']['y']) & \
-				(house.corners['lo']['y'] < self.water[0].corners['lb_w']['y'] & house.corners['lo']['y'] > self.water[0].corners['rb_w']['y']) & \
-				(house.corners['ro']['y'] < self.water[0].corners['lb_w']['y'] & house.corners['ro']['y'] > self.water[0].corners['rb_w']['y']) & \
-
-				(house.corners['lb']['x'] < self.water[0].corners['lb_w']['x'] & house.corners['lb']['x'] > self.water[0].corners['rb_w']['x']) & \
-				(house.corners['rb']['x'] < self.water[0].corners['lb_w']['x'] & house.corners['rb']['x'] > self.water[0].corners['rb_w']['x']) & \
-				(house.corners['lo']['x'] < self.water[0].corners['lb_w']['x'] & house.corners['lo']['x'] > self.water[0].corners['rb_w']['x']) & \
-				(house.corners['ro']['x'] < self.water[0].corners['lb_w']['x'] & house.corners['ro']['x'] > self.water[0].corners['rb_w']['x']) & \
-
-				(house.corners['lb']['y'] < self.water[0].corners['lb_w']['x'] & house.corners['lb']['x'] > self.water[0].corners['rb_w']['x']) & \
-				(house.corners['rb']['y'] < self.water[0].corners['lb_w']['x'] & house.corners['rb']['x'] > self.water[0].corners['rb_w']['x']) & \
-				(house.corners['lo']['y'] < self.water[0].corners['lb_w']['x'] & house.corners['lo']['x'] > self.water[0].corners['rb_w']['x']) & \
-				(house.corners['ro']['y'] < self.water[0].corners['lb_w']['x'] & house.corners['ro']['x'] > self.water[0].corners['rb_w']['x']) & \
+		# 	if ((house.corners['lb']['x'] < self.water[0].corners['lb_w']['x'] & house.corners['lb']['x'] > self.water[0].corners['rb_w']['x']) & \
+		# 		(house.corners['rb']['x'] < self.water[0].corners['lb_w']['x'] & house.corners['rb']['x'] > self.water[0].corners['rb_w']['x']) & \
+		# 		(house.corners['lo']['x'] < self.water[0].corners['lb_w']['x'] & house.corners['lo']['x'] > self.water[0].corners['rb_w']['x']) & \
+		# 		(house.corners['ro']['x'] < self.water[0].corners['lb_w']['x'] & house.corners['ro']['x'] > self.water[0].corners['rb_w']['x']) & \
+        #
+		# 		(house.corners['lb']['y'] < self.water[0].corners['lb_w']['y'] & house.corners['lb']['y'] > self.water[0].corners['rb_w']['y']) & \
+		# 		(house.corners['rb']['y'] < self.water[0].corners['lb_w']['y'] & house.corners['rb']['y'] > self.water[0].corners['rb_w']['y']) & \
+		# 		(house.corners['lo']['y'] < self.water[0].corners['lb_w']['y'] & house.corners['lo']['y'] > self.water[0].corners['rb_w']['y']) & \
+		# 		(house.corners['ro']['y'] < self.water[0].corners['lb_w']['y'] & house.corners['ro']['y'] > self.water[0].corners['rb_w']['y']) & \
+        #
+		# 		(house.corners['lb']['x'] < self.water[0].corners['lb_w']['x'] & house.corners['lb']['x'] > self.water[0].corners['rb_w']['x']) & \
+		# 		(house.corners['rb']['x'] < self.water[0].corners['lb_w']['x'] & house.corners['rb']['x'] > self.water[0].corners['rb_w']['x']) & \
+		# 		(house.corners['lo']['x'] < self.water[0].corners['lb_w']['x'] & house.corners['lo']['x'] > self.water[0].corners['rb_w']['x']) & \
+		# 		(house.corners['ro']['x'] < self.water[0].corners['lb_w']['x'] & house.corners['ro']['x'] > self.water[0].corners['rb_w']['x']) & \
+        #
+		# 		(house.corners['lb']['y'] < self.water[0].corners['lb_w']['x'] & house.corners['lb']['x'] > self.water[0].corners['rb_w']['x']) & \
+		# 		(house.corners['rb']['y'] < self.water[0].corners['lb_w']['x'] & house.corners['rb']['x'] > self.water[0].corners['rb_w']['x']) & \
+		# 		(house.corners['lo']['y'] < self.water[0].corners['lb_w']['x'] & house.corners['lo']['x'] > self.water[0].corners['rb_w']['x']) & \
+		# 		(house.corners['ro']['y'] < self.water[0].corners['lb_w']['x'] & house.corners['ro']['x'] > self.water[0].corners['rb_w']['x']) & \
 
 			if house.calc_freespace(self) == False:
 				del self.houses[len(self.houses) - 1]

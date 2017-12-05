@@ -12,7 +12,6 @@ import matplotlib.patches as patches
 import sys
 
 
-
 '''
 Creates visual for the map.
 '''
