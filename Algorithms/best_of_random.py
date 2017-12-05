@@ -1,19 +1,5 @@
-import sys
-list_dir = sys.path[0].split('\\')
-string = ''
-for i in range(len(list_dir) - 1):
-    string += list_dir[i]
-    string += '\\'
 
-sys.path.insert(0, string)
-
-from Classes.house import *
-from Classes.map import *
-from Classes.water import *
-from Characteristics.Amstelhaege import *
-from Algorithms.helpers import *
-from Visuals.scatterplot import *
-
+from __import__ import *
 
 def best_of_random(map_charac, tries):
 	''' Creates random maps and returns the map with the highest score.

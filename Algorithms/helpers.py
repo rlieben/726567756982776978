@@ -1,19 +1,5 @@
 
-import sys
-list_dir = sys.path[0].split('\\')
-string = ''
-for i in range(len(list_dir) - 1):
-    string += list_dir[i]
-    string += '\\'
-
-sys.path.insert(0, string)
-
-from Classes.house import *
-from Classes.map import *
-from Classes.water import *
-from Characteristics.Amstelhaege import *
-import random
-import numpy
+from __import__ import *
 
 
 def random_generator(map_charac):

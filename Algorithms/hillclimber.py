@@ -1,21 +1,5 @@
 
-import sys
-list_dir = sys.path[0].split('\\')
-string = ''
-for i in range(len(list_dir) - 1):
-    string += list_dir[i]
-    string += '\\'
-
-sys.path.insert(0, string)
-
-from Classes.house import *
-from Classes.map import *
-from Classes.water import *
-from Characteristics.Amstelhaege import *
-from Algorithms.best_of_random import *
-import random
-import numpy
-import copy
+from __import__ import *
 
 # input is empty map, output is value calculated
 def hillclimber(map_charac, tries_random, tries_hill, nr_houses):
