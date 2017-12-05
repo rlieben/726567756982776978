@@ -27,3 +27,7 @@ from Algorithms.hillclimber import *
 from Algorithms.tactical_hillclimber import *
 from Algorithms.depthfirst import *
 from Visuals.scatterplot import *
+
+import numpy
+import random
+import copy
