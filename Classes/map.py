@@ -100,7 +100,7 @@ class Map(object):
 			x = random.uniform(0, (self.water_prev * self.width * self.height))
 			y = (self.water_prev * self.width * self.height) / x
 
-			if (x / y) > 0.25 & (x / y) < 4:
+			if ((x / y) > 0.25) & ((x / y) < 4):
 				allowed = True
 
 		size = {'width': x, 'height': y}

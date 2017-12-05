@@ -1,5 +1,6 @@
 
 from __import__ import *
+import copy
 
 # input is empty map, output is value calculated
 def hillclimber(map_charac, tries_random, tries_hill, nr_houses):
@@ -15,6 +16,8 @@ def hillclimber(map_charac, tries_random, tries_hill, nr_houses):
 	best_map = best_of_random(MAP_20, tries_random)
 	maximum = best_map.calc_score()
 
+	data = [maximum]
+
 	for i in range(tries_hill):
 		try_map = copy.copy(best_map)
 		try_map.random_swap_houses(nr_houses)
@@ -25,4 +28,6 @@ def hillclimber(map_charac, tries_random, tries_hill, nr_houses):
 			maximum = score
 			best_map = try_map
 
-	return best_map
+			data.append(maximum)
+
+	return {'map' : best_map, 'data' : data}

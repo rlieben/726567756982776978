@@ -31,6 +31,7 @@ class House(object):
 		self.corners = self.find_corners()
 		self.freespace = None
 		self.value = None
+		self.direction = None
 
 
 
