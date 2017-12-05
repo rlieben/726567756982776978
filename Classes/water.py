@@ -7,7 +7,7 @@
 class Water_Element(object):
 	'''Class for water object.'''
 
-	def __init__(self, loc):
+	def __init__(self, loc, self_id, size):
 		'''Class is list of coordinates on where the water is placed.
 
 		Input arguments:
@@ -15,4 +15,6 @@ class Water_Element(object):
 		'''
 
 		self.location = loc
-		self.size = ''
+		self.self_id = self_id
+		self.width = size['width']
+		self.height = size['height']

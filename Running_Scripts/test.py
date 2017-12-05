@@ -1,10 +1,10 @@
 
 import sys
-list_dir = sys.path[0].split('/')
+list_dir = sys.path[0].split('\\')
 string = ''
 for i in range(len(list_dir) - 1):
     string += list_dir[i]
-    string += '/'
+    string += '\\'
 
 sys.path.insert(0, string)
 
@@ -13,6 +13,7 @@ from Classes.map import *
 from Classes.water import *
 from Characteristics.Amstelhaege import *
 from Algorithms.helpers import *
+from Algorithms.fireworks import *
 from Algorithms.best_of_random import *
 from Algorithms.hillclimber import *
 from Visuals.scatterplot import *
@@ -26,6 +27,6 @@ from Visuals.scatterplot import *
 # for house in ah_map.houses:
 # 	print(house.freespace)
 
-# ah_map = Map(MAP_20)
+ah_map = random_generator(MAP_20)
 
-scatterplot(random_generator(MAP_60))
+fireworks(MAP_20)

@@ -17,33 +17,62 @@ import random
 import numpy
 import copy
 
-max_val = 0
-max_val_houses = []
 
-# place 1 to 20 houses
-for i in range (MAP['nr_houses'][0]):
-    # get max value of house in random map
-    for i in range(10):
-        map_max_val = random_generator(MAP_20)
-        for house in map_max_val.houses:
-            house.calc_freespace(map_max_val)
-            print(house.freespace)
-            value = house.calc_value()
-            print(value)
+def fireworks(map_charac):
 
-            # check if house value is higher than previous value and store in max_val
-            # add characteristics of house in list
-            if value > max_val:
-                max_val = value
-                max_val_houses.append(house)
+    def max_val(iters):
 
-    for house in max_val_houses:
-        place_house(house)
+        max_val = 0
+        max_val_houses = []
 
-    for i in range(MAP['nr_houses'][0] - len(max_val_houses)):
-        place_house(random)
+        for i in range(iters):
+            map_max_val = random_generator(map_charac)
+
+            for house in map_max_val.houses:
+                house.calc_freespace(map_max_val)
+                value = house.calc_value()
+
+                allowed = False
+                # check if house value is higher than previous value and store in max_val
+                # and check if location is not the same. add characteristics of house in list
+                if value > max_val:
+                    max_val = value
+                    max_val_houses.append(house)
+
+            new_map = Map(map_charac)
+
+            for house in max_val_houses:
+                print(house.type)
+                new_map.place_house(house.location, house.self_id, house.type)
+
+            return new_map
+
+    max_val(1)
+
+    i = 2
+
+    # place number of houses - houses placed with max_values
+    while (out_map.nr_houses) - (len(max_val_houses)) > 0:
+
+        out_map = max_val(1)
+
+        for house in max_val_houses:
+
+            nr_of_type = out_map.nr_houses * out_map.distr_houses[i] 
+
+        for j in range(int(nr_of_type)):
+
+        	allowed = False
+
+        	while allowed == False:
+        		loc = {'x' : random.uniform(0, out_map.width),
+        			   'y' : random.uniform(0, out_map.height)}
+
+        		house_id = 100 * (i + 1) + j
+
+        		allowed = out_map.place_house(loc, house_id,
+        									  map_charac['types_houses'][i])
+        i -= 1
 
 
-
-
-    # return max_val
+    return max_val, out_map

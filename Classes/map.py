@@ -63,8 +63,35 @@ class Map(object):
 			if house.freespace < house.min_free:
 				del self.houses[len(self.houses) - 1]
 				return False
-			
+
 		return True
+
+	def place_water(self, loc, water_id):
+		'''Places water on the map
+
+		Input arguments:
+		loc -- Location where the water body needs to be placed
+		water_id -- id corresponding to the water body being placed
+		'''
+
+		# calculate total water body
+		total_water = map_charac['water_prev'] * (map_charac['width'] * map_charac['height'])
+
+		allowed = False
+
+		while allowed == False:
+			x = random.uniform(0, (map_charac['water_prev'] * (map_charac['width'] * map_charac['height'])))
+			y = (map_charac['width'] * map_charac['height']) - x
+
+			if (x / y) > 0.25 or (x / y) < 4:
+				allowed = True
+
+		size = {'width': x, 'height': y}
+
+		new_water = Water(loc, water_id, size)
+
+		self.water.append(new_water)
+
 
 
 	def calc_freespace_on_map(self, new_house):
