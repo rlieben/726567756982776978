@@ -10,14 +10,14 @@ documenten voor experimenten (in aparte map)
 heuristieken als list meegeven aan functie
 zo kun je ze vergelijken
 
-freespace/value initialiseren op None
+freespace/value initialiseren op None DONE
 
 score functie in map zetten DONE
 
 WATER KOMT NIET MEER LATER
 
 !!!!!!!!! volgende week
-simulated annealing 
+simulated annealing
 !!!!!!!!!
 
 plant propogation / fireworks checken
@@ -29,8 +29,9 @@ Depth first checken (niet echte, heel greedy)
 command line arguments werken
 
 main bestand in mapje hoger (of verwijzen naar andere imports in een functie)
+VERWIJZEN DONE
 
-UI maken met welke opties je wilt
+(UI maken met welke opties je wilt)
 
 in docstring vorm van return opschrijven (int, string, etc)
 
@@ -46,6 +47,6 @@ interessante experimenten verzinnen
 
 map charac aanpassen zodat huizen er als list in zitten
 
-id assignment aanpassen
+id assignment aanpassen HOEFT NIET MEER
 
 particle swarm optimization algorithm
