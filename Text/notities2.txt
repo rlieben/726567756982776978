@@ -1,7 +1,7 @@
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 FOUTE_PLAATSING_BUG ERUIT HALEN
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! FIXED
 
 state_space, min_score, max_score voor E
 
@@ -12,12 +12,12 @@ zo kun je ze vergelijken
 
 freespace/value initialiseren op None
 
-score functie in map zetten
+score functie in map zetten DONE
 
 WATER KOMT NIET MEER LATER
 
 !!!!!!!!! volgende week
-simulated annealing
+simulated annealing 
 !!!!!!!!!
 
 plant propogation / fireworks checken
