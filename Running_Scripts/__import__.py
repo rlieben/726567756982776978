@@ -1,6 +1,6 @@
 
 import sys
-split = sys.path[0][2]
+split = sys.path[0][0]
 list_dir = sys.path[0].split(split)
 string = ''
 for i in range(len(list_dir) - 1):
@@ -8,6 +8,7 @@ for i in range(len(list_dir) - 1):
     string += split
 
 sys.path.insert(0, string)
+
 
 from Classes.house import *
 from Classes.map import *
