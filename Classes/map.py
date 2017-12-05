@@ -186,7 +186,6 @@ class Map(object):
 				allowed = self.place_house(loc, tmp_houses[i].self_id,
 										   self.types[tmp_houses[i].index_nr])
 
-
 	def calc_score(self):
 		'''Calculates score of map.
 

@@ -3,7 +3,6 @@ from __import__ import *
 
 ah_map = Map(MAP_20)
 ah_map.place_water({'x' : 50, 'y' : 50}, 1)
-print(ah_map.water[0].corners)
 
 scatterplot(ah_map, 'test')
 
