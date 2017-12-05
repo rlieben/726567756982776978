@@ -102,17 +102,14 @@ class House(object):
 			# skips itself
 			if house.self_id != self.self_id:
 
+				diff_houses[0] = abs(house.location['y'] - self.location['y'])
+				diff_houses[1] = abs(house.location['x'] - self.location['x'])
+
 				# check if coordinate falls within house x - range
 				if house.corners['lb']['x'] > self.corners['lb']['x'] \
 				   and house.corners['lb']['x'] < self.corners['rb']['x']:
 
-					diff_houses[0] = abs(house.location['y'] - self.location['y'])
-
-					#
-					#
-					# hier doen we diff houses[0] vergelijken met de rand, maar dit moet volgens mij house.location['x'] zijn
-					#
-					#
+				   	# check if no overlap
 					if diff_houses[0] - x_diffwall - (house.width / 2) < 0:
 						return False
 
@@ -125,8 +122,7 @@ class House(object):
 					if house.corners['lo']['y'] > self.corners['lo']['y'] \
 						 and house.corners['lo']['y'] < self.corners['lb']['y']:
 
-						diff_houses[1] = abs(house.location['x'] - self.location['x'])
-
+						# check if no overlap
 						if diff_houses[1] - y_diffwall - (house.width / 1) < 0:
 							return False
 
@@ -139,8 +135,7 @@ class House(object):
 				elif house.corners['lo']['y'] > self.corners['lo']['y'] \
 					 and house.corners['lo']['y'] < self.corners['lb']['y']:
 
-					diff_houses[1] = abs(house.location['x'] - self.location['x'])
-
+					# check if no overlap
 					if diff_houses[1] - y_diffwall - (house.width / 1) < 0:
 						return False
 
@@ -153,8 +148,7 @@ class House(object):
 					if house.corners['lb']['x'] > self.corners['lb']['x'] \
 				   		and house.corners['rb']['x'] < self.corners['rb']['x']:
 
-						diff_houses[0] = abs(house.location['y'] - self.location['y'])
-
+				   		# check if no overlap
 						if diff_houses[0] - x_diffwall - (house.width / 2) < 0:
 							return False
 
@@ -162,9 +156,12 @@ class House(object):
 						tmpfreespace.append(diff_houses[0] \
 											- x_diffwall
 											- (house.width / 2))
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 3a249982010a92e061d7325f39877293af9e29b0
 
 				# else compute distance of corners of the house
 				else:
