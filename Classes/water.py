@@ -4,7 +4,7 @@
 # Group:        726567756982776978
 # Members:      Toon van Holthe, Raoul Lieben, Luc Stefelmanns
 
-class Water_Element(object):
+class Water(object):
 	'''Class for water object.'''
 
 	def __init__(self, loc, self_id, size):
@@ -18,9 +18,10 @@ class Water_Element(object):
 		self.self_id = self_id
 		self.width = size['width']
 		self.height = size['height']
+		self.corners = self.find_corners()
 
 
-	def find_corners_water(self):
+	def find_corners(self):
 		'''Calculates coordinates of corners. '''
 
 		lb = {'x' : (self.location['x'] - 0.5 * self.width),
