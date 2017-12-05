@@ -47,6 +47,23 @@ def scatterplot(ah_map, name):
 		data.append([ah_map.houses[i].corners['lb']['x'],
 					 ah_map.houses[i].corners['lb']['y']])
 
+	for i in range(len(ah_map.water)):
+		data.append([ah_map.water[i].corners['lb']['x'],
+					 ah_map.water[i].corners['lb']['y']])
+		data.append([ah_map.water[i].corners['lo']['x'],
+					 ah_map.water[i].corners['lo']['y']])
+		data.append([ah_map.water[i].corners['lo']['x'],
+					 ah_map.water[i].corners['lo']['y']])
+		data.append([ah_map.water[i].corners['ro']['x'],
+					 ah_map.water[i].corners['ro']['y']])
+		data.append([ah_map.water[i].corners['ro']['x'],
+					 ah_map.water[i].corners['ro']['y']])
+		data.append([ah_map.water[i].corners['rb']['x'],
+					 ah_map.water[i].corners['rb']['y']])
+		data.append([ah_map.water[i].corners['rb']['x'],
+					 ah_map.water[i].corners['rb']['y']])
+		data.append([ah_map.water[i].corners['lb']['x'],
+					 ah_map.water[i].corners['lb']['y']])
 
 	axes = plot.gca()
 	axes.set_xlim([0, ah_map.width])
