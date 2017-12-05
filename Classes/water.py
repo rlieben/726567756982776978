@@ -36,4 +36,4 @@ class Water(object):
 		ro = {'x' : (self.location['x'] + 0.5 * self.width),
 			  'y' : (self.location['y'] - 0.5 * self.height)}
 
-		return {'lb_w' : lb, 'rb_w': rb, 'lo_w': lo, 'ro_w': ro}
+		return {'lb' : lb, 'rb': rb, 'lo': lo, 'ro': ro}

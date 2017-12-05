@@ -5,6 +5,8 @@ ah_map = Map(MAP_20)
 ah_map.place_water({'x' : 50, 'y' : 50}, 1)
 print(ah_map.water[0].corners)
 
+scatterplot(ah_map, 'test')
+
 # allowed = ah_map.place_house({'x' : 50, 'y' : 50}, 1, ah_map.types[0])
 # print(allowed)
 # allowed = ah_map.place_house({'x' : 50, 'y' : 40}, 2, ah_map.types[0])
