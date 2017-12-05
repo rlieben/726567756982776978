@@ -147,7 +147,13 @@ class Map(object):
 		tmp_index = []
 		tmp_houses = []
 
+		print(nr_houses)
+
 		for i in range(nr_houses):
+
+			print("i")
+			print(i)
+
 			tmp_index.append(int(numpy.random.uniform(0, len(self.houses) - 1)))
 			tmp_houses.append(self.houses[tmp_index[i]])
 			del self.houses[tmp_index[i]]
