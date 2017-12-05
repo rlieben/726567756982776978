@@ -1,6 +1,13 @@
 
 import sys
-split = sys.path[0][0]
+find_forward = sys.path[0].find('/')
+find_backward = sys.path[0].find('\\')
+
+if find_forward > find_backward:
+	split = '/'
+else:
+	split = '\\'
+
 list_dir = sys.path[0].split(split)
 string = ''
 for i in range(len(list_dir) - 1):

@@ -70,7 +70,6 @@ def scatterplot(ah_map, name):
 
 	# plot.savefig(name)
 
-	print(sys.path)
 	split = sys.path[1][2]
 	list_dir = sys.path[0].split(split)
 	string = ''

@@ -2,5 +2,3 @@
 # cache van python
 __pychache__/
 *.pyc
-Algorithms/__import__.py
-Running_Scripts/__import__.py
