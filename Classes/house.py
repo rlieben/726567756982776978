@@ -37,9 +37,14 @@ class House(object):
 	def calc_value(self):
 		'''Calculates the value of this house.'''
 
-		self.value = self.start_value + (self.start_value
-					 * (self.freespace - self.min_free)
-					 * self.perc)
+
+		value = self.start_value + (self.start_value
+				* (self.freespace - self.min_free)
+				* self.perc)
+
+		self.value = value
+		return value
+
 
 
 	def find_corners(self):
@@ -157,7 +162,7 @@ class House(object):
 						tmpfreespace.append(diff_houses[0] \
 											- x_diffwall
 											- (house.width / 2))
-	
+
 
 
 
