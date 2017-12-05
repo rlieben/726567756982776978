@@ -80,7 +80,14 @@ class Map(object):
 			x = random.uniform(0, (self.water_prev * self.width * self.height))
 			y = (self.water_prev * self.width * self.height) / x
 
-			if ((x / y) > 0.25) & ((x / y) < 4):
+		for water in self.water:
+			if water.corners['lb']['x'] < 0 or \
+				water.corners['rb']['x'] > self.width or \
+				water.corners['lb']['y'] > self.height or \
+				water.corners['lo']['y'] < 0:
+				allowed = False
+
+		if ((x / y) > 0.25) & ((x / y) < 4):
 				allowed = True
 
 		size = {'width': x, 'height': y}
