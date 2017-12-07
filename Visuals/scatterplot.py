@@ -17,7 +17,7 @@ Creates visual for the map.
 '''
 
 
-def scatterplot(ah_map, name):
+def scatterplot(ah_map, name, directory):
 
 	data = []
 
@@ -84,15 +84,15 @@ def scatterplot(ah_map, name):
 		# plot each of these pairs seperately
 		plot.plot(plot_array_x, plot_array_y, 'g')
 
-	plot.savefig(name)
+	# plot.savefig(name)
 
-	# split = sys.path[1][2]
-	# list_dir = sys.path[0].split(split)
-	# string = ''
-	# for i in range(len(list_dir) - 1):
-	# 	string += list_dir[i]
-	# 	string += split
-    #
-	# plot.savefig(string +  'Results' + split + name)
+	split = sys.path[1][2]
+	list_dir = sys.path[0].split(split)
+	string = ''
+	for i in range(len(list_dir) - 1):
+		string += list_dir[i]
+		string += split
 
-	return plot.show()
+	plot.savefig(string + 'Results' + split + directory + split + name)
+
+	# return plot.show()

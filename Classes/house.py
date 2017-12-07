@@ -66,6 +66,7 @@ class House(object):
 		return {'lb' : lb, 'rb': rb, 'lo': lo, 'ro': ro}
 
 
+
 	def calc_freespace(self, in_map):
 		'''Calculates freespace of the house.
 

@@ -20,3 +20,6 @@ grid drawing with zvals
 
 pseudo plant prop:
 - https://www.hindawi.com/journals/mpe/2014/627416/alg2/
+
+particle swarm:
+- https://en.wikipedia.org/wiki/Particle_swarm_optimization#Algorithm

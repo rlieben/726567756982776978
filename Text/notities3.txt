@@ -11,6 +11,8 @@ prioritisers toevoegen (verschillende soorten)
 als het running script hoger zit, hoeven de andere ook niet te importeren
 
 
+DS_store verwijderen en in ignore
+
 !!!!!!!!!!!!!!!!!!!!!!!!! ANNEALLING !!!!!!!!!!!!!!!!!!!!!!!!!
 annealing aan en uit kunnen zetten
 

@@ -16,6 +16,8 @@ for i in range(len(list_dir) - 1):
 
 sys.path.insert(0, string)
 
+print(sys.path)
+
 from Classes.house import *
 from Classes.map import *
 from Classes.water import *
@@ -25,7 +27,7 @@ from Algorithms.best_of_random import *
 from Algorithms.hillclimber import *
 from Algorithms.tactical_hillclimber import *
 from Algorithms.depthfirst import *
-from Visuals.scatterplot import *
+from Algorithms.scatterplot import *
 
 import numpy
 import random
