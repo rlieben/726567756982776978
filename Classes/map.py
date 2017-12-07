@@ -63,6 +63,12 @@ class Map(object):
 			if house.freespace < house.min_free:
 				del self.houses[len(self.houses) - 1]
 				return False
+			if house.corners['lb']['y'] < self.water.corners['lo']['y'] & \
+			   house.corners['lo']['x'] > self.water.corners['ro']['x'] & \
+			   house.corners['lo']['y'] > self.water.corners['lb']['y'] & \
+			   house.corners['ro']['x'] < self.water.corners['lo']['x']:
+				del self.houses[len(self.houses) - 1]
+				return False
 
 		return True
 
@@ -74,28 +80,35 @@ class Map(object):
 		water_id -- id corresponding to the water body being placed
 		'''
 
+		nr_water = 1 	# random.randint(0,4)
 		allowed = False
+		tmp_list = []
 
-		while allowed == False:
-			x = random.uniform(0, (self.water_prev * self.width * self.height))
-			y = (self.water_prev * self.width * self.height) / x
+		for i in range(nr_water):
 
-		for water in self.water:
-			if water.corners['lb']['x'] < 0 or \
-				water.corners['rb']['x'] > self.width or \
-				water.corners['lb']['y'] > self.height or \
-				water.corners['lo']['y'] < 0:
-				allowed = False
+			while allowed == False:
+				x = (random.uniform(0, (self.water_prev * self.width * self.height))) / nr_water
+				y = ((self.water_prev * self.width * self.height) / x) / nr_water
 
-		if ((x / y) > 0.25) & ((x / y) < 4):
-				allowed = True
+				# check if ratio is correct
 
-		size = {'width': x, 'height': y}
+				size = {'width': x, 'height': y}
 
-		new_water = Water(loc, water_id, size)
+				self_id = i
 
-		self.water.append(new_water)
+				new_water = Water(loc, self_id, size)
 
+				tmp_list.append(new_water)
+
+                # check if corners locations exceed the map
+				if ((x / y) > 0.25) & ((x / y) < 4):
+					for water in tmp_list:
+						if water.corners['lo']['x'] > 0 and water.corners['lo']['y'] > 0 \
+						and water.corners['lb']['x'] > 0 and water.corners['lb']['y'] < self.height \
+						and water.corners['ro']['x'] < self.width and water.corners['ro']['y'] > 0 \
+						and water.corners['rb']['x'] < self.width and water.corners['rb']['y'] < self.height:
+							self.water = tmp_list[-1]
+							allowed = True
 
 	def calc_freespace_on_map(self, new_house):
 		'''Calculating location with the most freespace on map.
