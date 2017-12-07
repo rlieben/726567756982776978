@@ -63,11 +63,11 @@ class Map(object):
 			if house.freespace < house.min_free:
 				del self.houses[len(self.houses) - 1]
 				return False
-			if house.corners['lb']['y'] < self.water.corners['lo']['y'] & \
-			   house.corners['lo']['x'] > self.water.corners['ro']['x'] & \
-			   house.corners['lo']['y'] > self.water.corners['lb']['y'] & \
-			   house.corners['ro']['x'] < self.water.corners['lo']['x']:
-				del self.houses[len(self.houses) - 1]
+			# if house.corners['lb']['y'] < self.water.corners['lo']['y'] & \
+			#    house.corners['lo']['x'] > self.water.corners['ro']['x'] & \
+			#    house.corners['lo']['y'] > self.water.corners['lb']['y'] & \
+			#    house.corners['ro']['x'] < self.water.corners['lo']['x']:
+			# 	del self.houses[len(self.houses) - 1]
 				return False
 
 		return True
@@ -109,6 +109,22 @@ class Map(object):
 						and water.corners['rb']['x'] < self.width and water.corners['rb']['y'] < self.height:
 							self.water = tmp_list[-1]
 							allowed = True
+
+
+	def move_house(self, index, new_loc):
+
+		old_loc = self.houses[index].location
+		self.houses[index].location = new_loc
+		# print(new_loc)
+
+		for house in self.houses:
+			if house.calc_freespace(self) == False:
+				self.houses[index].location = old_loc
+				return False
+			else:
+				# print(self.houses[index].location)
+				return True
+
 
 	def calc_freespace_on_map(self, new_house):
 		'''Calculating location with the most freespace on map.

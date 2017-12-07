@@ -1,7 +1,7 @@
 
 from __import__ import *
 
-particle_map = particle_swarm_map(MAP_20, 10)
+particle_map = particle_swarm_map(MAP_20, 5)
 print('particle:', particle_map['map'].score)
 
 scatterplot(particle_map['map'], 'particle swarm 1', '')

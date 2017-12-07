@@ -99,27 +99,33 @@ def particle_swarm_map(map_charac, tries):
 
 	for i in range(tries):
 		for j in range(len(out_map.houses) - 1):
-			# print(len(out_map.houses))
-			# print(j)
+
+			print('old location: ', i, out_map.houses[j].location)
+
 			out_map.houses[j].calc_freespace(out_map)
+
 			freespace = out_map.houses[j].freespace
-			out_map.houses[j].direction = {'x' : random.uniform(- freespace, freespace),
-						 	   			   'y' : random.uniform(- freespace, freespace)}
+
+			out_map.houses[j].direction = {'x' : random.uniform(- freespace,
+																freespace),
+						 	   			   'y' : random.uniform(- freespace,
+										   						freespace)}
 
 			loc = {'x' : out_map.houses[j].location['x'] +
 						 out_map.houses[j].direction['x'],
 				   'y' : out_map.houses[j].location['y'] +
 				   		 out_map.houses[j].direction['y']}
 
-			copy_house = copy.copy(out_map.houses[j])
-			del out_map.houses[j]
-
-			allowed = out_map.place_house(loc, out_map.houses[j].self_id,
-									  out_map.types[out_map.houses[j].index_nr])
-
-			if allowed == False:
-				out_map.houses.append(copy_house)
-			# print('scatter')
+			allowed = out_map.move_house(j, loc)
+			print('new location: ', i, out_map.houses[j].location)
+			# copy_house = copy.copy(out_map.houses[j])
+			# del out_map.houses[j]
+            #
+			# allowed = out_map.place_house(loc, out_map.houses[j].self_id,
+			# 						  out_map.types[out_map.houses[j].index_nr])
+            #
+			# if allowed == False:
+			# 	out_map.houses.append(copy_house)
 			scatterplot(out_map, str(100 * i + j), 'TESTparticle')
 
 		for house in out_map.houses:
