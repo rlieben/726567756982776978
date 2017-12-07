@@ -77,6 +77,8 @@ def scatterplot(ah_map, name):
 
 	plot.savefig(name)
 
+	plot.clf()
+
 	# split = sys.path[1][2]
 	# list_dir = sys.path[0].split(split)
 	# string = ''
@@ -100,7 +102,7 @@ def tactical_hillclimber(map_charac, tries_random, tries_hill, nr_houses):
 	tries_hill -- number of hillclimbing
 	nr_houses -- nr of houses that are moved with each hillclimb
 	'''
-	best_map = best_of_random(MAP_20, tries_random)
+	best_map = best_of_random(map_charac, tries_random)
 	maximum = best_map.calc_score()
 
 	for i in range(tries_hill):
@@ -108,7 +110,7 @@ def tactical_hillclimber(map_charac, tries_random, tries_hill, nr_houses):
 		try_map = copy.copy(best_map)
 		scatterplot(try_map, "tacticaltestplot" + str(i))
 		score_trymap = try_map.calc_score()
-		print("current map", score_trymap)
+		# print("current map", score_trymap)
 		try_map.tactical_swap_houses(nr_houses)
 		score = try_map.calc_score()
 		print("curr map after swap", score)
