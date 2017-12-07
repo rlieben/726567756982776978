@@ -57,13 +57,13 @@ lijst meegeven met welke heuristieken en of annealing toegepast hoeft te worden
 annealing mag apart algoritme
 
 
-I:	!!!!!!!!!!visualisatie!!!!!!!!!!!!! + README
+I:	!!!!!!!!!!visualisatie!!!!!!!!!!!!! + README + 1
 	docsstrings verbeteren (soort parameter)
-D:	water inzetten
+D:	water inzetten + 1
 	huizen (gefixt)
 	alleen one_family (gefixt)
 	hillclimber en tactical samen
-A:	genoeg algorithmen, maar meer finetuning
+A:	genoeg algorithmen, maar meer finetuning + 1
 E:	mapje vullen met per experiment weer mapje (met eigen README)
 	daarin resultaat, script en uitleg wat er is gebeurd (in README)
 

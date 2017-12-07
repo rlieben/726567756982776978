@@ -34,13 +34,31 @@ class Map(object):
 		self.width = map_charac['width']
 		self.height = map_charac['height']
 		self.water_prev = map_charac['water_prev']
+		# self.construction = self.create_construction(map_charac)
 		self.nr_houses = map_charac['nr_houses']
 		self.distr_houses = map_charac['distr_houses']
 		self.types = map_charac['types_houses']
 
-		self.score = 0
+		self.score = None
 		self.houses = []
 		self.water = []
+
+    #
+	# def create_construction(self, map_charac):
+    #
+	# 	house_id = 0
+	# 	loc = {'x' : - 100, 'y' : - 100}
+	# 	construction = []
+    #
+	# 	for i in range(len(map_charac['distr_houses'])):
+	# 		for j in range(int(map_charac['distr_houses'][i]
+	# 					   	   * map_charac['nr_houses'])):
+    #
+	# 			construction.append(House(house_id,
+	# 									   map_charac['types_houses'][i], loc))
+	# 			house_id += 1
+    #
+	# 	return construction
 
 
 	def place_house(self, loc, house_id, type_charac):
@@ -97,6 +115,22 @@ class Map(object):
 		self.water.append(new_water)
 
 
+	def move_house(self, index, new_loc):
+
+ 		old_loc = self.houses[index].location
+ 		self.houses[index].location = new_loc
+ 		# print(new_loc)
+
+ 		for house in self.houses:
+ 			if house.calc_freespace(self) == False:
+ 				self.houses[index].location = old_loc
+ 				return False
+ 			else:
+ 				# print(self.houses[index].location)
+ 				return True
+
+
+
 	def calc_freespace_on_map(self, new_house):
 		'''Calculating location with the most freespace on map.
 
@@ -116,12 +150,12 @@ class Map(object):
 		# iterate over map width
 		for i in range(5, self.width, 5):
 
-		
+
 
 			# iterate over map height
 			for j in range(5, self.height, 5):
 
-			
+
 
 				# # set x and y location of new house
 				# new_house.location['x'] = i
@@ -134,7 +168,7 @@ class Map(object):
 
 				# store the possible freespace of new location
 				if (new_house.calc_freespace(self) != False):
-					
+
 
 					tmp = new_house.freespace
 
@@ -173,7 +207,7 @@ class Map(object):
 		for i in range(nr_houses):
 			tmp_index.append(int(numpy.random.uniform(0, len(self.houses) - 1)))
 			tmp_houses.append(self.houses[tmp_index[i]])
-			del self.houses[tmp_index[i]
+			del self.houses[tmp_index[i]]
 
 		# add same amount of houses which were deleted
 		for i in range(nr_houses):
@@ -217,13 +251,13 @@ class Map(object):
 			j = len(coordinates) - 1
 
 			while (allowed == False):
-				
+
 				allowed = self.place_house(coordinates[j], tmp_house.self_id,
 											   self.types[tmp_house.index_nr])
 
 				j += -1
 
-				
+
 
 			self.place_house(coordinates[j], tmp_house.self_id,
 									   self.types[tmp_house.index_nr])
@@ -232,12 +266,12 @@ class Map(object):
 					# print(" ")
 					# print("locations: ", coordinates)
 
-					
+
 
 					# print(" j ")
 					# print(coordinates[-j])
 
-					
+
 					# print("allowed na place:", allowed)
 					# print("counter of allowed statement :", ctr)
 			ctr += 1
