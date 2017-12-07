@@ -63,12 +63,6 @@ class Map(object):
 			if house.freespace < house.min_free:
 				del self.houses[len(self.houses) - 1]
 				return False
-			# if house.corners['lb']['y'] < self.water.corners['lo']['y'] & \
-			#    house.corners['lo']['x'] > self.water.corners['ro']['x'] & \
-			#    house.corners['lo']['y'] > self.water.corners['lb']['y'] & \
-			#    house.corners['ro']['x'] < self.water.corners['lo']['x']:
-			# 	del self.houses[len(self.houses) - 1]
-				return False
 
 		return True
 
@@ -80,50 +74,27 @@ class Map(object):
 		water_id -- id corresponding to the water body being placed
 		'''
 
-		nr_water = 1 	# random.randint(0,4)
 		allowed = False
-		tmp_list = []
 
-		for i in range(nr_water):
+		while allowed == False:
+			x = random.uniform(0, (self.water_prev * self.width * self.height))
+			y = (self.water_prev * self.width * self.height) / x
 
-			while allowed == False:
-				x = (random.uniform(0, (self.water_prev * self.width * self.height))) / nr_water
-				y = ((self.water_prev * self.width * self.height) / x) / nr_water
+		for water in self.water:
+			if water.corners['lb']['x'] < 0 or \
+				water.corners['rb']['x'] > self.width or \
+				water.corners['lb']['y'] > self.height or \
+				water.corners['lo']['y'] < 0:
+				allowed = False
 
-				# check if ratio is correct
+		if ((x / y) > 0.25) & ((x / y) < 4):
+				allowed = True
 
-				size = {'width': x, 'height': y}
+		size = {'width': x, 'height': y}
 
-				self_id = i
+		new_water = Water(loc, water_id, size)
 
-				new_water = Water(loc, self_id, size)
-
-				tmp_list.append(new_water)
-
-                # check if corners locations exceed the map
-				if ((x / y) > 0.25) & ((x / y) < 4):
-					for water in tmp_list:
-						if water.corners['lo']['x'] > 0 and water.corners['lo']['y'] > 0 \
-						and water.corners['lb']['x'] > 0 and water.corners['lb']['y'] < self.height \
-						and water.corners['ro']['x'] < self.width and water.corners['ro']['y'] > 0 \
-						and water.corners['rb']['x'] < self.width and water.corners['rb']['y'] < self.height:
-							self.water = tmp_list[-1]
-							allowed = True
-
-
-	def move_house(self, index, new_loc):
-
-		old_loc = self.houses[index].location
-		self.houses[index].location = new_loc
-		# print(new_loc)
-
-		for house in self.houses:
-			if house.calc_freespace(self) == False:
-				self.houses[index].location = old_loc
-				return False
-			else:
-				# print(self.houses[index].location)
-				return True
+		self.water.append(new_water)
 
 
 	def calc_freespace_on_map(self, new_house):
@@ -136,34 +107,57 @@ class Map(object):
 		# initiate possible freespace variable
 		poss_freespace = 0
 
+		coordinates = []
+
 		# initiate x and y variable for optimization
-		best_x = new_house.location['x']
-		best_y = new_house.location['y']
+		# best_x = new_house.location['x']
+		# best_y = new_house.location['y']
 
 		# iterate over map width
-		for i in range(0, self.width, 5):
+		for i in range(5, self.width, 5):
+
+		
 
 			# iterate over map height
-			for j in range(0, self.height, 5):
+			for j in range(5, self.height, 5):
 
-				# set x and y location of new house
-				new_house.location['x'] = i
-				new_house.location['y'] = j
+			
+
+				# # set x and y location of new house
+				# new_house.location['x'] = i
+				# new_house.location['y'] = j
+
+				# print("x coordinate: ", i)
+				# print("y coordinate:", j)
+
+				new_house.calc_freespace(self)
 
 				# store the possible freespace of new location
-				new_house.calc_freespace(self)
-				tmp = new_house.freespace
+				if (new_house.calc_freespace(self) != False):
+					
 
-				# if new freespace is greater then update
-				if (tmp > poss_freespace):
+					tmp = new_house.freespace
 
-					# update new poss freespace
-					poss_freespace = tmp
 
-					# update location of poss freespace
-					best_x = i
-					best_y = j
-		return {'x' : best_x, 'y' : best_y}
+					# print("tmp over whole map: ", tmp, "coordinates", i, j)
+
+
+					# if new freespace is greater then update
+					if (tmp >= poss_freespace):
+
+						# update new poss freespace
+						poss_freespace = tmp
+
+						# print("tmp: ", tmp)
+
+						# update location of poss freespace
+						coordinates.append({'x' : i, 'y' : j})
+
+						# best_x = i
+						# best_y = j
+
+
+		return coordinates
 
 
 	def random_swap_houses(self, nr_houses):
@@ -179,7 +173,7 @@ class Map(object):
 		for i in range(nr_houses):
 			tmp_index.append(int(numpy.random.uniform(0, len(self.houses) - 1)))
 			tmp_houses.append(self.houses[tmp_index[i]])
-			del self.houses[tmp_index[i]]
+			del self.houses[tmp_index[i]
 
 		# add same amount of houses which were deleted
 		for i in range(nr_houses):
@@ -203,24 +197,51 @@ class Map(object):
 		nr_houses -- nr of houses swapped
 		'''
 
-		tmp_index = []
-		tmp_houses = []
-
-		for i in range(nr_houses):
-			tmp_index.append(int(numpy.random.uniform(0, len(self.houses) - 1)))
-			tmp_houses.append(self.houses[tmp_index[i]])
-			del self.houses[tmp_index[i]]
-
 		for i in range(nr_houses):
 
+			tmp_house = self.houses[i]
+			del self.houses[i]
+
+			# print("nr of houses i", i, nr_houses)
+
+
+			print("index tactical swap:", i)
 			allowed = False
 
-			while allowed == False:
+			ctr = 0
 
-				loc = self.calc_freespace_on_map(tmp_houses[i])
+			coordinates = self.calc_freespace_on_map(tmp_house)
 
-				allowed = self.place_house(loc, tmp_houses[i].self_id,
-										   self.types[tmp_houses[i].index_nr])
+			# print (len(coordinates))
+			# print coordinates
+			j = len(coordinates) - 1
+
+			while (allowed == False):
+				
+				allowed = self.place_house(coordinates[j], tmp_house.self_id,
+											   self.types[tmp_house.index_nr])
+
+				j += -1
+
+				
+
+			self.place_house(coordinates[j], tmp_house.self_id,
+									   self.types[tmp_house.index_nr])
+
+			print("allowed status voor place:", allowed)
+					# print(" ")
+					# print("locations: ", coordinates)
+
+					
+
+					# print(" j ")
+					# print(coordinates[-j])
+
+					
+					# print("allowed na place:", allowed)
+					# print("counter of allowed statement :", ctr)
+			ctr += 1
+
 
 	def calc_score(self):
 		'''Calculates score of map.
