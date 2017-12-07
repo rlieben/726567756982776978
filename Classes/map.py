@@ -143,10 +143,6 @@ class Map(object):
 
 		coordinates = []
 
-		# initiate x and y variable for optimization
-		# best_x = new_house.location['x']
-		# best_y = new_house.location['y']
-
 		# iterate over map width
 		for i in range(5, self.width, 5):
 
@@ -155,14 +151,8 @@ class Map(object):
 			# iterate over map height
 			for j in range(5, self.height, 5):
 
-
-
-				# # set x and y location of new house
-				# new_house.location['x'] = i
-				# new_house.location['y'] = j
-
-				# print("x coordinate: ", i)
-				# print("y coordinate:", j)
+				self.place_house({'x' : i, 'y' : j}, new_house.self_id, self.types[new_house.index_nr])
+				empty = new_house.find_corners
 
 				new_house.calc_freespace(self)
 
@@ -172,24 +162,14 @@ class Map(object):
 
 					tmp = new_house.freespace
 
-
-					# print("tmp over whole map: ", tmp, "coordinates", i, j)
-
-
 					# if new freespace is greater then update
 					if (tmp >= poss_freespace):
 
 						# update new poss freespace
 						poss_freespace = tmp
 
-						# print("tmp: ", tmp)
-
 						# update location of poss freespace
 						coordinates.append({'x' : i, 'y' : j})
-
-						# best_x = i
-						# best_y = j
-
 
 		return coordinates
 
@@ -236,18 +216,12 @@ class Map(object):
 			tmp_house = self.houses[i]
 			del self.houses[i]
 
-			# print("nr of houses i", i, nr_houses)
-
-
-			print("index tactical swap:", i)
 			allowed = False
 
 			ctr = 0
 
 			coordinates = self.calc_freespace_on_map(tmp_house)
 
-			# print (len(coordinates))
-			# print coordinates
 			j = len(coordinates) - 1
 
 			while (allowed == False):
@@ -256,25 +230,6 @@ class Map(object):
 											   self.types[tmp_house.index_nr])
 
 				j += -1
-
-
-
-			self.place_house(coordinates[j], tmp_house.self_id,
-									   self.types[tmp_house.index_nr])
-
-			print("allowed status voor place:", allowed)
-					# print(" ")
-					# print("locations: ", coordinates)
-
-
-
-					# print(" j ")
-					# print(coordinates[-j])
-
-
-					# print("allowed na place:", allowed)
-					# print("counter of allowed statement :", ctr)
-			ctr += 1
 
 
 	def calc_score(self):

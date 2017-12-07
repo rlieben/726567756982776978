@@ -63,6 +63,8 @@ class House(object):
 		ro = {'x' : (self.location['x'] + 0.5 * self.width),
 			  'y' : (self.location['y'] - 0.5 * self.height)}
 
+		self.corners = {'lb' : lb, 'rb': rb, 'lo': lo, 'ro': ro}
+
 		return {'lb' : lb, 'rb': rb, 'lo': lo, 'ro': ro}
 
 
