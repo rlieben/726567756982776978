@@ -1,0 +1,74 @@
+NOTITIES 05 DEC 2017
+
+aanvraag kan tot donderdag
+
+DEPTH FIRST
+de stack van de depth first op bepaalde manier bijhouden
+(online opzoeken)
+maximum aan het aantal stappen zetten
+prioritisers toevoegen (verschillende soorten)
+
+als het running script hoger zit, hoeven de andere ook niet te importeren
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!! ANNEALLING !!!!!!!!!!!!!!!!!!!!!!!!!
+annealing aan en uit kunnen zetten
+
+
+(direct te runnen)
+def depthfirst:
+	saifjqwefijjsaf
+
+if __name__ == "main":
+	import __import__
+	depthfirst()
+
+
+fireworks klinkt meer als heuristiek op greedy
+
+fireworks echt:
+kijk naar map
+als score laag is
+	zoek ver weg van oplossing (veel huizen weghalen)
+als score hoog is
+	maar weinig huizen weghalen
+onthoud misschien meer dan alleen de beste van de gevonden punten
+kan annealing toevoegen
+
+particle swarm:
+combineren met hillclimber
+hillclimber en dan particle swarm met iedere stap
+annealing toevoegen
+visualiseren
+misschien goed voor het water
+
+visuals:
+met rects ipv verbonden lijntjes
+
+README:
+pip install hoeft niet
+!!!!!versie Python!!!!!
+als je random numpy copy en matplotlib gebruikt
+gebruiksaanwijzing
+
+lijst meegeven met welke heuristieken en of annealing toegepast hoeft te worden
+annealing mag apart algoritme
+
+
+I:	!!!!!!!!!!visualisatie!!!!!!!!!!!!! + README
+	docsstrings verbeteren (soort parameter)
+D:	water inzetten
+	huizen (gefixt)
+	alleen one_family (gefixt)
+	hillclimber en tactical samen
+A:	genoeg algorithmen, maar meer finetuning
+E:	mapje vullen met per experiment weer mapje (met eigen README)
+	daarin resultaat, script en uitleg wat er is gebeurd (in README)
+
+code profilen:
+	cProfile: houdt bij hoe lang ieder deel van je script duurt
+	niet perse iets om in te leveren
+	scripts nagaan of het niet efficienter kan
+
+laatste 1/3 is eigenlijk weer IDEA_punten (niet letterlijk gezegd)
++ style + design
