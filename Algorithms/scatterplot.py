@@ -1,11 +1,20 @@
+# Study:        Minor Programming, University of Amsterdam
+# Course:       Heuristics
+# Assignment:   Amstelhaege
+# Group:        726567756982776978
+# Members:      Toon van Holte, Raoul Lieben, Luc Stefelmanns
 
-from __import__ import *
 
 import matplotlib as mpl
 import matplotlib.pyplot as plot
 import numpy as np
 import matplotlib.patches as patches
 import sys
+
+
+'''
+Creates visual for the map.
+'''
 
 
 def scatterplot(ah_map, name, directory):
@@ -86,54 +95,4 @@ def scatterplot(ah_map, name, directory):
 
 	plot.savefig(string + 'Results' + split + directory + split + name)
 
-	plot.clf()
-
 	# return plot.show()
-
-
-def particle_swarm_map(map_charac, tries):
-
-	out_map = random_generator(map_charac)
-
-	data = []
-	k = 0
-	for i in range(tries):
-
-		for j in range(len(out_map.houses) - 1):
-
-			# print('old location: ', i, out_map.houses[j].location)
-
-			out_map.houses[j].calc_freespace(out_map)
-
-			freespace = out_map.houses[j].freespace
-
-			copy_house = copy.copy(out_map.houses[j])
-
-			out_map.houses[j].direction = {'x' : random.uniform(- freespace,
-																freespace),
-						 	   			   'y' : random.uniform(- freespace,
-										   						freespace)}
-
-			loc = {'x' : out_map.houses[j].location['x'] +
-						 out_map.houses[j].direction['x'],
-				   'y' : out_map.houses[j].location['y'] +
-				   		 out_map.houses[j].direction['y']}
-
-			del out_map.houses[j]
-
-			allowed = out_map.place_house(loc, out_map.houses[j].self_id,
-									  out_map.types[out_map.houses[j].index_nr])
-
-			if allowed == False:
-				out_map.houses.append(copy_house)
-			scatterplot(out_map, str(k), 'TESTparticle')
-			k += 1
-
-		for house in out_map.houses:
-			house.calc_value()
-
-		data.append(out_map.calc_score())
-
-		# scatterplot(out_map, str(i), 'TESTparticle')
-
-	return {'map' : out_map, 'data' : data}

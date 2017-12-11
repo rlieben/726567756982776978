@@ -35,13 +35,31 @@ class Map(object):
 		self.width = map_charac['width']
 		self.height = map_charac['height']
 		self.water_prev = map_charac['water_prev']
+		# self.construction = self.create_construction(map_charac)
 		self.nr_houses = map_charac['nr_houses']
 		self.distr_houses = map_charac['distr_houses']
 		self.types = map_charac['types_houses']
 
-		self.score = 0
+		self.score = None
 		self.houses = []
 		self.water = []
+
+    #
+	# def create_construction(self, map_charac):
+    #
+	# 	house_id = 0
+	# 	loc = {'x' : - 100, 'y' : - 100}
+	# 	construction = []
+    #
+	# 	for i in range(len(map_charac['distr_houses'])):
+	# 		for j in range(int(map_charac['distr_houses'][i]
+	# 					   	   * map_charac['nr_houses'])):
+    #
+	# 			construction.append(House(house_id,
+	# 									   map_charac['types_houses'][i], loc))
+	# 			house_id += 1
+    #
+	# 	return construction
 
 
 	def place_house(self, loc, house_id, type_charac):
@@ -65,7 +83,6 @@ class Map(object):
 				del self.houses[len(self.houses) - 1]
 				return False
 
-
 		return True
 
 	def place_water(self, water_id):
@@ -76,9 +93,9 @@ class Map(object):
 		water_id -- id corresponding to the water body being placed
 		'''
 
-		nr_water = 1 	# random.randint(0,4)
 		allowed = False
 		tmp_list = []
+		nr_water = 1
 
         # place number of water bodies
 		for i in range(nr_water):
@@ -87,7 +104,6 @@ class Map(object):
 			while allowed == False:
 				x = random.uniform((numpy.sqrt(self.water_prev * self.width * self.height / 4)), \
 					numpy.sqrt(self.water_prev * self.width * self.height)) / nr_water
-
 				y = ((self.water_prev * self.width * self.height) / x) / nr_water
 
 				size = {'width': x, 'height': y}
@@ -98,15 +114,14 @@ class Map(object):
 
 				tmp_list.append(new_water)
 
-                # check if corners locations exceed the map and check if ratio is correct
+		        # check if corners locations exceed the map and check if ratio is correct
 				if ((x / y) > 0.25) & ((x / y) < 4):
 					for water in tmp_list:
-						print(water.location)
 						if water.corners['lo']['x'] > 0 and water.corners['lo']['y'] > 0 \
 						and water.corners['lb']['x'] > 0 and water.corners['lb']['y'] < self.height \
 						and water.corners['ro']['x'] < self.width and water.corners['ro']['y'] > 0 \
 						and water.corners['rb']['x'] < self.width and water.corners['rb']['y'] < self.height:
-                            # only store last water body
+		                    # only store last water body
 							self.water = tmp_list[-1]
 							allowed = True
 
@@ -121,34 +136,37 @@ class Map(object):
 		# initiate possible freespace variable
 		poss_freespace = 0
 
-		# initiate x and y variable for optimization
-		best_x = new_house.location['x']
-		best_y = new_house.location['y']
+		coordinates = []
 
 		# iterate over map width
-		for i in range(0, self.width, 5):
+		for i in range(5, self.width, 5):
+
+
 
 			# iterate over map height
-			for j in range(0, self.height, 5):
+			for j in range(5, self.height, 5):
 
-				# set x and y location of new house
-				new_house.location['x'] = i
-				new_house.location['y'] = j
+				self.place_house({'x' : i, 'y' : j}, new_house.self_id, self.types[new_house.index_nr])
+				empty = new_house.find_corners
+
+				new_house.calc_freespace(self)
 
 				# store the possible freespace of new location
-				new_house.calc_freespace(self)
-				tmp = new_house.freespace
+				if (new_house.calc_freespace(self) != False):
 
-				# if new freespace is greater then update
-				if (tmp > poss_freespace):
 
-					# update new poss freespace
-					poss_freespace = tmp
+					tmp = new_house.freespace
 
-					# update location of poss freespace
-					best_x = i
-					best_y = j
-		return {'x' : best_x, 'y' : best_y}
+					# if new freespace is greater then update
+					if (tmp >= poss_freespace):
+
+						# update new poss freespace
+						poss_freespace = tmp
+
+						# update location of poss freespace
+						coordinates.append({'x' : i, 'y' : j})
+
+		return coordinates
 
 
 	def random_swap_houses(self, nr_houses):
@@ -188,24 +206,26 @@ class Map(object):
 		nr_houses -- nr of houses swapped
 		'''
 
-		tmp_index = []
-		tmp_houses = []
-
 		for i in range(nr_houses):
-			tmp_index.append(int(numpy.random.uniform(0, len(self.houses) - 1)))
-			tmp_houses.append(self.houses[tmp_index[i]])
-			del self.houses[tmp_index[i]]
 
-		for i in range(nr_houses):
+			tmp_house = self.houses[i]
+			del self.houses[i]
 
 			allowed = False
 
-			while allowed == False:
+			ctr = 0
 
-				loc = self.calc_freespace_on_map(tmp_houses[i])
+			coordinates = self.calc_freespace_on_map(tmp_house)
 
-				allowed = self.place_house(loc, tmp_houses[i].self_id,
-										   self.types[tmp_houses[i].index_nr])
+			j = len(coordinates) - 1
+
+			while (allowed == False):
+
+				allowed = self.place_house(coordinates[j], tmp_house.self_id,
+											   self.types[tmp_house.index_nr])
+
+				j += -1
+
 
 	def calc_score(self):
 		'''Calculates score of map.
