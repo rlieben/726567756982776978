@@ -97,6 +97,13 @@ class House(object):
 		tmpfreespace.append(abs(in_map.width - x_newhouse - x_diffwall))
 		tmpfreespace.append(abs(in_map.height - y_newhouse - y_diffwall))
 
+        # check if house is not located in water
+		# if self.corners['lb']['y'] > in_map.water.corners['lo']['y'] or \
+		#    self.corners['lo']['x'] < in_map.water.corners['ro']['x'] or \
+		#    self.corners['lo']['y'] < in_map.water.corners['lb']['y'] or \
+		#    self.corners['ro']['x'] > in_map.water.corners['lo']['x']:
+		#    	return False
+
 		# iterate over all houses in map
 		for house in in_map.houses:
 

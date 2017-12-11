@@ -7,6 +7,11 @@ def random_generator(map_charac):
 
 	out_map = Map(map_charac)
 	i = 2
+
+	out_map.place_water(i)
+
+	print(out_map.water)
+
 	for k in range(len(out_map.distr_houses)):
 
 		nr_of_type = out_map.nr_houses * out_map.distr_houses[i]

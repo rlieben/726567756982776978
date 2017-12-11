@@ -15,6 +15,7 @@ for i in range(len(list_dir) - 1):
 sys.path.insert(0, string)
 
 import random
+import numpy
 from Classes.house import *
 from Classes.water import *
 from Characteristics.Amstelhaege import *
@@ -63,16 +64,11 @@ class Map(object):
 			if house.freespace < house.min_free:
 				del self.houses[len(self.houses) - 1]
 				return False
-			if house.corners['lb']['y'] < self.water.corners['lo']['y'] & \
-			   house.corners['lo']['x'] > self.water.corners['ro']['x'] & \
-			   house.corners['lo']['y'] > self.water.corners['lb']['y'] & \
-			   house.corners['ro']['x'] < self.water.corners['lo']['x']:
-				del self.houses[len(self.houses) - 1]
-				return False
+
 
 		return True
 
-	def place_water(self, loc, water_id):
+	def place_water(self, water_id):
 		'''Places water on the map
 
 		Input arguments:
@@ -84,31 +80,36 @@ class Map(object):
 		allowed = False
 		tmp_list = []
 
+        # place number of water bodies
 		for i in range(nr_water):
 
+            # create random x and y for water body
 			while allowed == False:
-				x = (random.uniform(0, (self.water_prev * self.width * self.height))) / nr_water
-				y = ((self.water_prev * self.width * self.height) / x) / nr_water
+				x = random.uniform((numpy.sqrt(self.water_prev * self.width * self.height / 4)), \
+					numpy.sqrt(self.water_prev * self.width * self.height)) / nr_water
 
-				# check if ratio is correct
+				y = ((self.water_prev * self.width * self.height) / x) / nr_water
 
 				size = {'width': x, 'height': y}
 
 				self_id = i
 
-				new_water = Water(loc, self_id, size)
+				new_water = Water(self_id, size)
 
 				tmp_list.append(new_water)
 
-                # check if corners locations exceed the map
+                # check if corners locations exceed the map and check if ratio is correct
 				if ((x / y) > 0.25) & ((x / y) < 4):
 					for water in tmp_list:
+						print(water.location)
 						if water.corners['lo']['x'] > 0 and water.corners['lo']['y'] > 0 \
 						and water.corners['lb']['x'] > 0 and water.corners['lb']['y'] < self.height \
 						and water.corners['ro']['x'] < self.width and water.corners['ro']['y'] > 0 \
 						and water.corners['rb']['x'] < self.width and water.corners['rb']['y'] < self.height:
+                            # only store last water body
 							self.water = tmp_list[-1]
 							allowed = True
+
 
 	def calc_freespace_on_map(self, new_house):
 		'''Calculating location with the most freespace on map.
