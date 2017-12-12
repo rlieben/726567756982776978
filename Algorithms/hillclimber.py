@@ -100,6 +100,8 @@ def hillclimber(map_charac, tries_random, tries_hill, nr_houses, hill_type):
 
 	data = [maximum]
 
+	legelist = []
+
 	for i in range(tries_hill):
 		try_map = copy.copy(best_map)
 
@@ -108,7 +110,8 @@ def hillclimber(map_charac, tries_random, tries_hill, nr_houses, hill_type):
 			try_map.random_swap_houses(nr_houses)
 		elif (hill_type == 1):
 
-			try_map.tactical_swap_houses(nr_houses)
+			try_map.tactical_swap_houses(nr_houses) # swap type....
+			print("iteration", i)
 		else:
 			print("type of hillclimber not specified/recognised.")
 
@@ -116,6 +119,7 @@ def hillclimber(map_charac, tries_random, tries_hill, nr_houses, hill_type):
 
 		print("score: ", score)
 
+		legelist.append(score)
 		scatterplot(try_map, "tacticaltestplot" + str(i))
 
 		if score > maximum:
@@ -124,4 +128,5 @@ def hillclimber(map_charac, tries_random, tries_hill, nr_houses, hill_type):
 
 			data.append(maximum)
 
-	return {'map' : best_map, 'data' : data}
+
+	return {'map' : best_map, 'data' : legelist}
