@@ -182,12 +182,12 @@ class Map(object):
 					return True
 
 
-	def calc_freespace_on_map(self, new_house):
-		'''Calculating location with the most freespace on map.
+	def calc_freespace_on_map(self):
+		'''Calculating location with the most freespace on map. '''
 
-		Input arguments:
-		new_house --  house that is being moved
-		'''
+		# Input arguments:
+		# new_house --  house that is being moved
+		
 
 		# initiate possible freespace variable
 		poss_freespace = 0
