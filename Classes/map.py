@@ -185,16 +185,35 @@ class Map(object):
 			# iterate over map height
 			for j in range(5, self.height, 5):
 
+				new_house.location['x'] = i
+				# print("XLOC", new_house.location['x'])
+				new_house.location['y'] = j
+				# print("YLOC", new_house.location['y'])
 				self.place_house({'x' : i, 'y' : j}, new_house.self_id, self.types[new_house.index_nr])
-				empty = new_house.find_corners
+				
+				self.houses[len(self.houses) - 1].location['x'] = i
+				self.houses[len(self.houses) - 1].location['y'] = j
+				# print("corners before:", self.houses[len(self.houses) - 1].corners)
+				# print("location:", self.houses[len(self.houses) - 1].location)
+				# print("i: ", i)
+				# print("j: ", j)
+				self.houses[len(self.houses) - 1].find_corners()
+				# print("corners after:", self.houses[len(self.houses) - 1].corners)
+				empty = self.houses[len(self.houses) - 1].find_corners()
 
-				new_house.calc_freespace(self)
+				# print(empty)
+
+				self.houses[len(self.houses) - 1].calc_freespace(self)
 
 				# store the possible freespace of new location
-				if (new_house.calc_freespace(self) != False):
+				if (self.houses[len(self.houses) - 1].calc_freespace(self) != False):
 
 
-					tmp = new_house.freespace
+					tmp = self.houses[len(self.houses) - 1].freespace
+
+					# print(tmp)
+					# print("x", i)
+					# print("y", j)
 
 					# if new freespace is greater then update
 					if (tmp >= poss_freespace):
@@ -206,7 +225,6 @@ class Map(object):
 						coordinates.append({'x' : i, 'y' : j})
 
 		return coordinates
-
 
 	def random_swap_houses(self, nr_houses):
 		'''Moves, every iteration, three houses for optimalization.
@@ -251,16 +269,16 @@ class Map(object):
 
 			allowed = False
 
-			ctr = 0
-
 			coordinates = self.calc_freespace_on_map(tmp_house)
 
 			j = len(coordinates) - 1
 
+			print("INDEX NUMBER:", tmp_house.index_nr)
+			print("types: ", self.types[tmp_house.index_nr])
+
 			while (allowed == False):
 
-				allowed = self.place_house(coordinates[j], tmp_house.self_id,
-											   self.types[tmp_house.index_nr])
+				allowed = self.place_house(coordinates[j], tmp_house.self_id, self.types[tmp_house.index_nr])
 
 				j += -1
 
