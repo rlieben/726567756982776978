@@ -4,20 +4,24 @@
 # Group:        726567756982776978
 # Members:      Toon van Holthe, Raoul Lieben, Luc Stefelmanns
 
+import random
+from Classes.map import *
+from Characteristics.Amstelhaege import *
+
 class Water(object):
 	'''Class for water object.'''
 
-	def __init__(self, loc, self_id, size):
+	def __init__(self, self_id, size):
 		'''Class is list of coordinates on where the water is placed.
 
 		Input arguments:
 		loc -- location where water is placed
 		'''
 
-		self.location = loc
 		self.self_id = self_id
 		self.width = size['width']
 		self.height = size['height']
+		self.location = self.create_location()
 		self.corners = self.find_corners()
 
 
@@ -37,3 +41,14 @@ class Water(object):
 			  'y' : (self.location['y'] - 0.5 * self.height)}
 
 		return {'lb' : lb, 'rb': rb, 'lo': lo, 'ro': ro}
+
+
+	def create_location(self):
+		'''generates location for water bodies '''
+
+		loc = {'x' : random.uniform((0 + 0.5 * self.width), \
+				  	(MAP_20['width'] - 0.5 * self.width)), \
+			   'y' : random.uniform((0 + 0.5 * self.height), \
+		  			(MAP_20['height'] - 0.5 * self.height))}
+
+		return loc
