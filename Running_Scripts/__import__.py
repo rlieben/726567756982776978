@@ -27,6 +27,7 @@ from Algorithms.hillclimber import *
 from Algorithms.tactical_hillclimber import *
 from Algorithms.depthfirst import *
 from Algorithms.particle_swarm import *
+from Algorithms.sa_hillclimber import *
 from Visuals.scatterplot import *
 from Results.txtwriter import *
 
