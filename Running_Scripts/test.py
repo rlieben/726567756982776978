@@ -1,17 +1,18 @@
 
 from __import__ import *
 
-ah_map = Map(MAP_3)
+# ah_map = Map(MAP_20)
+# ah_map.place_water({'x': random.randint(0,160), 'y': random.randint(0,160)}, 1)
+# allowed = ah_map.place_house({'x' : 50, 'y' : 50}, 1, ah_map.types[0])
+# print(allowed)
+# allowed = ah_map.place_house({'x' : 50, 'y' : 40}, 2, ah_map.types[0])
+# print(allowed)
+#
+# for house in ah_map.houses:
+# 	print(house.freespace)
 
-ah_map.place_house(0, {'x' : 97, 'y' : 149})
-ah_map.place_house(0, {'x' : 100, 'y' : 155})
-# ah_map.place_house(0, {'x' : 50, 'y' : 50})
+ah_map = random_generator(MAP_20)
+#
+# fireworks(MAP_20)
 
-# particle_map = particle_swarm(ah_map, 100)
-
-for house in ah_map.houses:
-	house.calc_freespace(ah_map)
-	print(house.type,'freespace:', house.freespace,
-		  '\n direction:', house.direction)
-
-scatterplot(ah_map, 'test_new_houses')
+scatterplot(ah_map, 'test')
