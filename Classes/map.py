@@ -95,7 +95,10 @@ class Map(object):
 
 		allowed = False
 		tmp_list = []
-		nr_water = 1
+		nr_water = 1 #random.randint(1,4)
+
+        # empty the list with water
+		print(nr_water)
 
         # place number of water bodies
 		for i in range(nr_water):
@@ -112,6 +115,8 @@ class Map(object):
 
 				new_water = Water(self_id, size)
 
+				print(new_water)
+
 				tmp_list.append(new_water)
 
 		        # check if corners locations exceed the map and check if ratio is correct
@@ -122,7 +127,7 @@ class Map(object):
 						and water.corners['ro']['x'] < self.width and water.corners['ro']['y'] > 0 \
 						and water.corners['rb']['x'] < self.width and water.corners['rb']['y'] < self.height:
 		                    # only store last water body
-							self.water = tmp_list[-1]
+							self.water.append(tmp_list[-1])
 							allowed = True
 
 

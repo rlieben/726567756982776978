@@ -6,11 +6,10 @@ def random_generator(map_charac):
 	'''Generates a random map.'''
 
 	out_map = Map(map_charac)
-	i = 2
+	i = 0
 
 	out_map.place_water(i)
 
-	print(out_map.water)
 
 	for k in range(len(out_map.distr_houses)):
 

@@ -28,7 +28,6 @@ class Water(object):
 	def find_corners(self):
 		'''Calculates coordinates of corners. '''
 
-		print (self.location)
 		lb = {'x' : (self.location['x'] - 0.5 * self.width),
 			  'y' : (self.location['y'] + 0.5 * self.height)}
 
@@ -42,6 +41,7 @@ class Water(object):
 			  'y' : (self.location['y'] - 0.5 * self.height)}
 
 		return {'lb' : lb, 'rb': rb, 'lo': lo, 'ro': ro}
+
 
 	def create_location(self):
 		'''generates location for water bodies '''
