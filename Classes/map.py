@@ -72,6 +72,18 @@ class Map(object):
 					# stop function if house if out of bounds
 					return False
 
+        # check for water
+		# for i in range(len(self.houses)):
+        #
+		# 	print(self.water)
+        #
+		# 	if (tmp_house.corners[i]['x'] <= self.water.corners[i]['lb']['x'] and
+		# 		tmp_house.corners[i]['x'] >= self.water.corners[i]['rb']['x'] and
+		# 		tmp_house.corners[i]['y'] >= self.water.corners[i]['lb']['y'] and
+		# 		tmp_house.corners[i]['y'] <= self.water.corners[i]['lo']['y']):
+                #
+				# return False
+
 		# check if house is not placed on existing home
 		for house in self.houses:
 
@@ -119,7 +131,7 @@ class Map(object):
 		del self.houses[index]
 
 
-	def place_water(self, water_id):
+	def place_water(self, nr_water, index):
 		'''Places water on the map
 
 		Input arguments:
@@ -127,42 +139,45 @@ class Map(object):
 		water_id -- id corresponding to the water body being placed
 		'''
 
-		allowed = False
+		# allowed = False
 		tmp_list = []
-		nr_water = 1 #random.randint(1,4)
 
-        # empty the list with water
-		print(nr_water)
+        # create random x and y for water body
+		y = random.uniform((numpy.sqrt((self.water_prev * self.width * self.height) * 4)), \
+			numpy.sqrt(self.water_prev * self.width * self.height)) / nr_water
 
-        # place number of water bodies
-		for i in range(nr_water):
+		x = ((self.water_prev * self.width * self.height) / y) / nr_water
 
-            # create random x and y for water body
-			while allowed == False:
-				x = random.uniform((numpy.sqrt(self.water_prev * self.width * self.height / 4)), \
-					numpy.sqrt(self.water_prev * self.width * self.height)) / nr_water
-				y = ((self.water_prev * self.width * self.height) / x) / nr_water
+		size = {'width': x, 'height': y}
 
-				size = {'width': x, 'height': y}
+		new_water = Water(index, size)
 
-				self_id = i
+		tmp_list.append(new_water)
 
-				new_water = Water(self_id, size)
+        # check if corners locations exceed the map and check if ratio is correct
+		if ((x / y) > 0.25) & ((x / y) < 4):
 
-				print(new_water)
+			for water in self.water:
 
-				tmp_list.append(new_water)
+				# check for every corner if it's not inside a other house
+				for c in new_water.corners:
 
-		        # check if corners locations exceed the map and check if ratio is correct
-				if ((x / y) > 0.25) & ((x / y) < 4):
-					for water in tmp_list:
-						if water.corners['lo']['x'] > 0 and water.corners['lo']['y'] > 0 \
-						and water.corners['lb']['x'] > 0 and water.corners['lb']['y'] < self.height \
-						and water.corners['ro']['x'] < self.width and water.corners['ro']['y'] > 0 \
-						and water.corners['rb']['x'] < self.width and water.corners['rb']['y'] < self.height:
-		                    # only store last water body
-							self.water.append(tmp_list[-1])
-							allowed = True
+					if (new_water.corners[c]['x'] >= water.corners['lb']['x'] and
+						new_water.corners[c]['x'] <= water.corners['rb']['x'] and
+					    new_water.corners[c]['y'] <= water.corners['lb']['y'] and
+					    new_water.corners[c]['y'] >= water.corners['lo']['y']):
+
+						# stop function if there is overlap
+						return False
+
+            # check if water is on map
+			for water in tmp_list:
+				if water.corners['lo']['x'] > 0 and water.corners['lo']['y'] > 0 \
+				and water.corners['lb']['x'] > 0 and water.corners['lb']['y'] < self.height \
+				and water.corners['ro']['x'] < self.width and water.corners['ro']['y'] > 0 \
+				and water.corners['rb']['x'] < self.width and water.corners['rb']['y'] < self.height:
+					self.water.append(water)
+					return True
 
 
 	def calc_freespace_on_map(self, new_house):
@@ -190,7 +205,7 @@ class Map(object):
 				new_house.location['y'] = j
 				# print("YLOC", new_house.location['y'])
 				self.place_house({'x' : i, 'y' : j}, new_house.self_id, self.types[new_house.index_nr])
-				
+
 				self.houses[len(self.houses) - 1].location['x'] = i
 				self.houses[len(self.houses) - 1].location['y'] = j
 				# print("corners before:", self.houses[len(self.houses) - 1].corners)
