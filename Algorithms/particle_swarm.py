@@ -38,23 +38,23 @@ def scatterplot(ah_map, name, directory):
 		data.append([ah_map.houses[i].corners['lb']['x'],
 					 ah_map.houses[i].corners['lb']['y']])
 
-	for i in range(len(ah_map.water)):
-		data.append([ah_map.water[i].corners['lb']['x'],
-					 ah_map.water[i].corners['lb']['y']])
-		data.append([ah_map.water[i].corners['lo']['x'],
-					 ah_map.water[i].corners['lo']['y']])
-		data.append([ah_map.water[i].corners['lo']['x'],
-					 ah_map.water[i].corners['lo']['y']])
-		data.append([ah_map.water[i].corners['ro']['x'],
-					 ah_map.water[i].corners['ro']['y']])
-		data.append([ah_map.water[i].corners['ro']['x'],
-					 ah_map.water[i].corners['ro']['y']])
-		data.append([ah_map.water[i].corners['rb']['x'],
-					 ah_map.water[i].corners['rb']['y']])
-		data.append([ah_map.water[i].corners['rb']['x'],
-					 ah_map.water[i].corners['rb']['y']])
-		data.append([ah_map.water[i].corners['lb']['x'],
-					 ah_map.water[i].corners['lb']['y']])
+	# for i in range(len(ah_map.water)):
+	# 	data.append([ah_map.water[i].corners['lb']['x'],
+	# 				 ah_map.water[i].corners['lb']['y']])
+	# 	data.append([ah_map.water[i].corners['lo']['x'],
+	# 				 ah_map.water[i].corners['lo']['y']])
+	# 	data.append([ah_map.water[i].corners['lo']['x'],
+	# 				 ah_map.water[i].corners['lo']['y']])
+	# 	data.append([ah_map.water[i].corners['ro']['x'],
+	# 				 ah_map.water[i].corners['ro']['y']])
+	# 	data.append([ah_map.water[i].corners['ro']['x'],
+	# 				 ah_map.water[i].corners['ro']['y']])
+	# 	data.append([ah_map.water[i].corners['rb']['x'],
+	# 				 ah_map.water[i].corners['rb']['y']])
+	# 	data.append([ah_map.water[i].corners['rb']['x'],
+	# 				 ah_map.water[i].corners['rb']['y']])
+	# 	data.append([ah_map.water[i].corners['lb']['x'],
+	# 				 ah_map.water[i].corners['lb']['y']])
 
 	axes = plot.gca()
 	axes.set_xlim([0, ah_map.width])
@@ -91,49 +91,51 @@ def scatterplot(ah_map, name, directory):
 	# return plot.show()
 
 
-def particle_swarm_map(map_charac, tries):
+def particle_swarm(in_map, tries):
 
-	out_map = random_generator(map_charac)
+	for house in in_map.houses:
+		house.calc_value()
+
+	in_map.calc_score()
+
+	best_map = copy.copy(in_map)
 
 	data = []
 	k = 0
 	for i in range(tries):
 
-		for j in range(len(out_map.houses) - 1):
+		for j in range(len(best_map.houses)):
 
-			# print('old location: ', i, out_map.houses[j].location)
+			out_map = copy.copy(best_map)
 
-			out_map.houses[j].calc_freespace(out_map)
+			house = out_map.houses[j]
+			old_loc = house.location
 
-			freespace = out_map.houses[j].freespace
+			out_map.remove_house(j)
 
-			copy_house = copy.copy(out_map.houses[j])
+			a = numpy.random.uniform(0, 1)
 
-			out_map.houses[j].direction = {'x' : random.uniform(- freespace,
-																freespace),
-						 	   			   'y' : random.uniform(- freespace,
-										   						freespace)}
+			new_loc = {'x' : house.location['x'] + a * house.direction['x'],
+				   	   'y' : house.location['y'] + a * house.direction['y']}
 
-			loc = {'x' : out_map.houses[j].location['x'] +
-						 out_map.houses[j].direction['x'],
-				   'y' : out_map.houses[j].location['y'] +
-				   		 out_map.houses[j].direction['y']}
-
-			del out_map.houses[j]
-
-			allowed = out_map.place_house(loc, out_map.houses[j].self_id,
-									  out_map.types[out_map.houses[j].index_nr])
+			allowed = out_map.place_house(0, new_loc)
+			# print(allowed)
 
 			if allowed == False:
-				out_map.houses.append(copy_house)
-			scatterplot(out_map, str(k), 'TESTparticle')
+				out_map.place_house(0, old_loc)
+
+			# scatterplot(out_map, str(k), 'TESTparticle')
 			k += 1
 
 		for house in out_map.houses:
+			house.calc_freespace(out_map)
 			house.calc_value()
 
-		data.append(out_map.calc_score())
+		if out_map.calc_score() > best_map.score:
+			best_map = copy.copy(out_map)
+			data.append(best_map.score)
 
-		# scatterplot(out_map, str(i), 'TESTparticle')
+		scatterplot(best_map, str(i), 'TESTparticle')
 
-	return {'map' : out_map, 'data' : data}
+
+	return {'map' : best_map, 'data' : data}

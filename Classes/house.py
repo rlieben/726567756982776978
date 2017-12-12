@@ -28,7 +28,7 @@ class House(object):
 
 		self.self_id = self_id
 		self.location = loc # loc is a dict {'x' : ..., 'y' : ...}
-		self.corners = self.find_corners()
+		self.corners = None
 		self.freespace = None
 		self.value = None
 		self.direction = None
@@ -49,7 +49,7 @@ class House(object):
 
 
 	def find_corners(self):
-		'''Calculates coordinates of corners. '''
+		'''Calculates coordinates of corners.'''
 
 		lb = {'x' : (self.location['x'] - 0.5 * self.width),
 			  'y' : (self.location['y'] + 0.5 * self.height)}
@@ -65,9 +65,6 @@ class House(object):
 
 		self.corners = {'lb' : lb, 'rb': rb, 'lo': lo, 'ro': ro}
 
-		return {'lb' : lb, 'rb': rb, 'lo': lo, 'ro': ro}
-
-
 
 	def calc_freespace(self, in_map):
 		'''Calculates freespace of the house.
@@ -75,121 +72,110 @@ class House(object):
 		Input arguments:
 		in_map -- map where the house is placed on
 		'''
-		# coordinates new house
-		x_newhouse = self.location['x']
-		y_newhouse = self.location['y']
 
-		# initiate variable list
-		diff_houses = [0, 0]
+		# initiate list for possible freespaces
+		tmp_freespace = []
 
-		# difference between center and wall of new house
-		x_diffwall = self.width / 2
-		y_diffwall = self.height / 2
+		tmp_direction = []
 
-		# creating temporary variable for freespace
-		tmpfreespace = []
+		# initiate lists for other houses, based on orientation to this house
+		tmp_range_x = []
+		tmp_range_y = []
+		tmp_range_c = []
 
-		# calculating distance to borders and adding to tmp freespace
-		if (x_newhouse - x_diffwall < 0) or \
-		   (y_newhouse - y_diffwall < 0) or \
-		   (in_map.width - x_newhouse - x_diffwall < 0) or \
-		   (in_map.height - y_newhouse - y_diffwall < 0):
-		 	return False
-		tmpfreespace.append(abs(x_newhouse - x_diffwall))
-		tmpfreespace.append(abs(y_newhouse - y_diffwall))
-		tmpfreespace.append(abs(in_map.width - x_newhouse - x_diffwall))
-		tmpfreespace.append(abs(in_map.height - y_newhouse - y_diffwall))
+		# add distances to sides of map to list of freespaces
+		for c in self.corners:
 
-		# iterate over all houses in map
+			diff_l = self.corners['lb']['x']
+			diff_r = self.corners['rb']['x'] - in_map.width
+			diff_b = self.corners['lb']['y']
+			diff_o = self.corners['lo']['y'] - in_map.height
+
+			tmp_freespace.append(abs(diff_l))
+			tmp_freespace.append(abs(diff_r))
+			tmp_freespace.append(abs(diff_b))
+			tmp_freespace.append(abs(diff_o))
+
+			tmp_direction.append({'x' : diff_l, 'y' : 0})
+			tmp_direction.append({'x' : diff_r, 'y' : 0})
+			tmp_direction.append({'x' : 0, 'y' : diff_b})
+			tmp_direction.append({'x' : 0, 'y' : diff_o})
+
+		# iterate over houses build on map
 		for house in in_map.houses:
 
-			# skips itself
+			# skip itself
 			if house.self_id != self.self_id:
 
-				diff_houses[0] = abs(house.location['y'] - self.location['y'])
-				diff_houses[1] = abs(house.location['x'] - self.location['x'])
+				# if other house is above or below this house, add to y list
+				if ((house.corners['lb']['x'] >= self.corners['lb']['x'] and
+					 house.corners['lb']['x'] <= self.corners['rb']['x']) or
+				    (house.corners['rb']['x'] >= self.corners['lb']['x'] and
+				     house.corners['rb']['x'] <= self.corners['rb']['x'])):
 
-				# check if coordinate falls within house x - range
-				if house.corners['lb']['x'] > self.corners['lb']['x'] \
-				   and house.corners['lb']['x'] < self.corners['rb']['x']:
+					tmp_range_y.append(house)
 
-				   	# check if no overlap
-					if diff_houses[0] - x_diffwall - (house.width / 2) < 0:
-						return False
+				# if other house is left or right of this house, add to x list
+				elif ((house.corners['lb']['y'] >= self.corners['lo']['y'] and
+					   house.corners['lb']['y'] <= self.corners['lb']['y']) or
+				      (house.corners['lo']['y'] >= self.corners['lo']['y'] and
+				       house.corners['ro']['y'] <= self.corners['lb']['y'])):
 
-					# save freespace between walls of houses
-					tmpfreespace.append(diff_houses[0] \
-										- x_diffwall
-										- (house.width / 2))
+					tmp_range_x.append(house)
 
-					# check if coordinate falls within house y - range
-					if house.corners['lo']['y'] > self.corners['lo']['y'] \
-						 and house.corners['lo']['y'] < self.corners['lb']['y']:
-
-						# check if no overlap
-						if diff_houses[1] - y_diffwall - (house.width / 1) < 0:
-							return False
-
-						# save freespace between walls of houses
-						tmpfreespace.append(abs(diff_houses[1] \
-											- y_diffwall
-											- (house.height / 2)))
-
-				# check if coordinate falls within house y - range
-				elif house.corners['lo']['y'] > self.corners['lo']['y'] \
-					 and house.corners['lo']['y'] < self.corners['lb']['y']:
-
-					# check if no overlap
-					if diff_houses[1] - y_diffwall - (house.width / 1) < 0:
-						return False
-
-					# save freespace between walls of houses
-					tmpfreespace.append(abs(diff_houses[1] \
-										- y_diffwall
-										- (house.height / 2)))
-
-					# check if coordinate falls within house x - range
-					if house.corners['lb']['x'] > self.corners['lb']['x'] \
-				   		and house.corners['rb']['x'] < self.corners['rb']['x']:
-
-				   		# check if no overlap
-						if diff_houses[0] - x_diffwall - (house.width / 2) < 0:
-							return False
-
-						# save freespace between walls of houses
-						tmpfreespace.append(diff_houses[0] \
-											- x_diffwall
-											- (house.width / 2))
-
-				# else compute distance of corners of the house
+				# otherwise, other house must closest to corner
 				else:
 
-					# create corner variable
-					diff_corners = [0,0]
+					tmp_range_c.append(house)
 
-					# create distance variable list
-					distancelist = []
 
-					# iterate over corners of both houses
-					for i in self.corners:
+		# add distance in terms of x to list of freespaces
+		for house in tmp_range_x:
 
-						for j in house.corners:
+			# calculate for other house left and right
+			diff_l = self.corners['lb']['x'] - house.corners['rb']['x']
+			diff_r = self.corners['rb']['x'] - house.corners['lb']['x']
 
-							# calculate x and y difference between corners
-							diff_corners[0] = abs(self.corners[i]['x'] \
-											  	  - house.corners[j]['x'])
+			tmp_freespace.append(abs(diff_l))
+			tmp_freespace.append(abs(diff_r))
 
-							diff_corners[1] = abs(self.corners[i]['y'] \
-											  	  - house.corners[j]['y'])
+			tmp_direction.append({'x' : diff_l, 'y' : 0})
+			tmp_direction.append({'x' : diff_r, 'y' : 0})
 
-							# calculates distance between curr two corners
-							distancecorn = abs(numpy.sqrt(numpy.power( \
-													  diff_corners[0], 2) \
-													  + numpy.power( \
-													  diff_corners[1], 2)))
-							# save distance
-							distancelist.append(distancecorn)
-						# take the minimum distance
-						tmpfreespace.append(numpy.amin(distancelist))
-				# take the minimum freespace
-		self.freespace = numpy.amin(tmpfreespace)
+
+		# add distance in terms of y to list of freespaces
+		for house in tmp_range_y:
+
+			# calculate for other house above and below
+			diff_b = self.corners['lb']['y'] - house.corners['lo']['y']
+			diff_o = self.corners['lo']['y'] - house.corners['lb']['y']
+
+			tmp_freespace.append(abs(diff_b))
+			tmp_freespace.append(abs(diff_o))
+
+			tmp_direction.append({'x' : 0, 'y' : diff_b})
+			tmp_direction.append({'x' : 0, 'y' : diff_o})
+
+
+		# add distance between corners to list of freespaces
+		for house in tmp_range_c:
+
+			# iterate over all corners of other house
+			for c1 in house.corners:
+
+				# iterate over all corners of this house
+				for c2 in self.corners:
+
+					diff_x = self.corners[c2]['x'] - house.corners[c1]['x']
+					diff_y = self.corners[c2]['y'] - house.corners[c1]['y']
+
+					diff = numpy.sqrt(numpy.power(diff_x, 2) +
+									  numpy.power(diff_y, 2))
+
+					tmp_freespace.append(abs(diff))
+
+					tmp_direction.append({'x' : diff_x, 'y' : diff_y})
+
+		index = numpy.argmin(tmp_freespace)
+		self.freespace = tmp_freespace[index]
+		self.direction = tmp_direction[index]

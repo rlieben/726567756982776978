@@ -26,7 +26,9 @@ from Algorithms.best_of_random import *
 from Algorithms.hillclimber import *
 from Algorithms.tactical_hillclimber import *
 from Algorithms.depthfirst import *
-from Algorithms.scatterplot import *
+from Algorithms.particle_swarm import *
+from Visuals.scatterplot import *
+from Results.txtwriter import *
 
 import numpy
 import random

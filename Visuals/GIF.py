@@ -18,8 +18,8 @@ import os
 import imageio
 
 file_name = 'HOI'
-source = 'TESTparticle'
-png_dir = string + 'Results/' + source
+# source = 'TESTparticle'
+png_dir = string + 'Running_Scripts' + split + 'results'
 images = []
 for subdir, dirs, files in os.walk(png_dir):
     for in_file in files:

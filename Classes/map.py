@@ -5,20 +5,9 @@
 # Members:      Toon van Holthe, Raoul Lieben, Luc Stefelmanns
 
 
-import sys
-list_dir = sys.path[0].split('\\')
-string = ''
-for i in range(len(list_dir) - 1):
-	string += list_dir[i]
-	string += '\\'
-
-sys.path.insert(0, string)
-
+from __import__ import *
 import random
-from Classes.house import *
-from Classes.water import *
-from Characteristics.Amstelhaege import *
-
+import copy
 
 class Map(object):
 	'''List that keeps track of all the houses and water.'''
@@ -34,55 +23,96 @@ class Map(object):
 		self.width = map_charac['width']
 		self.height = map_charac['height']
 		self.water_prev = map_charac['water_prev']
-		# self.construction = self.create_construction(map_charac)
-		self.nr_houses = map_charac['nr_houses']
-		self.distr_houses = map_charac['distr_houses']
-		self.types = map_charac['types_houses']
+		self.construction = self.create_construction(map_charac)
 
 		self.score = None
 		self.houses = []
 		self.water = []
 
-    #
-	# def create_construction(self, map_charac):
-    #
-	# 	house_id = 0
-	# 	loc = {'x' : - 100, 'y' : - 100}
-	# 	construction = []
-    #
-	# 	for i in range(len(map_charac['distr_houses'])):
-	# 		for j in range(int(map_charac['distr_houses'][i]
-	# 					   	   * map_charac['nr_houses'])):
-    #
-	# 			construction.append(House(house_id,
-	# 									   map_charac['types_houses'][i], loc))
-	# 			house_id += 1
-    #
-	# 	return construction
+
+	def create_construction(self, map_charac):
+
+		house_id = 0
+		loc = {'x' : None, 'y' : None}
+		construction = []
+
+		for i in range(len(map_charac['distr_houses'])):
+			for j in range(int(map_charac['distr_houses'][i]
+						   	   * map_charac['nr_houses'])):
+
+				construction.append(House(house_id,
+										  map_charac['types_houses'][i], loc))
+				house_id += 1
+
+		return construction
 
 
-	def place_house(self, loc, house_id, type_charac):
-		'''Places a house on the map.
+	def place_house(self, index, loc):
 
-		Input arguments:
-		loc -- location where the house needs to be placed
-		house_id -- id corresponding to the house being placed
-		type_charac -- characteristics of the house being placed
-		'''
+		# copy the house to be placed
+		tmp_house = copy.copy(self.construction[index])
 
-		new_house = House(house_id, type_charac, loc)
+		# add the new location to this copy and update its corners
+		tmp_house.location = loc
+		tmp_house.find_corners()
 
-		self.houses.append(new_house)
+		# check out of bounds map
+		for c in tmp_house.corners:
 
+				if (tmp_house.corners[c]['x'] > self.width or
+					tmp_house.corners[c]['x'] < 0 or
+					tmp_house.corners[c]['y'] > self.height or
+					tmp_house.corners[c]['y']  < 0):
+
+					# stop function if house if out of bounds
+					return False
+
+		# check if house is not placed on existing home
 		for house in self.houses:
-			if house.calc_freespace(self) == False:
-				del self.houses[len(self.houses) - 1]
-				return False
+
+			# check for every corner if it's not inside a other house
+			for c in tmp_house.corners:
+
+				if (tmp_house.corners[c]['x'] >= house.corners['lb']['x'] and
+					tmp_house.corners[c]['x'] <= house.corners['rb']['x'] and
+				    tmp_house.corners[c]['y'] <= house.corners['lb']['y'] and
+				    tmp_house.corners[c]['y'] >= house.corners['lo']['y']):
+
+					# stop function if there is overlap
+					return False
+
+		# add copy to list of houses to check freespace
+		self.houses.append(tmp_house)
+
+		# check if new house does not violate minimal freespace of houses
+		for house in self.houses:
+
+			house.calc_freespace(self)
 			if house.freespace < house.min_free:
+
+				# if freespace is violated, delete house from list and stop
 				del self.houses[len(self.houses) - 1]
 				return False
 
+		# remove original from construction list
+		del self.construction[index]
+
+		# return True for verification
 		return True
+
+
+
+	def remove_house(self, index):
+
+		tmp_house = copy.copy(self.houses[index])
+
+		tmp_house.location = {'x' : None, 'y' : None}
+		tmp_house.freespace = None
+		tmp_house.value = None
+
+		self.construction.append(tmp_house)
+		del self.houses[index]
+
 
 	def place_water(self, loc, water_id):
 		'''Places water on the map
@@ -113,22 +143,6 @@ class Map(object):
 		new_water = Water(loc, water_id, size)
 
 		self.water.append(new_water)
-
-
-	def move_house(self, index, new_loc):
-
- 		old_loc = self.houses[index].location
- 		self.houses[index].location = new_loc
- 		# print(new_loc)
-
- 		for house in self.houses:
- 			if house.calc_freespace(self) == False:
- 				self.houses[index].location = old_loc
- 				return False
- 			else:
- 				# print(self.houses[index].location)
- 				return True
-
 
 
 	def calc_freespace_on_map(self, new_house):
@@ -187,10 +201,10 @@ class Map(object):
 		for i in range(nr_houses):
 			tmp_index.append(int(numpy.random.uniform(0, len(self.houses) - 1)))
 			tmp_houses.append(self.houses[tmp_index[i]])
-			del self.houses[tmp_index[i]]
+			self.remove_house(tmp_index[i])
 
 		# add same amount of houses which were deleted
-		for i in range(nr_houses):
+		# for i in range(nr_houses):
 
 			allowed = False
 
@@ -199,8 +213,7 @@ class Map(object):
 				loc = {'x' : random.uniform(0, self.height),
 					   'y' : random.uniform(0, self.width)}
 
-				allowed = self.place_house(loc, tmp_houses[i].self_id,
-										   self.types[tmp_houses[i].index_nr])
+				allowed = self.place_house(i, loc)
 
 
 	def tactical_swap_houses(self, nr_houses):
