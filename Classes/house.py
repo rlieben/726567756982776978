@@ -88,8 +88,8 @@ class House(object):
 
 			diff_l = self.corners['lb']['x']
 			diff_r = self.corners['rb']['x'] - in_map.width
-			diff_b = self.corners['lb']['y']
-			diff_o = self.corners['lo']['y'] - in_map.height
+			diff_b = self.corners['lb']['y'] - in_map.height
+			diff_o = self.corners['lo']['y']
 
 			tmp_freespace.append(abs(diff_l))
 			tmp_freespace.append(abs(diff_r))
