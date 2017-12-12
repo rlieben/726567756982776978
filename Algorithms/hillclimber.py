@@ -110,7 +110,7 @@ def hillclimber(map_charac, tries_random, tries_hill, nr_houses, hill_type):
 			try_map.random_swap_houses(nr_houses)
 		elif (hill_type == 1):
 
-			try_map.tactical_swap_houses(nr_houses)
+			try_map.tactical_swap_houses(nr_houses) # swap type....
 			print("iteration", i)
 		else:
 			print("type of hillclimber not specified/recognised.")

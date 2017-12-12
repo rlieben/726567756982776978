@@ -185,61 +185,31 @@ class Map(object):
 			# iterate over map height
 			for j in range(5, self.height, 5):
 
-				# new_house.location['x'] = i
-				# # print("XLOC", new_house.location['x'])
-				# new_house.location['y'] = j
-				# print("YLOC", new_house.location['y'])
-
-
-				# print("nr 3", len(self.houses))
-				# self.houses[len(self.houses) - 1].location['x'] = i
-				# self.houses[len(self.houses) - 1].location['y'] = j
-				# print("corners before:", self.houses[len(self.houses) - 1].corners)
-				# print("location:", self.houses[len(self.houses) - 1].location)
-				# print("i: ", i)
-				# print("j: ", j)
-				# self.houses[len(self.houses) - 1].find_corners()
-				# print("corners after:", self.houses[len(self.houses) - 1].corners)
-				# empty = self.houses[len(self.houses) - 1].find_corners()
-				
-				# print("i: ",i)
-				# print("j: ",j)
-
+				# place house on i,j location
 				allowed = self.place_house(0, {'x' : i, 'y' : j})
-				# print(allowed)
+				
 
 				if allowed == True:
-					# self.houses[len(self.houses) - 1].find_corners()
-
-					# if (allowed == True):
-						# print(empty)
-
-					self.houses[len(self.houses) - 1].calc_freespace(self)
 
 					# store the possible freespace of new location
 					if (self.houses[len(self.houses) - 1].calc_freespace(self) != False):
 
-
+						# store freespace in tmp
 						tmp = self.houses[len(self.houses) - 1].freespace
-
-						# print(tmp)
-						# print("x", i)
-						# print("y", j)
 
 						# if new freespace is greater then update
 						if (tmp >= poss_freespace):
 
-							# update new poss freespace
+							# update new possible freespace
 							poss_freespace = tmp
 
-							# update location of poss freespace
+							# update location of possible freespace
 							coordinates.append({'x' : i, 'y' : j})
 
-					# print(self.houses)
-					# print("nr 4", len(self.houses))
+					# remove house that is placed
 					self.remove_house(len(self.houses) - 1)
 					
-
+		# return coordinates
 		return coordinates
 
 	def random_swap_houses(self, nr_houses):
@@ -278,20 +248,20 @@ class Map(object):
 		nr_houses -- nr of houses swapped
 		'''
 
+		# iterate over amount of swaps
 		for i in range(nr_houses):
 
-			# print("nr 1", len(self.houses))
+			# remove the first house
 			self.remove_house(0)
-			# print("nr 2", len(self.houses))
+			
 			allowed = False
 
+			# get freespace coordinates on map
 			coordinates = self.calc_freespace_on_map(self.construction[0])
 
 			j = len(coordinates) - 1
 
-			# print("INDEX NUMBER:", tmp_house.index_nr)
-			# print("types: ", self.types[tmp_house.index_nr])
-
+			# place house where valid beginning with biggest freespace to smallest
 			while (allowed == False):
 
 				allowed = self.place_house(0, coordinates[j])
