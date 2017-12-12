@@ -11,9 +11,9 @@ from __import__ import *
 # for house in ah_map.houses:
 # 	print(house.freespace)
 
-for i in range(10):
-	ah_map = random_generator(MAP_20)
+# for i in range(10):
+ah_map = random_generator(MAP_60)
 #
 # fireworks(MAP_20)
 
-	scatterplot(ah_map, 'test')
+scatterplot(ah_map, 'test')

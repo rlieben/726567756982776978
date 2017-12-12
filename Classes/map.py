@@ -86,16 +86,27 @@ class Map(object):
 					return False
 
 
-		# check if house is not placed on existing home
+		# check for overlap other house
 		for house in self.houses:
 
-			# check for every corner if it's not inside a other house
+			# check for every corner if it's not in a other house
 			for c in tmp_house.corners:
 
 				if (tmp_house.corners[c]['x'] >= house.corners['lb']['x'] and
 					tmp_house.corners[c]['x'] <= house.corners['rb']['x'] and
 				    tmp_house.corners[c]['y'] <= house.corners['lb']['y'] and
 				    tmp_house.corners[c]['y'] >= house.corners['lo']['y']):
+
+					# stop function if there is overlap
+					return False
+
+			# check for every corner of other house if it's not in this house
+			for c in house.corners:
+
+				if (house.corners[c]['x'] >= tmp_house.corners['lb']['x'] and
+					house.corners[c]['x'] <= tmp_house.corners['rb']['x'] and
+				    house.corners[c]['y'] <= tmp_house.corners['lb']['y'] and
+				    house.corners[c]['y'] >= tmp_house.corners['lo']['y']):
 
 					# stop function if there is overlap
 					return False
@@ -156,30 +167,41 @@ class Map(object):
 
 		tmp_list.append(new_water)
 
-        # check if corners locations exceed the map and check if ratio is correct
-		if ((x / y) > 0.25) & ((x / y) < 4):
+        #check if ratio is correct
+		if ((x / y) < 0.25) & ((x / y) > 4):
+			return False
 
-			for water in self.water:
+		for water in self.water:
 
-				# check for every corner if it's not inside a other house
-				for c in new_water.corners:
+			# check if corner is not inside other water body
+			for c in new_water.corners:
 
-					if (new_water.corners[c]['x'] >= water.corners['lb']['x'] and
-						new_water.corners[c]['x'] <= water.corners['rb']['x'] and
-					    new_water.corners[c]['y'] <= water.corners['lb']['y'] and
-					    new_water.corners[c]['y'] >= water.corners['lo']['y']):
+				if (new_water.corners[c]['x'] >= water.corners['lb']['x'] and
+					new_water.corners[c]['x'] <= water.corners['rb']['x'] and
+				    new_water.corners[c]['y'] <= water.corners['lb']['y'] and
+				    new_water.corners[c]['y'] >= water.corners['lo']['y']):
 
-						# stop function if there is overlap
-						return False
+					# stop function if there is overlap
+					return False
 
-            # check if water is on map
-			for water in tmp_list:
-				if water.corners['lo']['x'] > 0 and water.corners['lo']['y'] > 0 \
-				and water.corners['lb']['x'] > 0 and water.corners['lb']['y'] < self.height \
-				and water.corners['ro']['x'] < self.width and water.corners['ro']['y'] > 0 \
-				and water.corners['rb']['x'] < self.width and water.corners['rb']['y'] < self.height:
-					self.water.append(water)
-					return True
+			for c in water.corners:
+
+				if (water.corners[c]['x'] >= new_water.corners['lb']['x'] and
+					water.corners[c]['x'] <= new_water.corners['rb']['x'] and
+				    water.corners[c]['y'] <= new_water.corners['lb']['y'] and
+				    water.corners[c]['y'] >= new_water.corners['lo']['y']):
+
+					# stop function if there is overlap
+					return False
+
+        # check if water is on map
+		for water in tmp_list:
+			if water.corners['lo']['x'] > 0 and water.corners['lo']['y'] > 0 \
+			and water.corners['lb']['x'] > 0 and water.corners['lb']['y'] < self.height \
+			and water.corners['ro']['x'] < self.width and water.corners['ro']['y'] > 0 \
+			and water.corners['rb']['x'] < self.width and water.corners['rb']['y'] < self.height:
+				self.water.append(water)
+				return True
 
 
 	def calc_freespace_on_map(self):
@@ -187,7 +209,7 @@ class Map(object):
 
 		# Input arguments:
 		# new_house --  house that is being moved
-		
+
 
 		# initiate possible freespace variable
 		poss_freespace = 0

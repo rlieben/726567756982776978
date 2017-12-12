@@ -23,3 +23,6 @@ pseudo plant prop:
 
 particle swarm:
 - https://en.wikipedia.org/wiki/Particle_swarm_optimization#Algorithm
+
+matplotlib vis:
+- http://matthiaseisen.com/pp/patterns/p0203/

@@ -12,11 +12,14 @@ Standard map and houses of the assignment. All measurements are in meters.
 '''Three types of homes. '''
 
 HOUSES_LIST = [ {'type' : 'one_family', 'index' : 0, 'width' : 8, 'height': 8,
-				 'start_value' : 285000, 'perc' : 0.02, 'min_free' : 2},
+				 'start_value' : 285000, 'perc' : 0.02, 'min_free' : 2,
+				 'colour' : 'yellow'},
 				{'type' : 'bungalow', 'index' : 1, 'width' : 10, 'height' : 7.5,
-			 	 'start_value' : 399000, 'perc' : 0.04, 'min_free' : 3},
+			 	 'start_value' : 399000, 'perc' : 0.04, 'min_free' : 3,
+				 'colour' : 'orange'},
 				{'type' : 'mansion', 'index' : 2, 'width' : 11, 'height' : 10.5,
-				 'start_value' : 610000, 'perc' : 0.06, 'min_free' : 6}]
+				 'start_value' : 610000, 'perc' : 0.06, 'min_free' : 6,
+				 'colour' : 'red'}]
 
 
 '''The characteristics of the map.

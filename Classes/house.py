@@ -25,6 +25,7 @@ class House(object):
 		self.min_free = house_charac['min_free']
 		self.type = house_charac['type']
 		self.index_nr = house_charac['index']
+		self.colour = house_charac['colour']
 
 		self.self_id = self_id
 		self.location = loc # loc is a dict {'x' : ..., 'y' : ...}
