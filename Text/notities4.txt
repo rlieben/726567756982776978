@@ -1,0 +1,39 @@
+12 december 2017
+
+I klaar voor donderdag
+
+Donderdag om 16:00 afspreken
+
+I: 3
+Soort punt extra voor visualisatie, maar repository weer opschonen.
+OPRUIMEN
+README beter
+iedere map mag een readme, hoeft niet voor IDAE
+
+D: 4
+
+
+A: 2
+
+E:
+Experiment moet inhoudelijk goed zijn. Kwaliteit boven kwantiteit.
+Als experiment de case anders maken (parameterisatie).
+
+
+Depth first mag ook deterministisch, als begintpunt steeds anders is (maar dat
+is meer een greedy algoritme)
+Of Heuristiek beetje stochastisch maken (tweede optie).
+Prunen hoeft niet perfect te zijn, beetje op inschatting.
+Random water als beginpositie voor depth first.
+Op een plek waar veel freespace is dieper te kijken.
+
+Prunen door te kijken waar water nog past.
+
+SA mag in zelfde file
+
+experimentatie op particle swarm is niet echt per se interessant voor de case
+aangezien meer ingaat hoe goed je algoritme het doet
+
+Voor maandag nog extra:
+Verderwerken aan code mag. Als er iets significant beter is, kan daar nog een
+punt bij komen. Code moet mooi gemaakt worden.
