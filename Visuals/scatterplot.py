@@ -48,6 +48,7 @@ def scatterplot(ah_map, name):
 					 ah_map.houses[i].corners['lb']['y']])
 
 	for water in ah_map.water:
+		print(water.width, water.height, water.self_id)
 		data.append([water.corners['lb']['x'],
 					 water.corners['lb']['y']])
 		data.append([water.corners['lo']['x'],
