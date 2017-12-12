@@ -72,17 +72,19 @@ class Map(object):
 					# stop function if house if out of bounds
 					return False
 
-        # check for water
-		# for i in range(len(self.houses)):
-        #
-		# 	print(self.water)
-        #
-		# 	if (tmp_house.corners[i]['x'] <= self.water.corners[i]['lb']['x'] and
-		# 		tmp_house.corners[i]['x'] >= self.water.corners[i]['rb']['x'] and
-		# 		tmp_house.corners[i]['y'] >= self.water.corners[i]['lb']['y'] and
-		# 		tmp_house.corners[i]['y'] <= self.water.corners[i]['lo']['y']):
-                #
-				# return False
+        # check for overlap water
+		for water in self.water:
+
+			for c in tmp_house.corners:
+
+				if (tmp_house.corners[c]['x'] >= water.corners['lb']['x'] and
+					tmp_house.corners[c]['x'] <= water.corners['rb']['x'] and
+				    tmp_house.corners[c]['y'] <= water.corners['lb']['y'] and
+				    tmp_house.corners[c]['y'] >= water.corners['lo']['y']):
+
+					# stop function if there is overlap
+					return False
+
 
 		# check if house is not placed on existing home
 		for house in self.houses:

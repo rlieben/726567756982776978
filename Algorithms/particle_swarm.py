@@ -38,23 +38,24 @@ def scatterplot(ah_map, name, directory):
 		data.append([ah_map.houses[i].corners['lb']['x'],
 					 ah_map.houses[i].corners['lb']['y']])
 
-	# for i in range(len(ah_map.water)):
-	# 	data.append([ah_map.water[i].corners['lb']['x'],
-	# 				 ah_map.water[i].corners['lb']['y']])
-	# 	data.append([ah_map.water[i].corners['lo']['x'],
-	# 				 ah_map.water[i].corners['lo']['y']])
-	# 	data.append([ah_map.water[i].corners['lo']['x'],
-	# 				 ah_map.water[i].corners['lo']['y']])
-	# 	data.append([ah_map.water[i].corners['ro']['x'],
-	# 				 ah_map.water[i].corners['ro']['y']])
-	# 	data.append([ah_map.water[i].corners['ro']['x'],
-	# 				 ah_map.water[i].corners['ro']['y']])
-	# 	data.append([ah_map.water[i].corners['rb']['x'],
-	# 				 ah_map.water[i].corners['rb']['y']])
-	# 	data.append([ah_map.water[i].corners['rb']['x'],
-	# 				 ah_map.water[i].corners['rb']['y']])
-	# 	data.append([ah_map.water[i].corners['lb']['x'],
-	# 				 ah_map.water[i].corners['lb']['y']])
+	for water in ah_map.water:
+		print(water.width, water.height, water.self_id)
+		data.append([water.corners['lb']['x'],
+					 water.corners['lb']['y']])
+		data.append([water.corners['lo']['x'],
+					 water.corners['lo']['y']])
+		data.append([water.corners['lo']['x'],
+					 water.corners['lo']['y']])
+		data.append([water.corners['ro']['x'],
+					 water.corners['ro']['y']])
+		data.append([water.corners['ro']['x'],
+					 water.corners['ro']['y']])
+		data.append([water.corners['rb']['x'],
+					 water.corners['rb']['y']])
+		data.append([water.corners['rb']['x'],
+					 water.corners['rb']['y']])
+		data.append([water.corners['lb']['x'],
+					 water.corners['lb']['y']])
 
 	axes = plot.gca()
 	axes.set_xlim([0, ah_map.width])
