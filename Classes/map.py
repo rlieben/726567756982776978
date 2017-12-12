@@ -185,44 +185,60 @@ class Map(object):
 			# iterate over map height
 			for j in range(5, self.height, 5):
 
-				new_house.location['x'] = i
-				# print("XLOC", new_house.location['x'])
-				new_house.location['y'] = j
+				# new_house.location['x'] = i
+				# # print("XLOC", new_house.location['x'])
+				# new_house.location['y'] = j
 				# print("YLOC", new_house.location['y'])
-				self.place_house({'x' : i, 'y' : j}, new_house.self_id, self.types[new_house.index_nr])
-				
-				self.houses[len(self.houses) - 1].location['x'] = i
-				self.houses[len(self.houses) - 1].location['y'] = j
+
+
+				# print("nr 3", len(self.houses))
+				# self.houses[len(self.houses) - 1].location['x'] = i
+				# self.houses[len(self.houses) - 1].location['y'] = j
 				# print("corners before:", self.houses[len(self.houses) - 1].corners)
 				# print("location:", self.houses[len(self.houses) - 1].location)
 				# print("i: ", i)
 				# print("j: ", j)
-				self.houses[len(self.houses) - 1].find_corners()
+				# self.houses[len(self.houses) - 1].find_corners()
 				# print("corners after:", self.houses[len(self.houses) - 1].corners)
-				empty = self.houses[len(self.houses) - 1].find_corners()
+				# empty = self.houses[len(self.houses) - 1].find_corners()
+				
+				# print("i: ",i)
+				# print("j: ",j)
 
-				# print(empty)
+				allowed = self.place_house(0, {'x' : i, 'y' : j})
+				# print(allowed)
 
-				self.houses[len(self.houses) - 1].calc_freespace(self)
+				if allowed == True:
+					# self.houses[len(self.houses) - 1].find_corners()
 
-				# store the possible freespace of new location
-				if (self.houses[len(self.houses) - 1].calc_freespace(self) != False):
+					# if (allowed == True):
+						# print(empty)
+
+					self.houses[len(self.houses) - 1].calc_freespace(self)
+
+					# store the possible freespace of new location
+					if (self.houses[len(self.houses) - 1].calc_freespace(self) != False):
 
 
-					tmp = self.houses[len(self.houses) - 1].freespace
+						tmp = self.houses[len(self.houses) - 1].freespace
 
-					# print(tmp)
-					# print("x", i)
-					# print("y", j)
+						# print(tmp)
+						# print("x", i)
+						# print("y", j)
 
-					# if new freespace is greater then update
-					if (tmp >= poss_freespace):
+						# if new freespace is greater then update
+						if (tmp >= poss_freespace):
 
-						# update new poss freespace
-						poss_freespace = tmp
+							# update new poss freespace
+							poss_freespace = tmp
 
-						# update location of poss freespace
-						coordinates.append({'x' : i, 'y' : j})
+							# update location of poss freespace
+							coordinates.append({'x' : i, 'y' : j})
+
+					# print(self.houses)
+					# print("nr 4", len(self.houses))
+					self.remove_house(len(self.houses) - 1)
+					
 
 		return coordinates
 
@@ -264,21 +280,21 @@ class Map(object):
 
 		for i in range(nr_houses):
 
-			tmp_house = self.houses[i]
-			del self.houses[i]
-
+			# print("nr 1", len(self.houses))
+			self.remove_house(0)
+			# print("nr 2", len(self.houses))
 			allowed = False
 
-			coordinates = self.calc_freespace_on_map(tmp_house)
+			coordinates = self.calc_freespace_on_map(self.construction[0])
 
 			j = len(coordinates) - 1
 
-			print("INDEX NUMBER:", tmp_house.index_nr)
-			print("types: ", self.types[tmp_house.index_nr])
+			# print("INDEX NUMBER:", tmp_house.index_nr)
+			# print("types: ", self.types[tmp_house.index_nr])
 
 			while (allowed == False):
 
-				allowed = self.place_house(coordinates[j], tmp_house.self_id, self.types[tmp_house.index_nr])
+				allowed = self.place_house(0, coordinates[j])
 
 				j += -1
 
