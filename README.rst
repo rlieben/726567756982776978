@@ -20,12 +20,18 @@ Prerequisites
 How to run
 =================
 
-Go to the map 'run me' chose one of the alghoritms listed in this map and type in a terminal for example:
-
+In a terminal type: 
 ```
-python hill_climber.py
+RUNME.py
 ```
-
+Then type an integer between 1 and 5.
+The integers stand for :
+    1. best of random
+    2. greedy
+    3. hill climber
+    4. force move
+    5. simmulated annealing
+    
 Folder navigation
 =======
     
