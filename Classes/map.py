@@ -158,7 +158,7 @@ class Map(object):
 		del self.houses[index]
 
 
-	def place_water_random(self, nr_water, index):
+	def place_water_random(self, nr_water):
 		'''Places water on the map
 
 		Input arguments:
@@ -166,9 +166,9 @@ class Map(object):
 		water_id -- id corresponding to the water body being placed
 		'''
 
-		i = 0
-
 		from __import__ import Water, MAP_20
+
+		i = 0
 
 		# allowed = False
 		tmp_list = []
@@ -192,13 +192,20 @@ class Map(object):
 
 		tmp_list.append(new_water)
 
-		i += 1
+		xy = x / y
 
         #check if ratio is correct
 		if ((x / y) < 0.25) & ((x / y) > 4):
 			return False
 
 		for water in self.water:
+
+			# check if location falls between walls
+			if (new_water.location['x'] > water.corners['lb']['x'] and
+				new_water.location['x'] < water.corners['rb']['x'] and
+				new_water.location['y'] > water.corners['lo']['y'] and
+				new_water.location['y'] < water.corners['lb']['y']):
+				return False
 
 			# check if corner is not inside other water body
 			for c in new_water.corners:
@@ -231,7 +238,7 @@ class Map(object):
 				return True
 
 
-	def place_water(self, index, nr_water):
+	def place_water(self, nr_water):
 
 		from __import__ import House, Water, MAP_20
 
@@ -242,26 +249,25 @@ class Map(object):
 
 		tmp_list = []
 
-		i = 0
-
 		# get location with max freespace
 		fpm = self.calc_freespace_on_map()
 
         # initialize last location
 		j = len(fpm[1]) - 1
-		del self.construction[0]
-
+		i = 0
         # calculate total water body
 		area = (self.water_prev * self.width * self.height)
 
-		while len(self.water) < 4: #and area =! 0
+		for i in range(nr_water):
 
 			j = j - i
+
+			print(i)
 
 			# get best location from freespace_on_map
 			best_loc = fpm[0][j]
 
-            # get min freespace for best_loc[j]
+		    # get min freespace for best_loc[j]
 			freespace_len = fpm[1][j]
 
 			# multiply the minimal freespace to get total water body
@@ -272,11 +278,13 @@ class Map(object):
 
 			size = {'width': width, 'height': height}
 
-			new_water = Water(index, size, best_loc)
+			new_water = Water(j, size, best_loc)
 
 			self.water.append(new_water)
 
 			i -= 1
+
+		del self.construction[0]
 
 			# if ((width / height) < 0.25) & ((width / height) > 4):
 			# 	return False

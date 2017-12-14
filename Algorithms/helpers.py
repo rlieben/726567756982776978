@@ -9,12 +9,10 @@ def random_generator(map_charac):
 
 	out_map = Map(map_charac)
 
-	i = 1
 	nr_water = 4
 
 	while len(out_map.water) < 4:
-		out_map.place_water_random(nr_water, i)
-		i += 1
+		out_map.place_water_random(nr_water)
 
 	for i in range(len(out_map.construction)):
 
@@ -27,5 +25,7 @@ def random_generator(map_charac):
 				   'y' : numpy.random.uniform(0, out_map.height)}
 
 			allowed = out_map.place_house(index, loc)
+
+	# out_map.place_water(nr_water)
 
 	return out_map
