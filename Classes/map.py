@@ -222,12 +222,16 @@ class Map(object):
 
 	def place_water(self, index, nr_water):
 
+		from __import__ import House, Water, MAP_20
+
         # create dummy house
 		d_house = House(100,MAP_20['types_houses'][0], None)
 
 		self.construction.append(d_house)
 
 		tmp_list = []
+
+		i = 0
 
 		# get location with max freespace
 		fpm = self.calc_freespace_on_map()
