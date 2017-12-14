@@ -10,7 +10,7 @@ import random
 class Water(object):
 	'''Class for water object.'''
 
-	def __init__(self, self_id, size):
+	def __init__(self, self_id, size, loc):
 		'''Class is list of coordinates on where the water is placed.
 
 		Input arguments:
@@ -20,7 +20,7 @@ class Water(object):
 		self.self_id = self_id
 		self.width = size['width']
 		self.height = size['height']
-		self.location = self.create_location()
+		self.location = loc
 		self.corners = self.find_corners()
 
 
@@ -42,14 +42,12 @@ class Water(object):
 		return {'lb' : lb, 'rb': rb, 'lo': lo, 'ro': ro}
 
 
-	def create_location(self):
-		'''generates location for water bodies '''
-
-		from __import__ import MAP_20
-
-		loc = {'x' : random.uniform((0 + 0.5 * self.width), \
-				  	(MAP_20['width'] - 0.5 * self.width)), \
-			   'y' : random.uniform((0 + 0.5 * self.height), \
-		  			(MAP_20['height'] - 0.5 * self.height))}
-
-		return loc
+	# def rand_loc(self):
+	# 	'''generates location for water bodies '''
+    #
+	# 	loc = {'x' : random.uniform((0 + 0.5 * self.width), \
+	# 			  	(MAP_20['width'] - 0.5 * self.width)), \
+	# 		   'y' : random.uniform((0 + 0.5 * self.height), \
+	# 	  			(MAP_20['height'] - 0.5 * self.height))}
+    #
+	# 	return loc
