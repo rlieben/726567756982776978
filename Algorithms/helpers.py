@@ -16,6 +16,9 @@ def random_generator(map_charac):
 	out_map -- object, output map
 	'''
 
+	from __import__ import House, Map
+
+
 	out_map = Map(map_charac)
 
 	nr_water = map_charac['nr_waterbodies']
