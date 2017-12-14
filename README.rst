@@ -36,9 +36,9 @@ Give an example
 
 Authors
 =======
-Toon van Holthe tot Echten
-Raoul Lieben
-Luc Stefelmanns
+# Toon van Holthe tot Echten
+# Raoul Lieben
+# Luc Stefelmanns
 
 
 
