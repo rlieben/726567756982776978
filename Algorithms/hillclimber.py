@@ -1,7 +1,5 @@
 
-from __import__ import *
 import copy
-
 
 
 def hillclimber(map_charac, tries_random, tries_hill, nr_houses, hill_type,
@@ -16,7 +14,7 @@ def hillclimber(map_charac, tries_random, tries_hill, nr_houses, hill_type,
 	hill_type -- type of hillclimber as integer(0: random, 1:based on freespace)
 	'''
 
-	best_map = best_of_random(map_charac, tries_random, False)['best_map']
+	best_map = best_of_random(map_charac, tries_random)['best_map']
 	maximum = best_map.calc_score()
 
 	data = []
@@ -25,9 +23,6 @@ def hillclimber(map_charac, tries_random, tries_hill, nr_houses, hill_type,
 	for i in range(tries_hill):
 
 		try_map = copy.copy(best_map)
-
-		if save_steps == True:
-			steps.append(try_map)
 
 		if (hill_type == 0):
 
@@ -40,23 +35,23 @@ def hillclimber(map_charac, tries_random, tries_hill, nr_houses, hill_type,
 
 		score = try_map.calc_score()
 
-		# if save_steps == True:
-		# 	steps.append(try_map)
-
-		data.append(score)
-
 		if score > maximum:
 			maximum = score
 			best_map = try_map
 
+		data.append(maximum)
+
+		if save_steps == True:
+			steps.append(best_map)
 
 	return {'best_map' : best_map, 'data' : data, 'steps' : steps}
+
 
 if __name__ == '__main__':
 
 	from __import__ import *
 
-	hillclimber_map = hillclimber(MAP_20, 1, 30, 1, 0, True)
+	hillclimber_map = hillclimber(MAP_20, 1, 10, 1, 0, True)
 
 	coloured_map(hillclimber_map['best_map'], 'hillclimber', 'best')
 	save_results(hillclimber_map['data'], 'hillclimber', 'data')
