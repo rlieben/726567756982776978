@@ -29,9 +29,7 @@ python hill_climber.py
 Folder navigation
 =======
     
-    Algorithms
-    ==========
-   
+    Algorithms:
         This folder contains the following algorithms:
             * Best of random
             * Depth first
