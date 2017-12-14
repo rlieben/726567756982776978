@@ -30,7 +30,7 @@ Folder navigation
 =======
     
     Algorithms
-    +++++++++
+    ==========
    
         This folder contains the following algorithms:
             * Best of random
