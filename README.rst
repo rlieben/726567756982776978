@@ -22,8 +22,9 @@ How to run
 
 In a terminal type: 
 ```
-RUNME.py <integer>
+RUNME.py
 ```
+Than enter an integer
 The integer must range between 1 and 5.
 The integers stand for :
     1. best of random
