@@ -159,11 +159,7 @@ class Map(object):
 
 
 	def place_water_random(self, nr_water):
-		'''Places water on the map
-
-		Input arguments:
-		loc -- Location where the water body needs to be placed
-		water_id -- id corresponding to the water body being placed
+		'''Places random water on the map.
 		'''
 
 		from __import__ import Water, MAP_20
@@ -239,6 +235,8 @@ class Map(object):
 
 
 	def place_water(self, nr_water):
+		'''Places water on the map after placing houses. 
+		'''
 
 		from __import__ import House, Water, MAP_20
 
