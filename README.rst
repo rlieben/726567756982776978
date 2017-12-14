@@ -30,12 +30,12 @@ Folder navigation
 =======
     
     _Algorithms_
-        content:
-            * best_of_random.py
-            * depth_first.py
-            * hill_climber.py
-            * particle_swarm.py
-            * simulated_annealing_hillclimber.py
+    content:
+        * best_of_random.py
+        * depth_first.py
+        * hill_climber.py
+        * particle_swarm.py
+        * simulated_annealing_hillclimber.py
 
     _Classes_
         content:
