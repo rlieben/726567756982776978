@@ -54,7 +54,7 @@ def hillclimber(map_charac, tries_random, tries_hill, nr_houses, hill_type,
 
 if __name__ == '__main__':
 
-	from __import__ import *
+	from __import__ import MAP_20, coloured_map, save_results, make_gif
 
 	hillclimber_map = hillclimber(MAP_20, 1, 30, 1, 0, True)
 
