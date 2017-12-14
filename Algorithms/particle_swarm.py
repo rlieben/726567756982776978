@@ -14,21 +14,21 @@ def scatterplot(ah_map, name, directory):
 	import matplotlib.patches as patches
 
 	out_plot = plot.figure()
-	ax = out_plot.add_subplot(111, aspect='equal')
+	ax = out_plot.add_subplot(111)
 
 	p = []
 
 	for house in ah_map.houses:
 
-		p.append(patches.Rectangle((house.corners['lb']['x'],
-									house.corners['lb']['y']),
+		p.append(patches.Rectangle((house.corners['lo']['x'],
+									house.corners['lo']['y']),
 									house.width, house.height,
 									facecolor=house.colour))
 
 	for water in ah_map.water:
 
-		p.append(patches.Rectangle((water.corners['lb']['x'],
-									water.corners['lb']['y']),
+		p.append(patches.Rectangle((water.corners['lo']['x'],
+									water.corners['lo']['y']),
 									water.width, water.height,
 									facecolor='blue'))
 
