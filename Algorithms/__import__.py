@@ -20,14 +20,11 @@ sys.path.insert(0, string)
 from Classes.house import *
 from Classes.map import *
 from Classes.water import *
-from Characteristics.Amstelhaege import *
+from Specifications.amstelhaege import *
 from Algorithms.helpers import *
 from Algorithms.best_of_random import *
 from Algorithms.hillclimber import *
-from Algorithms.tactical_hillclimber import *
 from Algorithms.depthfirst import *
-from Algorithms.scatterplot import *
-
-import numpy
-import random
-import copy
+from Visualisations.coloured_map import *
+from Visualisations.txtwriter import *
+from Visualisations.make_gif import *
