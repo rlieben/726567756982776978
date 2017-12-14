@@ -10,8 +10,8 @@ def save_results(results, directory, filename):
 	'''Saves results to text file
 
 	Input arguments:
-	results -- a list stored with results
-	filename -- a string as outputname for the file
+	results -- list, containing scores
+	filename -- string, outputname for the file
 	'''
 
 	find_forward = sys.path[1].find('/')

@@ -8,11 +8,13 @@ def sa_hillclimber(map_charac, tries_random, nr_houses, hill_type):
 	'''Moves, every iteration, houses for optimalization.
 
 	Input arguments:
-	map_charac -- object, map characteristics
+	map_charac -- file with specifications of the case
 	tries_random -- integer, number of random maps created
-	tries_hill -- integer, number of hillclimbing
 	nr_houses -- integer, nr of houses that are moved with each hillclimb
 	hill_type -- type of hillclimber as integer(0: random, 1:based on freespace)
+
+	Output:
+	dict containing: object, map with best map and list, data with scores of maps
 	'''
 
 	MIN = 1
