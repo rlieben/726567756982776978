@@ -29,8 +29,13 @@ python hill_climber.py
 Folder navigation
 =======
     
-    Algorithms:
-        This folder contains all algorithms used to resolve the case.
+    Algorithms
+        This folder contains the following algorithms:
+            * Best of random
+            * Depth first
+            * Hill climber
+            * Particle swarm
+            * Simulated annealing 
     
     Classes:
         This folder contains the classes house, map and water.
