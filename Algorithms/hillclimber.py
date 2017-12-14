@@ -41,6 +41,8 @@ def hillclimber(map_charac, tries_random, tries_hill, nr_houses, hill_type,
 		data.append(maximum)
 
 		if save_steps == True:
+			coloured_map(try_map, 'best_of_random\\tmp_gif', (str(k).zfill(3)))
+			k += 1
 			steps.append(best_map)
 
 	return {'best_map' : best_map, 'data' : data, 'steps' : steps}
