@@ -98,7 +98,7 @@ def depthfirstwater(start_maps, nr_waterbodies, map_charac):
 		k = 0
 
 		while len(total_maps[start_map].water) < nr_waterbodies:
-			total_maps[start_map].place_water(nr_waterbodies, k)
+			total_maps[start_map].place_water_random(nr_waterbodies, k)
 			k += 1
 
 		# iterates over houses
