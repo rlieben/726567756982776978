@@ -1,5 +1,7 @@
 
-from __import__ import House, Map
+from __import__ import Map
+
+# import house weggehaald
 
 import numpy
 
