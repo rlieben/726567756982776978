@@ -158,7 +158,7 @@ class Map(object):
 		del self.houses[index]
 
 
-	def place_water_random(self, nr_water, index):
+	def place_water_random(self, nr_water):
 		'''Places water on the map
 
 		Input arguments:
@@ -231,9 +231,9 @@ class Map(object):
 				return True
 
 
-	def place_water(self, index, nr_water):
+	def place_water(self, nr_water):
 
-		from __import__ import House, MAP_20
+		from __import__ import House, MAP_20, Water
 
         # create dummy house
 		d_house = House(100,MAP_20['types_houses'][0], None)
@@ -252,29 +252,31 @@ class Map(object):
         # calculate total water body
 		area = (self.water_prev * self.width * self.height)
 
-		while len(self.water) < 4: #and area =! 0
+		i = 0
 
-			j = j - i
+		# while len(self.water) < 1: #and area > 0
+        #
+		# 	j = j - i
 
-			# get best location from freespace_on_map
-			best_loc = fpm[0][j]
+		# get best location from freespace_on_map
+		best_loc = fpm[0][-1]
 
-            # get min freespace for best_loc[j]
-			freespace_len = fpm[1][j]
+        # get min freespace for best_loc[j]
+		freespace_len = fpm[1][-1]
 
-			# multiply the minimal freespace to get total water body
-			width = freespace_len * 2
-			height = freespace_len * 2
+		# multiply the minimal freespace to get total water body
+		width = freespace_len * 2
+		height = freespace_len * 2
 
-			print(width,height)
+		print(width,height)
 
-			size = {'width': width, 'height': height}
+		size = {'width': width, 'height': height}
 
-			new_water = Water(index, size, best_loc)
+		new_water = Water(j, size, best_loc)
 
-			self.water.append(new_water)
+		self.water.append(new_water)
 
-			i -= 1
+		# i -= 1
 
 			# if ((width / height) < 0.25) & ((width / height) > 4):
 			# 	return False
