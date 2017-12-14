@@ -4,7 +4,19 @@ import copy
 
 from __import__ import coloured_map
 
-def particle_swarm(in_map, tries, save_steps=False):
+def force_move(in_map, tries, save_steps=False):
+	''' Forces a move by nearest house neighbour in opposite direction.
+
+	Input arguments:
+	in_map -- object, input map 
+	tries -- int, number of moves for each house
+	save_steps -- boolean, for saving maps for visualization
+
+	Output:
+	dict -- containing  object, best_map with best map,
+						list, data with map score and 
+						list, steps with all created maps
+	'''
 
 	for house in in_map.houses:
 		house.calc_value()
@@ -59,9 +71,9 @@ if __name__ == '__main__':
 						   save_results, make_gif
 
 	random_map = random_generator(MAP_20)
-	particle_map = particle_swarm(random_map, 20, True)
+	force_move_map = force_move(random_map, 20, True)
 
-	coloured_map(particle_map['best_map'], 'particle_swarm', 'best')
-	save_results(particle_map['data'], 'particle_swarm', 'data')
+	coloured_map(force_move_map['best_map'], 'force_move', 'best')
+	save_results(force_move_map['data'], 'force_move', 'data')
 
-	make_gif(particle_map['steps'], 'particle_swarm', 'particle')
+	make_gif(force_move_map['steps'], 'force_move', 'force')
