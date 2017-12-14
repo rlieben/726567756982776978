@@ -1,8 +1,10 @@
 
+import matplotlib as mpl
+import matplotlib.pyplot as plot
+import matplotlib.patches as patches
+import sys
 
-def coloured_map(ah_map, name, directory):
-
-	import matplotlib.patches as patches
+def coloured_map(ah_map, directory, name):
 
 	out_plot = plot.figure()
 	ax = out_plot.add_subplot(111)
@@ -41,8 +43,8 @@ def coloured_map(ah_map, name, directory):
 		string += list_dir[i]
 		string += split
 
-	out_plot.savefig(string + 'Results' + split + directory + split + name)
+	out_plot.savefig(string + 'Results' + split + directory + split + name
+					 + '.png')
+
 
 	out_plot.clf()
-
-	# return out_plot.show()

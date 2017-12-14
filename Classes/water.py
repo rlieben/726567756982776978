@@ -5,8 +5,6 @@
 # Members:      Toon van Holthe, Raoul Lieben, Luc Stefelmanns
 
 import random
-from Classes.map import *
-from Characteristics.Amstelhaege import *
 
 class Water(object):
 	'''Class for water object.'''

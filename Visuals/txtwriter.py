@@ -6,7 +6,7 @@
 
 import sys
 
-def save_results(results, filename):
+def save_results(results, directory, filename):
 	'''Saves results to text file
 
 	Input arguments:
@@ -24,12 +24,13 @@ def save_results(results, filename):
 
 	list_dir = sys.path[1].split(split)
 	string = ''
-	for i in range(len(list_dir)):
+	for i in range(len(list_dir) - 1):
 	    string += list_dir[i]
 	    string += split
 
 
-	filename = open(string + 'Results' + split + filename + '.txt', 'w')
+	filename = open(string + 'Results' + split + directory + split +
+					filename + '.txt', 'w')
 
 	for item in results:
 		filename.write("%s\n" % item)

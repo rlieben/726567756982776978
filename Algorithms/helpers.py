@@ -20,12 +20,6 @@ def random_generator(map_charac):
 		out_map.place_water(nr_water, i)
 		i += 1
 
-	opp = 0
-
-	for water in out_map.water:
-		opp = opp + (water.width * water.height)
-
-	print(opp)
 
 	for i in range(len(out_map.construction)):
 

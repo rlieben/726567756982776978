@@ -1,14 +1,7 @@
 
-from __import__ import *
+import numpy
 
-import matplotlib as mpl
-import matplotlib.pyplot as plot
-import numpy as np
-import matplotlib.patches as patches
-import sys
-
-
-def particle_swarm(in_map, tries):
+def particle_swarm(in_map, tries, save_steps):
 
 	for house in in_map.houses:
 		house.calc_value()
@@ -16,9 +9,9 @@ def particle_swarm(in_map, tries):
 	in_map.calc_score()
 
 	best_map = copy.copy(in_map)
-
 	data = []
-	k = 0
+	steps = []
+
 	for i in range(tries):
 
 		for j in range(len(best_map.houses)):
@@ -40,8 +33,8 @@ def particle_swarm(in_map, tries):
 			if allowed == False:
 				out_map.place_house(0, old_loc)
 
-			# scatterplot(out_map, str(k), 'TESTparticle')
-			k += 1
+			if save_steps == True:
+				steps.append(out_map)
 
 		for house in out_map.houses:
 			house.calc_freespace(out_map)
@@ -51,7 +44,17 @@ def particle_swarm(in_map, tries):
 			best_map = copy.copy(out_map)
 			data.append(best_map.score)
 
-		# coloured_map(best_map, str(i), 'TESTparticle')
 
+	return {'best_map' : best_map, 'data' : data, 'steps' : steps}
 
-	return {'map' : best_map, 'data' : data}
+if __name__ == '__main__':
+
+	from __import__ import *
+
+	random_map = random_generator(MAP_20)
+	particle_map = particle_swarm(random_map, 10, True)
+
+	coloured_map(particle_map['best_map'], 'particle_swarm', 'best')
+	save_results(particle_map['data'], 'particle_swarm', 'data')
+
+	# make_gif(particle_map['steps'], 'particle_swarm', 'particle')

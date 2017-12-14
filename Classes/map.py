@@ -5,13 +5,11 @@
 # Members:      Toon van Holthe, Raoul Lieben, Luc Stefelmanns
 
 
-from __import__ import *
 import random
 import copy
 import numpy
-from Classes.house import *
-from Classes.water import *
-from Characteristics.Amstelhaege import *
+from house import *
+from water import *
 
 
 class Map(object):
