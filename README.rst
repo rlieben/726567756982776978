@@ -12,6 +12,7 @@ In order to get the code running some addictional requirements need to be met. T
 Prerequisites
 =============
 Python:
+    Python is used as programming language
 ```
 version 3.6.3
 ```
