@@ -48,6 +48,17 @@ class Map(object):
 		return construction
 
 
+	def rand_loc_water(self):
+		'''generates random location'''
+
+		loc = {'x' : random.uniform((0 + 0.5 * water.width), \
+				  	(MAP_20['width'] - 0.5 * water.width)), \
+			   'y' : random.uniform((0 + 0.5 * water.height), \
+		  			(MAP_20['height'] - 0.5 * water.height))}
+
+		return loc
+
+
 	def place_house(self, index, loc):
 
 		# copy the house to be placed
@@ -147,7 +158,7 @@ class Map(object):
 		del self.houses[index]
 
 
-	def place_water_random(self, index, nr_water):
+	def place_water_random(self, nr_water, index, loc):
 		'''Places water on the map
 
 		Input arguments:
@@ -155,12 +166,12 @@ class Map(object):
 		water_id -- id corresponding to the water body being placed
 		'''
 
-		from __import__ import Water, MAP_20
+		i = 0
+
+		from __import__ import Water
 
 		# allowed = False
 		tmp_list = []
-
-		i = 0
 
         # create random x and y for water body
 		y = numpy.random.uniform((numpy.sqrt((self.water_prev
@@ -173,12 +184,7 @@ class Map(object):
 
 		index = i
 
-		loc = {'x' : numpy.random.uniform((0 + 0.5 * x), \
-				  	(MAP_20['width'] - 0.5 * x)), \
-			   'y' : numpy.random.uniform((0 + 0.5 * y), \
-		  			(MAP_20['height'] - 0.5 * y))}
-
-		new_water = Water(index, size, loc)
+		new_water = Water(index, size)
 
 		tmp_list.append(new_water)
 
@@ -223,7 +229,7 @@ class Map(object):
 
 	def place_water(self, index, nr_water):
 
-		from __import__ import Water, House, MAP_20
+		from __import__ import House, MAP_20
 
         # create dummy house
 		d_house = House(100,MAP_20['types_houses'][0], None)
@@ -242,9 +248,7 @@ class Map(object):
         # calculate total water body
 		area = (self.water_prev * self.width * self.height)
 
-		i = 0
-
-		for i in range(nr_water):
+		while len(self.water) < 4: #and area =! 0
 
 			j = j - i
 
@@ -403,12 +407,12 @@ class Map(object):
 			# get freespace coordinates on map
 			coordinates = self.calc_freespace_on_map(self.construction[0])
 
-			j = len(coordinates) - 1
+			j = len(coordinates[0]) - 1
 
 			# place house where valid beginning with biggest freespace to smallest
 			while (allowed == False):
 
-				allowed = self.place_house(0, coordinates[j])
+				allowed = self.place_house(0, coordinates[0][j])
 
 				j += -1
 

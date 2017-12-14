@@ -1,5 +1,5 @@
 
-from __import__ import *
+from __import__ import House, Map
 
 import numpy
 import matplotlib as mpl
