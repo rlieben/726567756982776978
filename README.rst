@@ -46,6 +46,7 @@ Folder navigation
         description:
             This folder contains all algorithms used to solve the case.
 
+
     Classes/
         content:
             * house.py
@@ -54,6 +55,7 @@ Folder navigation
             
         description:
             This folder contains all classes used in the algorithms. The classes contain functions that for example calculate the free space for a house
+
 
     Results/
         content:
@@ -65,12 +67,14 @@ Folder navigation
         description:    
             For each algorithm the results are saved in sub folders. These folders contain a GIF of the process and the total score (sum of all house values) is stored in data.txt
 
+
     Specifications/
         content: 
             * amstelhage.py
         
         description:
             This folder contains the spefications used for this project like the Amstelhaege's width and height
+
 
     Visualisations/
         content:
