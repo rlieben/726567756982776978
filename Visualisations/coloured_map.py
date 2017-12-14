@@ -53,8 +53,6 @@ def coloured_map(ah_map, directory, name):
 		string += list_dir[i]
 		string += split
 
-	out_plot.show()
-
 	out_plot.savefig(string + 'Results' + split + directory + split + name
 					 + '.png')
 

@@ -11,9 +11,10 @@ def particle_swarm(in_map, tries, save_steps=False):
 
 	in_map.calc_score()
 
-	best_map = copy.copy(in_map)
+	best_map = in_map
 	data = []
 	steps = []
+	k = 0
 
 	for i in range(tries):
 
@@ -41,15 +42,13 @@ def particle_swarm(in_map, tries, save_steps=False):
 			house.calc_value()
 
 		if out_map.calc_score() > best_map.score:
-			best_map = copy.copy(out_map)
+			best_map = out_map
 			data.append(best_map.score)
 
 		if save_steps == True:
-			step = copy.copy(best_map)
-			steps.append(step)
-
-		# coloured_map(best_map, '', str(i))
-
+			coloured_map(best_map, 'particle_swarm\\tmp_gif', (str(k).zfill(3)))
+			k += 1
+			steps.append(best_map)
 
 	return {'best_map' : best_map, 'data' : data, 'steps' : steps}
 
@@ -62,8 +61,7 @@ if __name__ == '__main__':
 	random_map = random_generator(MAP_20)
 	particle_map = particle_swarm(random_map, 20, True)
 
-	# coloured_map(random_map, 'particle_swarm', 'start')
-	# coloured_map(particle_map['best_map'], 'particle_swarm', 'best')
-	# save_results(particle_map['data'], 'particle_swarm', 'data')
-    #
-	# make_gif(particle_map['steps'], 'particle_swarm', 'particle')
+	coloured_map(particle_map['best_map'], 'particle_swarm', 'best')
+	save_results(particle_map['data'], 'particle_swarm', 'data')
+
+	make_gif(particle_map['steps'], 'particle_swarm', 'particle')

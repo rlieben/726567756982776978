@@ -27,10 +27,10 @@ def make_gif(steps, directory, name):
 	    string += list_dir[i]
 	    string += split
 
-	k = 0
-	for step in steps:
-		coloured_map(step, directory + split + 'tmp_gif', name + str(k))
-		k += 1
+	# k = 0
+	# for step in steps:
+	# 	coloured_map(step, directory + split + 'tmp_gif', name + str(k))
+	# 	k += 1
 
 	png_dir = string + 'Results' + split + directory + split + 'tmp_gif'
 
