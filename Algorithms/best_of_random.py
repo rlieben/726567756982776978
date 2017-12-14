@@ -1,6 +1,4 @@
 
-from __import__ import *
-
 def best_of_random(map_charac, tries, save_steps=False):
 	''' Creates random maps and returns the map with the highest score.
 
@@ -8,6 +6,8 @@ def best_of_random(map_charac, tries, save_steps=False):
 	map_charac -- characteristics of the map
 	tries -- number of creating random maps
 	'''
+
+	from __import__ import random_generator
 
 	maximum = 0
 	best_map = random_generator(map_charac)
@@ -33,7 +33,7 @@ def best_of_random(map_charac, tries, save_steps=False):
 
 if __name__ == '__main__':
 
-	from __import__ import *
+	from __import__ import MAP_20, coloured_map, save_results, make_gif
 
 	best_random_map = best_of_random(MAP_20, 20, True)
 
