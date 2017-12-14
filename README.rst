@@ -61,7 +61,7 @@ Folder navigation
 
     Specification
         content: 
-            *amstelhage.py
+            * amstelhage.py
         
         description:
             This folder contains the spefications used for this project like the Amstelhaege's width and height
