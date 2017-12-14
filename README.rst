@@ -29,31 +29,40 @@ python hill_climber.py
 Folder navigation
 =======
     
-    _Algorithms_
-    content:
-        * best_of_random.py
-        * depth_first.py
-        * hill_climber.py
-        * particle_swarm.py
-        * simulated_annealing_hillclimber.py
+    Algorithms
+        content:
+            * best_of_random.py
+            * greedy.py
+            * hill_climber.py
+            * particle_swarm.py
+            * simulated_annealing_hillclimber.py
+        
+        description:
+            This folder contains all algorithms used to solve the case.
 
-    _Classes_
+    Classes
         content:
             * house.py
             * map.py
             * water.py
+            
+        description:
+            This folder contains all classes used in the algorithms. The classes contain functions that for example calculate the free space for a house
 
-    _Results_
+    Results
         content:
-            * 
-            *
-            *
-        For each algorithm the results are saved in sub folders. These folders contain a GIF of the process
+            * best_of_random
+            * greedy
+            * hillclimber
+            * particle_swarm
+        
+        description:    
+            For each algorithm the results are saved in sub folders. These folders contain a GIF of the process
 
-    _Specification_
+    Specification
         This folder contains the spefications used for this project
 
-    _Visualisations_
+    Visualisations
         This folder contains the scripts used to visualise the data 
 
 Authors
