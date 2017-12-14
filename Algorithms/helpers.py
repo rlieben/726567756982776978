@@ -15,8 +15,8 @@ def random_generator(map_charac):
 
 	nr_water = 4
 
-	# while len(out_map.water) < 4:
-	# 	out_map.place_water_random(i, nr_water)
+	while len(out_map.water) < 4:
+		out_map.place_water_random(nr_water)
 
 	for i in range(len(out_map.construction)):
 
@@ -30,7 +30,6 @@ def random_generator(map_charac):
 
 			allowed = out_map.place_house(index, loc)
 
-	# # while len(out_map.water) < nr_water:
-	out_map.place_water(nr_water)
+	# out_map.place_water(nr_water)
 
 	return out_map

@@ -166,9 +166,9 @@ class Map(object):
 		water_id -- id corresponding to the water body being placed
 		'''
 
-		i = 0
-
 		from __import__ import Water, MAP_20
+
+		i = 0
 
 		# allowed = False
 		tmp_list = []
@@ -192,13 +192,20 @@ class Map(object):
 
 		tmp_list.append(new_water)
 
-		i += 1
+		xy = x / y
 
         #check if ratio is correct
 		if ((x / y) < 0.25) & ((x / y) > 4):
 			return False
 
 		for water in self.water:
+
+			# check if location falls between walls
+			if (new_water.location['x'] > water.corners['lb']['x'] and
+				new_water.location['x'] < water.corners['rb']['x'] and
+				new_water.location['y'] > water.corners['lo']['y'] and
+				new_water.location['y'] < water.corners['lb']['y']):
+				return False
 
 			# check if corner is not inside other water body
 			for c in new_water.corners:
@@ -242,43 +249,42 @@ class Map(object):
 
 		tmp_list = []
 
-		i = 0
-
 		# get location with max freespace
 		fpm = self.calc_freespace_on_map()
 
         # initialize last location
 		j = len(fpm[1]) - 1
-		del self.construction[0]
-
+		i = 0
         # calculate total water body
 		area = (self.water_prev * self.width * self.height)
 
-		i = 0
+		for i in range(nr_water):
 
-		# while len(self.water) < 1: #and area > 0
-        #
-		# 	j = j - i
+			j = j - i
 
-		# get best location from freespace_on_map
-		best_loc = fpm[0][-1]
+			print(i)
 
-        # get min freespace for best_loc[j]
-		freespace_len = fpm[1][-1]
+			# get best location from freespace_on_map
+			best_loc = fpm[0][j]
 
-		# multiply the minimal freespace to get total water body
-		width = freespace_len * 2
-		height = freespace_len * 2
+		    # get min freespace for best_loc[j]
+			freespace_len = fpm[1][j]
 
-		print(width,height)
+			# multiply the minimal freespace to get total water body
+			width = freespace_len * 2
+			height = freespace_len * 2
 
-		size = {'width': width, 'height': height}
+			print(width,height)
 
-		new_water = Water(j, size, best_loc)
+			size = {'width': width, 'height': height}
 
-		self.water.append(new_water)
+			new_water = Water(j, size, best_loc)
 
-		# i -= 1
+			self.water.append(new_water)
+
+			i -= 1
+
+		del self.construction[0]
 
 			# if ((width / height) < 0.25) & ((width / height) > 4):
 			# 	return False
