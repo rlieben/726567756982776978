@@ -20,13 +20,15 @@ def scatterplot(ah_map, name, directory):
 
 	for house in ah_map.houses:
 
-		p.append(patches.Rectangle((house.location['x'], house.location['y']),
+		p.append(patches.Rectangle((house.corners['lb']['x'],
+									house.corners['lb']['y']),
 									house.width, house.height,
 									facecolor=house.colour))
 
 	for water in ah_map.water:
 
-		p.append(patches.Rectangle((water.location['x'], water.location['y']),
+		p.append(patches.Rectangle((water.corners['lb']['x'],
+									water.corners['lb']['y']),
 									water.width, water.height,
 									facecolor='blue'))
 
@@ -53,6 +55,78 @@ def scatterplot(ah_map, name, directory):
 	out_plot.clf()
 
 	# return out_plot.show()
+
+
+
+def scatterplot2(ah_map, name):
+
+	data = []
+
+	for i in range(len(ah_map.houses)):
+
+
+		x = ah_map.houses[i].location['x']
+		y = ah_map.houses[i].location['y']
+
+		colors = (0, 0, 0)
+		area = np.pi * 1
+
+		data.append([ah_map.houses[i].corners['lb']['x'],
+					 ah_map.houses[i].corners['lb']['y']])
+		data.append([ah_map.houses[i].corners['lo']['x'],
+					 ah_map.houses[i].corners['lo']['y']])
+		data.append([ah_map.houses[i].corners['lo']['x'],
+					 ah_map.houses[i].corners['lo']['y']])
+		data.append([ah_map.houses[i].corners['ro']['x'],
+					 ah_map.houses[i].corners['ro']['y']])
+		data.append([ah_map.houses[i].corners['ro']['x'],
+					 ah_map.houses[i].corners['ro']['y']])
+		data.append([ah_map.houses[i].corners['rb']['x'],
+					 ah_map.houses[i].corners['rb']['y']])
+		data.append([ah_map.houses[i].corners['rb']['x'],
+					 ah_map.houses[i].corners['rb']['y']])
+		data.append([ah_map.houses[i].corners['lb']['x'],
+					 ah_map.houses[i].corners['lb']['y']])
+
+	for water in ah_map.water:
+		print(water.width, water.height, water.self_id)
+		data.append([water.corners['lb']['x'],
+					 water.corners['lb']['y']])
+		data.append([water.corners['lo']['x'],
+					 water.corners['lo']['y']])
+		data.append([water.corners['lo']['x'],
+					 water.corners['lo']['y']])
+		data.append([water.corners['ro']['x'],
+					 water.corners['ro']['y']])
+		data.append([water.corners['ro']['x'],
+					 water.corners['ro']['y']])
+		data.append([water.corners['rb']['x'],
+					 water.corners['rb']['y']])
+		data.append([water.corners['rb']['x'],
+					 water.corners['rb']['y']])
+		data.append([water.corners['lb']['x'],
+					 water.corners['lb']['y']])
+
+	axes = plot.gca()
+	axes.set_xlim([0, ah_map.width])
+	axes.set_ylim([0, ah_map.height])
+
+	# for every value in data
+	for i in range(0, len(data) - 1, 2):
+		# define lists
+		plot_array_x = []
+		plot_array_y = []
+
+		# append values in pairs to lists
+		plot_array_x.append(data[i][0])
+		plot_array_x.append(data[i + 1][0])
+		plot_array_y.append(data[i][1])
+		plot_array_y.append(data[i + 1][1])
+
+		# plot each of these pairs seperately
+		plot.plot(plot_array_x, plot_array_y, 'g')
+
+	plot.savefig(name)
 
 
 def particle_swarm(in_map, tries):
@@ -99,6 +173,7 @@ def particle_swarm(in_map, tries):
 			data.append(best_map.score)
 
 		scatterplot(best_map, str(i), 'TESTparticle')
+		scatterplot2(best_map, str(i))
 
 
 	return {'map' : best_map, 'data' : data}
