@@ -17,7 +17,7 @@ Prerequisites
 * Imageio (2.2.0)
 
 
-Running the tests
+How to run
 =================
 
 Go to the map 'run me' chose one of the alghoritms listed in this map and type in a terminal for example:
@@ -26,14 +26,23 @@ Go to the map 'run me' chose one of the alghoritms listed in this map and type i
 python hill_climber.py
 ```
 
-Results
+Folder navigation
 =======
-
-Explain what these tests test and why
-
-```
-Give an example
-```
+    
+    * Algorithms:
+        This folder contains all algorithms used to resolve the case.
+    
+    * Classes:
+        This folder contains the classes house, map and water.
+    
+    * Results:
+        For each algorithm the results are saved in sub folders. These folders contain a GIF of the process
+    
+    * Specification:
+        This folder contains the spefications used for this project
+    
+    * Visualisations:
+        This folder contains the scripts used to visualise the data 
 
 Authors
 =======
