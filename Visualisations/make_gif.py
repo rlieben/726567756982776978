@@ -24,7 +24,6 @@ def make_gif(steps, directory, name):
 	k = 0
 	for step in steps:
 		coloured_map(step, directory + split + 'tmp_gif', name + str(k))
-		print('gif   ', step.score)
 		k += 1
 
 	png_dir = string + 'Results' + split + directory + split + 'tmp_gif'
