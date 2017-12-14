@@ -48,7 +48,7 @@ def particle_swarm(in_map, tries, save_steps=False):
 			step = copy.copy(best_map)
 			steps.append(step)
 
-		coloured_map(best_map, '', str(i))
+		# coloured_map(best_map, '', str(i))
 
 
 	return {'best_map' : best_map, 'data' : data, 'steps' : steps}
@@ -66,4 +66,4 @@ if __name__ == '__main__':
 	# coloured_map(particle_map['best_map'], 'particle_swarm', 'best')
 	# save_results(particle_map['data'], 'particle_swarm', 'data')
     #
-	make_gif(particle_map['steps'], 'particle_swarm', 'particle')
+	# make_gif(particle_map['steps'], 'particle_swarm', 'particle')
