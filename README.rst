@@ -57,14 +57,24 @@ Folder navigation
             * particle_swarm
         
         description:    
-            For each algorithm the results are saved in sub folders. These folders contain a GIF of the process
+            For each algorithm the results are saved in sub folders. These folders contain a GIF of the process and the total score (sum of all house values) is stored in data.txt
 
     Specification
-        This folder contains the spefications used for this project
+        content: 
+            *amstelhage.py
+        
+        description:
+            This folder contains the spefications used for this project like the Amstelhaege's width and height
 
     Visualisations
-        This folder contains the scripts used to visualise the data 
-
+        content:
+            * coloured_map.py
+            * make_gif.py
+            * txtwriter.py
+        
+        description:
+            This folder contains all scripts used to visualise and document the change in score during each iteration for every algorithm    
+           
 Authors
 =======
 * Toon van Holthe tot Echten
