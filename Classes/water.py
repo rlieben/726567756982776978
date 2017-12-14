@@ -40,14 +40,3 @@ class Water(object):
 			  'y' : (self.location['y'] - 0.5 * self.height)}
 
 		return {'lb' : lb, 'rb': rb, 'lo': lo, 'ro': ro}
-
-
-	# def rand_loc(self):
-	# 	'''generates location for water bodies '''
-    #
-	# 	loc = {'x' : random.uniform((0 + 0.5 * self.width), \
-	# 			  	(MAP_20['width'] - 0.5 * self.width)), \
-	# 		   'y' : random.uniform((0 + 0.5 * self.height), \
-	# 	  			(MAP_20['height'] - 0.5 * self.height))}
-    #
-	# 	return loc

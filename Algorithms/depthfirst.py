@@ -151,7 +151,7 @@ def depthfirstwater(start_maps, nr_waterbodies, map_charac):
 			best_map = total_maps[start_map]
 
 	# returns created map and score
-	return {'map': best_map, 'score' : score}
+	return {'bestmap': best_map, 'score' : score, 'steps': total_maps}
 
 
 
@@ -167,5 +167,6 @@ if __name__ == '__main__':
 	best_depthfirst = depthfirstwater(20, 4, MAP_20)
 	print('best depthfirst:', best_depthfirst['map'].score)
 
+	make_gif(best_depthfirst['steps'], 'greedy', 'greedy')
 
 

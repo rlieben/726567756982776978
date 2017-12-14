@@ -158,7 +158,7 @@ class Map(object):
 		del self.houses[index]
 
 
-	def place_water_random(self, nr_water, index, loc):
+	def place_water_random(self, nr_water, index):
 		'''Places water on the map
 
 		Input arguments:
@@ -168,14 +168,13 @@ class Map(object):
 
 		i = 0
 
-		from __import__ import Water
+		from __import__ import Water, MAP_20
 
 		# allowed = False
 		tmp_list = []
 
         # create random x and y for water body
-		y = numpy.random.uniform((numpy.sqrt((self.water_prev
-											* self.width * self.height) * 4)), \
+		y = numpy.random.uniform((numpy.sqrt((self.water_prev * self.width * self.height) * 4)), \
 			numpy.sqrt(self.water_prev * self.width * self.height)) / nr_water
 
 		x = ((self.water_prev * self.width * self.height) / y) / nr_water
@@ -184,7 +183,12 @@ class Map(object):
 
 		index = i
 
-		new_water = Water(index, size)
+		loc = {'x' : numpy.random.uniform((0 + 0.5 * x), \
+				  	(MAP_20['width'] - 0.5 * x)), \
+			   'y' : numpy.random.uniform((0 + 0.5 * y), \
+		  			(MAP_20['height'] - 0.5 * y))}
+
+		new_water = Water(index, size, loc)
 
 		tmp_list.append(new_water)
 
@@ -264,46 +268,52 @@ class Map(object):
 			width = freespace_len * 2
 			height = freespace_len * 2
 
+			print(width,height)
+
 			size = {'width': width, 'height': height}
 
 			new_water = Water(index, size, best_loc)
 
-			tmp_list.append(new_water)
+			self.water.append(new_water)
 
-			if ((width / height) < 0.25) & ((width / height) > 4):
-				return False
+			i -= 1
 
-			for water in self.water:
+			# if ((width / height) < 0.25) & ((width / height) > 4):
+			# 	return False
+            #
+			# for water in self.water:
+            #
+			# 	# check if corner is not inside other water body
+			# 	for c in new_water.corners:
+            #
+			# 		if (new_water.corners[c]['x'] >= water.corners['lb']['x'] and
+			# 			new_water.corners[c]['x'] <= water.corners['rb']['x'] and
+			# 		    new_water.corners[c]['y'] <= water.corners['lb']['y'] and
+			# 		    new_water.corners[c]['y'] >= water.corners['lo']['y']):
+            #
+			# 			# stop function if there is overlap
+			# 			return False
+            #
+			# 	for c in water.corners:
+            #
+			# 		if (water.corners[c]['x'] >= new_water.corners['lb']['x'] and
+			# 			water.corners[c]['x'] <= new_water.corners['rb']['x'] and
+			# 		    water.corners[c]['y'] <= new_water.corners['lb']['y'] and
+			# 		    water.corners[c]['y'] >= new_water.corners['lo']['y']):
+            #
+			# 			# stop function if there is overlap
+			# 			return False
+            #
+            # # check if water is on map
+			# for water in tmp_list:
+			# 	if water.corners['lo']['x'] > 0 and water.corners['lo']['y'] > 0 \
+			# 	and water.corners['lb']['x'] > 0 and water.corners['lb']['y'] < self.height \
+			# 	and water.corners['ro']['x'] < self.width and water.corners['ro']['y'] > 0 \
+			# 	and water.corners['rb']['x'] < self.width and water.corners['rb']['y'] < self.height:
+                    # self.water.append(water)
+					# return True
 
-				# check if corner is not inside other water body
-				for c in new_water.corners:
 
-					if (new_water.corners[c]['x'] >= water.corners['lb']['x'] and
-						new_water.corners[c]['x'] <= water.corners['rb']['x'] and
-					    new_water.corners[c]['y'] <= water.corners['lb']['y'] and
-					    new_water.corners[c]['y'] >= water.corners['lo']['y']):
-
-						# stop function if there is overlap
-						return False
-
-				for c in water.corners:
-
-					if (water.corners[c]['x'] >= new_water.corners['lb']['x'] and
-						water.corners[c]['x'] <= new_water.corners['rb']['x'] and
-					    water.corners[c]['y'] <= new_water.corners['lb']['y'] and
-					    water.corners[c]['y'] >= new_water.corners['lo']['y']):
-
-						# stop function if there is overlap
-						return False
-
-            # check if water is on map
-			for water in tmp_list:
-				if water.corners['lo']['x'] > 0 and water.corners['lo']['y'] > 0 \
-				and water.corners['lb']['x'] > 0 and water.corners['lb']['y'] < self.height \
-				and water.corners['ro']['x'] < self.width and water.corners['ro']['y'] > 0 \
-				and water.corners['rb']['x'] < self.width and water.corners['rb']['y'] < self.height:
-					self.water.append(water)
-					return True
 
 	def calc_freespace_on_map(self):
 		'''Calculating location with the most freespace on map. '''
@@ -403,12 +413,12 @@ class Map(object):
 			# get freespace coordinates on map
 			coordinates = self.calc_freespace_on_map(self.construction[0])
 
-			j = len(coordinates) - 1
+			j = len(coordinates[0]) - 1
 
 			# place house where valid beginning with biggest freespace to smallest
 			while (allowed == False):
 
-				allowed = self.place_house(0, coordinates[j])
+				allowed = self.place_house(0, coordinates[0][j])
 
 				j += -1
 

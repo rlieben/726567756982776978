@@ -34,9 +34,14 @@ def coloured_map(ah_map, directory, name):
 	axes.set_xlim([0, ah_map.width])
 	axes.set_ylim([0, ah_map.height])
 
-	# out_plot.savefig(name)
+	find_forward = sys.path[0].find('/')
+	find_backward = sys.path[0].find('\\')
 
-	split = sys.path[1][2]
+	if find_forward > find_backward:
+		split = '/'
+	else:
+		split = '\\'
+
 	list_dir = sys.path[0].split(split)
 	string = ''
 	for i in range(len(list_dir) - 1):
