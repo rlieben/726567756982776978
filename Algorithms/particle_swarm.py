@@ -51,8 +51,7 @@ def particle_swarm(in_map, tries):
 			best_map = copy.copy(out_map)
 			data.append(best_map.score)
 
-		scatterplot(best_map, str(i), 'TESTparticle')
-		scatterplot2(best_map, str(i))
+		# coloured_map(best_map, str(i), 'TESTparticle')
 
 
 	return {'map' : best_map, 'data' : data}

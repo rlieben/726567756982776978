@@ -29,7 +29,8 @@ from Algorithms.depthfirst import *
 from Algorithms.particle_swarm import *
 from Algorithms.sa_hillclimber import *
 from Visuals.scatterplot import *
-from Results.txtwriter import *
+from Visuals.coloured_map import *
+from Visuals.txtwriter import *
 
 import numpy
 import random
