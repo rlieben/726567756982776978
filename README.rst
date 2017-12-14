@@ -11,23 +11,22 @@ In order to get the code running some addictional requirements need to be met. T
 
 Prerequisites
 =============
-
 Python:
-    https://www.python.org/downloads/
-
-Pip:
-    https://pip.pypa.io/en/stable/installing/
+    Python is used as programming language
+```
+version 3.6.3
+```
 
 Numpy:
-    Numpy can be installed using pip install numpy. Numpy is used for its mathematical features
+    Numpy is used for its mathematical features line numpy.random
 ```
-pip install numpy
+version 1.14
 ```
     
 Matplotlib:
-    Matplotlib can be installed using pip install matplotlib. Matplotlib is used to visualize the map
+    Matplotlib is used to visualize the map including houses created with rectangles
 ```
-pip install matplotlib
+version 2.1.0
 ```
 
 Running the tests
