@@ -98,7 +98,7 @@ def depthfirstwater(start_maps, nr_waterbodies, map_charac):
 		k = 0
 
 		while len(total_maps[start_map].water) < nr_waterbodies:
-			total_maps[start_map].place_water_random(nr_waterbodies, k)
+			total_maps[start_map].place_water_random(nr_waterbodies)
 			k += 1
 
 		# iterates over houses
@@ -112,12 +112,12 @@ def depthfirstwater(start_maps, nr_waterbodies, map_charac):
 			# get freespace coordinates on map
 			coordinates = total_maps[start_map].calc_freespace_on_map()
 
-			j = len(coordinates) - 1
+			j = len(coordinates[0]) - 1
 
 			# place house where valid beginning with biggest freespace to smallest
 			while (allowed == False):
 
-				allowed = total_maps[start_map].place_house(0, coordinates[j])
+				allowed = total_maps[start_map].place_house(0, coordinates[0][j])
 
 				j += -1
 
