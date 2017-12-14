@@ -24,7 +24,7 @@ In a terminal type:
 ```
 RUNME.py
 ```
-Than enter an integer
+Than enter an integer.
 The integer must range between 1 and 5.
 The integers stand for :
     1. best of random
