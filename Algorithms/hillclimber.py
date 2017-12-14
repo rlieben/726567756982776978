@@ -30,7 +30,7 @@ def hillclimber(map_charac, tries_random, tries_hill, nr_houses, hill_type,
 
 		elif (hill_type == 1):
 
-			try_map.tactical_swap_houses(nr_houses) # swap type....
+			try_map.tactical_swap_houses(nr_houses)
 
 		score = try_map.calc_score()
 
