@@ -47,17 +47,6 @@ Folder navigation
             This folder contains all algorithms used to solve the case.
 
 
-
-
-
-
-
-
-
-
-
-
-
     Classes/
         content:
             * house.py
