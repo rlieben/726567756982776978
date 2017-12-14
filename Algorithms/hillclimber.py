@@ -7,11 +7,17 @@ def hillclimber(map_charac, tries_random, tries_hill, nr_houses, hill_type,
 	'''Moves, every iteration, houses for optimalization.
 
 	Input arguments:
-	map_charac -- object, map characteristics
+	map_charac -- file with specifications of the case
 	tries_random -- integer, number of random maps created
-	tries_hill -- integer, number of hillclimbing
+	tries_hill -- integer, number of hillclimbing times
 	nr_houses -- integer, nr of houses that are moved with each hillclimb
-	hill_type -- type of hillclimber as integer(0: random, 1:based on freespace)
+	hill_type -- integer, type of hillclimber(0: random, 1:based on most freespace)
+	save_steps -- boolean, for saving maps for visualization
+
+	Output:
+	dict:containing object, best_map,
+					list, data and 
+					list, all created maps of type object
 	'''
 
 	best_map = best_of_random(map_charac, tries_random)['best_map']

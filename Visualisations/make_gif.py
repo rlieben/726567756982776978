@@ -10,6 +10,13 @@ import imageio
 
 
 def make_gif(steps, directory, name):
+	'''Creates gif of input images.
+
+	Input arguments:
+	steps -- list, input images
+	directory -- string, name of directory in results 
+	name -- string, name of outputfile
+	'''
 
 	from __import__ import coloured_map
 

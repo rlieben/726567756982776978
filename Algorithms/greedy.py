@@ -1,15 +1,18 @@
 import copy
 
 
-def greedy(start_maps, nr_waterbodies, map_charac):
-	''' Places house random and searches for the best child.
+def greedy(start_maps, map_charac):
+	''' Random places water and greedy places house based on most freespace.
 
 	Input arguments:
 	start_maps -- integer, how many different begin maps of the function
+	nr_waterbodies -- integer, number of waterbodies that need to be placed
+	map_charac -- file with specifications of the case
 
-	Returns:
-	ah_map -- best map with 20 houses
-	score -- score of best map
+	Returns dictionary containing:
+	best_map -- object, best map
+	score -- float, score of best map
+	steps -- object, all created maps
 	'''
 
 	# initializes empty list for created maps
@@ -32,8 +35,8 @@ def greedy(start_maps, nr_waterbodies, map_charac):
 		# places water on map
 		k = 0
 
-		while len(total_maps[start_map].water) < nr_waterbodies:
-			total_maps[start_map].place_water_random(nr_waterbodies)
+		while len(total_maps[start_map].water) < total_maps.max_waterbodies:
+			total_maps[start_map].place_water_random(total_maps.max_waterbodies)
 			k += 1
 
 		# iterates over houses
@@ -94,7 +97,7 @@ if __name__ == '__main__':
 
 	from __import__ import MAP_20, MAP_40, MAP_60, Map, coloured_map
 
-	best_greedy = greedy(20, 4, MAP_20)
+	best_greedy = greedy(20, MAP_20)
 	print('best greedy:', best_greedy['map'].score)
 
 	make_gif(best_greedy['steps'], 'greedy', 'greedy')
