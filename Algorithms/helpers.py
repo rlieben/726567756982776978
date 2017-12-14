@@ -2,10 +2,6 @@
 from __import__ import House, Map
 
 import numpy
-import matplotlib as mpl
-import matplotlib.pyplot as plot
-import matplotlib.patches as patches
-import sys
 
 
 def random_generator(map_charac):

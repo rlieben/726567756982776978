@@ -32,7 +32,6 @@ def hillclimber(map_charac, tries_random, tries_hill, nr_houses, hill_type,
 
 			try_map.tactical_swap_houses(nr_houses) # swap type....
 
-
 		score = try_map.calc_score()
 
 		if score > maximum:
@@ -49,9 +48,10 @@ def hillclimber(map_charac, tries_random, tries_hill, nr_houses, hill_type,
 
 if __name__ == '__main__':
 
-	from __import__ import MAP_20, coloured_map, save_results, make_gif, best_of_random
+	from __import__ import MAP_20, coloured_map, save_results, make_gif, \
+						   best_of_random
 
-	hillclimber_map = hillclimber(MAP_20, 1, 10, 1, 0, True)
+	hillclimber_map = hillclimber(MAP_20, 1, 20, 1, 0, True)
 
 	coloured_map(hillclimber_map['best_map'], 'hillclimber', 'best')
 	save_results(hillclimber_map['data'], 'hillclimber', 'data')
