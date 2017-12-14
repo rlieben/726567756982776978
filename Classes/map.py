@@ -52,6 +52,17 @@ class Map(object):
 		return construction
 
 
+	def rand_loc_water(self):
+		'''generates random location'''
+
+		loc = {'x' : random.uniform((0 + 0.5 * water.width), \
+				  	(MAP_20['width'] - 0.5 * water.width)), \
+			   'y' : random.uniform((0 + 0.5 * water.height), \
+		  			(MAP_20['height'] - 0.5 * water.height))}
+
+		return loc
+
+
 	def place_house(self, index, loc):
 
 		# copy the house to be placed
@@ -144,7 +155,7 @@ class Map(object):
 		del self.houses[index]
 
 
-	def place_water(self, nr_water, index):
+	def place_water_random(self, nr_water, index, loc):
 		'''Places water on the map
 
 		Input arguments:
@@ -152,7 +163,8 @@ class Map(object):
 		water_id -- id corresponding to the water body being placed
 		'''
 
-		# allowed = False
+		i = 0
+
 		tmp_list = []
 
         # create random x and y for water body
@@ -163,9 +175,13 @@ class Map(object):
 
 		size = {'width': x, 'height': y}
 
+		index = i
+
 		new_water = Water(index, size)
 
 		tmp_list.append(new_water)
+
+		i += 1
 
         #check if ratio is correct
 		if ((x / y) < 0.25) & ((x / y) > 4):
@@ -204,6 +220,80 @@ class Map(object):
 				return True
 
 
+	def place_water(self, index, nr_water):
+
+        # create dummy house
+		d_house = House(100,MAP_20['types_houses'][0], None)
+
+		self.construction.append(d_house)
+
+		tmp_list = []
+
+		# get location with max freespace
+		fpm = self.calc_freespace_on_map()
+
+        # initialize last location
+		j = len(fpm[1]) - 1
+		del self.construction[0]
+
+        # calculate total water body
+		area = (self.water_prev * self.width * self.height)
+
+		while len(self.water) < 4: #and area =! 0
+
+			j = j - i
+
+			# get best location from freespace_on_map
+			best_loc = fpm[0][j]
+
+            # get min freespace for best_loc[j]
+			freespace_len = fpm[1][j]
+
+			# multiply the minimal freespace to get total water body
+			width = freespace_len * 2
+			height = freespace_len * 2
+
+			size = {'width': width, 'height': height}
+
+			new_water = Water(index, size, best_loc)
+
+			tmp_list.append(new_water)
+
+			if ((width / height) < 0.25) & ((width / height) > 4):
+				return False
+
+			for water in self.water:
+
+				# check if corner is not inside other water body
+				for c in new_water.corners:
+
+					if (new_water.corners[c]['x'] >= water.corners['lb']['x'] and
+						new_water.corners[c]['x'] <= water.corners['rb']['x'] and
+					    new_water.corners[c]['y'] <= water.corners['lb']['y'] and
+					    new_water.corners[c]['y'] >= water.corners['lo']['y']):
+
+						# stop function if there is overlap
+						return False
+
+				for c in water.corners:
+
+					if (water.corners[c]['x'] >= new_water.corners['lb']['x'] and
+						water.corners[c]['x'] <= new_water.corners['rb']['x'] and
+					    water.corners[c]['y'] <= new_water.corners['lb']['y'] and
+					    water.corners[c]['y'] >= new_water.corners['lo']['y']):
+
+						# stop function if there is overlap
+						return False
+
+            # check if water is on map
+			for water in tmp_list:
+				if water.corners['lo']['x'] > 0 and water.corners['lo']['y'] > 0 \
+				and water.corners['lb']['x'] > 0 and water.corners['lb']['y'] < self.height \
+				and water.corners['ro']['x'] < self.width and water.corners['ro']['y'] > 0 \
+				and water.corners['rb']['x'] < self.width and water.corners['rb']['y'] < self.height:
+					self.water.append(water)
+					return True
+
 	def calc_freespace_on_map(self):
 		'''Calculating location with the most freespace on map. '''
 
@@ -215,6 +305,8 @@ class Map(object):
 		poss_freespace = 0
 
 		coordinates = []
+
+		fp = []
 
 		# iterate over map width
 		for i in range(5, self.width, 5):
@@ -242,6 +334,8 @@ class Map(object):
 							# update new possible freespace
 							poss_freespace = tmp
 
+							fp.append(poss_freespace)
+
 							# update location of possible freespace
 							coordinates.append({'x' : i, 'y' : j})
 
@@ -249,7 +343,7 @@ class Map(object):
 					self.remove_house(len(self.houses) - 1)
 
 		# return coordinates
-		return coordinates
+		return [coordinates, fp]
 
 	def random_swap_houses(self, nr_houses):
 		'''Moves, every iteration, three houses for optimalization.
