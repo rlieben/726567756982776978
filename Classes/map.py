@@ -158,7 +158,7 @@ class Map(object):
 		del self.houses[index]
 
 
-	def place_water_random(self, nr_water, index, loc):
+	def place_water_random(self, nr_water, index):
 		'''Places water on the map
 
 		Input arguments:
@@ -168,14 +168,13 @@ class Map(object):
 
 		i = 0
 
-		from __import__ import Water
+		from __import__ import Water, MAP_20
 
 		# allowed = False
 		tmp_list = []
 
         # create random x and y for water body
-		y = numpy.random.uniform((numpy.sqrt((self.water_prev
-											* self.width * self.height) * 4)), \
+		y = numpy.random.uniform((numpy.sqrt((self.water_prev * self.width * self.height) * 4)), \
 			numpy.sqrt(self.water_prev * self.width * self.height)) / nr_water
 
 		x = ((self.water_prev * self.width * self.height) / y) / nr_water
@@ -184,7 +183,12 @@ class Map(object):
 
 		index = i
 
-		new_water = Water(index, size)
+		loc = {'x' : numpy.random.uniform((0 + 0.5 * x), \
+				  	(MAP_20['width'] - 0.5 * x)), \
+			   'y' : numpy.random.uniform((0 + 0.5 * y), \
+		  			(MAP_20['height'] - 0.5 * y))}
+
+		new_water = Water(index, size, loc)
 
 		tmp_list.append(new_water)
 
