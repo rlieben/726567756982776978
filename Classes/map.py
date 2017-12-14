@@ -96,6 +96,13 @@ class Map(object):
 		# check for overlap other house
 		for house in self.houses:
 
+			# check if location falls between walls
+			if (tmp_house.location['x'] > house.corners['lb']['x'] and
+				tmp_house.location['x'] < house.corners['rb']['x'] and
+				tmp_house.location['y'] > house.corners['lo']['y'] and
+				tmp_house.location['y'] < house.corners['lb']['y']):
+				return False
+
 			# check for every corner if it's not in a other house
 			for c in tmp_house.corners:
 

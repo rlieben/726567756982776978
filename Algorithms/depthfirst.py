@@ -1,92 +1,11 @@
-from __import__ import *
-
-def scatterplot(ah_map, name):
-
-	data = []
-
-	for i in range(len(ah_map.houses)):
+import copy
 
 
-		x = ah_map.houses[i].location['x']
-		y = ah_map.houses[i].location['y']
-
-		colors = (0, 0, 0)
-		area = np.pi * 1
-
-		data.append([ah_map.houses[i].corners['lb']['x'],
-					 ah_map.houses[i].corners['lb']['y']])
-		data.append([ah_map.houses[i].corners['lo']['x'],
-					 ah_map.houses[i].corners['lo']['y']])
-		data.append([ah_map.houses[i].corners['lo']['x'],
-					 ah_map.houses[i].corners['lo']['y']])
-		data.append([ah_map.houses[i].corners['ro']['x'],
-					 ah_map.houses[i].corners['ro']['y']])
-		data.append([ah_map.houses[i].corners['ro']['x'],
-					 ah_map.houses[i].corners['ro']['y']])
-		data.append([ah_map.houses[i].corners['rb']['x'],
-					 ah_map.houses[i].corners['rb']['y']])
-		data.append([ah_map.houses[i].corners['rb']['x'],
-					 ah_map.houses[i].corners['rb']['y']])
-		data.append([ah_map.houses[i].corners['lb']['x'],
-					 ah_map.houses[i].corners['lb']['y']])
-
-	for i in range(len(ah_map.water)):
-		data.append([ah_map.water[i].corners['lb']['x'],
-					 ah_map.water[i].corners['lb']['y']])
-		data.append([ah_map.water[i].corners['lo']['x'],
-					 ah_map.water[i].corners['lo']['y']])
-		data.append([ah_map.water[i].corners['lo']['x'],
-					 ah_map.water[i].corners['lo']['y']])
-		data.append([ah_map.water[i].corners['ro']['x'],
-					 ah_map.water[i].corners['ro']['y']])
-		data.append([ah_map.water[i].corners['ro']['x'],
-					 ah_map.water[i].corners['ro']['y']])
-		data.append([ah_map.water[i].corners['rb']['x'],
-					 ah_map.water[i].corners['rb']['y']])
-		data.append([ah_map.water[i].corners['rb']['x'],
-					 ah_map.water[i].corners['rb']['y']])
-		data.append([ah_map.water[i].corners['lb']['x'],
-					 ah_map.water[i].corners['lb']['y']])
-
-	axes = plot.gca()
-	axes.set_xlim([0, ah_map.width])
-	axes.set_ylim([0, ah_map.height])
-
-	# for every value in data
-	for i in range(0, len(data) - 1, 2):
-		# define lists
-		plot_array_x = []
-		plot_array_y = []
-
-		# append values in pairs to lists
-		plot_array_x.append(data[i][0])
-		plot_array_x.append(data[i + 1][0])
-		plot_array_y.append(data[i][1])
-		plot_array_y.append(data[i + 1][1])
-
-		# plot each of these pairs seperately
-		plot.plot(plot_array_x, plot_array_y, 'g')
-
-	plot.savefig(name)
-
-	plot.clf()
-
-	# split = sys.path[1][2]
-	# list_dir = sys.path[0].split(split)
-	# string = ''
-	# for i in range(len(list_dir) - 1):
-	# 	string += list_dir[i]
-	# 	string += split
-    #
-	# plot.savefig(string +  'Results' + split + name)
-
-	# return plot.show()
-
-def depthfirst(runs):
+def depthfirst(start_maps, map_charac):
 	''' Places house random and searches for the best child.
 
 	Input arguments:
-	runs -- integer, how many runs of the function
+	start_maps -- integer, how many different begin maps of the function
 
 	Returns:
 	ah_map -- best map with 20 houses
@@ -94,14 +13,14 @@ def depthfirst(runs):
 	'''
 
 	# initializes map
-	ah_map = Map(MAP_20)
+	ah_map = Map(map_charac)
 
 	# initialize score variables
 	tempscore = 0
 	score = 0
 
 	# amount of runs for script
-	for run in range(runs):
+	for start_map in range(start_maps):
 
 		# iterates over houses
 		for i in range(len(ah_map.construction)):
@@ -126,7 +45,9 @@ def depthfirst(runs):
 
 				j += -1
 
-			scatterplot(ah_map, "depthfirst" + str(i))
+			ah_map.calc_score()
+			print("score of map after nr houses:", ah_map.score, i)
+			coloured_map(ah_map, "greedy", "greedy" + str(i))
 
 
 
@@ -143,3 +64,108 @@ def depthfirst(runs):
 
 	# returns created map and score
 	return {'map': ah_map, 'score' : score}
+
+
+def depthfirstwater(start_maps, nr_waterbodies, map_charac):
+	''' Places house random and searches for the best child.
+
+	Input arguments:
+	start_maps -- integer, how many different begin maps of the function
+
+	Returns:
+	ah_map -- best map with 20 houses
+	score -- score of best map
+	'''
+
+	# initializes empty list for created maps
+	total_maps = []
+
+	# initialize score variable and best map
+	score = 0
+	best_map = []
+
+	# initialize house pruning point
+	prune_house = 4
+
+	# amount of runs for script
+	for start_map in range(start_maps):
+
+		print("start map: ", start_map)
+		# initializes map
+		total_maps.append(Map(map_charac))
+
+		# places water on map
+		k = 0
+
+		while len(total_maps[start_map].water) < nr_waterbodies:
+			total_maps[start_map].place_water(nr_waterbodies, k)
+			k += 1
+
+		# iterates over houses
+		for i in range(len(total_maps[start_map].construction)):
+
+
+			print("test", len(total_maps[start_map].construction))
+
+			allowed = False
+
+			# get freespace coordinates on map
+			coordinates = total_maps[start_map].calc_freespace_on_map()
+
+			j = len(coordinates) - 1
+
+			# place house where valid beginning with biggest freespace to smallest
+			while (allowed == False):
+
+				allowed = total_maps[start_map].place_house(0, coordinates[j])
+
+				j += -1
+
+			# check if minimum score is reached after 5 houses, otherwise continue to next map
+			if (i == prune_house):
+
+				minscore = total_maps[start_map].calc_score()
+
+				if (map_charac == MAP_20 and minscore < 6300000 or
+					map_charac == MAP_40 and minscore < 9000000 or
+					map_charac == MAP_60 and minscore < 7000000):
+					
+					print(" ")
+					break
+
+			total_maps[start_map].calc_score()
+			print("score", total_maps[start_map].score)
+
+			coloured_map(total_maps[start_map], "greedy", "greedy" + str(start_map) + str(i))
+
+
+		# calc score of created map
+		tmpscore  = total_maps[start_map].calc_score()
+
+
+
+		# update best score if greater
+		if tmpscore > score:
+
+			score = tmpscore
+			best_map = total_maps[start_map]
+
+	# returns created map and score
+	return {'map': best_map, 'score' : score}
+
+
+
+if __name__ == '__main__':
+
+	print("hoi")
+
+	from __import__ import MAP_20, MAP_40, MAP_60, Map, coloured_map
+
+	# best_depthfirst = depthfirst(1, MAP_60)
+	# print('best depthfirst:', best_depthfirst['map'].score)
+
+	best_depthfirst = depthfirstwater(20, 4, MAP_20)
+	print('best depthfirst:', best_depthfirst['map'].score)
+
+
+
