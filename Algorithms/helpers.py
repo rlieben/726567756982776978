@@ -7,11 +7,27 @@ import matplotlib.pyplot as plot
 import matplotlib.patches as patches
 import sys
 
+
 def random_generator(map_charac):
 	'''Generates a random map.'''
 
 	out_map = Map(map_charac)
 
+<<<<<<< HEAD
+	# nr_water = 4
+	# i = 0
+    #
+	# while len(out_map.water) < nr_water:
+	# 	out_map.place_water(nr_water, i)
+	# 	i += 1
+    #
+	# opp = 0
+    #
+	# for water in out_map.water:
+	# 	opp = opp + (water.width * water.height)
+    #
+	# print(opp)
+=======
 	i = 0
 	nr_water = 4
 
@@ -20,6 +36,7 @@ def random_generator(map_charac):
 		out_map.place_water(nr_water, i)
 		i += 1
 
+>>>>>>> 885fb81582d45d81e304762fdcb14eaaab977961
 
 	for i in range(len(out_map.construction)):
 
