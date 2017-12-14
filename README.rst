@@ -29,21 +29,52 @@ python hill_climber.py
 Folder navigation
 =======
     
-    * Algorithms:
-        This folder contains all algorithms used to resolve the case.
-    
-    * Classes:
-        This folder contains the classes house, map and water.
-    
-    * Results:
-        For each algorithm the results are saved in sub folders. These folders contain a GIF of the process
-    
-    * Specification:
-        This folder contains the spefications used for this project
-    
-    * Visualisations:
-        This folder contains the scripts used to visualise the data 
+    Algorithms
+        content:
+            * best_of_random.py
+            * greedy.py
+            * hill_climber.py
+            * particle_swarm.py
+            * simulated_annealing_hillclimber.py
+        
+        description:
+            This folder contains all algorithms used to solve the case.
 
+    Classes
+        content:
+            * house.py
+            * map.py
+            * water.py
+            
+        description:
+            This folder contains all classes used in the algorithms. The classes contain functions that for example calculate the free space for a house
+
+    Results
+        content:
+            * best_of_random
+            * greedy
+            * hillclimber
+            * particle_swarm
+        
+        description:    
+            For each algorithm the results are saved in sub folders. These folders contain a GIF of the process and the total score (sum of all house values) is stored in data.txt
+
+    Specification
+        content: 
+            * amstelhage.py
+        
+        description:
+            This folder contains the spefications used for this project like the Amstelhaege's width and height
+
+    Visualisations
+        content:
+            * coloured_map.py
+            * make_gif.py
+            * txtwriter.py
+        
+        description:
+            This folder contains all scripts used to visualise and document the change in score during each iteration for every algorithm    
+           
 Authors
 =======
 * Toon van Holthe tot Echten

@@ -9,6 +9,7 @@ def best_of_random(map_charac, tries, save_steps=False):
 
 	from __import__ import random_generator
 
+	k = 0
 	maximum = 0
 	best_map = random_generator(map_charac)
 	data = []
@@ -18,6 +19,8 @@ def best_of_random(map_charac, tries, save_steps=False):
 		try_map = random_generator(map_charac)
 
 		if save_steps == True:
+			coloured_map(try_map, 'best_of_random\\tmp_gif', (str(k).zfill(3)))
+			k += 1
 			steps.append(try_map)
 
 		score = try_map.calc_score()

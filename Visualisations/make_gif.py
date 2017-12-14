@@ -1,9 +1,22 @@
+# Study:        Minor Programming, University of Amsterdam
+# Course:       Heuristics
+# Assignment:   Amstelhaege
+# Group:        726567756982776978
+# Members:      Toon van Holte, Raoul Lieben, Luc Stefelmanns
+
 import sys
 import os
 import imageio
 
 
 def make_gif(steps, directory, name):
+	'''Creates gif of input images.
+
+	Input arguments:
+	steps -- list, input images
+	directory -- string, name of directory in results 
+	name -- string, name of outputfile
+	'''
 
 	from __import__ import coloured_map
 
@@ -21,11 +34,10 @@ def make_gif(steps, directory, name):
 	    string += list_dir[i]
 	    string += split
 
-	k = 0
-	for step in steps:
-		coloured_map(step, directory + split + 'tmp_gif', name + str(k))
-		print('gif   ', step.score)
-		k += 1
+	# k = 0
+	# for step in steps:
+	# 	coloured_map(step, directory + split + 'tmp_gif', name + str(k))
+	# 	k += 1
 
 	png_dir = string + 'Results' + split + directory + split + 'tmp_gif'
 

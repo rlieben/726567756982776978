@@ -1,3 +1,8 @@
+# Study:        Minor Programming, University of Amsterdam
+# Course:       Heuristics
+# Assignment:   Amstelhaege
+# Group:        726567756982776978
+# Members:      Toon van Holte, Raoul Lieben, Luc Stefelmanns
 
 import matplotlib as mpl
 import matplotlib.pyplot as plot
@@ -5,6 +10,13 @@ import matplotlib.patches as patches
 import sys
 
 def coloured_map(ah_map, directory, name):
+	'''Creates a coloured map.
+
+	Input arguments:
+	ah_map -- object, input map
+	directory -- string, name of directory in results 
+	name -- string, name of outputfile
+	'''
 
 	out_plot = plot.figure()
 	ax = out_plot.add_subplot(111)
@@ -47,8 +59,6 @@ def coloured_map(ah_map, directory, name):
 	for i in range(len(list_dir) - 1):
 		string += list_dir[i]
 		string += split
-
-	# out_plot.show()
 
 	out_plot.savefig(string + 'Results' + split + directory + split + name
 					 + '.png')

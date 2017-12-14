@@ -15,12 +15,12 @@ class Map(object):
 		'''Creates map.
 
 		Input arguments:
-		width -- width of the map
-		height -- height of the map
+		map_charac -- file with specifications of the case
 		'''
 
 		self.width = map_charac['width']
 		self.height = map_charac['height']
+		self.max_waterbodies = map_charac['nr_waterbodies']
 		self.water_prev = map_charac['water_prev']
 		self.construction = self.create_construction(map_charac)
 
@@ -30,6 +30,14 @@ class Map(object):
 
 
 	def create_construction(self, map_charac):
+		'''Creates list of houses that need to be placed.
+
+		Input arguments:
+		map_charac -- file with specifications of the case
+
+		Output:
+		construction -- list, with houses of type object
+		'''
 
 		from __import__ import House
 
@@ -49,7 +57,11 @@ class Map(object):
 
 
 	def rand_loc_water(self):
-		'''generates random location'''
+		'''Generates random location for water
+
+		Output:
+		loc -- dict, location
+		'''
 
 		loc = {'x' : random.uniform((0 + 0.5 * water.width), \
 				  	(MAP_20['width'] - 0.5 * water.width)), \
@@ -60,6 +72,12 @@ class Map(object):
 
 
 	def place_house(self, index, loc):
+		'''Places house on the map.
+
+		Input:
+		index -- int, index number from contruction list
+		loc -- dict, location
+		'''
 
 		# copy the house to be placed
 		tmp_house = copy.copy(self.construction[index])
@@ -147,6 +165,11 @@ class Map(object):
 
 
 	def remove_house(self, index):
+		''' Removes house.
+
+		Input:
+		index -- int, index of house in list houses
+		'''
 
 		tmp_house = copy.copy(self.houses[index])
 
@@ -158,9 +181,8 @@ class Map(object):
 		del self.houses[index]
 
 
-	def place_water_random(self, nr_water):
-		'''Places random water on the map.
-		'''
+	def place_water_random(self):
+		'''Places random water on the map.'''
 
 		from __import__ import Water, MAP_20
 
@@ -171,9 +193,9 @@ class Map(object):
 
         # create random x and y for water body
 		y = numpy.random.uniform((numpy.sqrt((self.water_prev * self.width * self.height) * 4)), \
-			numpy.sqrt(self.water_prev * self.width * self.height)) / nr_water
+			numpy.sqrt(self.water_prev * self.width * self.height)) / self.max_waterbodies
 
-		x = ((self.water_prev * self.width * self.height) / y) / nr_water
+		x = ((self.water_prev * self.width * self.height) / y) / self.max_waterbodies
 
 		size = {'width': x, 'height': y}
 
@@ -234,7 +256,7 @@ class Map(object):
 				return True
 
 
-	def place_water(self, nr_water):
+	def place_water(self):
 		'''Places water on the map after placing houses. 
 		'''
 
@@ -256,7 +278,7 @@ class Map(object):
         # calculate total water body
 		area = (self.water_prev * self.width * self.height)
 
-		for i in range(nr_water):
+		for i in range(self.max_waterbodies):
 
 			j = j - i
 
@@ -322,11 +344,11 @@ class Map(object):
 
 
 	def calc_freespace_on_map(self):
-		'''Calculating location with the most freespace on map. '''
+		'''Calculating location with the most freespace on map.
 
-		# Input arguments:
-		# new_house --  house that is being moved
-
+		Output:
+		list -- containing list, coordinates and list, fp
+		'''
 
 		# initiate possible freespace variable
 		poss_freespace = 0
@@ -376,7 +398,7 @@ class Map(object):
 		'''Moves, every iteration, three houses for optimalization.
 
 		Input arguments:
-		in_map -- input map
+		nr_houses -- int, number of houses for swap
 		'''
 
 		tmp_index = []
@@ -401,10 +423,9 @@ class Map(object):
 
 
 	def tactical_swap_houses(self, nr_houses):
-		''' Moves, every iteration, three houses for optimalization.
+		''' Moves, every iteration, houses for optimalization.
 
 		Input arguments:
-		in_map -- input map
 		nr_houses -- nr of houses swapped
 		'''
 
@@ -432,8 +453,8 @@ class Map(object):
 	def calc_score(self):
 		'''Calculates score of map.
 
-		Input arguments:
-		ah_map -- created map
+		Output:
+		summy -- float, score of map
 		'''
 
 		summy = 0

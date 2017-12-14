@@ -1,17 +1,27 @@
 
+from __import__ import Map
+
+# import house weggehaald
 
 import numpy
 
 
 def random_generator(map_charac):
-	'''Generates a random map.'''
+	'''Generates a random map.
+
+	Input arguments:
+	map_charac -- file with specifications of the case
+
+	Output:
+	out_map -- object, output map
+	'''
 
 	from __import__ import House, Map
 
 
 	out_map = Map(map_charac)
 
-	nr_water = 4
+	nr_water = map_charac['nr_waterbodies']
 
 	while len(out_map.water) < 4:
 		out_map.place_water_random(nr_water)
