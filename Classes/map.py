@@ -257,7 +257,7 @@ class Map(object):
 
 
 	def place_water(self):
-		'''Places water on the map after placing houses. 
+		'''Places water on the map after placing houses.
 		'''
 
 		from __import__ import House, Water, MAP_20
@@ -438,7 +438,7 @@ class Map(object):
 			allowed = False
 
 			# get freespace coordinates on map
-			coordinates = self.calc_freespace_on_map(self.construction[0])
+			coordinates = self.calc_freespace_on_map()
 
 			j = len(coordinates[0]) - 1
 

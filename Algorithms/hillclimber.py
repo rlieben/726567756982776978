@@ -16,7 +16,7 @@ def hillclimber(map_charac, tries_random, tries_hill, nr_houses, hill_type,
 
 	Output:
 	dict:containing object, best_map,
-					list, data and 
+					list, data and
 					list, all created maps of type object
 	'''
 
@@ -25,6 +25,7 @@ def hillclimber(map_charac, tries_random, tries_hill, nr_houses, hill_type,
 
 	data = []
 	steps = []
+	k = 0
 
 	for i in range(tries_hill):
 
@@ -33,10 +34,12 @@ def hillclimber(map_charac, tries_random, tries_hill, nr_houses, hill_type,
 		if (hill_type == 0):
 
 			try_map.random_swap_houses(nr_houses)
+			folder = 'hillclimber'
 
 		elif (hill_type == 1):
 
 			try_map.tactical_swap_houses(nr_houses)
+			folder = 'tactical_hillclimber'
 
 		score = try_map.calc_score()
 
@@ -47,7 +50,7 @@ def hillclimber(map_charac, tries_random, tries_hill, nr_houses, hill_type,
 		data.append(maximum)
 
 		if save_steps == True:
-			coloured_map(try_map, 'best_of_random\\tmp_gif', (str(k).zfill(3)))
+			coloured_map(try_map, folder + '\\tmp_gif', (str(k).zfill(3)))
 			k += 1
 			steps.append(best_map)
 
@@ -60,8 +63,12 @@ if __name__ == '__main__':
 						   best_of_random
 
 	hillclimber_map = hillclimber(MAP_20, 1, 20, 1, 0, True)
+	tactical_hillclimber_map = hillclimber(MAP_20, 1, 10, 1, 1, True)
 
 	coloured_map(hillclimber_map['best_map'], 'hillclimber', 'best')
 	save_results(hillclimber_map['data'], 'hillclimber', 'data')
-
 	make_gif(hillclimber_map['steps'], 'hillclimber', 'hillclimber')
+
+	coloured_map(hillclimber_map['best_map'], 'tactical_hillclimber', 'best')
+	save_results(hillclimber_map['data'], 'tactical_hillclimber', 'data')
+	make_gif(hillclimber_map['steps'], 'tactical_hillclimber', 'tactical_hillclimber')

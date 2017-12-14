@@ -20,8 +20,8 @@ def random_generator(map_charac):
 
 	nr_water = map_charac['nr_waterbodies']
 
-	while len(out_map.water) < 4:
-		out_map.place_water_random(nr_water)
+	while len(out_map.water) < out_map.max_waterbodies:
+		out_map.place_water_random()
 
 	for i in range(len(out_map.construction)):
 

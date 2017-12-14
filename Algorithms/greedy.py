@@ -67,7 +67,7 @@ def greedy(start_maps, map_charac):
 				if (map_charac == MAP_20 and minscore < 6300000 or
 					map_charac == MAP_40 and minscore < 9000000 or
 					map_charac == MAP_60 and minscore < 7000000):
-					
+
 					print(" ")
 					break
 
@@ -97,9 +97,8 @@ if __name__ == '__main__':
 
 	from __import__ import MAP_20, MAP_40, MAP_60, Map, coloured_map
 
-	best_greedy = greedy(20, MAP_20)
-	print('best greedy:', best_greedy['map'].score)
+	greedy_map = greedy(20, MAP_20, )
 
-	make_gif(best_greedy['steps'], 'greedy', 'greedy')
-
-
+	coloured_map(best_random_map['best_map'], 'best_of_random', 'best')
+	save_results(best_random_map['data'], 'best_of_random', 'data')
+	make_gif(best_random_map['steps'], 'best_of_random', 'random')
