@@ -229,6 +229,8 @@ class Map(object):
 
 	def place_water(self, index, nr_water):
 
+		from __import__ import House, MAP_20
+
         # create dummy house
 		d_house = House(100,MAP_20['types_houses'][0], None)
 
@@ -399,12 +401,12 @@ class Map(object):
 			# get freespace coordinates on map
 			coordinates = self.calc_freespace_on_map(self.construction[0])
 
-			j = len(coordinates) - 1
+			j = len(coordinates[0]) - 1
 
 			# place house where valid beginning with biggest freespace to smallest
 			while (allowed == False):
 
-				allowed = self.place_house(0, coordinates[j])
+				allowed = self.place_house(0, coordinates[0][j])
 
 				j += -1
 
