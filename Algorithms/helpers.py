@@ -1,11 +1,13 @@
 
-from __import__ import House, Map
 
 import numpy
 
 
 def random_generator(map_charac):
 	'''Generates a random map.'''
+
+	from __import__ import House, Map
+
 
 	out_map = Map(map_charac)
 
