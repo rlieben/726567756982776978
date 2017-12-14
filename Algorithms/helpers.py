@@ -14,7 +14,7 @@ def random_generator(map_charac):
 	out_map = Map(map_charac)
 
 	i = 0
-	nr_water = 4
+	nr_water = 1
 
 	while len(out_map.water) < 4:
 		out_map.place_water_random(i, nr_water)
