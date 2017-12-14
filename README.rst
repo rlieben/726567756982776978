@@ -8,13 +8,13 @@ This project is based on a case part of the course Heuristics given at the Unive
 Prerequisites
 =============
 
-Python (3.6.3)
+* Python (3.6.3)
 
-Numpy (1.14)
+* Numpy (1.14)
     
-Matplotlib (2.1.0)
+* Matplotlib (2.1.0)
 
-Imageio (2.2.0)
+* Imageio (2.2.0)
 
 Running the tests
 =================
