@@ -8,13 +8,13 @@ def force_move(in_map, tries, save_steps=False):
 	''' Forces a move by nearest house neighbour in opposite direction.
 
 	Input arguments:
-	in_map -- object, input map 
+	in_map -- object, input map
 	tries -- int, number of moves for each house
 	save_steps -- boolean, for saving maps for visualization
 
 	Output:
 	dict -- containing  object, best_map with best map,
-						list, data with map score and 
+						list, data with map score and
 						list, steps with all created maps
 	'''
 
@@ -58,7 +58,7 @@ def force_move(in_map, tries, save_steps=False):
 			data.append(best_map.score)
 
 		if save_steps == True:
-			coloured_map(best_map, 'particle_swarm\\tmp_gif', (str(k).zfill(3)))
+			coloured_map(best_map, 'force_move\\tmp_gif', (str(k).zfill(3)))
 			k += 1
 			steps.append(best_map)
 
