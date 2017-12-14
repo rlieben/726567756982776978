@@ -4,6 +4,7 @@
 # Group:        726567756982776978
 # Members:      Toon van Holthe, Raoul Lieben, Luc Stefelmanns
 
+
 import random
 
 class Water(object):
@@ -43,6 +44,8 @@ class Water(object):
 
 	def create_location(self):
 		'''generates location for water bodies '''
+
+		from __import__ import MAP_20
 
 		loc = {'x' : random.uniform((0 + 0.5 * self.width), \
 				  	(MAP_20['width'] - 0.5 * self.width)), \

@@ -2,14 +2,8 @@
 from __import__ import *
 import copy
 
-import matplotlib as mpl
-import matplotlib.pyplot as plot
-import numpy as np
-import matplotlib.patches as patches
-import sys
 
 
-# input is empty map, output is value calculated
 def hillclimber(map_charac, tries_random, tries_hill, nr_houses, hill_type,
 				save_steps):
 	'''Moves, every iteration, houses for optimalization.
@@ -29,11 +23,16 @@ def hillclimber(map_charac, tries_random, tries_hill, nr_houses, hill_type,
 	steps = []
 
 	for i in range(tries_hill):
+
 		try_map = copy.copy(best_map)
+
+		if save_steps == True:
+			steps.append(try_map)
 
 		if (hill_type == 0):
 
 			try_map.random_swap_houses(nr_houses)
+
 		elif (hill_type == 1):
 
 			try_map.tactical_swap_houses(nr_houses) # swap type....
@@ -41,8 +40,8 @@ def hillclimber(map_charac, tries_random, tries_hill, nr_houses, hill_type,
 
 		score = try_map.calc_score()
 
-		if save_steps == True:
-			steps.append(try_map)
+		# if save_steps == True:
+		# 	steps.append(try_map)
 
 		data.append(score)
 
@@ -51,15 +50,15 @@ def hillclimber(map_charac, tries_random, tries_hill, nr_houses, hill_type,
 			best_map = try_map
 
 
-	return {'map' : best_map, 'data' : data, 'steps' : steps}
+	return {'best_map' : best_map, 'data' : data, 'steps' : steps}
 
 if __name__ == '__main__':
 
 	from __import__ import *
 
-	hillclimber_map = hillclimber(MAP_20, 1, 10, 3, 1, True)
+	hillclimber_map = hillclimber(MAP_20, 1, 30, 1, 0, True)
 
 	coloured_map(hillclimber_map['best_map'], 'hillclimber', 'best')
 	save_results(hillclimber_map['data'], 'hillclimber', 'data')
 
-	# make_gif(hillclimber_map['steps'], 'hillclimber', 'particle')
+	make_gif(hillclimber_map['steps'], 'hillclimber', 'hillclimber')

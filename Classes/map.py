@@ -5,12 +5,8 @@
 # Members:      Toon van Holthe, Raoul Lieben, Luc Stefelmanns
 
 
-import random
 import copy
 import numpy
-from house import *
-from water import *
-
 
 class Map(object):
 	'''List that keeps track of all the houses and water.'''
@@ -34,6 +30,8 @@ class Map(object):
 
 
 	def create_construction(self, map_charac):
+
+		from __import__ import House
 
 		house_id = 0
 		loc = {'x' : None, 'y' : None}
@@ -150,11 +148,14 @@ class Map(object):
 		water_id -- id corresponding to the water body being placed
 		'''
 
+		from __import__ import Water
+
 		# allowed = False
 		tmp_list = []
 
         # create random x and y for water body
-		y = random.uniform((numpy.sqrt((self.water_prev * self.width * self.height) * 4)), \
+		y = numpy.random.uniform((numpy.sqrt((self.water_prev
+											* self.width * self.height) * 4)), \
 			numpy.sqrt(self.water_prev * self.width * self.height)) / nr_water
 
 		x = ((self.water_prev * self.width * self.height) / y) / nr_water
@@ -271,8 +272,8 @@ class Map(object):
 
 			while allowed == False:
 
-				loc = {'x' : random.uniform(0, self.height),
-					   'y' : random.uniform(0, self.width)}
+				loc = {'x' : numpy.random.uniform(0, self.height),
+					   'y' : numpy.random.uniform(0, self.width)}
 
 				allowed = self.place_house(i, loc)
 

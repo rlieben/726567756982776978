@@ -1,7 +1,7 @@
 
 import numpy
 
-def particle_swarm(in_map, tries, save_steps):
+def particle_swarm(in_map, tries, save_steps=False):
 
 	for house in in_map.houses:
 		house.calc_value()
@@ -44,8 +44,10 @@ def particle_swarm(in_map, tries, save_steps):
 			best_map = copy.copy(out_map)
 			data.append(best_map.score)
 
-
 	return {'best_map' : best_map, 'data' : data, 'steps' : steps}
+
+
+
 
 if __name__ == '__main__':
 

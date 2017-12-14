@@ -1,7 +1,7 @@
 
 from __import__ import *
 
-def best_of_random(map_charac, tries, save_steps):
+def best_of_random(map_charac, tries, save_steps=False):
 	''' Creates random maps and returns the map with the highest score.
 
 	Input arguments:
@@ -35,9 +35,8 @@ if __name__ == '__main__':
 
 	from __import__ import *
 
-	best_random_map = best_of_random(MAP_20, 10, True)
+	best_random_map = best_of_random(MAP_20, 20, True)
 
 	coloured_map(best_random_map['best_map'], 'best_of_random', 'best')
 	save_results(best_random_map['data'], 'best_of_random', 'data')
-
-	# make_gif(best_random_map['steps'], 'best_of_random', 'particle')
+	make_gif(best_random_map['steps'], 'best_of_random', 'random')
