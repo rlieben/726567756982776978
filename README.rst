@@ -29,19 +29,19 @@ python hill_climber.py
 Folder navigation
 =======
     
-    * Algorithms:
+    Algorithms:
         This folder contains all algorithms used to resolve the case.
     
-    * Classes:
+    Classes:
         This folder contains the classes house, map and water.
     
-    * Results:
+    Results:
         For each algorithm the results are saved in sub folders. These folders contain a GIF of the process
     
-    * Specification:
+    Specification:
         This folder contains the spefications used for this project
     
-    * Visualisations:
+    Visualisations:
         This folder contains the scripts used to visualise the data 
 
 Authors
