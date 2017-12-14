@@ -29,32 +29,32 @@ python hill_climber.py
 Folder navigation
 =======
     
-    **Algorithms**:
-        content:
-            * Best of random
-            * Depth first
-            * Hill climber
-            * Particle swarm
-            * Simulated annealing 
-    
-    **Classes**:
-        content:
-            * House
-            * Map
-            * Water
-            
-    **Results**:
-        content:
-            * 
-            *
-            *
-        For each algorithm the results are saved in sub folders. These folders contain a GIF of the process
-    
-    **Specification**:
-        This folder contains the spefications used for this project
-    
-    **Visualisations**:
-        This folder contains the scripts used to visualise the data 
+**Algorithms**:
+    content:
+        * Best of random
+        * Depth first
+        * Hill climber
+        * Particle swarm
+        * Simulated annealing 
+
+**Classes**:
+    content:
+        * House
+        * Map
+        * Water
+
+**Results**:
+    content:
+        * 
+        *
+        *
+    For each algorithm the results are saved in sub folders. These folders contain a GIF of the process
+
+**Specification**:
+    This folder contains the spefications used for this project
+
+**Visualisations**:
+    This folder contains the scripts used to visualise the data 
 
 Authors
 =======
