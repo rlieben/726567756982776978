@@ -20,27 +20,35 @@ Prerequisites
 How to run
 =================
 
-Go to the map 'run me' chose one of the alghoritms listed in this map and type in a terminal for example:
-
+In a terminal type: 
 ```
-python hill_climber.py
+RUNME.py <integer>
 ```
 
+The integer ranges between 1 and 5.
+The integers stand for :
+    1. best of random
+    2. greedy
+    3. hillclimber
+    4. force move
+    5. simmulated annealing
+    
 Folder navigation
 =======
     
-    Algorithms
+    Algorithms/
         content:
             * best_of_random.py
             * greedy.py
             * hill_climber.py
-            * particle_swarm.py
+            * force_move.py
             * simulated_annealing_hillclimber.py
         
         description:
             This folder contains all algorithms used to solve the case.
 
-    Classes
+
+    Classes/
         content:
             * house.py
             * map.py
@@ -49,24 +57,27 @@ Folder navigation
         description:
             This folder contains all classes used in the algorithms. The classes contain functions that for example calculate the free space for a house
 
-    Results
+
+    Results/
         content:
             * best_of_random
             * greedy
             * hillclimber
-            * particle_swarm
+            * force_move
         
         description:    
             For each algorithm the results are saved in sub folders. These folders contain a GIF of the process and the total score (sum of all house values) is stored in data.txt
 
-    Specification
+
+    Specifications/
         content: 
-            * amstelhage.py
+            * amstelhaege.py
         
         description:
             This folder contains the spefications used for this project like the Amstelhaege's width and height
 
-    Visualisations
+
+    Visualisations/
         content:
             * coloured_map.py
             * make_gif.py

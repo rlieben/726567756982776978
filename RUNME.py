@@ -35,13 +35,13 @@ else:
         # make_gif(best_random_map['steps'], 'best_of_random', 'random')
 
     elif command == 2:
-        best_depthfirst = depthfirstwater(20, 4, MAP_20)
+        best_greedy = greedy(20, MAP_20)
 
     elif command == 3:
         hillclimber_map = hillclimber(MAP_20, 1, 20, 1, 0, True)
 
     elif command == 4:
-        particle_map = particle_swarm(random_map, 20, True)
-
+        force_move_map = force_move(random_map, 20, True)
+        
     elif command == 5:
-        print('foo')
+        best_greedy = greedy(20, MAP_20)
