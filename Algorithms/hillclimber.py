@@ -3,7 +3,7 @@ import copy
 
 
 def hillclimber(map_charac, tries_random, tries_hill, nr_houses, hill_type,
-				save_steps):
+				save_steps = False):
 	'''Moves, every iteration, houses for optimalization.
 
 	Input arguments:
@@ -19,6 +19,8 @@ def hillclimber(map_charac, tries_random, tries_hill, nr_houses, hill_type,
 					list, data and
 					list, all created maps of type object
 	'''
+
+	from __import__ import split
 
 	best_map = best_of_random(map_charac, tries_random)['best_map']
 	maximum = best_map.calc_score()
@@ -50,7 +52,8 @@ def hillclimber(map_charac, tries_random, tries_hill, nr_houses, hill_type,
 		data.append(maximum)
 
 		if save_steps == True:
-			coloured_map(try_map, folder + '\\tmp_gif', (str(k).zfill(3)))
+			coloured_map(best_map, folder + split + 'tmp_gif',
+						 str(k).zfill(3))
 			k += 1
 			steps.append(best_map)
 

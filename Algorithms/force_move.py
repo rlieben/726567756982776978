@@ -2,9 +2,8 @@
 import numpy
 import copy
 
-from __import__ import coloured_map
 
-def force_move(in_map, tries, save_steps=False):
+def force_move(in_map, tries, save_steps = False):
 	''' Forces a move by nearest house neighbour in opposite direction.
 
 	Input arguments:
@@ -17,6 +16,8 @@ def force_move(in_map, tries, save_steps=False):
 						list, data with map score and
 						list, steps with all created maps
 	'''
+
+	from __import__ import split
 
 	for house in in_map.houses:
 		house.calc_value()
@@ -58,7 +59,8 @@ def force_move(in_map, tries, save_steps=False):
 			data.append(best_map.score)
 
 		if save_steps == True:
-			coloured_map(best_map, 'force_move\\tmp_gif', (str(k).zfill(3)))
+			coloured_map(best_map, 'force_move' + split + 'tmp_gif',
+						 (str(k).zfill(3)))
 			k += 1
 			steps.append(best_map)
 

@@ -4,10 +4,10 @@ def best_of_random(map_charac, tries, save_steps=False):
 
 	Input arguments:
 	map_charac -- characteristics of the map
-	tries -- number of creating random maps
+	tries -- number of random maps created
 	'''
 
-	from __import__ import random_generator
+	from __import__ import random_generator, split
 
 	k = 0
 	maximum = 0
@@ -19,7 +19,8 @@ def best_of_random(map_charac, tries, save_steps=False):
 		try_map = random_generator(map_charac)
 
 		if save_steps == True:
-			coloured_map(try_map, 'best_of_random\\tmp_gif', (str(k).zfill(3)))
+			coloured_map(try_map, 'best_of_random' + split + 'tmp_gif',
+						 (str(k).zfill(3)))
 			k += 1
 			steps.append(try_map)
 
