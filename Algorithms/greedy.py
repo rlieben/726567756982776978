@@ -75,7 +75,7 @@ def greedy(start_maps, map_charac, save_steps = False):
 			total_maps[start_map].calc_score()
 
 			if save_steps == True:
-				coloured_map(total_maps[start_map], 'greedy' + split +
+				coloured_map(total_maps[start_map], 'greedy60' + split +
 							 'tmp_gif', (str(l).zfill(3)))
 				l += 1
 				steps.append(total_maps[start_map])
@@ -100,11 +100,11 @@ def greedy(start_maps, map_charac, save_steps = False):
 
 if __name__ == '__main__':
 
-	from __import__ import MAP_20, MAP_40, MAP_60, Map, coloured_map, plot_data
+	from __import__ import MAP_20, MAP_40, MAP_60, Map, coloured_map, plot_data, make_gif
 
-	greedy_map = greedy(20, MAP_20)
-
-	plot_data(greedy['data'], 'force_move', 'plot')
-	# coloured_map(best_random_map['best_map'], 'best_of_random', 'best')
-	# save_results(best_random_map['data'], 'best_of_random', 'data')
-	# make_gif(best_random_map['steps'], 'best_of_random', 'random')
+	# greedy_map = greedy(5, MAP_60, True)
+    #
+	# plot_data([greedy['data']], 'greedy60', 'plot')
+	# coloured_map(best_random_map['best_map'], 'greedy60', 'best')
+	# save_results(best_random_map['data'], 'greedy60', 'data')
+	make_gif([], 'greedy60', 'random')
