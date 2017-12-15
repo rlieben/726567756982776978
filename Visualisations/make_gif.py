@@ -14,25 +14,12 @@ def make_gif(steps, directory, name):
 
 	Input arguments:
 	steps -- list, input images
-	directory -- string, name of directory in results 
+	directory -- string, name of directory in results
 	name -- string, name of outputfile
 	'''
 
-	from __import__ import coloured_map
+	from __import__ import coloured_map, string, split
 
-	find_forward = sys.path[0].find('/')
-	find_backward = sys.path[0].find('\\')
-
-	if find_forward > find_backward:
-		split = '/'
-	else:
-		split = '\\'
-
-	list_dir = sys.path[0].split(split)
-	string = ''
-	for i in range(len(list_dir) - 1):
-	    string += list_dir[i]
-	    string += split
 
 	# k = 0
 	# for step in steps:

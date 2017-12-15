@@ -14,19 +14,7 @@ def save_results(results, directory, filename):
 	filename -- string, outputname for the file
 	'''
 
-	find_forward = sys.path[1].find('/')
-	find_backward = sys.path[1].find('\\')
-
-	if find_forward > find_backward:
-		split = '/'
-	else:
-		split = '\\'
-
-	list_dir = sys.path[1].split(split)
-	string = ''
-	for i in range(len(list_dir) - 1):
-	    string += list_dir[i]
-	    string += split
+	from __import__ import string, split
 
 
 	filename = open(string + 'Results' + split + directory + split +

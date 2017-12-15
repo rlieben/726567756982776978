@@ -20,7 +20,7 @@ def coloured_map(ah_map, directory, name):
 
 	out_plot = plot.figure()
 	ax = out_plot.add_subplot(111)
-	
+
 	p = []
 
 	for house in ah_map.houses:
@@ -46,19 +46,8 @@ def coloured_map(ah_map, directory, name):
 	axes.set_xlim([0, ah_map.width])
 	axes.set_ylim([0, ah_map.height])
 
-	find_forward = sys.path[0].find('/')
-	find_backward = sys.path[0].find('\\')
+	from __import__ import string, split
 
-	if find_forward > find_backward:
-		split = '/'
-	else:
-		split = '\\'
-
-	list_dir = sys.path[0].split(split)
-	string = ''
-	for i in range(len(list_dir) - 1):
-		string += list_dir[i]
-		string += split
 
 	out_plot.savefig(string + 'Results' + split + directory + split + name
 					 + '.png')

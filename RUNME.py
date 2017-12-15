@@ -2,18 +2,7 @@
 import sys
 
 from __import__ import *
-# from Classes.house import *
-# from Classes.map import *
-# from Classes.water import *
-# from Specifications.amstelhaege import *
-# from Algorithms.helpers import *
-# from Algorithms.best_of_random import *
-# from Algorithms.hillclimber import *
-# from Algorithms.greedy import *
-# from Algorithms.force_move import *
-# from Visualisations.coloured_map import *
-# from Visualisations.txtwriter import *
-# from Visualisations.make_gif import *
+
 
 while True:
     try:
@@ -28,18 +17,39 @@ while True:
 if  command > 5:
     print('Give valid algorithm')
 else:
-    if command == 1:
-        best_random_map = best_of_random(MAP_20, 19)
+	if command == 1:
+		best_random_map = best_of_random(MAP_20, 19)
+
+		coloured_map(best_random_map['best_map'], 'run_me', 'best')
+		plot_data([best_random_map['data']], 'run_me', 'plot')
+		save_results(best_random_map['data'], 'run_me', 'data')
 
 
-    elif command == 2:
-        best_greedy = greedy(20, MAP_20)
 
-    elif command == 3:
-        hillclimber_map = hillclimber(MAP_20, 1, 20, 1, 0)
+	elif command == 2:
+		best_greedy = greedy(20, MAP_20)
 
-    elif command == 4:
-        force_move_map = force_move(random_map, 20)
+		coloured_map(best_greedy['best_map'], 'run_me', 'best')
+		plot_data([best_greedy['data']], 'run_me', 'plot')
+		save_results(best_greedy['data'], 'run_me', 'data')
 
-    elif command == 5:
-        best_greedy = greedy(20, MAP_20)
+	elif command == 3:
+		hillclimber_map = hillclimber(MAP_20, 1, 20, 1, 0)
+
+		coloured_map(hillclimber_map['best_map'], 'run_me', 'best')
+		plot_data([hillclimber_map['data']], 'run_me', 'plot')
+		save_results(hillclimber_map['data'], 'run_me', 'data')
+
+	elif command == 4:
+		force_move_map = force_move(random_map, 20)
+
+		coloured_map(force_move_map['best_map'], 'run_me', 'best')
+		plot_data([force_move_map['data']], 'run_me', 'plot')
+		save_results(force_move_map['data'], 'run_me', 'data')
+
+	elif command == 5:
+		sa_hillclimber_map = sa_hillclimber(MAP_20, 10, 1, 0, 0.01, 4)
+
+		coloured_map(sa_hillclimber_map['best_map'], 'run_me', 'best')
+		plot_data([sa_hillclimber_map['data']], 'run_me', 'plot')
+		save_results(sa_hillclimber_map['data'], 'run_me', 'data')

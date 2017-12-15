@@ -3,7 +3,7 @@ import numpy
 import copy
 
 
-def force_move(in_map, tries, save_steps = False):
+def force_move(in_map, tries, factor, save_steps = False):
 	''' Forces a move by nearest house neighbour in opposite direction.
 
 	Input arguments:
@@ -40,7 +40,7 @@ def force_move(in_map, tries, save_steps = False):
 
 			out_map.remove_house(j)
 
-			a = numpy.random.uniform(0, 1)
+			a = numpy.random.uniform(0, factor)
 
 			new_loc = {'x' : house.location['x'] + a * house.direction['x'],
 				   	   'y' : house.location['y'] + a * house.direction['y']}
@@ -73,8 +73,8 @@ if __name__ == '__main__':
 						   save_results, make_gif, plot_data
 
 	random_map = random_generator(MAP_20)
-	force_move_map = force_move(random_map, 20, True)
-	test_map = force_move(random_map, 10, True)
+	force_move_map = force_move(random_map, 20, 1)
+	test_map = force_move(random_map, 10, 1)
 	plot_data([force_move_map['data'], test_map['data']], 'force_move', 'plot')
 	# coloured_map(force_move_map['best_map'], 'force_move', 'best')
 	# save_results(force_move_map['data'], 'force_move', 'data')

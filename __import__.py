@@ -8,6 +8,12 @@ if find_forward > find_backward:
 else:
 	split = '\\'
 
+list_dir = sys.path[0].split(split)
+string = ''
+for i in range(len(list_dir)):
+    string += list_dir[i]
+    string += split
+
 from Classes.house import *
 from Classes.map import *
 from Classes.water import *
@@ -20,3 +26,4 @@ from Algorithms.force_move import *
 from Visualisations.coloured_map import *
 from Visualisations.txtwriter import *
 from Visualisations.make_gif import *
+from Visualisations.plot_data import *
