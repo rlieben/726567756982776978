@@ -7,7 +7,6 @@
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import sys
-import seaborn as sns
 
 
 def plot_data(data, directory, name):
@@ -19,12 +18,17 @@ def plot_data(data, directory, name):
     name -- string, name of outputfile
     '''
     plt.figure(figsize=(20,10))
+    legend_list = []
+    run = 0
 
     for list in data:
+        run += 1
         plt.plot(list)
+        legend_list.append(run)
 
     plt.ylabel('score(€)')
     plt.xlabel('# of maps')
+    plt.legend(legend_list)
 
     from __import__ import string, split
 
