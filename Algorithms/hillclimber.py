@@ -20,7 +20,7 @@ def hillclimber(map_charac, tries_random, tries_hill, nr_houses, hill_type,
 					list, all created maps of type object
 	'''
 
-	from __import__ import split
+	from __import__ import split, coloured_map
 
 	best_map = best_of_random(map_charac, tries_random)['best_map']
 	maximum = best_map.calc_score()

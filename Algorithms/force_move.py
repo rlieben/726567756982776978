@@ -17,7 +17,7 @@ def force_move(in_map, tries, save_steps = False):
 						list, steps with all created maps
 	'''
 
-	from __import__ import split
+	from __import__ import split, coloured_map
 
 	for house in in_map.houses:
 		house.calc_value()

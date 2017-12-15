@@ -18,7 +18,7 @@ def sa_hillclimber(map_charac, tries_random, nr_houses, hill_type, cooling_rate,
 	dict containing: object, map with best map and list, data with scores of maps
 	'''
 
-	from __import__ import split
+	from __import__ import split, coloured_map
 
 	MIN = 0.1
 	temp = 1 - cooling_rate

@@ -15,7 +15,7 @@ def greedy(start_maps, map_charac, save_steps = False):
 	steps -- object, all created maps
 	'''
 
-	from __import__ import split
+	from __import__ import split, coloured_map
 
 	# initializes empty list for created maps
 	total_maps = []

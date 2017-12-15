@@ -7,7 +7,7 @@ def best_of_random(map_charac, tries, save_steps=False):
 	tries -- number of random maps created
 	'''
 
-	from __import__ import random_generator, split
+	from __import__ import random_generator, split, coloured_map
 
 	k = 0
 	maximum = 0

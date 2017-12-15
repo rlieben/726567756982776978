@@ -29,19 +29,17 @@ if  command > 5:
     print('Give valid algorithm')
 else:
     if command == 1:
-        best_random_map = best_of_random(MAP_20, 19, True)
-        # coloured_map(best_random_map['best_map'], 'best_of_random', 'best')
-        # save_results(best_random_map['data'], 'best_of_random', 'data')
-        # make_gif(best_random_map['steps'], 'best_of_random', 'random')
+        best_random_map = best_of_random(MAP_20, 19)
+		
 
     elif command == 2:
         best_greedy = greedy(20, MAP_20)
 
     elif command == 3:
-        hillclimber_map = hillclimber(MAP_20, 1, 20, 1, 0, True)
+        hillclimber_map = hillclimber(MAP_20, 1, 20, 1, 0)
 
     elif command == 4:
-        force_move_map = force_move(random_map, 20, True)
-        
+        force_move_map = force_move(random_map, 20)
+
     elif command == 5:
         best_greedy = greedy(20, MAP_20)
