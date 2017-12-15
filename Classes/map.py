@@ -78,7 +78,7 @@ class Map(object):
 		index -- int, index number from contruction list
 		loc -- dict, location
 		'''
-
+		
 		# copy the house to be placed
 		tmp_house = copy.copy(self.construction[index])
 
@@ -306,41 +306,6 @@ class Map(object):
 
 		del self.construction[0]
 
-			# if ((width / height) < 0.25) & ((width / height) > 4):
-			# 	return False
-            #
-			# for water in self.water:
-            #
-			# 	# check if corner is not inside other water body
-			# 	for c in new_water.corners:
-            #
-			# 		if (new_water.corners[c]['x'] >= water.corners['lb']['x'] and
-			# 			new_water.corners[c]['x'] <= water.corners['rb']['x'] and
-			# 		    new_water.corners[c]['y'] <= water.corners['lb']['y'] and
-			# 		    new_water.corners[c]['y'] >= water.corners['lo']['y']):
-            #
-			# 			# stop function if there is overlap
-			# 			return False
-            #
-			# 	for c in water.corners:
-            #
-			# 		if (water.corners[c]['x'] >= new_water.corners['lb']['x'] and
-			# 			water.corners[c]['x'] <= new_water.corners['rb']['x'] and
-			# 		    water.corners[c]['y'] <= new_water.corners['lb']['y'] and
-			# 		    water.corners[c]['y'] >= new_water.corners['lo']['y']):
-            #
-			# 			# stop function if there is overlap
-			# 			return False
-            #
-            # # check if water is on map
-			# for water in tmp_list:
-			# 	if water.corners['lo']['x'] > 0 and water.corners['lo']['y'] > 0 \
-			# 	and water.corners['lb']['x'] > 0 and water.corners['lb']['y'] < self.height \
-			# 	and water.corners['ro']['x'] < self.width and water.corners['ro']['y'] > 0 \
-			# 	and water.corners['rb']['x'] < self.width and water.corners['rb']['y'] < self.height:
-                    # self.water.append(water)
-					# return True
-
 
 
 	def calc_freespace_on_map(self):
@@ -410,7 +375,7 @@ class Map(object):
 			self.remove_house(tmp_index[i])
 
 		# add same amount of houses which were deleted
-		# for i in range(nr_houses):
+		for i in range(nr_houses):
 
 			allowed = False
 

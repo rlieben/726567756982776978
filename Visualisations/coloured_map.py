@@ -14,13 +14,13 @@ def coloured_map(ah_map, directory, name):
 
 	Input arguments:
 	ah_map -- object, input map
-	directory -- string, name of directory in results 
+	directory -- string, name of directory in results
 	name -- string, name of outputfile
 	'''
 
 	out_plot = plot.figure()
 	ax = out_plot.add_subplot(111)
-
+	
 	p = []
 
 	for house in ah_map.houses:
@@ -64,3 +64,4 @@ def coloured_map(ah_map, directory, name):
 					 + '.png')
 
 	out_plot.clf()
+	plot.close()

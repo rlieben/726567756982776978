@@ -3,7 +3,7 @@ import copy
 
 
 def hillclimber(map_charac, tries_random, tries_hill, nr_houses, hill_type,
-				save_steps):
+				save_steps = False):
 	'''Moves, every iteration, houses for optimalization.
 
 	Input arguments:
@@ -19,6 +19,8 @@ def hillclimber(map_charac, tries_random, tries_hill, nr_houses, hill_type,
 					list, data and
 					list, all created maps of type object
 	'''
+
+	from __import__ import split
 
 	best_map = best_of_random(map_charac, tries_random)['best_map']
 	maximum = best_map.calc_score()
@@ -50,7 +52,8 @@ def hillclimber(map_charac, tries_random, tries_hill, nr_houses, hill_type,
 		data.append(maximum)
 
 		if save_steps == True:
-			coloured_map(try_map, folder + '\\tmp_gif', (str(k).zfill(3)))
+			coloured_map(best_map, folder + split + 'tmp_gif',
+						 str(k).zfill(3))
 			k += 1
 			steps.append(best_map)
 
@@ -62,13 +65,13 @@ if __name__ == '__main__':
 	from __import__ import MAP_20, coloured_map, save_results, make_gif, \
 						   best_of_random
 
-	hillclimber_map = hillclimber(MAP_20, 1, 20, 1, 0, True)
-	tactical_hillclimber_map = hillclimber(MAP_20, 1, 10, 1, 1, True)
+	hillclimber_map = hillclimber(MAP_20, 1, 20, 1, 0)
+	# tactical_hillclimber_map = hillclimber(MAP_20, 10, 100, 1, 1, True)
+    #
+	# coloured_map(hillclimber_map['best_map'], 'hillclimber', 'best')
+	# save_results(hillclimber_map['data'], 'hillclimber', 'data')
+	# make_gif(hillclimber_map['steps'], 'hillclimber', 'hillclimber')
 
-	coloured_map(hillclimber_map['best_map'], 'hillclimber', 'best')
-	save_results(hillclimber_map['data'], 'hillclimber', 'data')
-	make_gif(hillclimber_map['steps'], 'hillclimber', 'hillclimber')
-
-	coloured_map(hillclimber_map['best_map'], 'tactical_hillclimber', 'best')
-	save_results(hillclimber_map['data'], 'tactical_hillclimber', 'data')
-	make_gif(hillclimber_map['steps'], 'tactical_hillclimber', 'tactical_hillclimber')
+	# coloured_map(tactical_hillclimber_map['best_map'], 'tactical_hillclimber', 'best')
+	# save_results(tactical_hillclimber_map['data'], 'tactical_hillclimber', 'data')
+	# make_gif(tactical_hillclimber_map['steps'], 'tactical_hillclimber', 'tactical_hillclimber')

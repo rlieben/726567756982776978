@@ -1,7 +1,7 @@
 import copy
 
 
-def greedy(start_maps, map_charac):
+def greedy(start_maps, map_charac, save_steps = False):
 	''' Random places water and greedy places house based on most freespace.
 
 	Input arguments:
@@ -15,12 +15,16 @@ def greedy(start_maps, map_charac):
 	steps -- object, all created maps
 	'''
 
+	from __import__ import split
+
 	# initializes empty list for created maps
 	total_maps = []
 
 	# initialize score variable and best map
 	score = 0
-	best_map = []
+	steps = []
+	data = []
+	l = 0
 
 	# initialize house pruning point
 	prune_house = 4
@@ -28,22 +32,18 @@ def greedy(start_maps, map_charac):
 	# amount of runs for script
 	for start_map in range(start_maps):
 
-		print("start map: ", start_map)
 		# initializes map
 		total_maps.append(Map(map_charac))
 
 		# places water on map
 		k = 0
 
-		while len(total_maps[start_map].water) < total_maps.max_waterbodies:
-			total_maps[start_map].place_water_random(total_maps.max_waterbodies)
+		while len(total_maps[start_map].water) < total_maps[0].max_waterbodies:
+			total_maps[start_map].place_water_random()
 			k += 1
 
 		# iterates over houses
 		for i in range(len(total_maps[start_map].construction)):
-
-
-			print("test", len(total_maps[start_map].construction))
 
 			allowed = False
 
@@ -68,19 +68,21 @@ def greedy(start_maps, map_charac):
 					map_charac == MAP_40 and minscore < 9000000 or
 					map_charac == MAP_60 and minscore < 7000000):
 
-					print(" ")
 					break
 
-			total_maps[start_map].calc_score()
-			print("score", total_maps[start_map].score)
+			print(i)
 
-			coloured_map(total_maps[start_map], "greedy", "greedy" + str(start_map) + str(i))
+			total_maps[start_map].calc_score()
+
+			if save_steps == True:
+				coloured_map(total_maps[start_map], 'greedy' + split +
+							 'tmp_gif', (str(l).zfill(3)))
+				l += 1
+				steps.append(total_maps[start_map])
 
 
 		# calc score of created map
 		tmpscore  = total_maps[start_map].calc_score()
-
-
 
 		# update best score if greater
 		if tmpscore > score:
@@ -88,17 +90,20 @@ def greedy(start_maps, map_charac):
 			score = tmpscore
 			best_map = total_maps[start_map]
 
+		data.append(score)
+
+
 	# returns created map and score
-	return {'bestmap': best_map, 'score' : score, 'steps': total_maps}
+	return {'bestmap': best_map, 'data' : data, 'steps': total_maps}
 
 
 
 if __name__ == '__main__':
 
-	from __import__ import MAP_20, MAP_40, MAP_60, Map, coloured_map
+	from __import__ import MAP_20, MAP_40, MAP_60, Map, coloured_map, make_gif
 
-	greedy_map = greedy(20, MAP_20, )
+	greedy_map = greedy(5, MAP_20, True)
 
-	coloured_map(best_random_map['best_map'], 'best_of_random', 'best')
-	save_results(best_random_map['data'], 'best_of_random', 'data')
-	make_gif(best_random_map['steps'], 'best_of_random', 'random')
+	coloured_map(greedy_map['best_map'], 'greedy', 'best')
+	save_results(greedy_map['data'], 'greedy', 'data')
+	make_gif(greedy_map['steps'], 'greedy', 'greedy')

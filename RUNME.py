@@ -1,17 +1,19 @@
 
 import sys
 
-from Classes.house import *
-from Classes.map import *
-from Classes.water import *
-from Specifications.amstelhaege import *
-from Algorithms.helpers import *
-from Algorithms.best_of_random import *
-from Algorithms.hillclimber import *
-from Algorithms.depthfirst import *
-from Visualisations.coloured_map import *
-from Visualisations.txtwriter import *
-from Visualisations.make_gif import *
+from __import__ import *
+
+# from Classes.house import *
+# from Classes.map import *
+# from Classes.water import *
+# from Specifications.amstelhaege import *
+# from Algorithms.helpers import *
+# from Algorithms.best_of_random import *
+# from Algorithms.hillclimber import *
+# from Algorithms.depthfirst import *
+# from Visualisations.coloured_map import *
+# from Visualisations.txtwriter import *
+# from Visualisations.make_gif import *
 
 while True:
     try:
