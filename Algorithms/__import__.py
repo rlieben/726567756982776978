@@ -28,3 +28,4 @@ from Algorithms.greedy import *
 from Visualisations.coloured_map import *
 from Visualisations.txtwriter import *
 from Visualisations.make_gif import *
+from Visualisations.plot_data import *
