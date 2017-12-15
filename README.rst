@@ -22,14 +22,14 @@ How to run
 
 In a terminal type: 
 ```
-RUNME.py
+RUNME.py <integer>
 ```
-Than enter an integer.
-The integer must range between 1 and 5.
+
+The integer ranges between 1 and 5.
 The integers stand for :
     1. best of random
     2. greedy
-    3. hill climber
+    3. hillclimber
     4. force move
     5. simmulated annealing
     
