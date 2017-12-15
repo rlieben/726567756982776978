@@ -24,7 +24,7 @@ def force_move(in_map, tries, factor, save_steps = False):
 
 	in_map.calc_score()
 
-	best_map = in_map
+	best_map = copy.copy(in_map)
 	data = []
 	steps = []
 	k = 0
@@ -32,8 +32,6 @@ def force_move(in_map, tries, factor, save_steps = False):
 	for i in range(tries):
 
 		for j in range(len(best_map.houses)):
-
-			print(i, j)
 
 			out_map = copy.copy(best_map)
 
@@ -76,16 +74,16 @@ if __name__ == '__main__':
 	from __import__ import MAP_20, random_generator, coloured_map, \
 						   save_results, make_gif, plot_data, MAP_60
 
-	random_map = random_generator(MAP_60)
-	force_move_map1 = force_move(random_map, 10, 0.2)
-	# force_move_map2 = force_move(random_map, 10, 0.4)
-	# force_move_map3 = force_move(random_map, 10, 0.6)
-	# force_move_map4 = force_move(random_map, 10, 0.8)
-	# force_move_map5 = force_move(random_map, 10, 1.0)
+	random_map = random_generator(MAP_20)
+	force_move_map1 = force_move(copy.copy(random_map), 10, 0.2)
+	force_move_map2 = force_move(copy.copy(random_map), 10, 0.4)
+	force_move_map3 = force_move(copy.copy(random_map), 10, 0.6)
+	force_move_map4 = force_move(copy.copy(random_map), 10, 0.8)
+	force_move_map5 = force_move(copy.copy(random_map), 10, 1.0)
 
 	plot_data([force_move_map1['data'], force_move_map2['data'],
 			   force_move_map3['data'], force_move_map4['data'],
-			   force_move_map5['data']], 'plot_experiment')
+			   force_move_map5['data']], '', 'plot_experiment')
 	# plot_data([force_move_map['data']], 'force_move60', 'plot')
 	# coloured_map(force_move_map['best_map'], 'fore_move60', 'best')
 	# save_results(force_move_map['data'], 'force_move60', 'data')

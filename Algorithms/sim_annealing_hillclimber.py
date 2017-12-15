@@ -76,8 +76,16 @@ if __name__ == '__main__':
 	from __import__ import MAP_20, coloured_map, save_results, make_gif, \
 						   best_of_random
 
-	sa_hillclimber_map = sa_hillclimber(MAP_20, 10, 1, 0, 0.01, 4, True)
+	sa_hillclimber_map1 = sa_hillclimber(MAP_20, 10, 1, 0, 0.01, 1)
+	sa_hillclimber_map2 = sa_hillclimber(MAP_20, 10, 1, 0, 0.01, 2)
+	sa_hillclimber_map3 = sa_hillclimber(MAP_20, 10, 1, 0, 0.01, 3)
+	sa_hillclimber_map4 = sa_hillclimber(MAP_20, 10, 1, 0, 0.01, 4)
+	sa_hillclimber_map5 = sa_hillclimber(MAP_20, 10, 1, 0, 0.01, 5)
 
-	coloured_map(sa_hillclimber_map['best_map'], 'sim_annealing_hillclimber', 'best')
-	save_results(sa_hillclimber_map['data'], 'sim_annealing_hillclimber', 'data')
-	make_gif(sa_hillclimber_map['steps'], 'sim_annealing_hillclimber', 'sa_hillclimber_map')
+	plot_data([sa_hillclimber_map1['data'], sa_hillclimber_map2['data'],
+		sa_hillclimber_map3['data'], sa_hillclimber_map4['data'],
+		sa_hillclimber_map5['data']], '', 'experiment3')
+
+	# coloured_map(sa_hillclimber_map['best_map'], 'sim_annealing_hillclimber', 'best')
+	# save_results(sa_hillclimber_map['data'], 'sim_annealing_hillclimber', 'data')
+	# make_gif(sa_hillclimber_map['steps'], 'sim_annealing_hillclimber', 'sa_hillclimber_map')
