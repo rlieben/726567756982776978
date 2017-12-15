@@ -19,7 +19,7 @@ def best_of_random(map_charac, tries, save_steps=False):
 		try_map = random_generator(map_charac)
 
 		if save_steps == True:
-			coloured_map(try_map, 'best_of_random' + split + 'tmp_gif',
+			coloured_map(try_map, 'best_of_random60' + split + 'tmp_gif',
 						 (str(k).zfill(3)))
 			k += 1
 			steps.append(try_map)
@@ -37,12 +37,12 @@ def best_of_random(map_charac, tries, save_steps=False):
 
 if __name__ == '__main__':
 
-	from __import__ import MAP_20, coloured_map, save_results, make_gif, plot_data
+	from __import__ import MAP_60, coloured_map, save_results, make_gif, plot_data
 
-	best_random_map = best_of_random(MAP_20, 10, False)
-	test_random = best_of_random(MAP_20, 10, False)
+	best_random_map = best_of_random(MAP_60, 10, True)
+	# test_random = best_of_random(MAP_20, 10, False)
 
-	# coloured_map(best_random_map['best_map'], 'best_of_random', 'best')
-	plot_data([best_random_map['data'], test_random['data']], 'best_of_random', 'plot')
-	save_results(best_random_map['data'], 'best_of_random', 'data')
-	# make_gif(best_random_map['steps'], 'best_of_random', 'random')
+	coloured_map(best_random_map['best_map'], 'best_of_random60', 'best')
+	plot_data([best_random_map['data']], 'best_of_random60', 'plot')
+	save_results(best_random_map['data'], 'best_of_random60', 'data')
+	make_gif(best_random_map['steps'], 'best_of_random60', 'random')

@@ -33,6 +33,8 @@ def force_move(in_map, tries, factor, save_steps = False):
 
 		for j in range(len(best_map.houses)):
 
+			print(i, j)
+
 			out_map = copy.copy(best_map)
 
 			house = out_map.houses[j]
@@ -50,16 +52,18 @@ def force_move(in_map, tries, factor, save_steps = False):
 			if allowed == False:
 				out_map.place_house(0, old_loc)
 
+			data.append(best_map.score)
+
 		for house in out_map.houses:
 			house.calc_freespace(out_map)
 			house.calc_value()
 
 		if out_map.calc_score() > best_map.score:
 			best_map = out_map
-			data.append(best_map.score)
+
 
 		if save_steps == True:
-			coloured_map(best_map, 'force_move' + split + 'tmp_gif',
+			coloured_map(best_map, 'force_move60' + split + 'tmp_gif',
 						 (str(k).zfill(3)))
 			k += 1
 			steps.append(best_map)
@@ -70,12 +74,19 @@ def force_move(in_map, tries, factor, save_steps = False):
 if __name__ == '__main__':
 
 	from __import__ import MAP_20, random_generator, coloured_map, \
-						   save_results, make_gif, plot_data
+						   save_results, make_gif, plot_data, MAP_60
 
-	random_map = random_generator(MAP_20)
-	force_move_map = force_move(random_map, 20, 1)
-	test_map = force_move(random_map, 10, 1)
-	plot_data([force_move_map['data'], test_map['data']], 'force_move', 'plot')
-	# coloured_map(force_move_map['best_map'], 'force_move', 'best')
-	# save_results(force_move_map['data'], 'force_move', 'data')
-	# make_gif(force_move_map['steps'], 'force_move', 'force')
+	random_map = random_generator(MAP_60)
+	force_move_map1 = force_move(random_map, 10, 0.2)
+	# force_move_map2 = force_move(random_map, 10, 0.4)
+	# force_move_map3 = force_move(random_map, 10, 0.6)
+	# force_move_map4 = force_move(random_map, 10, 0.8)
+	# force_move_map5 = force_move(random_map, 10, 1.0)
+
+	plot_data([force_move_map1['data'], force_move_map2['data'],
+			   force_move_map3['data'], force_move_map4['data'],
+			   force_move_map5['data']], 'plot_experiment')
+	# plot_data([force_move_map['data']], 'force_move60', 'plot')
+	# coloured_map(force_move_map['best_map'], 'fore_move60', 'best')
+	# save_results(force_move_map['data'], 'force_move60', 'data')
+	# make_gif(force_move_map['steps'], 'force_move60', 'force')

@@ -22,6 +22,7 @@ class Map(object):
 		self.height = map_charac['height']
 		self.max_waterbodies = map_charac['nr_waterbodies']
 		self.water_prev = map_charac['water_prev']
+		self.types_houses = map_charac['types_houses']
 		self.construction = self.create_construction(map_charac)
 
 		self.score = None
@@ -64,9 +65,9 @@ class Map(object):
 		'''
 
 		loc = {'x' : random.uniform((0 + 0.5 * water.width), \
-				  	(MAP_20['width'] - 0.5 * water.width)), \
+				  	(self.width - 0.5 * water.width)), \
 			   'y' : random.uniform((0 + 0.5 * water.height), \
-		  			(MAP_20['height'] - 0.5 * water.height))}
+		  			(self.height - 0.5 * water.height))}
 
 		return loc
 
@@ -78,7 +79,7 @@ class Map(object):
 		index -- int, index number from contruction list
 		loc -- dict, location
 		'''
-		
+
 		# copy the house to be placed
 		tmp_house = copy.copy(self.construction[index])
 
@@ -184,7 +185,7 @@ class Map(object):
 	def place_water_random(self):
 		'''Places random water on the map.'''
 
-		from __import__ import Water, MAP_20
+		from __import__ import Water
 
 		i = 0
 
@@ -202,9 +203,9 @@ class Map(object):
 		index = i
 
 		loc = {'x' : numpy.random.uniform((0 + 0.5 * x), \
-				  	(MAP_20['width'] - 0.5 * x)), \
+				  	(self.width - 0.5 * x)), \
 			   'y' : numpy.random.uniform((0 + 0.5 * y), \
-		  			(MAP_20['height'] - 0.5 * y))}
+		  			(self.height - 0.5 * y))}
 
 		new_water = Water(index, size, loc)
 
@@ -260,10 +261,10 @@ class Map(object):
 		'''Places water on the map after placing houses.
 		'''
 
-		from __import__ import House, Water, MAP_20
+		from __import__ import House, Water
 
         # create dummy house
-		d_house = House(100,MAP_20['types_houses'][0], None)
+		d_house = House(100, self.types_houses[0], None)
 
 		self.construction.append(d_house)
 
