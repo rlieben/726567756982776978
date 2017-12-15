@@ -1,17 +1,19 @@
 
 import sys
 
-from Classes.house import *
-from Classes.map import *
-from Classes.water import *
-from Specifications.amstelhaege import *
-from Algorithms.helpers import *
-from Algorithms.best_of_random import *
-from Algorithms.hillclimber import *
-from Algorithms.depthfirst import *
-from Visualisations.coloured_map import *
-from Visualisations.txtwriter import *
-from Visualisations.make_gif import *
+from __import__ import *
+# from Classes.house import *
+# from Classes.map import *
+# from Classes.water import *
+# from Specifications.amstelhaege import *
+# from Algorithms.helpers import *
+# from Algorithms.best_of_random import *
+# from Algorithms.hillclimber import *
+# from Algorithms.greedy import *
+# from Algorithms.force_move import *
+# from Visualisations.coloured_map import *
+# from Visualisations.txtwriter import *
+# from Visualisations.make_gif import *
 
 while True:
     try:
@@ -40,6 +42,6 @@ else:
 
     elif command == 4:
         force_move_map = force_move(random_map, 20, True)
-        
+
     elif command == 5:
         best_greedy = greedy(20, MAP_20)
