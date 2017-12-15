@@ -22,7 +22,7 @@ How to run
 
 In a terminal type: 
 ```
-RUNME.py <integer>
+RUNME.py
 ```
 
 The integer ranges between 1 and 5.
@@ -66,7 +66,7 @@ Folder navigation
             * force_move
         
         description:    
-            For each algorithm the results are saved in sub folders. These folders contain a GIF of the process and the total score (sum of all house values) is stored in data.txt
+            For each algorithm the results are saved in sub folders. These folders contain a GIF of the process and the total score (sum of all house values) is stored in data.txt. Furthermore a plot figure is showing the increase of the score.
 
 
     Specifications/
@@ -82,6 +82,7 @@ Folder navigation
             * coloured_map.py
             * make_gif.py
             * txtwriter.py
+            * plot_data.py
         
         description:
             This folder contains all scripts used to visualise and document the change in score during each iteration for every algorithm    
