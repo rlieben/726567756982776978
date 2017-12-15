@@ -20,12 +20,9 @@ def plot_data(data, directory, name):
     '''
     plt.figure(figsize=(20,10))
 
-    if len(data) > 1:
-        for list in data:
-            plt.plot(list)
-    else:
-        plt.plot(data)
-
+    for list in data:
+        plt.plot(list)
+    
     plt.ylabel('score(€)')
     plt.xlabel('# of maps')
 
