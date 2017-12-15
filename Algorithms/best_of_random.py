@@ -37,10 +37,11 @@ def best_of_random(map_charac, tries, save_steps=False):
 
 if __name__ == '__main__':
 
-	from __import__ import MAP_20, coloured_map, save_results, make_gif
+	from __import__ import MAP_20, coloured_map, save_results, make_gif, plot_data
 
-	best_random_map = best_of_random(MAP_20, 20, True)
+	best_random_map = best_of_random(MAP_20, 10, True)
 
-	coloured_map(best_random_map['best_map'], 'best_of_random', 'best')
-	save_results(best_random_map['data'], 'best_of_random', 'data')
-	make_gif(best_random_map['steps'], 'best_of_random', 'random')
+	# coloured_map(best_random_map['best_map'], 'best_of_random', 'best')
+	plot_data(best_random_map['data'], 'best_of_random', 'plot')
+	# save_results(best_random_map['data'], 'best_of_random', 'data')
+	# make_gif(best_random_map['steps'], 'best_of_random', 'random')

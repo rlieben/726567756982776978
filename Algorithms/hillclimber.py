@@ -63,15 +63,17 @@ def hillclimber(map_charac, tries_random, tries_hill, nr_houses, hill_type,
 if __name__ == '__main__':
 
 	from __import__ import MAP_20, coloured_map, save_results, make_gif, \
-						   best_of_random
+						   best_of_random, plot_data
 
-	hillclimber_map = hillclimber(MAP_20, 1, 20, 1, 0)
-	# tactical_hillclimber_map = hillclimber(MAP_20, 10, 100, 1, 1, True)
-    #
-	# coloured_map(hillclimber_map['best_map'], 'hillclimber', 'best')
-	# save_results(hillclimber_map['data'], 'hillclimber', 'data')
-	# make_gif(hillclimber_map['steps'], 'hillclimber', 'hillclimber')
+	hillclimber_map = hillclimber(MAP_20, 1, 20, 1, 0, True)
+	tactical_hillclimber_map = hillclimber(MAP_20, 1, 10, 1, 1, True)
 
-	# coloured_map(tactical_hillclimber_map['best_map'], 'tactical_hillclimber', 'best')
-	# save_results(tactical_hillclimber_map['data'], 'tactical_hillclimber', 'data')
-	# make_gif(tactical_hillclimber_map['steps'], 'tactical_hillclimber', 'tactical_hillclimber')
+	plot_data(hillclimber_map['data'], 'hillclimber', 'plot')
+	coloured_map(hillclimber_map['best_map'], 'hillclimber', 'best')
+	save_results(hillclimber_map['data'], 'hillclimber', 'data')
+	make_gif(hillclimber_map['steps'], 'hillclimber', 'hillclimber')
+
+	plot_data(tactical_hillclimber_map['data'], 'tactical_hillclimber', 'plot')
+	coloured_map(hillclimber_map['best_map'], 'tactical_hillclimber', 'best')
+	save_results(hillclimber_map['data'], 'tactical_hillclimber', 'data')
+	make_gif(hillclimber_map['steps'], 'tactical_hillclimber', 'tactical_hillclimber')

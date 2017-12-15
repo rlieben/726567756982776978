@@ -100,10 +100,11 @@ def greedy(start_maps, map_charac, save_steps = False):
 
 if __name__ == '__main__':
 
-	from __import__ import MAP_20, MAP_40, MAP_60, Map, coloured_map, make_gif
+	from __import__ import MAP_20, MAP_40, MAP_60, Map, coloured_map, plot_data
 
-	greedy_map = greedy(5, MAP_20, True)
+	greedy_map = greedy(20, MAP_20)
 
-	coloured_map(greedy_map['best_map'], 'greedy', 'best')
-	save_results(greedy_map['data'], 'greedy', 'data')
-	make_gif(greedy_map['steps'], 'greedy', 'greedy')
+	plot_data(greedy['data'], 'force_move', 'plot')
+	# coloured_map(best_random_map['best_map'], 'best_of_random', 'best')
+	# save_results(best_random_map['data'], 'best_of_random', 'data')
+	# make_gif(best_random_map['steps'], 'best_of_random', 'random')

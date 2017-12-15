@@ -2,7 +2,6 @@
 import sys
 
 from __import__ import *
-
 # from Classes.house import *
 # from Classes.map import *
 # from Classes.water import *
@@ -10,7 +9,8 @@ from __import__ import *
 # from Algorithms.helpers import *
 # from Algorithms.best_of_random import *
 # from Algorithms.hillclimber import *
-# from Algorithms.depthfirst import *
+# from Algorithms.greedy import *
+# from Algorithms.force_move import *
 # from Visualisations.coloured_map import *
 # from Visualisations.txtwriter import *
 # from Visualisations.make_gif import *
@@ -30,7 +30,7 @@ if  command > 5:
 else:
     if command == 1:
         best_random_map = best_of_random(MAP_20, 19)
-		
+
 
     elif command == 2:
         best_greedy = greedy(20, MAP_20)

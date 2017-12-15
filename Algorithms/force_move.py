@@ -70,12 +70,12 @@ def force_move(in_map, tries, save_steps = False):
 if __name__ == '__main__':
 
 	from __import__ import MAP_20, random_generator, coloured_map, \
-						   save_results, make_gif
+						   save_results, make_gif, plot_data
 
 	random_map = random_generator(MAP_20)
-	force_move_map = force_move(random_map, 100, True)
-
-	coloured_map(force_move_map['best_map'], 'force_move', 'best')
-	save_results(force_move_map['data'], 'force_move', 'data')
-
-	make_gif(force_move_map['steps'], 'force_move', 'force_move')
+	force_move_map = force_move(random_map, 20, True)
+	test_map = force_move(random_map, 10, True)
+	plot_data([force_move_map['data'], test_map['data']], 'force_move', 'plot')
+	# coloured_map(force_move_map['best_map'], 'force_move', 'best')
+	# save_results(force_move_map['data'], 'force_move', 'data')
+	# make_gif(force_move_map['steps'], 'force_move', 'force')
