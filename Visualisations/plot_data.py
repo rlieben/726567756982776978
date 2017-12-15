@@ -26,19 +26,7 @@ def plot_data(data, directory, name):
     plt.ylabel('score(€)')
     plt.xlabel('# of maps')
 
-    find_forward = sys.path[0].find('/')
-    find_backward = sys.path[0].find('\\')
-
-    if find_forward > find_backward:
-        split = '/'
-    else:
-        split = '\\'
-
-    list_dir = sys.path[0].split(split)
-    string = ''
-    for i in range(len(list_dir) - 1):
-        string += list_dir[i]
-        string += split
+    from __import__ import string, split
 
     plt.savefig(string + 'Results' + split + directory + split + name
     			 + '.png')
