@@ -107,4 +107,4 @@ if __name__ == '__main__':
 	# plot_data([greedy['data']], 'greedy60', 'plot')
 	# coloured_map(best_random_map['best_map'], 'greedy60', 'best')
 	# save_results(best_random_map['data'], 'greedy60', 'data')
-	make_gif([], 'greedy60', 'random')
+	make_gif([], 'greedy60', 'greedy60')
