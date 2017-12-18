@@ -11,10 +11,12 @@ class Water(object):
 	'''Class for water object.'''
 
 	def __init__(self, self_id, size, loc):
-		'''Class is list of coordinates on where the water is placed.
+		'''Creates object of class Water.
 
 		Input arguments:
-		loc -- location where water is placed
+		self_id -- intiger, individual identification number
+		size -- dict of floats, containing width and height of element
+		loc -- dict of floats, location where water is placed
 		'''
 
 		self.self_id = self_id
@@ -25,7 +27,10 @@ class Water(object):
 
 
 	def find_corners(self):
-		'''Calculates coordinates of corners. '''
+		'''Calculates coordinates of corners.
+
+		Output argument:
+		dict of dicts, containing coordinates of corners'''
 
 		lb = {'x' : (self.location['x'] - 0.5 * self.width),
 			  'y' : (self.location['y'] + 0.5 * self.height)}

@@ -11,7 +11,7 @@ class House(object):
 	'''Basis for the three different house classes.'''
 
 	def __init__(self, self_id, house_charac, loc):
-		'''Creates object of class house.
+		'''Creates object of class House.
 
 		Input arguments:
 		type_charac -- dict containing characteristics of house type_charac
@@ -28,7 +28,7 @@ class House(object):
 		self.colour = house_charac['colour']
 
 		self.self_id = self_id
-		self.location = loc # loc is a dict {'x' : ..., 'y' : ...}
+		self.location = loc
 		self.corners = None
 		self.freespace = None
 		self.value = None
@@ -39,18 +39,21 @@ class House(object):
 	def calc_value(self):
 		'''Calculates the value of this house.'''
 
-
 		value = self.start_value + (self.start_value
 				* (self.freespace - self.min_free)
 				* self.perc)
 
 		self.value = value
+
 		return value
 
 
 
 	def find_corners(self):
-		'''Calculates coordinates of corners.'''
+		'''Calculates coordinates of corners.
+
+		Output argument:
+		dict of dicts, filled with coordinates'''
 
 		lb = {'x' : (self.location['x'] - 0.5 * self.width),
 			  'y' : (self.location['y'] + 0.5 * self.height)}
