@@ -35,17 +35,22 @@ def hillclimber(map_specs, tries_random, tries_hill, nr_houses, hill_type,
 
 	from __import__ import split, coloured_map, best_of_random
 
+	# selects best map of 'tries_random' times generated random maps and calc score
 	best_map = best_of_random(map_specs, tries_random)['best_map']
 	maximum = best_map.calc_score()
 
+	# initializes variable and empty lists for data and maps
 	data = []
 	steps = []
 	k = 0
 
+	# iterates over tries
 	for i in range(tries_hill):
 
+		# copies map
 		try_map = copy.copy(best_map)
 
+		# checks wheter random or tactical hillclimber runs
 		if (hill_type == 0):
 
 			try_map.random_swap_houses(nr_houses)
@@ -56,14 +61,14 @@ def hillclimber(map_specs, tries_random, tries_hill, nr_houses, hill_type,
 			try_map.tactical_swap_houses(nr_houses)
 			folder = 'tactical_hillclimber'
 
+		# calc score, update if greater than previous and append to data
 		score = try_map.calc_score()
-
 		if score > maximum:
 			maximum = score
 			best_map = try_map
-
 		data.append(maximum)
 
+		# saves visualization and appends each best map
 		if save_steps == True:
 			coloured_map(best_map, folder + split + 'tmp_gif',
 						 str(k).zfill(3))
