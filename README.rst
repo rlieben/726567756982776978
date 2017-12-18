@@ -66,7 +66,7 @@ Folder navigation
             * simulated_annealing_hillclimber.py
         
         description:
-            This folder contains all algorithms used to solve the case.
+            This folder contains all algorithms that can be used to solve the case.
 
 
     Classes/
@@ -76,7 +76,7 @@ Folder navigation
             * water.py
             
         description:
-            This folder contains all classes used in the algorithms. The classes contain functions that for example calculate the free space for a house
+            This folder contains all classes used in the algorithms.
 
 
     Results/
@@ -87,7 +87,7 @@ Folder navigation
             * force_move
         
         description:    
-            For each algorithm the results are saved in sub folders. These folders contain a GIF of the process and the total score (sum of all house values) is stored in data.txt. Furthermore a plot figure is showing the increase of the score.
+            For each algorithm the results are saved in sub folders. These folders contain a GIF of the process and the total score (sum of all house values) is stored in data.txt. It also contains a line graph showing the increase in score over iterations.
 
 
     Specifications/
@@ -95,7 +95,7 @@ Folder navigation
             * amstelhaege.py
         
         description:
-            This folder contains the spefications used for this project like the Amstelhaege's width and height
+            This folder contains the spefications used for this project, which specifications of the houses and maps of Amstelhaege.
 
 
     Visualisations/
@@ -106,7 +106,7 @@ Folder navigation
             * plot_data.py
         
         description:
-            This folder contains all scripts used to visualise and document the change in score during each iteration for every algorithm    
+            This folder contains all scripts used to visualise and document the change in score during each iteration.
            
 Authors
 =======
