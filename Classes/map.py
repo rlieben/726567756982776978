@@ -33,10 +33,13 @@ class Map(object):
 
 		# list containing all houses that have been placed
 		self.houses = []
+
 		# list containing all water elements
 		self.water = []
+
 		# list containing all houses that have not been placed
 		self.construction = self.create_construction(map_specs)
+
 		# calculated with calc_score
 		self.score = None
 
@@ -53,14 +56,17 @@ class Map(object):
 
 		from __import__ import House
 
+		# initialize variable, location and empty list
 		house_id = 0
 		loc = {'x' : None, 'y' : None}
 		construction = []
 
+		# iterate over distribution and number of houses
 		for i in range(len(map_specs['distr_houses'])):
 			for j in range(int(map_specs['distr_houses'][i]
 						   	   * map_specs['nr_houses'])):
 
+				# append houses to construction list
 				construction.append(House(house_id,
 										  map_specs['types_houses'][i], loc))
 				house_id += 1
@@ -90,7 +96,7 @@ class Map(object):
 		loc -- dict of floats, location
 
 		Updates:
-		self.construnction -- object, remove house that is placed
+		self.construction -- object, remove house that is placed
 		self.houses -- object, adds house that is placed
 
 		Example: map.place_house(0, {'x' : 10, 'y' : 11})
@@ -194,12 +200,15 @@ class Map(object):
 		Example: map.remove_house(3)
 		'''
 
+		# copies house
 		tmp_house = copy.copy(self.houses[index])
 
+		# resets all specific values of this house on this map
 		tmp_house.location = {'x' : None, 'y' : None}
 		tmp_house.freespace = None
 		tmp_house.value = None
 
+		# adds house to construction list and deletes from houses list
 		self.construction.append(tmp_house)
 		del self.houses[index]
 
@@ -213,10 +222,12 @@ class Map(object):
 
 		from __import__ import Water
 
+		# initializes variable and empty list
 		i = 0
+		tmp_list = []
 
 		# allowed = False
-		tmp_list = []
+
 
         # create random x and y for water body
 		y = numpy.random.uniform((numpy.sqrt((self.water_prev
@@ -227,25 +238,26 @@ class Map(object):
 		x = ((self.water_prev * self.width * self.height) / y) \
 			/ self.max_waterbodies
 
+		# sets size of waterbody
 		size = {'width': x, 'height': y}
 
 		index = i
 
+		# sets random location for waterbody
 		loc = {'x' : numpy.random.uniform((0 + 0.5 * x), \
 				  	(self.width - 0.5 * x)), \
 			   'y' : numpy.random.uniform((0 + 0.5 * y), \
 		  			(self.height - 0.5 * y))}
 
+		# creates new water element and appends to list
 		new_water = Water(index, size, loc)
-
 		tmp_list.append(new_water)
-
-		xy = x / y
 
         #check if ratio is correct
 		if ((x / y) < 0.25) & ((x / y) > 4):
 			return False
 
+		# iterate over water bodies
 		for water in self.water:
 
 			# check if location falls between walls
@@ -306,7 +318,7 @@ class Map(object):
 		tmp_list = []
 
 		# get location with max freespace
-		freespace_listm = self.calc_freespace_on_map()
+		freespace_listm = self.calc_freespace_on_map(5)
 
         # initialize last location
 		j = len(freespace_listm[1]) - 1
@@ -344,28 +356,25 @@ class Map(object):
 
 
 
-	def calc_freespace_on_map(self):
+	def calc_freespace_on_map(self, iterationstep):
 		'''Calculating location with the most freespace on map.
 
-		Returns list containing:
-		coordinates -- list of coordinates, which are dicts of floats
-		freespace_list -- list of floats
+		Input:
+		iterationstep -- integer, size of iteration step through the map
+
+		Returns:
+		coordinates -- list of dicts, which are coordinates of floats
 		'''
 
-		# initiate possible freespace variable
+		# initiate variable and empty lists for coordinates
 		poss_freespace = 0
-
 		coordinates = []
 
-		freespace_list = []
-
 		# iterate over map width
-		for i in range(5, self.width, 5):
-
-
+		for i in range(iterationstep, self.width, iterationstep):
 
 			# iterate over map height
-			for j in range(5, self.height, 5):
+			for j in range(iterationstep, self.height, iterationstep):
 
 				# place house on i,j location
 				allowed = self.place_house(0, {'x' : i, 'y' : j})
@@ -385,16 +394,13 @@ class Map(object):
 							# update new possible freespace
 							poss_freespace = tmp
 
-							freespace_list.append(poss_freespace)
-
 							# update location of possible freespace
 							coordinates.append({'x' : i, 'y' : j})
 
 					# remove house that is placed
 					self.remove_house(len(self.houses) - 1)
 
-		# return coordinates
-		return [coordinates, freespace_list]
+		return coordinates
 
 
 	def random_swap_houses(self, nr_houses):
@@ -407,9 +413,11 @@ class Map(object):
 		self.houses -- object, changes location of houses in list
 		'''
 
+		# initializes empty lists for index and houses
 		tmp_index = []
 		tmp_houses = []
 
+		# iteraters over houses and removes them
 		for i in range(nr_houses):
 			tmp_index.append(int(numpy.random.uniform(0, len(self.houses) - 1)))
 			tmp_houses.append(self.houses[tmp_index[i]])
@@ -447,14 +455,14 @@ class Map(object):
 			allowed = False
 
 			# get freespace coordinates on map
-			coordinates = self.calc_freespace_on_map()
+			coordinates = self.calc_freespace_on_map(5)
 
-			j = len(coordinates[0]) - 1
+			j = len(coordinates) - 1
 
 			# place house where valid beginning with biggest freespace to smallest
 			while (allowed == False):
 
-				allowed = self.place_house(0, coordinates[0][j])
+				allowed = self.place_house(0, coordinates[j])
 
 				j += -1
 
@@ -462,11 +470,17 @@ class Map(object):
 	def calc_score(self):
 		'''Calculates score of map.
 
-		Output:
+		Returns:
 		summy -- float, score of map
+
+		Updates:
+		self.score -- float, score of map
 		'''
 
+		# intializes variable
 		summy = 0
+
+		# iterates over houses and sums each score
 		for house in self.houses:
 			house.calc_freespace(self)
 			house.calc_value()

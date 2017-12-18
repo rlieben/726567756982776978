@@ -57,14 +57,14 @@ def greedy(nr_startmaps, map_specs, save_steps = False):
 			allowed = False
 
 			# get freespace coordinates on map
-			coordinates = total_maps[start_map].calc_freespace_on_map()
+			coordinates = total_maps[start_map].calc_freespace_on_map(5)
 
-			j = len(coordinates[0]) - 1
+			j = len(coordinates) - 1
 
 			# place house where valid beginning with biggest freespace to smallest
 			while (allowed == False):
 
-				allowed = total_maps[start_map].place_house(0, coordinates[0][j])
+				allowed = total_maps[start_map].place_house(0, coordinates[j])
 
 				j += -1
 
