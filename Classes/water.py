@@ -23,8 +23,6 @@ class Water(object):
 		self.width = size['width']
 		self.height = size['height']
 		self.location = loc
-
-		# !!!!!!!!!!!!!!!!!!!!!!
 		self.corners = self.find_corners()
 
 

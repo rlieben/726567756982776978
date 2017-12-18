@@ -41,9 +41,12 @@ class House(object):
 
 		# calculated with self.find_corners
 		self.corners = None
+
 		# calculated with self.calc_freespace
 		self.freespace = None
+
 		self.direction = None
+
 		# calculated with self.calc_value
 		self.value = None
 
@@ -53,8 +56,7 @@ class House(object):
 	def calc_value(self):
 		'''Calculates the value of this house.'''
 
-		# value is the starting value, plus the value added by freespace that is
-		# more then the required freespace
+		# calculates own value and added value by freespace and updates it
 		value = self.start_value + (self.start_value * self.perc
 									* (self.freespace - self.min_free))
 
@@ -98,11 +100,12 @@ class House(object):
 		Updates:
 		self.freespace -- float, freespace of this house on in_map
 		self.direction -- dict of floats, coordinate direction of closest object
+
+		Example: calc_freespace(in_map)
 		'''
 
-		# initiate list for possible freespaces
+		# initiate lists for possible freespaces and direction
 		tmp_freespace = []
-
 		tmp_direction = []
 
 		# initiate lists for other houses, based on orientation to this house
@@ -129,10 +132,10 @@ class House(object):
 			tmp_direction.append({'x' : 0, 'y' : diff_b})
 			tmp_direction.append({'x' : 0, 'y' : diff_o})
 
-		# iterate over houses build on map
+		# iterate over houses on map
 		for house in in_map.houses:
 
-			# skip itself
+			# skips itself
 			if house.self_id != self.self_id:
 
 				# if other house is above or below this house, add to y list
@@ -151,7 +154,7 @@ class House(object):
 
 					tmp_range_x.append(house)
 
-				# otherwise, other house must closest to corner
+				# otherwise, other house must be closest to corner
 				else:
 
 					tmp_range_c.append(house)
