@@ -7,7 +7,7 @@
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import sys
-
+import seaborn as sns
 
 def plot_data(data, directory, name):
     '''Creates plot of input data in given directory.
@@ -17,6 +17,7 @@ def plot_data(data, directory, name):
     directory -- string, name of directory in results
     name -- string, name of outputfile
     '''
+    sns.set_style('darkgrid')
     plt.figure(figsize=(20,10))
     legend_list = []
     run = 0
@@ -26,8 +27,8 @@ def plot_data(data, directory, name):
         plt.plot(list)
         legend_list.append(run)
 
-    plt.ylabel('score(€)')
-    plt.xlabel('# of maps')
+    plt.ylabel('Score(€)')
+    plt.xlabel('Iterations')
     plt.legend(legend_list)
 
     from __import__ import string, split

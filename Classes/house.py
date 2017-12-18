@@ -8,49 +8,71 @@
 import numpy
 
 class House(object):
-	'''Basis for the three different house classes.'''
+	'''Class for house object.'''
 
-	def __init__(self, self_id, house_charac, loc):
-		'''Creates object of class house.
+	def __init__(self, self_id, house_specs, loc):
+		'''Creates object of class House.
 
 		Input arguments:
-		type_charac -- dict containing characteristics of house type_charac
-		loc -- location of house
+		self_id -- int, individual identification number
+		house_specs -- dict containing:
+			width -- float, width of house
+			height -- float, height of house
+			start_value -- float, start value of house without freespace
+			perc -- float, percentage value added per meter freespace
+			min_free -- int, required freespace of house
+			type -- string, type of house
+			colour -- string, colour given to house on map
+		loc -- dict of floats, location of house
+
+		Example: House(0, map.types_houses[0], {'x' : 3.0, 'y' : 4.0})
 		'''
 
-		self.width = house_charac['width']
-		self.height = house_charac['height']
-		self.start_value = house_charac['start_value']
-		self.perc = house_charac['perc']
-		self.min_free = house_charac['min_free']
-		self.type = house_charac['type']
-		self.index_nr = house_charac['index']
-		self.colour = house_charac['colour']
+		self.width = house_specs['width']
+		self.height = house_specs['height']
+		self.start_value = house_specs['start_value']
+		self.perc = house_specs['perc']
+		self.min_free = house_specs['min_free']
+		self.type = house_specs['type']
+		self.colour = house_specs['colour']
 
 		self.self_id = self_id
-		self.location = loc # loc is a dict {'x' : ..., 'y' : ...}
+		self.location = loc
+
+		# calculated with self.find_corners
 		self.corners = None
+		# calculated with self.calc_freespace
 		self.freespace = None
-		self.value = None
 		self.direction = None
+		# calculated with self.calc_value
+		self.value = None
+
 
 
 
 	def calc_value(self):
 		'''Calculates the value of this house.'''
 
-
-		value = self.start_value + (self.start_value
-				* (self.freespace - self.min_free)
-				* self.perc)
+		# value is the starting value, plus the value added by freespace that is
+		# more then the required freespace
+		value = self.start_value + (self.start_value * self.perc
+									* (self.freespace - self.min_free))
 
 		self.value = value
+
 		return value
 
 
 
 	def find_corners(self):
-		'''Calculates coordinates of corners.'''
+		'''Calculates coordinates of corners.
+
+		Returns dictionary containing:
+		lb -- coordinate of the top left corner
+		rb -- coordinate of the top right corner
+		lo -- coordinate of the lower left corner
+		ro -- coordinate of the lower right corner
+		'''
 
 		lb = {'x' : (self.location['x'] - 0.5 * self.width),
 			  'y' : (self.location['y'] + 0.5 * self.height)}
@@ -71,7 +93,7 @@ class House(object):
 		'''Calculates freespace of the house.
 
 		Input arguments:
-		in_map -- map where the house is placed on
+		in_map -- object, map where the house is placed on
 		'''
 
 		# initiate list for possible freespaces
