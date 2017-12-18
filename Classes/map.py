@@ -22,6 +22,7 @@ class Map(object):
 			water_prev -- float, fraction of map that must be covered by water
 			types_houses -- list containing specifications of house types
 
+		Example: Map(MAP_20)
 		'''
 
 		self.width = map_specs['width']
@@ -45,10 +46,9 @@ class Map(object):
 		'''Creates list of houses that need to be placed.
 
 		Input arguments:
-		map_specs -- file with specifications of the case
+		map_specs -- dict, see docstrings __init__
 
-		Output:
-		construction -- list, with houses of type object
+		Returns list of objects, containing houses
 		'''
 
 		from __import__ import House
@@ -71,8 +71,7 @@ class Map(object):
 	def rand_loc_water(self):
 		'''Generates random location for water
 
-		Output:
-		loc -- dict, location
+		Returns dict of floats, a coordinate for the water
 		'''
 
 		loc = {'x' : random.uniform((0 + 0.5 * water.width), \
@@ -87,8 +86,12 @@ class Map(object):
 		'''Places house on the map.
 
 		Input:
-		index -- int, index number from contruction list
-		loc -- dict, location
+		index -- int, index number of house in construction list
+		loc -- dict of floats, location
+
+		Updates:
+		self.construnction -- object, remove house that is placed
+		self.houses -- object, adds house that is placed
 		'''
 
 		# copy the house to be placed
@@ -180,7 +183,11 @@ class Map(object):
 		''' Removes house.
 
 		Input:
-		index -- int, index of house in list houses
+		index -- int, index of house in list self.houses
+
+		Updates:
+		self.houses -- object, removes house from list
+		self.construction -- object, adds house to list
 		'''
 
 		tmp_house = copy.copy(self.houses[index])
@@ -204,10 +211,13 @@ class Map(object):
 		tmp_list = []
 
         # create random x and y for water body
-		y = numpy.random.uniform((numpy.sqrt((self.water_prev * self.width * self.height) * 4)), \
-			numpy.sqrt(self.water_prev * self.width * self.height)) / self.max_waterbodies
+		y = numpy.random.uniform((numpy.sqrt((self.water_prev
+										    * self.width * self.height) * 4)), \
+			numpy.sqrt(self.water_prev * self.width * self.height)) \
+			/ self.max_waterbodies
 
-		x = ((self.water_prev * self.width * self.height) / y) / self.max_waterbodies
+		x = ((self.water_prev * self.width * self.height) / y) \
+			/ self.max_waterbodies
 
 		size = {'width': x, 'height': y}
 

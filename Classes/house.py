@@ -94,6 +94,10 @@ class House(object):
 
 		Input arguments:
 		in_map -- object, map where the house is placed on
+
+		Updates:
+		self.freespace -- float, freespace of this house on in_map
+		self.direction -- dict of floats, coordinate direction of closest object
 		'''
 
 		# initiate list for possible freespaces
@@ -119,6 +123,7 @@ class House(object):
 			tmp_freespace.append(abs(diff_b))
 			tmp_freespace.append(abs(diff_o))
 
+			# add direction of sides of map to list of directions
 			tmp_direction.append({'x' : diff_l, 'y' : 0})
 			tmp_direction.append({'x' : diff_r, 'y' : 0})
 			tmp_direction.append({'x' : 0, 'y' : diff_b})
@@ -162,6 +167,7 @@ class House(object):
 			tmp_freespace.append(abs(diff_l))
 			tmp_freespace.append(abs(diff_r))
 
+			# add direction to list of directions
 			tmp_direction.append({'x' : diff_l, 'y' : 0})
 			tmp_direction.append({'x' : diff_r, 'y' : 0})
 
@@ -176,6 +182,7 @@ class House(object):
 			tmp_freespace.append(abs(diff_b))
 			tmp_freespace.append(abs(diff_o))
 
+			# add direction to list of directions
 			tmp_direction.append({'x' : 0, 'y' : diff_b})
 			tmp_direction.append({'x' : 0, 'y' : diff_o})
 
@@ -197,8 +204,12 @@ class House(object):
 
 					tmp_freespace.append(abs(diff))
 
+					# add direction to list of directions
 					tmp_direction.append({'x' : diff_x, 'y' : diff_y})
 
+		# find index of smallest freespace in list
 		index = numpy.argmin(tmp_freespace)
+
+		# update house information
 		self.freespace = tmp_freespace[index]
 		self.direction = tmp_direction[index]
