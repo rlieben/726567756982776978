@@ -1,3 +1,10 @@
+# Study:        Minor Programming, University of Amsterdam
+# Course:       Heuristics
+# Assignment:   Amstelhaege
+# Group:        726567756982776978
+# Members:      Toon van Holthe, Raoul Lieben, Luc Stefelmanns
+
+
 import copy
 
 

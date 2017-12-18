@@ -5,10 +5,6 @@
 # Members:      Toon van Holthe, Raoul Lieben, Luc Stefelmanns
 
 
-from __import__ import Map
-
-# import house weggehaald
-
 import numpy
 
 
