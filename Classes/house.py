@@ -67,8 +67,12 @@ class House(object):
 	def find_corners(self):
 		'''Calculates coordinates of corners.
 
-		Output argument:
-		dict of dicts, filled with coordinates'''
+		Returns dictionary containing:
+		lb -- coordinate of the top left corner
+		rb -- coordinate of the top right corner
+		lo -- coordinate of the lower left corner
+		ro -- coordinate of the lower right corner
+		'''
 
 		lb = {'x' : (self.location['x'] - 0.5 * self.width),
 			  'y' : (self.location['y'] + 0.5 * self.height)}
