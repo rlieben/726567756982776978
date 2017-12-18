@@ -92,6 +92,8 @@ class Map(object):
 		Updates:
 		self.construnction -- object, remove house that is placed
 		self.houses -- object, adds house that is placed
+
+		Example: map.place_house(0, {'x' : 10, 'y' : 11})
 		'''
 
 		# copy the house to be placed
@@ -188,6 +190,8 @@ class Map(object):
 		Updates:
 		self.houses -- object, removes house from list
 		self.construction -- object, adds house to list
+
+		Example: map.remove_house(3)
 		'''
 
 		tmp_house = copy.copy(self.houses[index])
@@ -201,7 +205,11 @@ class Map(object):
 
 
 	def place_water_random(self):
-		'''Places random water on the map.'''
+		'''Places random water on the map, number of elements is maximum of map.
+
+		Update:
+		self.water -- object, newly placed water elements
+		'''
 
 		from __import__ import Water
 
@@ -270,11 +278,17 @@ class Map(object):
 
         # check if water is on map
 		for water in tmp_list:
-			if water.corners['lo']['x'] > 0 and water.corners['lo']['y'] > 0 \
-			and water.corners['lb']['x'] > 0 and water.corners['lb']['y'] < self.height \
-			and water.corners['ro']['x'] < self.width and water.corners['ro']['y'] > 0 \
-			and water.corners['rb']['x'] < self.width and water.corners['rb']['y'] < self.height:
+			if water.corners['lo']['x'] > 0 and \
+			    water.corners['lo']['y'] > 0 and \
+			    water.corners['lb']['x'] > 0 and \
+			    water.corners['lb']['y'] < self.height and \
+			    water.corners['ro']['x'] < self.width and \
+			    water.corners['ro']['y'] > 0 and \
+			    water.corners['rb']['x'] < self.width and \
+			    water.corners['rb']['y'] < self.height:
+
 				self.water.append(water)
+
 				return True
 
 
@@ -292,10 +306,10 @@ class Map(object):
 		tmp_list = []
 
 		# get location with max freespace
-		fpm = self.calc_freespace_on_map()
+		freespace_listm = self.calc_freespace_on_map()
 
         # initialize last location
-		j = len(fpm[1]) - 1
+		j = len(freespace_listm[1]) - 1
 		i = 0
         # calculate total water body
 		area = (self.water_prev * self.width * self.height)
@@ -307,10 +321,10 @@ class Map(object):
 			print(i)
 
 			# get best location from freespace_on_map
-			best_loc = fpm[0][j]
+			best_loc = freespace_listm[0][j]
 
 		    # get min freespace for best_loc[j]
-			freespace_len = fpm[1][j]
+			freespace_len = freespace_listm[1][j]
 
 			# multiply the minimal freespace to get total water body
 			width = freespace_len * 2
@@ -333,8 +347,9 @@ class Map(object):
 	def calc_freespace_on_map(self):
 		'''Calculating location with the most freespace on map.
 
-		Output:
-		list -- containing list, coordinates and list, fp
+		Returns list containing:
+		coordinates -- list of coordinates, which are dicts of floats
+		freespace_list -- list of floats
 		'''
 
 		# initiate possible freespace variable
@@ -342,7 +357,7 @@ class Map(object):
 
 		coordinates = []
 
-		fp = []
+		freespace_list = []
 
 		# iterate over map width
 		for i in range(5, self.width, 5):
@@ -370,7 +385,7 @@ class Map(object):
 							# update new possible freespace
 							poss_freespace = tmp
 
-							fp.append(poss_freespace)
+							freespace_list.append(poss_freespace)
 
 							# update location of possible freespace
 							coordinates.append({'x' : i, 'y' : j})
@@ -379,10 +394,18 @@ class Map(object):
 					self.remove_house(len(self.houses) - 1)
 
 		# return coordinates
-		return [coordinates, fp]
+		return [coordinates, freespace_list]
+
 
 	def random_swap_houses(self, nr_houses):
-		'''Moves, every iteration, a house for optimalization.'''
+		'''Moves, every iteration, a house for optimalization.
+
+		Input:
+		nr_houses -- int, number of houses to swap randomly
+
+		Update:
+		self.houses -- object, changes location of houses in list
+		'''
 
 		tmp_index = []
 		tmp_houses = []
@@ -408,8 +431,11 @@ class Map(object):
 	def tactical_swap_houses(self, nr_houses):
 		''' Moves, every iteration, houses for optimalization.
 
-		Input arguments:
-		nr_houses -- nr of houses swapped
+		Input:
+		nr_houses -- int, number of houses to swap with greedy tactics
+
+		Update:
+		self.houses -- object, changes location of houses in list
 		'''
 
 		# iterate over amount of swaps
