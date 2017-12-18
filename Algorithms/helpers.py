@@ -1,3 +1,9 @@
+# Study:        Minor Programming, University of Amsterdam
+# Course:       Heuristics
+# Assignment:   Amstelhaege
+# Group:        726567756982776978
+# Members:      Toon van Holthe, Raoul Lieben, Luc Stefelmanns
+
 
 from __import__ import Map
 
@@ -6,22 +12,24 @@ from __import__ import Map
 import numpy
 
 
-def random_generator(map_charac):
+def random_generator(map_specs):
 	'''Generates a random map.
 
 	Input arguments:
-	map_charac -- file with specifications of the case
+	map_specs -- type specifications of the case, from file in folder specifications
 
-	Output:
+	Returns:
 	out_map -- object, output map
+
+	Example: random_generator(MAP_60)
 	'''
 
 	from __import__ import House, Map
 
 
-	out_map = Map(map_charac)
+	out_map = Map(map_specs)
 
-	nr_water = map_charac['nr_waterbodies']
+	nr_water = map_specs['nr_waterbodies']
 
 	while len(out_map.water) < out_map.max_waterbodies:
 		out_map.place_water_random()
