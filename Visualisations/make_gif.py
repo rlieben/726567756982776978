@@ -20,16 +20,21 @@ def make_gif(steps, directory, name):
 
 	from __import__ import coloured_map, string, split
 
+	# init name
+	k = 0
 
-	# k = 0
-	# for step in steps:
-	# 	coloured_map(step, directory + split + 'tmp_gif', name + str(k))
-	# 	k += 1
+	# create coloured map for every step of list
+	for step in steps:
+		coloured_map(step, directory + split + 'tmp_gif', str(k).zfill(3))
+		k += 1
 
+	# create directory to extract pngs
 	png_dir = string + 'Results' + split + directory + split + 'tmp_gif'
 
+	# init list for images to turn into gif
 	images = []
 
+	# first add file path to subdirectory, then add pngs to list of images
 	for subdir, dirs, files in os.walk(png_dir):
 
 	    for in_file in files:
@@ -38,6 +43,6 @@ def make_gif(steps, directory, name):
 	        if file_path.endswith(".png"):
 	            images.append(imageio.imread(file_path))
 
-
+	# turn images into gif and save in directory with name
 	imageio.mimsave(string + 'Results' + split + directory + split +
 					name + '.gif', images)

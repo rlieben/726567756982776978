@@ -8,7 +8,7 @@
 import copy
 
 
-def greedy(nr_startmaps, map_specs, save_steps = False):
+def greedy(nr_startmaps, map_specs, istep, save_steps = False):
 	''' Random places water and greedy places house based on most freespace on the map.
 
 	Input arguments:
@@ -24,7 +24,7 @@ def greedy(nr_startmaps, map_specs, save_steps = False):
 	Example: greedy(5, MAP_40, True)
 	'''
 
-	from __import__ import split, coloured_map, Map, MAP_20, MAP_40, MAP_60
+	from __import__ import Map
 
 	# initializes empty list for created maps
 	total_maps = []
@@ -33,7 +33,6 @@ def greedy(nr_startmaps, map_specs, save_steps = False):
 	score = 0
 	steps = []
 	data = []
-	l = 0
 
 	# initialize house pruning point
 	prune_house = 4
@@ -57,7 +56,7 @@ def greedy(nr_startmaps, map_specs, save_steps = False):
 			allowed = False
 
 			# get freespace coordinates on map
-			coordinates = total_maps[start_map].calc_freespace_on_map(5)
+			coordinates = total_maps[start_map].calc_freespace_on_map(istep)
 
 			j = len(coordinates) - 1
 
@@ -73,21 +72,13 @@ def greedy(nr_startmaps, map_specs, save_steps = False):
 
 				minscore = total_maps[start_map].calc_score()
 
-				if (map_specs == MAP_20 and minscore < 6300000 or
-					map_specs == MAP_40 and minscore < 9000000 or
-					map_specs == MAP_60 and minscore < 7000000):
-
+				if minscore < 9000000:
 					break
-
-			print(i)
 
 			total_maps[start_map].calc_score()
 
 			if save_steps == True:
-				coloured_map(total_maps[start_map], 'greedy60' + split +
-							 'tmp_gif', (str(l).zfill(3)))
-				l += 1
-				steps.append(total_maps[start_map])
+				steps.append(copy.deepcopy(total_maps[start_map]))
 
 
 		# calc score of created map
@@ -109,11 +100,12 @@ def greedy(nr_startmaps, map_specs, save_steps = False):
 
 if __name__ == '__main__':
 
-	from __import__ import MAP_20, MAP_40, MAP_60, Map, coloured_map, plot_data, make_gif
+	from __import__ import MAP_20, MAP_40, MAP_60, Map, coloured_map, \
+						   plot_data, make_gif
 
-	# greedy_map = greedy(5, MAP_60, True)
+	greedy_map = greedy(1, MAP_20, True)
     #
 	# plot_data([greedy['data']], 'greedy60', 'plot')
 	# coloured_map(best_random_map['best_map'], 'greedy60', 'best')
 	# save_results(best_random_map['data'], 'greedy60', 'data')
-	make_gif([], 'greedy60', 'greedy60')
+	# make_gif(greedy['steps'], 'greedy60', 'greedy60')

@@ -413,15 +413,10 @@ class Map(object):
 		self.houses -- object, changes location of houses in list
 		'''
 
-		# initializes empty lists for index and houses
-		tmp_index = []
-		tmp_houses = []
-
 		# iteraters over houses and removes them
 		for i in range(nr_houses):
-			tmp_index.append(int(numpy.random.uniform(0, len(self.houses) - 1)))
-			tmp_houses.append(self.houses[tmp_index[i]])
-			self.remove_house(tmp_index[i])
+			index = int(numpy.random.uniform(len(self.houses) - 1))
+			self.remove_house(index)
 
 		# add same amount of houses which were deleted
 		for i in range(nr_houses):
@@ -433,7 +428,7 @@ class Map(object):
 				loc = {'x' : numpy.random.uniform(0, self.height),
 					   'y' : numpy.random.uniform(0, self.width)}
 
-				allowed = self.place_house(i, loc)
+				allowed = self.place_house(0, loc)
 
 
 	def tactical_swap_houses(self, nr_houses):
