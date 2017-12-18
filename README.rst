@@ -25,6 +25,7 @@ In a terminal type:
 ```
 requirements.py
 ```
+
 When all packages have been installed, in a terminal type:
 
 ```
