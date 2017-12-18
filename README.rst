@@ -29,9 +29,11 @@ A pair of questions will be asked:
 ```
 Enter number of houses (20, 40 or 60): 
 ```
+
 ```
-Enter algorithm of your choice: 
+Enter algorithm of your choice:
 ```
+
 ```
 Enter number of iterations: 
 ```
