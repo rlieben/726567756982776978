@@ -14,7 +14,7 @@
 import copy
 
 
-def hillclimber(map_specs, tries_random, tries_hill, hill_type,
+def hillclimber(map_specs, tries_random, tries_hill, nr_houses, hill_type,
 				save_steps = False):
 	'''Moves, every iteration, houses for optimalization.
 
@@ -48,12 +48,12 @@ def hillclimber(map_specs, tries_random, tries_hill, hill_type,
 
 		if (hill_type == 0):
 
-			try_map.random_swap_houses()
+			try_map.random_swap_houses(nr_houses)
 			folder = 'hillclimber'
 
 		elif (hill_type == 1):
 
-			try_map.tactical_swap_houses()
+			try_map.tactical_swap_houses(nr_houses)
 			folder = 'tactical_hillclimber'
 
 		score = try_map.calc_score()
