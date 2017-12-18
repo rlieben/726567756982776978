@@ -1,20 +1,29 @@
+# Study:        Minor Programming, University of Amsterdam
+# Course:       Heuristics
+# Assignment:   Amstelhaege
+# Group:        726567756982776978
+# Members:      Toon van Holthe, Raoul Lieben, Luc Stefelmanns
+
 
 import numpy
 import copy
 
 
 def force_move(in_map, tries, factor, save_steps = False):
-	''' Forces a move by nearest house neighbour in opposite direction.
+	''' Forces a move in opposite direction of nearest house neighbour.
 
 	Input arguments:
 	in_map -- object, input map
-	tries -- int, number of moves for each house
-	save_steps -- boolean, for saving maps for visualization
+	tries -- integer, number of moves for each house
+	factor -- float, ....
+	save_steps -- boolean, saving each step/map for visualization
 
-	Output:
-	dict -- containing  object, best_map with best map,
-						list, data with map score and
-						list, steps with all created maps
+	Returns dictionary containing:
+	best_map -- object, best map
+	data -- list, scores of maps
+	steps -- list, with all created maps
+
+	Example: force_move(in_map, 3, 0.5, True)
 	'''
 
 	from __import__ import split, coloured_map
@@ -24,7 +33,7 @@ def force_move(in_map, tries, factor, save_steps = False):
 
 	in_map.calc_score()
 
-	best_map = in_map
+	best_map = copy.copy(in_map)
 	data = []
 	steps = []
 	k = 0
@@ -32,8 +41,6 @@ def force_move(in_map, tries, factor, save_steps = False):
 	for i in range(tries):
 
 		for j in range(len(best_map.houses)):
-
-			print(i, j)
 
 			out_map = copy.copy(best_map)
 
@@ -76,16 +83,16 @@ if __name__ == '__main__':
 	from __import__ import MAP_20, random_generator, coloured_map, \
 						   save_results, make_gif, plot_data, MAP_60
 
-	random_map = random_generator(MAP_60)
-	force_move_map1 = force_move(random_map, 10, 0.2)
-	# force_move_map2 = force_move(random_map, 10, 0.4)
-	# force_move_map3 = force_move(random_map, 10, 0.6)
-	# force_move_map4 = force_move(random_map, 10, 0.8)
-	# force_move_map5 = force_move(random_map, 10, 1.0)
+	random_map = random_generator(MAP_20)
+	force_move_map1 = force_move(copy.copy(random_map), 10, 0.2)
+	force_move_map2 = force_move(copy.copy(random_map), 10, 0.4)
+	force_move_map3 = force_move(copy.copy(random_map), 10, 0.6)
+	force_move_map4 = force_move(copy.copy(random_map), 10, 0.8)
+	force_move_map5 = force_move(copy.copy(random_map), 10, 1.0)
 
 	plot_data([force_move_map1['data'], force_move_map2['data'],
 			   force_move_map3['data'], force_move_map4['data'],
-			   force_move_map5['data']], 'plot_experiment')
+			   force_move_map5['data']], '', 'plot_experiment')
 	# plot_data([force_move_map['data']], 'force_move60', 'plot')
 	# coloured_map(force_move_map['best_map'], 'fore_move60', 'best')
 	# save_results(force_move_map['data'], 'force_move60', 'data')

@@ -10,7 +10,7 @@ import sys
 import seaborn as sns
 
 def plot_data(data, directory, name):
-    '''Creates plot of input data.
+    '''Creates plot of input data in given directory.
 
     Input arguments:
     data -- list, input data

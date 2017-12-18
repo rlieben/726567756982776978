@@ -9,11 +9,11 @@ import matplotlib.pyplot as plot
 import matplotlib.patches as patches
 import sys
 
-def coloured_map(ah_map, directory, name):
-	'''Creates a coloured map.
+def coloured_map(in_map, directory, name):
+	'''Creates a coloured map in given directory.
 
 	Input arguments:
-	ah_map -- object, input map
+	in_map -- object, input map
 	directory -- string, name of directory in results
 	name -- string, name of outputfile
 	'''
@@ -23,14 +23,14 @@ def coloured_map(ah_map, directory, name):
 
 	p = []
 
-	for house in ah_map.houses:
+	for house in in_map.houses:
 
 		p.append(patches.Rectangle((house.corners['lo']['x'],
 									house.corners['lo']['y']),
 									house.width, house.height,
 									facecolor=house.colour))
 
-	for water in ah_map.water:
+	for water in in_map.water:
 
 		p.append(patches.Rectangle((water.corners['lo']['x'],
 									water.corners['lo']['y']),
@@ -43,8 +43,8 @@ def coloured_map(ah_map, directory, name):
 
 	axes = plot.gca()
 	ax.set_facecolor('green')
-	axes.set_xlim([0, ah_map.width])
-	axes.set_ylim([0, ah_map.height])
+	axes.set_xlim([0, in_map.width])
+	axes.set_ylim([0, in_map.height])
 
 	from __import__ import string, split
 

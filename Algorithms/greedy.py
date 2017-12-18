@@ -1,18 +1,20 @@
 import copy
 
 
-def greedy(start_maps, map_charac, save_steps = False):
-	''' Random places water and greedy places house based on most freespace.
+def greedy(nr_startmaps, map_specs, save_steps = False):
+	''' Random places water and greedy places house based on most freespace on the map.
 
 	Input arguments:
-	start_maps -- integer, how many different begin maps of the function
-	nr_waterbodies -- integer, number of waterbodies that need to be placed
-	map_charac -- file with specifications of the case
+	start_maps -- integer, how many random placed water begin maps of the function
+	map_specs -- type specifications of the case, from file in folder specifications
+	save_steps -- boolean, saving each step/map for visualization
 
 	Returns dictionary containing:
 	best_map -- object, best map
-	score -- float, score of best map
-	steps -- object, all created maps
+	data -- list, scores of maps
+	steps -- list, with all created maps
+
+	Example: greedy(5, MAP_40, True)
 	'''
 
 	from __import__ import split, coloured_map
@@ -30,10 +32,10 @@ def greedy(start_maps, map_charac, save_steps = False):
 	prune_house = 4
 
 	# amount of runs for script
-	for start_map in range(start_maps):
+	for start_map in range(nr_startmaps):
 
 		# initializes map
-		total_maps.append(Map(map_charac))
+		total_maps.append(Map(map_specs))
 
 		# places water on map
 		k = 0
@@ -64,9 +66,9 @@ def greedy(start_maps, map_charac, save_steps = False):
 
 				minscore = total_maps[start_map].calc_score()
 
-				if (map_charac == MAP_20 and minscore < 6300000 or
-					map_charac == MAP_40 and minscore < 9000000 or
-					map_charac == MAP_60 and minscore < 7000000):
+				if (map_specs == MAP_20 and minscore < 6300000 or
+					map_specs == MAP_40 and minscore < 9000000 or
+					map_specs == MAP_60 and minscore < 7000000):
 
 					break
 
@@ -107,4 +109,4 @@ if __name__ == '__main__':
 	# plot_data([greedy['data']], 'greedy60', 'plot')
 	# coloured_map(best_random_map['best_map'], 'greedy60', 'best')
 	# save_results(best_random_map['data'], 'greedy60', 'data')
-	make_gif([], 'greedy60', 'random')
+	make_gif([], 'greedy60', 'greedy60')

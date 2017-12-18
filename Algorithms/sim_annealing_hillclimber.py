@@ -1,21 +1,32 @@
+# Study:        Minor Programming, University of Amsterdam
+# Course:       Heuristics
+# Assignment:   Amstelhaege
+# Group:        726567756982776978
+# Members:      Toon van Holthe, Raoul Lieben, Luc Stefelmanns
+
+
 from __import__ import *
 
 import numpy
 
 
 # input is empty map, output is value calculated
-def sa_hillclimber(map_charac, tries_random, nr_houses, hill_type, cooling_rate,
+def sa_hillclimber(map_specs, tries_random, nr_houses, hill_type, cooling_rate,
 				   factor, save_steps = False):
 	'''Moves, every iteration, houses for optimalization.
 
 	Input arguments:
-	map_charac -- file with specifications of the case
+	map_specs -- type specifications of the case, from file in folder specifications
 	tries_random -- integer, number of random maps created
 	nr_houses -- integer, nr of houses that are moved with each hillclimb
-	hill_type -- type of hillclimber as integer(0: random, 1:based on freespace)
+	hill_type -- integer, type of hillclimber(0: random, 1:tactical, based on most freespace)
 
-	Output:
-	dict containing: object, map with best map and list, data with scores of maps
+	Returns dictionary containing:
+	best_map -- object, best map
+	data -- list, scores of maps
+	steps -- list, with all created maps
+
+	Example: sa_hillclimber(MAP_40, 20, 1, 0)
 	'''
 
 	from __import__ import split, coloured_map
@@ -25,7 +36,7 @@ def sa_hillclimber(map_charac, tries_random, nr_houses, hill_type, cooling_rate,
 	k = 0
 	steps = []
 
-	best_map = best_of_random(map_charac, tries_random)['best_map']
+	best_map = best_of_random(map_specs, tries_random)['best_map']
 	maximum = best_map.calc_score()
 
 	data = []
@@ -76,8 +87,16 @@ if __name__ == '__main__':
 	from __import__ import MAP_20, coloured_map, save_results, make_gif, \
 						   best_of_random
 
-	sa_hillclimber_map = sa_hillclimber(MAP_20, 10, 1, 0, 0.01, 4, True)
+	sa_hillclimber_map1 = sa_hillclimber(MAP_20, 10, 1, 0, 0.01, 1)
+	sa_hillclimber_map2 = sa_hillclimber(MAP_20, 10, 1, 0, 0.01, 2)
+	sa_hillclimber_map3 = sa_hillclimber(MAP_20, 10, 1, 0, 0.01, 3)
+	sa_hillclimber_map4 = sa_hillclimber(MAP_20, 10, 1, 0, 0.01, 4)
+	sa_hillclimber_map5 = sa_hillclimber(MAP_20, 10, 1, 0, 0.01, 5)
 
-	coloured_map(sa_hillclimber_map['best_map'], 'sim_annealing_hillclimber', 'best')
-	save_results(sa_hillclimber_map['data'], 'sim_annealing_hillclimber', 'data')
-	make_gif(sa_hillclimber_map['steps'], 'sim_annealing_hillclimber', 'sa_hillclimber_map')
+	plot_data([sa_hillclimber_map1['data'], sa_hillclimber_map2['data'],
+		sa_hillclimber_map3['data'], sa_hillclimber_map4['data'],
+		sa_hillclimber_map5['data']], '', 'experiment3')
+
+	# coloured_map(sa_hillclimber_map['best_map'], 'sim_annealing_hillclimber', 'best')
+	# save_results(sa_hillclimber_map['data'], 'sim_annealing_hillclimber', 'data')
+	# make_gif(sa_hillclimber_map['steps'], 'sim_annealing_hillclimber', 'sa_hillclimber_map')

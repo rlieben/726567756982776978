@@ -10,7 +10,7 @@ import imageio
 
 
 def make_gif(steps, directory, name):
-	'''Creates gif of input images.
+	'''Creates gif of input images in given directory.
 
 	Input arguments:
 	steps -- list, input images
