@@ -5,7 +5,6 @@
 # Members:      Toon van Holthe, Raoul Lieben, Luc Stefelmanns
 
 
-from __import__ import *
 
 import numpy
 

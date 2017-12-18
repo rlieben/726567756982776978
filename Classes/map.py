@@ -75,9 +75,9 @@ class Map(object):
 		'''
 
 		loc = {'x' : random.uniform((0 + 0.5 * water.width), \
-				  	(self.width - 0.5 * water.width)), \
+				  					(self.width - 0.5 * water.width)), \
 			   'y' : random.uniform((0 + 0.5 * water.height), \
-		  			(self.height - 0.5 * water.height))}
+		  							(self.height - 0.5 * water.height))}
 
 		return loc
 

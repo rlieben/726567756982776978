@@ -39,15 +39,14 @@ class House(object):
 		self.self_id = self_id
 		self.location = loc
 
-		# calculated with self.find_corners
+		# calculate with self.find_corners
 		self.corners = None
 
-		# calculated with self.calc_freespace
+		# calculate with self.calc_freespace
 		self.freespace = None
-
 		self.direction = None
 
-		# calculated with self.calc_value
+		# calculate with self.calc_value
 		self.value = None
 
 
