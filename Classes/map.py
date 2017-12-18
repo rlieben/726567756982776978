@@ -11,30 +11,41 @@ import numpy
 class Map(object):
 	'''List that keeps track of all the houses and water.'''
 
-	def __init__(self, map_charac):
+	def __init__(self, map_specs):
 		'''Creates map.
 
 		Input arguments:
-		map_charac -- file with specifications of the case
+		map_specs -- dict containing:
+			width -- float, width of map
+			height -- float, height of map
+			nr_waterbodies -- int, maximal number of water bodies allowed
+			water_prev -- float, fraction of map that must be covered by water
+			types_houses -- list containing specifications of house types
+
 		'''
 
-		self.width = map_charac['width']
-		self.height = map_charac['height']
-		self.max_waterbodies = map_charac['nr_waterbodies']
-		self.water_prev = map_charac['water_prev']
-		self.types_houses = map_charac['types_houses']
-		self.construction = self.create_construction(map_charac)
+		self.width = map_specs['width']
+		self.height = map_specs['height']
+		self.max_waterbodies = map_specs['nr_waterbodies']
+		self.water_prev = map_specs['water_prev']
+		self.types_houses = map_specs['types_houses']
 
-		self.score = None
+		# list containing all houses that have been placed
 		self.houses = []
+		# list containing all water elements
 		self.water = []
+		# list containing all houses that have not been placed
+		self.construction = self.create_construction(map_specs)
+		# calculated with calc_score
+		self.score = None
 
 
-	def create_construction(self, map_charac):
+
+	def create_construction(self, map_specs):
 		'''Creates list of houses that need to be placed.
 
 		Input arguments:
-		map_charac -- file with specifications of the case
+		map_specs -- file with specifications of the case
 
 		Output:
 		construction -- list, with houses of type object
@@ -46,12 +57,12 @@ class Map(object):
 		loc = {'x' : None, 'y' : None}
 		construction = []
 
-		for i in range(len(map_charac['distr_houses'])):
-			for j in range(int(map_charac['distr_houses'][i]
-						   	   * map_charac['nr_houses'])):
+		for i in range(len(map_specs['distr_houses'])):
+			for j in range(int(map_specs['distr_houses'][i]
+						   	   * map_specs['nr_houses'])):
 
 				construction.append(House(house_id,
-										  map_charac['types_houses'][i], loc))
+										  map_specs['types_houses'][i], loc))
 				house_id += 1
 
 		return construction

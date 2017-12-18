@@ -14,15 +14,17 @@ class Water(object):
 		'''Creates object of class Water.
 
 		Input arguments:
-		self_id -- intiger, individual identification number
+		self_id -- int, individual identification number
 		size -- dict of floats, containing width and height of element
-		loc -- dict of floats, location where water is placed
+		loc -- dict of floats, location of water element
 		'''
 
 		self.self_id = self_id
 		self.width = size['width']
 		self.height = size['height']
 		self.location = loc
+
+		# !!!!!!!!!!!!!!!!!!!!!!
 		self.corners = self.find_corners()
 
 
