@@ -44,7 +44,7 @@ Answer which map you would like to use. The maps can be found in Specifications/
 Enter algorithm of your choice:
 ```
 
-Answer which algorithm you would like to use. The algorithms can be found in Algorithms/ (except helpers.py).
+Answer which algorithm you would like to use. The algorithms can be found in the folder Algorithms (except helpers.py, which is not an algorithm).
 
 ```
 Enter number of iterations: 
