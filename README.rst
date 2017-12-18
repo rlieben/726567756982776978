@@ -25,13 +25,19 @@ In a terminal type:
 RUNME.py
 ```
 
-The integer ranges between 1 and 5.
-The integers stand for :
-    1. best of random
-    2. greedy
-    3. hillclimber
-    4. force move
-    5. simmulated annealing
+A pair of questions will be asked:
+```
+Enter number of houses (20, 40 or 60): 
+```
+```
+Enter algorithm of your choice: 
+```
+```
+Enter number of iterations: 
+```
+
+
+
     
 Folder navigation
 =======
