@@ -381,7 +381,7 @@ class Map(object):
 		# return coordinates
 		return [coordinates, fp]
 
-	def random_swap_houses(self):
+	def random_swap_houses(self, nr_houses):
 		'''Moves, every iteration, a house for optimalization.'''
 
 		tmp_index = []
