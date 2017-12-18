@@ -27,8 +27,8 @@ def hillclimber(map_specs, tries_random, tries_hill, nr_houses, hill_type,
 
 	Returns dictionary containing:
 	best_map -- object, best map
-	data -- list, scores of maps
-	steps -- list, with all created maps
+	data -- list of floats, scores of maps
+	steps -- list of objects, all created maps
 
 	Example: hillclimber(MAP_20, 40, 5, 1, True)
 	'''

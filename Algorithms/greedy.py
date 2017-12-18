@@ -18,8 +18,8 @@ def greedy(nr_startmaps, map_specs, save_steps = False):
 
 	Returns dictionary containing:
 	best_map -- object, best map
-	data -- list, scores of maps
-	steps -- list, with all created maps
+	data -- list of floats, scores of maps
+	steps -- list of objects, all created maps
 
 	Example: greedy(5, MAP_40, True)
 	'''
