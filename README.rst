@@ -2,7 +2,7 @@
 Amstelhaege
 ###########
 
-This project is based on a case part of the course Heuristics given at the University of Amsterdam. The objective is to find the highest value for a specific area named: 'Amstelhaege'. The Amstelhaege is filled with houses and the score is the sum of these houses. Using multiple alghoritms the score is calculated.  
+This project is based on a case part of the course Heuristics given at the University of Amsterdam. The objective is to find the highest value for a specific area named: 'Amstelhaege'. The Amstelhaege is filled with houses and water. The score is the sum of these houses. Using multiple alghoritms the score is calculated.  
 
 
 Prerequisites
@@ -20,7 +20,14 @@ Prerequisites
 How to run
 =================
 
-In a terminal type: 
+In a terminal type:
+
+```
+requirements.py
+```
+
+When all packages have been installed, in a terminal type:
+
 ```
 RUNME.py
 ```
