@@ -37,14 +37,19 @@ A pair of questions will be asked:
 ```
 Enter number of houses (20, 40 or 60): 
 ```
+
 Answer which map you would like to use. The maps can be found in Specifications/amstelhaege.py. If you would like to make your own map, you can do this as long as it contains the same information as these maps do. Be warned, MAP_40 and MAP_60 can take considerable time to complete for most of the algorithms.
+
 ```
 Enter algorithm of your choice:
 ```
+
 Answer which algorithm you would like to use. The algorithms can be found in Algorithms/ (except helpers.py).
+
 ```
 Enter number of iterations: 
 ```
+
 Answer how many iterations you would like the chosen algorithm to run. Be warned, some algorithms (greedy.py, hillclimber with heuristic) take a lot of time to process, so few iterations are advised for these.
 
 
