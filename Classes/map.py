@@ -304,7 +304,7 @@ class Map(object):
 		tmp_list = []
 
 		# get location with max freespace
-		freespace_listm = self.calc_freespace_on_map()
+		freespace_listm = self.calc_freespace_on_map(5)
 
         # initialize last location
 		j = len(freespace_listm[1]) - 1
@@ -441,7 +441,7 @@ class Map(object):
 			allowed = False
 
 			# get freespace coordinates on map
-			coordinates = self.calc_freespace_on_map()
+			coordinates = self.calc_freespace_on_map(5)
 
 			j = len(coordinates) - 1
 

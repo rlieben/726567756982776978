@@ -56,7 +56,7 @@ def greedy(nr_startmaps, map_specs, save_steps = False):
 			allowed = False
 
 			# get freespace coordinates on map
-			coordinates = total_maps[start_map].calc_freespace_on_map()
+			coordinates = total_maps[start_map].calc_freespace_on_map(5)
 
 			j = len(coordinates) - 1
 
