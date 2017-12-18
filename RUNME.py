@@ -51,6 +51,8 @@ def run_me():
         alg -- algorithm of choice
         num_it -- number of iterations
         map_specs -- type specifications of the case, from file in folder specifications
+
+        Results are saved in map Results/run_me
         '''
 
         # set map_specs to right specifications
@@ -94,8 +96,7 @@ def run_me():
         elif alg == 'greedy':
             print('Running greedy...')
 
-            print(map_specs)
-            best_greedy = greedy(num_it, map_specs)
+            best_greedy = greedy(num_it, map_specs, 5)
 
             coloured_map(best_greedy['best_map'], 'run_me', 'best')
             plot_data([best_greedy['data']], 'run_me', 'plot')
@@ -112,7 +113,7 @@ def run_me():
             save_results(sa_hillclimber_map['data'], 'run_me', 'data')
 
         else:
-            alg = input('Inalid algorithm, try again.\nEnter algorithm of your choice: ')
+            alg = input('Invalid algorithm, try again.\nEnter algorithm of your choice: ')
 
             allowed = False
 

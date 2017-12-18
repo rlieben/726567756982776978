@@ -7,7 +7,7 @@
 import copy
 
 
-def greedy(nr_startmaps, map_specs, save_steps = False):
+def greedy(nr_startmaps, map_specs, iterationstep,  save_steps = False):
 	''' Random places water and greedy places house based on most freespace on the map.
 
 	Input arguments:
@@ -56,7 +56,7 @@ def greedy(nr_startmaps, map_specs, save_steps = False):
 			allowed = False
 
 			# get freespace coordinates on map
-			coordinates = total_maps[start_map].calc_freespace_on_map(5)
+			coordinates = total_maps[start_map].calc_freespace_on_map(iterationstep)
 
 			j = len(coordinates) - 1
 
