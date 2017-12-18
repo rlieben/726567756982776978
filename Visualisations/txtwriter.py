@@ -17,9 +17,10 @@ def save_results(results, directory, name):
 
 	from __import__ import string, split
 
-
+	# open file with specified name
 	name = open(string + 'Results' + split + directory + split +
 					name + '.txt', 'w')
 
+	# write results to file
 	for item in results:
 		name.write("%s\n" % item)

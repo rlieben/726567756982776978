@@ -26,18 +26,21 @@ def random_generator(map_specs):
 
 	from __import__ import House, Map
 
-
+	# creates empty map
 	out_map = Map(map_specs)
 
+	# sets number of waterbodies
 	nr_water = map_specs['nr_waterbodies']
 
+	# randomly places water bodies
 	while len(out_map.water) < out_map.max_waterbodies:
 		out_map.place_water_random()
 
+	# iterates over construction houses
 	for i in range(len(out_map.construction)):
 
+		# selects random house from construction list and places on random location
 		index = int(numpy.random.uniform(0, len(out_map.construction) - 1))
-
 		allowed = False
 		while allowed == False:
 

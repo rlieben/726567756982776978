@@ -18,25 +18,35 @@ def best_of_random(map_specs, tries, save_steps=False):
 
 	from __import__ import random_generator, split, coloured_map
 
+	# intialize variables
 	k = 0
 	maximum = 0
+
+	# intialize random map
 	best_map = random_generator(map_specs)
+
+	# initializes empty list for data and maps
 	data = []
 	steps = []
 
+	# iterate over tries
 	for i in range(tries):
+
+		# generate random map
 		try_map = random_generator(map_specs)
 
+		# saves visualization and appends each best map
 		if save_steps == True:
 			coloured_map(try_map, 'best_of_random60' + split + 'tmp_gif',
 						 (str(k).zfill(3)))
 			k += 1
 			steps.append(try_map)
 
+		# calculate and append score
 		score = try_map.calc_score()
-
 		data.append(score)
 
+		# updates map if score is greater
 		if score > maximum:
 			maximum = score
 			best_map = try_map

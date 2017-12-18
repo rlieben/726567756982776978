@@ -28,47 +28,60 @@ def force_move(in_map, tries, factor, save_steps = False):
 
 	from __import__ import split, coloured_map
 
+	# calculate value for houses and map and copies map
 	for house in in_map.houses:
 		house.calc_value()
-
 	in_map.calc_score()
-
 	best_map = copy.copy(in_map)
+
+	# initializes empty lists for data and maps
 	data = []
 	steps = []
+
+	# initialize variables
 	k = 0
 
+	# iterate over tries
 	for i in range(tries):
 
+		# iterate over houses
 		for j in range(len(best_map.houses)):
 
+			# copy map and house
 			out_map = copy.copy(best_map)
-
 			house = out_map.houses[j]
 			old_loc = house.location
 
+			# remove house
 			out_map.remove_house(j)
 
+			# 
 			a = numpy.random.uniform(0, factor)
 
+			# set new location
 			new_loc = {'x' : house.location['x'] + a * house.direction['x'],
 				   	   'y' : house.location['y'] + a * house.direction['y']}
 
+			# place house
 			allowed = out_map.place_house(0, new_loc)
 
+			# if place not valid, place on old loc
 			if allowed == False:
 				out_map.place_house(0, old_loc)
 
+			# 
 			data.append(best_map.score)
 
+		# calc freespace and value
 		for house in out_map.houses:
 			house.calc_freespace(out_map)
 			house.calc_value()
 
+		# calc score of map and update if greater
 		if out_map.calc_score() > best_map.score:
 			best_map = out_map
 
-
+		# saves visualization and appends each best map
 		if save_steps == True:
 			coloured_map(best_map, 'force_move60' + split + 'tmp_gif',
 						 (str(k).zfill(3)))

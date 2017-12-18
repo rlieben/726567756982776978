@@ -31,15 +31,16 @@ def sa_hillclimber(map_specs, tries_random, nr_houses, hill_type, cooling_rate,
 
 	from __import__ import split, coloured_map
 
+	# initialize variables and empyt lists for created maps and scores
 	MIN = 0.1
 	temp = 1 - cooling_rate
 	k = 0
 	steps = []
+	data = []
 
+	# calculate best map
 	best_map = best_of_random(map_specs, tries_random)['best_map']
 	maximum = best_map.calc_score()
-
-	data = []
 
 	i = 0
 
