@@ -1,15 +1,21 @@
+# Study:        Minor Programming, University of Amsterdam
+# Course:       Heuristics
+# Assignment:   Amstelhaege
+# Group:        726567756982776978
+# Members:      Toon van Holthe, Raoul Lieben, Luc Stefelmanns
+
 
 import numpy
 import copy
 
 
 def force_move(in_map, tries, factor, save_steps = False):
-	''' Forces a move by nearest house neighbour in opposite direction.
+	''' Forces a move in opposite direction of nearest house neighbour.
 
 	Input arguments:
 	in_map -- object, input map
 	tries -- int, number of moves for each house
-	save_steps -- boolean, for saving maps for visualization
+	save_steps -- boolean, boolean, saving each step/map for visualization
 
 	Output:
 	dict -- containing  object, best_map with best map,

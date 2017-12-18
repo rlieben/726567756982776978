@@ -1,22 +1,31 @@
+# Study:        Minor Programming, University of Amsterdam
+# Course:       Heuristics
+# Assignment:   Amstelhaege
+# Group:        726567756982776978
+# Members:      Toon van Holthe, Raoul Lieben, Luc Stefelmanns
 
-def best_of_random(map_charac, tries, save_steps=False):
+
+def best_of_random(map_specs, tries, save_steps=False):
 	''' Creates random maps and returns the map with the highest score.
 
 	Input arguments:
-	map_charac -- characteristics of the map
-	tries -- number of random maps created
+	map_specs -- type specifications of the case, from file in folder specifications
+	tries -- integer, number of random maps created
+	save_steps -- boolean, saving each step/map for visualization
+
+	Example: best_of_random(MAP_20, 3, True)
 	'''
 
 	from __import__ import random_generator, split, coloured_map
 
 	k = 0
 	maximum = 0
-	best_map = random_generator(map_charac)
+	best_map = random_generator(map_specs)
 	data = []
 	steps = []
 
 	for i in range(tries):
-		try_map = random_generator(map_charac)
+		try_map = random_generator(map_specs)
 
 		if save_steps == True:
 			coloured_map(try_map, 'best_of_random60' + split + 'tmp_gif',
