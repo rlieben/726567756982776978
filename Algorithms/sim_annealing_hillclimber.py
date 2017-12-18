@@ -23,8 +23,8 @@ def sa_hillclimber(map_specs, tries_random, nr_houses, hill_type, cooling_rate,
 
 	Returns dictionary containing:
 	best_map -- object, best map
-	data -- list, scores of maps
-	steps -- list, with all created maps
+	data -- list of floats, scores of maps
+	steps -- list of object, with all created maps
 
 	Example: sa_hillclimber(MAP_40, 20, 1, 0)
 	'''

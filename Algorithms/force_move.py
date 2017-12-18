@@ -20,8 +20,8 @@ def force_move(in_map, tries, factor, save_steps = False):
 
 	Returns dictionary containing:
 	best_map -- object, best map
-	data -- list, scores of maps
-	steps -- list, with all created maps
+	data -- list of floats, scores of maps
+	steps -- list of objects, with all created maps
 
 	Example: force_move(in_map, 3, 0.5, True)
 	'''
