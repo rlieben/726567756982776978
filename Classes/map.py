@@ -371,12 +371,8 @@ class Map(object):
 		# return coordinates
 		return [coordinates, fp]
 
-	def random_swap_houses(self, nr_houses):
-		'''Moves, every iteration, three houses for optimalization.
-
-		Input arguments:
-		nr_houses -- int, number of houses for swap
-		'''
+	def random_swap_houses(self):
+		'''Moves, every iteration, a house for optimalization.'''
 
 		tmp_index = []
 		tmp_houses = []

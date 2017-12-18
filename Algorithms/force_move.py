@@ -14,13 +14,16 @@ def force_move(in_map, tries, factor, save_steps = False):
 
 	Input arguments:
 	in_map -- object, input map
-	tries -- int, number of moves for each house
-	save_steps -- boolean, boolean, saving each step/map for visualization
+	tries -- integer, number of moves for each house
+	factor -- float, ....
+	save_steps -- boolean, saving each step/map for visualization
 
-	Output:
-	dict -- containing  object, best_map with best map,
-						list, data with map score and
-						list, steps with all created maps
+	Returns dictionary containing:
+	best_map -- object, best map
+	data -- list, scores of maps
+	steps -- list, with all created maps
+
+	Example: force_move(in_map, 3, 0.5, True)
 	'''
 
 	from __import__ import split, coloured_map

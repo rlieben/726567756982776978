@@ -6,19 +6,20 @@
 
 import sys
 
-def save_results(results, directory, filename):
-	'''Saves results to text file
+def save_results(results, directory, name):
+	'''Saves results to text file in given directory
 
 	Input arguments:
 	results -- list, containing scores
-	filename -- string, outputname for the file
+	directory --  directory -- string, name of directory in results
+	name -- string, name of outputfile
 	'''
 
 	from __import__ import string, split
 
 
-	filename = open(string + 'Results' + split + directory + split +
-					filename + '.txt', 'w')
+	name = open(string + 'Results' + split + directory + split +
+					name + '.txt', 'w')
 
 	for item in results:
-		filename.write("%s\n" % item)
+		name.write("%s\n" % item)
