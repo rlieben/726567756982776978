@@ -20,7 +20,13 @@ Prerequisites
 How to run
 =================
 
-In a terminal type: 
+In a terminal type:
+
+```
+requirements.py
+```
+When all packages have been installed, in a terminal type:
+
 ```
 RUNME.py
 ```
