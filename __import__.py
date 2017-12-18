@@ -23,6 +23,7 @@ from Algorithms.best_of_random import *
 from Algorithms.hillclimber import *
 from Algorithms.greedy import *
 from Algorithms.force_move import *
+from Algorithms.sim_annealing_hillclimber import *
 from Visualisations.coloured_map import *
 from Visualisations.txtwriter import *
 from Visualisations.make_gif import *
