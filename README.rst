@@ -26,6 +26,7 @@ RUNME.py
 ```
 
 A pair of questions will be asked:
+
 ```
 Enter number of houses (20, 40 or 60): 
 ```
