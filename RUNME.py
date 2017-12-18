@@ -10,7 +10,7 @@ from __import__ import *
 
 def run_me():
     '''Runs the case'''
-    
+
     # get number of houses
     map_input = int(input('Enter number of houses (20, 40 or 60): '))
 
@@ -42,7 +42,6 @@ def run_me():
             num_it = int(input('No negative integers, try again: '))
         else:
             allowed = True
-
 
     def main(alg, num_it, map_specs):
 
@@ -84,6 +83,8 @@ def run_me():
         elif alg == 'force move':
             print('Running force move...')
 
+            random_map = best_of_random(map_specs, 10)
+
             force_move_map = force_move(random_map, num_it)
 
             coloured_map(force_move_map['best_map'], 'run_me', 'best')
@@ -93,6 +94,7 @@ def run_me():
         elif alg == 'greedy':
             print('Running greedy...')
 
+            print(map_specs)
             best_greedy = greedy(num_it, map_specs)
 
             coloured_map(best_greedy['best_map'], 'run_me', 'best')

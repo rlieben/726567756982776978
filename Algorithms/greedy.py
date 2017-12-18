@@ -17,7 +17,7 @@ def greedy(nr_startmaps, map_specs, save_steps = False):
 	Example: greedy(5, MAP_40, True)
 	'''
 
-	from __import__ import split, coloured_map
+	from __import__ import split, coloured_map, Map, MAP_20, MAP_40, MAP_60
 
 	# initializes empty list for created maps
 	total_maps = []
