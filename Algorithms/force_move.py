@@ -66,8 +66,8 @@ def force_move(in_map, tries, max_fact, save_steps = False):
 			if allowed == False:
 				out_map.place_house(0, old_loc)
 
-			# append score to data
-			data.append(best_map.score)
+		# append score to data
+		data.append(best_map.score)
 
 		# calc freespace and value
 		for house in out_map.houses:
