@@ -43,6 +43,9 @@ def sa_hillclimber(in_map, nr_houses, hill_type, cooling_rate, factor,
 	best_map = copy.deepcopy(in_map)
 	maximum = in_map.calc_score()
 
+	# add first value
+	data.append(maximum)
+
 	# keep trying as long as minimal temperature has not been met
 	while temp > MIN:
 

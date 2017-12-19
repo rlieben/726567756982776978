@@ -29,8 +29,6 @@ def hillclimber(in_map, tries_hill, nr_houses, hill_type, save_steps = False):
 	Example: hillclimber(MAP_20, 40, 5, 1, True)
 	'''
 
-	from __import__ import best_of_random
-
 	# copy input map as current best map
 	best_map = copy.deepcopy(in_map)
 	maximum = in_map.calc_score()
@@ -38,6 +36,9 @@ def hillclimber(in_map, tries_hill, nr_houses, hill_type, save_steps = False):
 	# initializes variable and empty lists for data and maps
 	data = []
 	steps = []
+
+	# add first value
+	data.append(maximum)
 
 	# iterates over tries
 	for i in range(tries_hill):

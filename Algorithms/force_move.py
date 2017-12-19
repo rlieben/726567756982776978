@@ -36,6 +36,9 @@ def force_move(in_map, tries, max_fact, save_steps = False):
 	data = []
 	steps = []
 
+	# add first value
+	data.append(maximum)
+
 	# iterate over tries
 	for i in range(tries):
 
