@@ -40,6 +40,7 @@ def greedy(nr_startmaps, map_specs, istep, save_steps = False):
 	# amount of runs for script
 	for start_map in range(nr_startmaps):
 
+		print("nr map:", start_map)
 		# initializes map
 		total_maps.append(Map(map_specs))
 
@@ -67,22 +68,24 @@ def greedy(nr_startmaps, map_specs, istep, save_steps = False):
 
 				j += -1
 
-			# check if minimum score is reached after 5 houses, otherwise continue to next map
-			if (i == prune_house):
+			# # check if minimum score is reached after 5 houses, otherwise continue to next map
+			# if (i == prune_house):
 
-				minscore = total_maps[start_map].calc_score()
+			# 	minscore = total_maps[start_map].calc_score()
 
-				if minscore < 9000000:
-					break
+			# 	if minscore < 9000000:
+			# 		break
 
 			total_maps[start_map].calc_score()
 
 			if save_steps == True:
 				steps.append(copy.deepcopy(total_maps[start_map]))
 
+			print(i)
 
 		# calc score of created map
 		tmpscore  = total_maps[start_map].calc_score()
+
 
 		# update best score if greater
 		if tmpscore > score:
@@ -90,7 +93,7 @@ def greedy(nr_startmaps, map_specs, istep, save_steps = False):
 			score = tmpscore
 			best_map = total_maps[start_map]
 
-		data.append(score)
+		data.append(tmpscore)
 
 
 	# returns created map and score
@@ -100,12 +103,13 @@ def greedy(nr_startmaps, map_specs, istep, save_steps = False):
 
 if __name__ == '__main__':
 
-	from __import__ import MAP_20, MAP_40, MAP_60, Map, coloured_map, \
-						   plot_data, make_gif
+	from __import__ import MAP_20, MAP_40, MAP_60, Map, save_results
+	# , coloured_map, \
+						   # plot_data, make_gif
 
-	greedy_map = greedy(1, MAP_20, True)
+	greedy_map = greedy(100, MAP_20, 5, False)
     #
 	# plot_data([greedy['data']], 'greedy60', 'plot')
 	# coloured_map(best_random_map['best_map'], 'greedy60', 'best')
-	# save_results(best_random_map['data'], 'greedy60', 'data')
+	save_results(greedy_map['data'], 'greedy20', 'data')
 	# make_gif(greedy['steps'], 'greedy60', 'greedy60')
