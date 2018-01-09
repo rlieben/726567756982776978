@@ -32,6 +32,8 @@ def force_move(in_map, tries, max_fact, save_steps = False):
 	in_map.calc_score()
 	best_map = copy.copy(in_map)
 
+	maximum = in_map.score
+
 	# initializes empty lists for data and maps
 	data = []
 	steps = []
@@ -94,8 +96,8 @@ if __name__ == '__main__':
 						   coloured_map, save_results, make_gif, plot_data, \
 						   best_of_random
 
-	random_map = best_of_random(MAP_20, 10, False)
-	force_move_map = force_move(random_map['best_map'], 20, 0.5, True)
+	random_map = best_of_random(MAP_20, 1, False)
+	force_move_map = force_move(random_map['best_map'], 10, 0.5, True)
 
 	# plot_data([force_move_map['data'], '', 'plot_experiment')
 	# plot_data([force_move_map['data']], 'force_move60', 'plot')

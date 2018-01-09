@@ -58,9 +58,9 @@ if __name__ == '__main__':
 	from __import__ import MAP_60, coloured_map, save_results, make_gif, \
 						   plot_data, MAP_20
 
-	best_random_map = best_of_random(MAP_20, 10, False)
+	best_random_map = best_of_random(MAP_20, 1)
 
 	# coloured_map(best_random_map['best_map'], 'best_of_random', 'best')
 	# plot_data([best_random_map['data']], 'best_of_random', 'plot')
-	# save_results(best_random_map['data'], 'best_of_random', 'data')
+	save_results(best_random_map['data'], 'random_present', 'data')
 	# make_gif(best_random_map['steps'], 'best_of_random', 'random')

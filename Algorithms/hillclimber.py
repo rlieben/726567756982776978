@@ -76,8 +76,8 @@ if __name__ == '__main__':
 	from __import__ import MAP_20, coloured_map, save_results, make_gif, \
 						   best_of_random, plot_data
 
-	random_map = best_of_random(MAP_20, 10, False)
-	hillclimber_map = hillclimber(random_map['best_map'], 10, 3, 0, True)
+	random_map = best_of_random(MAP_20, 1, False)
+	hillclimber_map = hillclimber(random_map['best_map'], 10, 1, 1)
 	# tactical_hillclimber_map = hillclimber(MAP_20, 1, 10, 1, 1, True)
     #
 	# plot_data(hillclimber_map['data'], 'hillclimber60', 'plot')

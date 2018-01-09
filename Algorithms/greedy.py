@@ -72,8 +72,8 @@ def greedy(nr_startmaps, map_specs, istep, save_steps = False):
 
 				minscore = total_maps[start_map].calc_score()
 
-				if minscore < 9000000:
-					break
+				# if minscore < 9000000:
+				# 	break
 
 			total_maps[start_map].calc_score()
 
@@ -94,7 +94,7 @@ def greedy(nr_startmaps, map_specs, istep, save_steps = False):
 
 
 	# returns created map and score
-	return {'bestmap': best_map, 'data' : data, 'steps': total_maps}
+	return {'bestmap': best_map, 'data' : data, 'steps': steps}
 
 
 
@@ -103,9 +103,9 @@ if __name__ == '__main__':
 	from __import__ import MAP_20, MAP_40, MAP_60, Map, coloured_map, \
 						   plot_data, make_gif
 
-	greedy_map = greedy(1, MAP_20, True)
+	greedy_map = greedy(1, MAP_40, 5, True)
     #
-	# plot_data([greedy['data']], 'greedy60', 'plot')
 	# coloured_map(best_random_map['best_map'], 'greedy60', 'best')
-	# save_results(best_random_map['data'], 'greedy60', 'data')
-	# make_gif(greedy['steps'], 'greedy60', 'greedy60')
+	# save_results(best_random_map['data'], 'greedy_present', 'data')
+	# plot_data([greedy['data']], 'greedy_present', 'plot')
+	make_gif(greedy_map['steps'], 'greedy40', 'greedy40')
