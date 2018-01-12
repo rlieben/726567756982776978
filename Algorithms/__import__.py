@@ -44,6 +44,6 @@ from Algorithms.hillclimber import hillclimber
 from Algorithms.greedy import greedy
 from Algorithms.force_move import force_move
 from Visualisations.coloured_map import coloured_map
-from Visualisations.txtwriter import save_results
+from Visualisations.txtwriter import save_results, csv_writer
 from Visualisations.make_gif import make_gif
 from Visualisations.plot_data import plot_data

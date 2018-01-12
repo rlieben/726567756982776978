@@ -49,7 +49,9 @@ class House(object):
 		# calculate with self.calc_value
 		self.value = None
 
-
+		# extras for Programming Project
+		self.freespaces = None
+		self.neighbours = None
 
 
 	def calc_value(self):
@@ -107,6 +109,9 @@ class House(object):
 		tmp_freespace = []
 		tmp_direction = []
 
+		# extra for Programming Project
+		tmp_neighbours = []
+
 		# initiate lists for other houses, based on orientation to this house
 		tmp_range_x = []
 		tmp_range_y = []
@@ -130,6 +135,11 @@ class House(object):
 			tmp_direction.append({'x' : diff_r, 'y' : 0})
 			tmp_direction.append({'x' : 0, 'y' : diff_b})
 			tmp_direction.append({'x' : 0, 'y' : diff_o})
+
+			tmp_neighbours.append('left')
+			tmp_neighbours.append('right')
+			tmp_neighbours.append('top')
+			tmp_neighbours.append('down')
 
 		# iterate over houses on map
 		for house in in_map.houses:
@@ -173,6 +183,9 @@ class House(object):
 			tmp_direction.append({'x' : diff_l, 'y' : 0})
 			tmp_direction.append({'x' : diff_r, 'y' : 0})
 
+			tmp_neighbours.append(house.self_id)
+			tmp_neighbours.append(house.self_id)
+
 
 		# add distance in terms of y to list of freespaces
 		for house in tmp_range_y:
@@ -187,6 +200,9 @@ class House(object):
 			# add direction to list of directions
 			tmp_direction.append({'x' : 0, 'y' : diff_b})
 			tmp_direction.append({'x' : 0, 'y' : diff_o})
+
+			tmp_neighbours.append(house.self_id)
+			tmp_neighbours.append(house.self_id)
 
 
 		# add distance between corners to list of freespaces
@@ -209,9 +225,24 @@ class House(object):
 					# add direction to list of directions
 					tmp_direction.append({'x' : diff_x, 'y' : diff_y})
 
+					tmp_neighbours.append(house.self_id)
+
 		# find index of smallest freespace in list
 		index = numpy.argmin(tmp_freespace)
 
 		# update house information
 		self.freespace = tmp_freespace[index]
 		self.direction = tmp_direction[index]
+
+		self.freespaces = []
+		self.neighbours = []
+
+		for i in range(len(tmp_freespace)):
+
+			index = numpy.argmin(tmp_freespace)
+			
+			self.freespaces.append(tmp_freespace[index])
+			self.neighbours.append(tmp_neighbours[index])
+
+			del tmp_freespace[index]
+			del tmp_neighbours[index]

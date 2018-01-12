@@ -68,16 +68,19 @@ def hillclimber(in_map, tries_hill, nr_houses, hill_type, save_steps = False):
 		if save_steps == True:
 			steps.append(copy.deepcopy(best_map))
 
+
 	return {'best_map' : best_map, 'data' : data, 'steps' : steps}
 
 
 if __name__ == '__main__':
 
 	from __import__ import MAP_20, coloured_map, save_results, make_gif, \
-						   best_of_random, plot_data
+						   best_of_random, plot_data, csv_writer
 
 	random_map = best_of_random(MAP_20, 1, False)
-	hillclimber_map = hillclimber(random_map['best_map'], 10, 1, 1)
+	hillclimber_map = hillclimber(random_map['best_map'], 10, 1, 0, True)
+
+	csv_writer(hillclimber_map['steps'], 'hillclimber', '')
 	# tactical_hillclimber_map = hillclimber(MAP_20, 1, 10, 1, 1, True)
     #
 	# plot_data(hillclimber_map['data'], 'hillclimber60', 'plot')

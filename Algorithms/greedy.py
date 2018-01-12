@@ -72,14 +72,10 @@ def greedy(nr_startmaps, map_specs, istep, save_steps = False):
 			# if (i == prune_house):
 
 			# 	minscore = total_maps[start_map].calc_score()
-
-<<<<<<< HEAD
-				# if minscore < 9000000:
-				# 	break
-=======
+				
 			# 	if minscore < 9000000:
 			# 		break
->>>>>>> 5fe35042563e83c0b4bda150ed63e9b76be6b42e
+
 
 			total_maps[start_map].calc_score()
 
